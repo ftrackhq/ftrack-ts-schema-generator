@@ -22,7 +22,7 @@ const session = new Session(
 const legacySchemas = ["Conversation", "Message", "Participant"];
 
 export async function main(
-  outputPath: string = path.join(__dirname, "..", "__output__"),
+  outputPath: string = path.join(__dirname, "..", "__generated__"),
   outputFilename: string = "schema.ts",
   relativePath: boolean = true
 ) {
@@ -131,7 +131,7 @@ function getTypedContextTypes(schemas: QuerySchemasResponse[]) {
 // Call the main function with command line arguments if this module is being run directly
 if (require.main === module) {
   const outputPath =
-    process.argv[2] || path.join(__dirname, "..", "__output__");
+    process.argv[2] || path.join(__dirname, "..", "__generated__");
   const outputFilename = process.argv[3] || "schema.ts";
   const relative = process.argv[4] ? JSON.parse(process.argv[4]) : true;
   main(outputPath, outputFilename, relative);
