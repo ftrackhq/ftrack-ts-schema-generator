@@ -1,13 +1,13 @@
 {
   "name": "@ftrack/ts-interface-generator",
   "description": "Gets the schema from a ftrack instance and generates typescript interfaces for all the entity types in the instance.",
-  "main": "index.ts",
+  "main": "source/index.ts",
   "repository": {
     "type": "git",
     "url": "git@github.com:ftrackhq/ts-interface-generator.git"
   },
   "scripts": {
-    "generate": "ts-node index.ts"
+    "generate": "ts-node source/index.ts"
   },
   "dependencies": {
     "@ftrack/api": "1.4.4"

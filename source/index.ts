@@ -74,9 +74,9 @@ async function main() {
   const prettifiedContent = prettier.format(allContent, {
     parser: "typescript",
   });
-  fs.mkdirSync(path.join(__dirname, "__output__"), { recursive: true });
+  fs.mkdirSync(path.join(__dirname, "..", "__output__"), { recursive: true });
   fs.writeFileSync(
-    path.join(__dirname, "__output__", "schema.ts"),
+    path.join(__dirname, "..", "__output__", "schema.ts"),
     prettifiedContent
   );
 }
