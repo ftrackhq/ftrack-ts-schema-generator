@@ -22,7 +22,7 @@ const session = new Session(
 const legacySchemas = ["Conversation", "Message", "Participant"];
 
 export async function generate(
-  outputPath: string = path.join(__dirname, "..", "__generated__"),
+  outputPath: string = "__generated__",
   outputFilename: string = "schema.ts",
   relativePath: boolean = true
 ) {
@@ -130,8 +130,7 @@ function getTypedContextTypes(schemas: QuerySchemasResponse[]) {
 }
 // Call the generate function with command line arguments if this module is being run directly
 if (require.main === module) {
-  const outputPath =
-    process.argv[2] || path.join(__dirname, "..", "__generated__");
+  const outputPath = process.argv[2] || "__generated__";
   const outputFilename = process.argv[3] || "schema.ts";
   const relative = process.argv[4] ? JSON.parse(process.argv[4]) : true;
   generate(outputPath, outputFilename, relative);

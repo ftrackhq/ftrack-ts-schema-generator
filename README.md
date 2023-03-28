@@ -1,6 +1,6 @@
 # ts-interface-generator
 
-Gets the schema from a ftrack instance and generates typescript interfaces for all the entity types in the instance.
+A TypeScript schema generator for the ftrack platform. This package generates TypeScript types based on your ftrack standard and custom entities, allowing for type-safe interactions with the ftrack API.
 
 ## Environment Variables
 
@@ -14,19 +14,39 @@ Please ensure these environment variables are set before running the script.
 
 ## Usage
 
-### Running the script using Yarn
+### Directly in the downloaded repository
 
-To run the script using Yarn, use the `yarn generate` command.
-
-#### Using the default output path and filename
-
-To use the default output path and filename, simply run:
+After cloning or downloading the package, navigate to the package directory and run the following command:
 
 ```
-yarn generate
+yarn install
 ```
 
-#### Customizing the output path and filename
+Then, to run the script using Yarn, use the `yarn generate` command.
+
+### As a dependency in another project
+
+Install the package as a dependency in your project:
+
+```
+yarn add --dev @ftrack/ts-schema-generator
+```
+
+Add the following script to your project's `package.json` file:
+
+```json
+"scripts": {
+  "generate-ts-schema": "yarn run @ftrack/ts-schema-generator generate"
+}
+```
+
+Then, run the script using the following command:
+
+```
+yarn generate-ts-schema
+```
+
+### Customizing the output path and filename
 
 To customize the output path and filename, pass them as arguments after `--`:
 
@@ -34,7 +54,13 @@ To customize the output path and filename, pass them as arguments after `--`:
 yarn generate -- ./path/to/output/directory customSchemaFilename.ts
 ```
 
-#### Choosing whether the output path is relative or absolute
+or if using the script as a dependency in another project:
+
+```
+yarn generate-ts-schema -- ./path/to/output/directory customSchemaFilename.ts
+```
+
+### Choosing whether the output path is relative or absolute
 
 By default, the output path is considered relative to the current working directory. To use an absolute path, pass an additional argument `false`:
 
@@ -42,30 +68,11 @@ By default, the output path is considered relative to the current working direct
 yarn generate -- /absolute/path/to/output/directory customSchemaFilename.ts false
 ```
 
-### Importing and using the `generate` function in another TypeScript file
+or if using the script as a dependency in another project:
 
-To import and use the `generate` function in another TypeScript file, follow these steps:
-
-1. Import the `generate` function from the original TypeScript file:
-
-```typescript
-import { generate } from "./your-typescript-file";
 ```
-
-2. Call the `generate` function with the desired output path, filename, and an optional `relative` parameter:
-
-```typescript
-async function runGenerateFunction() {
-  const outputPath = "./relative/output/directory";
-  const outputFilename = "customSchemaFilename.ts";
-  const relative = true; // Change this to false if you want to use an absolute path
-  await generate(outputPath, outputFilename, relative);
-}
-
-runGenerateFunction();
+yarn generate-ts-schema -- /absolute/path/to/output/directory customSchemaFilename.ts false
 ```
-
-In this example, the `outputPath` is considered relative to the current working directory because the `relative` parameter is set to `true`. If you set it to `false`, the provided `outputPath` will be used as-is.
 
 ## Output
 
