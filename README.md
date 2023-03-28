@@ -42,27 +42,27 @@ By default, the output path is considered relative to the current working direct
 yarn generate -- /absolute/path/to/output/directory customSchemaFilename.ts false
 ```
 
-### Importing and using the `main` function in another TypeScript file
+### Importing and using the `generate` function in another TypeScript file
 
-To import and use the `main` function in another TypeScript file, follow these steps:
+To import and use the `generate` function in another TypeScript file, follow these steps:
 
-1. Import the `main` function from the original TypeScript file:
+1. Import the `generate` function from the original TypeScript file:
 
 ```typescript
-import { main } from "./your-typescript-file";
+import { generate } from "./your-typescript-file";
 ```
 
-2. Call the `main` function with the desired output path, filename, and an optional `relative` parameter:
+2. Call the `generate` function with the desired output path, filename, and an optional `relative` parameter:
 
 ```typescript
-async function runMainFunction() {
+async function runGenerateFunction() {
   const outputPath = "./relative/output/directory";
   const outputFilename = "customSchemaFilename.ts";
   const relative = true; // Change this to false if you want to use an absolute path
-  await main(outputPath, outputFilename, relative);
+  await generate(outputPath, outputFilename, relative);
 }
 
-runMainFunction();
+runGenerateFunction();
 ```
 
 In this example, the `outputPath` is considered relative to the current working directory because the `relative` parameter is set to `true`. If you set it to `false`, the provided `outputPath` will be used as-is.
