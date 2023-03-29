@@ -11,8 +11,6 @@ import * as path from "path";
 import prettier from "prettier";
 import { convertSchemaToInterface } from "./convertSchemaToInterface";
 
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
-
 const sessionServer = process.env.FTRACK_SERVER ?? "";
 const session = new Session(
   sessionServer,
