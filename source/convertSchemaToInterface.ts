@@ -82,7 +82,7 @@ function getTypeExtensionSuffix(baseSchema?: Schema, schema?: Schema) {
 //Todo: update when Schema type in API is updated
 function getBaseSchema(schema: any, allSchemas: QuerySchemasResponse[]) {
   if (!schema.$mixin) {
-    return;
+    return undefined;
   }
   const baseSchema = allSchemas[0].find((s) => {
     return s.id === schema.$mixin["$ref"];

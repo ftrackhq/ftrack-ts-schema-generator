@@ -1,6 +1,6 @@
-# ftrack-ts-schema-generator
+# @ftrack/ts-schema-generator
 
-Gets the schema from a ftrack instance and generates typescript interfaces for all the entity types in the instance.
+A TypeScript schema generator for the ftrack platform. This package generates TypeScript types based on your ftrack custom entities, allowing for type-safe interactions with the ftrack API.
 
 ## Environment Variables
 
@@ -13,6 +13,14 @@ This script requires the following environment variables to be set:
 Please ensure these environment variables are set before running the script.
 
 ## Usage
+
+### Installation
+
+To install the package, run the following command:
+
+&&&
+yarn add @ftrack/ts-schema-generator
+&&&
 
 ### Running the script using Yarn
 
@@ -44,12 +52,10 @@ yarn generate -- /absolute/path/to/output/directory customSchemaFilename.ts fals
 
 ### Importing and using the `generate` function in another TypeScript file
 
-To import and use the `generate` function in another TypeScript file, follow these steps:
-
-1. Import the `generate` function from the original TypeScript file:
+1. Import the `generate` function from the package:
 
 ```typescript
-import { generate } from "./your-typescript-file";
+import { generate } from "@ftrack/ts-schema-generator";
 ```
 
 2. Call the `generate` function with the desired output path, filename, and an optional `relative` parameter:

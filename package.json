@@ -1,28 +1,29 @@
 {
-  "name": "@ftrack/ftrack-ts-schema-generator",
+  "name": "@ftrack/ts-schema-generator",
   "description": "Gets the schema from a ftrack instance and generates typescript interfaces for all the entity types in the instance.",
   "main": "./dist/ftrack-ts-schema-generator.umd.js",
   "module": "./dist/ftrack-ts-schema-generator.es.js",
-  "types": "./dist/ftrack-ts-schema-generator.d.ts",
-  "type": "module",
   "repository": {
     "type": "git",
     "url": "git@github.com:ftrackhq/ftrack-ts-schema-generator.git"
   },
   "scripts": {
-    "generate": "ts-node source/index.ts",
-    "build": "tsc && vite build"
+    "generate": "yarn build && node ./dist/ftrack-ts-schema-generator.es.js",
+    "generate2": "ts-node source/index.ts",
+    "build": "esbuild source/index.ts --outfile=dist/index.js --platform=node --bundle"
   },
   "exports": {
     ".": {
-      "types": "./dist/ftrack-ts-schema-generator.d.ts",
       "import": "./dist/ftrack-ts-schema-generator.es.js",
       "require": "./dist/ftrack-ts-schema-generator.umd.js"
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "dependencies": {
-    "@ftrack/api": "1.4.4"
+    "@ftrack/api": "1.4.4",
+    "prettier": "^2.8.7"
   },
   "license": "Apache-2.0",
   "bugs": {
@@ -32,10 +33,14 @@
   "devDependencies": {
     "@types/node": "^18.15.7",
     "@types/prettier": "^2.7.2",
-    "prettier": "^2.8.7",
+    "esbuild": "^0.17.14",
+    "npm": "^9.6.2",
     "ts-node": "^10.9.1",
     "typescript": "^4.9.5",
     "vite": "^4.2.0"
+  },
+  "bin": {
+    "ftrack-ts-schema-generator": "./dist/ftrack-ts-schema-generator.es.js"
   },
   "packageManager": "yarn@3.3.1"
 }
