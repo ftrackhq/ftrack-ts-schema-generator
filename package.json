@@ -1,18 +1,19 @@
 {
   "name": "@ftrack/ts-schema-generator",
   "description": "Gets the schema from a ftrack instance and generates typescript interfaces for all the entity types in the instance.",
-  "main": "dist/ftrack-ts-schema-generator.js",
+  "module": "dist/ftrack-ts-schema-generator.js",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git@github.com:ftrackhq/ftrack-ts-schema-generator.git"
   },
   "scripts": {
-    "generate": "node dist/ftrack-ts-schema-generator.js",
-    "build": "esbuild source/index.ts --outfile=dist/ftrack-ts-schema-generator.js --platform=node --bundle --packages=external",
+    "generate": "node dist/ftrack-ts-schema-generator.mjs",
+    "build": "esbuild source/index.ts --outfile=dist/ftrack-ts-schema-generator.mjs --platform=node --format=esm --bundle --packages=external",
     "prepack": "yarn build"
   },
   "dependencies": {
-    "@ftrack/api": "1.4.4"
+    "@ftrack/api": "https://github.com/ftrackhq/ftrack-javascript#50f3dd69d3a275528e34ad496cd8b7c2f3def4b7"
   },
   "files": [
     "dist"
