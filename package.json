@@ -8,8 +8,8 @@
     "url": "git@github.com:ftrackhq/ftrack-ts-schema-generator.git"
   },
   "scripts": {
-    "generate": "node dist/ftrack-ts-schema-generator.mjs",
-    "build": "esbuild source/index.ts --outfile=dist/ftrack-ts-schema-generator.mjs --platform=node --format=esm --bundle --packages=external",
+    "generate": "node dist/ftrack-ts-schema-generator.js",
+    "build": "esbuild source/index.ts --outfile=dist/ftrack-ts-schema-generator.js --platform=node --format=esm --bundle --packages=external",
     "prepack": "yarn build"
   },
   "dependencies": {

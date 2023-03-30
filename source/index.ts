@@ -9,7 +9,7 @@ import { Session } from "@ftrack/api";
 import * as fs from "fs";
 import * as path from "path";
 import prettier from "prettier";
-import { convertSchemaToInterface } from "./convertSchemaToInterface";
+import { convertSchemaToInterface } from "./convertSchemaToInterface.js";
 
 const sessionServer = process.env.FTRACK_SERVER ?? "";
 const session = new Session(
@@ -127,7 +127,7 @@ function getTypedContextTypes(schemas: QuerySchemasResponse[]) {
   return { TypedContextSubtypeMap, TypedContextSubtype };
 }
 // Call the generate function with command line arguments if this module is being run directly
-if (require.main === module) {
+if (import.meta.url === `file://${process.argv[1]}`) {
   const outputPath = process.argv[2] || "__generated__";
   const outputFilename = process.argv[3] || "schema.ts";
   const relative = process.argv[4] ? JSON.parse(process.argv[4]) : true;
