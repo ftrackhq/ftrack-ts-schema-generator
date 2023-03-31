@@ -3,7 +3,6 @@ import type {
   Schema,
   QuerySchemasResponse,
   TypedSchemaProperty,
-  RefSchemaProperty,
   SchemaProperties,
 } from "@ftrack/api";
 
