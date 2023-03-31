@@ -13,7 +13,7 @@
     "prepack": "yarn build"
   },
   "dependencies": {
-    "@ftrack/api": "https://github.com/ftrackhq/ftrack-javascript#50f3dd69d3a275528e34ad496cd8b7c2f3def4b7"
+    "@ftrack/api": "^1.4.5"
   },
   "files": [
     "dist"

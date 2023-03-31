@@ -168,14 +168,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ftrack/api@https://github.com/ftrackhq/ftrack-javascript#50f3dd69d3a275528e34ad496cd8b7c2f3def4b7":
-  version: 0.0.0
-  resolution: "@ftrack/api@https://github.com/ftrackhq/ftrack-javascript.git#commit=50f3dd69d3a275528e34ad496cd8b7c2f3def4b7"
+"@ftrack/api@npm:^1.4.5":
+  version: 1.4.5
+  resolution: "@ftrack/api@npm:1.4.5"
   dependencies:
     loglevel: ^1.8.1
     moment: ^2.29.4
     uuid: ^9.0.0
-  checksum: 41badcc159fd53bb1bce0475bff721ebe03167bd3219cd311eb74a8a951aba01adc17acaacb348f9cf1038f29f0614e995bd7cca89a8a5f7e0732aeb8af42534
+  checksum: 494f0ef0768a3299537a8d0411d0a0e9f63de4f6f720cc8bab0fb1d61afb9827387ae7d3eaa3f781bd1fa69a1a0c74e6dc45de4e70e502c0dbd3a009d5816bd3
   languageName: node
   linkType: hard
 
@@ -183,7 +183,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@ftrack/ts-schema-generator@workspace:."
   dependencies:
-    "@ftrack/api": "https://github.com/ftrackhq/ftrack-javascript#50f3dd69d3a275528e34ad496cd8b7c2f3def4b7"
+    "@ftrack/api": ^1.4.5
     "@types/node": ^18.15.7
     "@types/prettier": ^2.7.2
     esbuild: ^0.17.14
