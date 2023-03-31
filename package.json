@@ -41,9 +41,9 @@
   "packageManager": "yarn@3.5.0",
   "lint-staged": {
     "*.{js,ts}": [
-      "eslint --cache --fix --max-warnings=0 .",
-      "prettier --write .",
-      "tsc"
+      "eslint --cache --fix --max-warnings=0",
+      "prettier --write",
+      "bash -c 'yarn tsc'"
     ]
   }
 }
