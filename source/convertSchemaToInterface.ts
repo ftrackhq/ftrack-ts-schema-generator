@@ -1,5 +1,11 @@
 // :copyright: Copyright (c) 2023 ftrack
-import type { Schema, QuerySchemasResponse } from "@ftrack/api";
+import type {
+  Schema,
+  QuerySchemasResponse,
+  TypedSchemaProperty,
+  RefSchemaProperty,
+  SchemaProperties,
+} from "@ftrack/api";
 
 let errors: string[] = [];
 // Add schemas from the schemas folder, to be used for finding extended schemas
@@ -80,7 +86,7 @@ function getTypeExtensionSuffix(baseSchema?: Schema, schema?: Schema) {
   return baseSchemaSuffix + typedContextSubtypeSuffix;
 }
 //Todo: update when Schema type in API is updated
-function getBaseSchema(schema: any, allSchemas: QuerySchemasResponse[]) {
+function getBaseSchema(schema: Schema, allSchemas: QuerySchemasResponse[]) {
   if (!schema.$mixin) {
     return;
   }
@@ -91,8 +97,8 @@ function getBaseSchema(schema: any, allSchemas: QuerySchemasResponse[]) {
 }
 function convertPropertiesToTypes(
   schema: Schema,
-  baseSchemaProperties?: Record<string, any>,
-  typedContextProperties?: Record<string, any>
+  baseSchemaProperties?: SchemaProperties,
+  typedContextProperties?: SchemaProperties
 ) {
   // Filter out deprecated properties, that start with _
   const deprecationFilteredProperties = Object.entries(
@@ -144,31 +150,27 @@ function convertPropertiesToTypes(
   return convertedProperties;
 }
 
-function convertTypeToTsType(key: string, value?: Record<string, any>) {
-  let type = value?.type;
+function convertTypeToTsType(key: string, value?: TypedSchemaProperty) {
   // Fix some types that are not supported by TypeScript
 
-  if (type === "integer") {
-    type = "number";
+  if (value.type === "integer") {
+    return "number";
   }
-  if (type === "variable") {
-    type = "string | number | boolean | string[]"; // Or maybe string?
-  }
-  if (type === "mapped_array") {
-    type = "array";
+  if (value.type === "variable") {
+    return "string | number | boolean | string[]"; // Or maybe string?
   }
   // If the type is an array, we need to check if the items are a built in type or a reference
-  if (type === "array") {
-    if (!value?.items) {
+  if (value.type === "array" || value.type === "mapped_array") {
+    if (!value.items) {
       throw new Error(`No items defined for array ${key}`);
     }
     if (value.items.$ref) {
-      type = `${value.items.$ref}[]`;
-    } else if (value.items.type) {
-      type = `${convertTypeToTsType(value.items.type)}[]`;
+      return `${value.items.$ref}[]`;
+    } else if ("type" in value.items && value.items.type) {
+      return `${convertTypeToTsType(value.items.type as string)}[]`;
     }
   }
-  return type;
+  return value.type;
 }
 function verifyValidType(type: string) {
   if (
