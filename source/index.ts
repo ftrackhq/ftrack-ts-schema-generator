@@ -21,7 +21,11 @@ const session = new Session(
 );
 const legacySchemas = ["Conversation", "Message", "Participant"];
 
-async function main() {
+export async function generate(
+  outputPath: string = path.join(__dirname, "..", "__generated__"),
+  outputFilename: string = "schema.ts",
+  relativePath: boolean = true
+) {
   // Get the schemas from the server and sort by id in alphabetical order
   const schemas = await getSchemas();
   // For each schema in schemas, convert it to a TypeScript interface and add to a string
@@ -56,7 +60,7 @@ async function main() {
   // Write the file, adding the preamble first and the errors to the end of the file
 
   // Hack to get around the fact that the API doesn't return the correct type for BasicLink
-  // Task: https://dev.ftrackapp.com/#slideEntityId=95e02be2-c7ec-11ed-ae64-46416ff77027&slideEntityType=task&view=tasks&itemId=projects&entityId=2465912c-2441-11ed-8edb-9e89dc32fb4f&entityType=task
+  // Task: 95e02be2-c7ec-11ed-ae64-46416ff77027
   interfaces = AddBasicLinkType(interfaces);
   // End of hack
 
@@ -74,11 +78,11 @@ async function main() {
   const prettifiedContent = prettier.format(allContent, {
     parser: "typescript",
   });
-  fs.mkdirSync(path.join(__dirname, "..", "__output__"), { recursive: true });
-  fs.writeFileSync(
-    path.join(__dirname, "..", "__output__", "schema.ts"),
-    prettifiedContent
-  );
+  if (relativePath) {
+    outputPath = path.join(process.cwd(), outputPath);
+  }
+  fs.mkdirSync(outputPath, { recursive: true });
+  fs.writeFileSync(path.join(outputPath, outputFilename), prettifiedContent);
 }
 
 async function getSchemas() {
@@ -124,4 +128,11 @@ function getTypedContextTypes(schemas: QuerySchemasResponse[]) {
   const TypedContextSubtype = `export type TypedContextSubtype = keyof TypedContextSubtypeMap;`;
   return { TypedContextSubtypeMap, TypedContextSubtype };
 }
-main();
+// Call the generate function with command line arguments if this module is being run directly
+if (require.main === module) {
+  const outputPath =
+    process.argv[2] || path.join(__dirname, "..", "__generated__");
+  const outputFilename = process.argv[3] || "schema.ts";
+  const relative = process.argv[4] ? JSON.parse(process.argv[4]) : true;
+  generate(outputPath, outputFilename, relative);
+}

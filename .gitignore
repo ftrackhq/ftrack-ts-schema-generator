@@ -59,4 +59,4 @@ package.tgz
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
-__output__/
+__generated__/
