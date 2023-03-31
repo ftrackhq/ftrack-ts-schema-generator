@@ -11,7 +11,7 @@
     "generate": "node dist/ftrack-ts-schema-generator.js",
     "build": "esbuild source/index.ts --outfile=dist/ftrack-ts-schema-generator.js --platform=node --format=esm --bundle --packages=external",
     "prepack": "yarn build",
-    "lint": "tsc && eslint . && prettier -c .",
+    "test": "tsc && eslint . && prettier -c .",
     "prepublish": "yarn test"
   },
   "dependencies": {
@@ -32,9 +32,14 @@
     "@typescript-eslint/parser": "latest",
     "esbuild": "^0.17.14",
     "eslint": "^8.37.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.0",
     "prettier": "^2.8.7",
     "ts-node": "^10.9.1",
     "typescript": "^4.9.5"
   },
-  "packageManager": "yarn@3.5.0"
+  "packageManager": "yarn@3.5.0",
+  "lint-staged": {
+    "*.{js,ts}": "yarn test"
+  }
 }
