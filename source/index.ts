@@ -8,10 +8,10 @@ import type {
 import { Session } from "@ftrack/api";
 import * as fs from "fs";
 import * as path from "path";
+import * as url from "url";
+const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
 import prettier from "prettier";
-import { convertSchemaToInterface } from "./convertSchemaToInterface";
-
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+import { convertSchemaToInterface } from "./convertSchemaToInterface.js";
 
 const sessionServer = process.env.FTRACK_SERVER ?? "";
 const session = new Session(
@@ -22,14 +22,13 @@ const session = new Session(
 const legacySchemas = ["Conversation", "Message", "Participant"];
 
 export async function generate(
-  outputPath: string = path.join(__dirname, "..", "__generated__"),
-  outputFilename: string = "schema.ts",
-  relativePath: boolean = true
+  outputPath = "__generated__",
+  outputFilename = "schema.ts"
 ) {
   // Get the schemas from the server and sort by id in alphabetical order
   const schemas = await getSchemas();
   // For each schema in schemas, convert it to a TypeScript interface and add to a string
-  const errors: any[] = [];
+  const errors: unknown[] = [];
   let interfaces = "";
   for (const schema of schemas[0]) {
     if (legacySchemas.includes(schema.id)) return;
@@ -78,10 +77,7 @@ export async function generate(
   const prettifiedContent = prettier.format(allContent, {
     parser: "typescript",
   });
-  if (relativePath) {
-    outputPath = path.join(process.cwd(), outputPath);
-  }
-  fs.mkdirSync(outputPath, { recursive: true });
+  fs.mkdirSync(path.resolve(__dirname, outputPath), { recursive: true });
   fs.writeFileSync(path.join(outputPath, outputFilename), prettifiedContent);
 }
 
@@ -95,7 +91,7 @@ async function getSchemas() {
   return schemas;
 }
 async function getServerVersion() {
-  let serverVersion = await session.call<QueryServerInformationResponse>([
+  const serverVersion = await session.call<QueryServerInformationResponse>([
     {
       action: "query_server_information",
       values: ["version"],
@@ -129,10 +125,8 @@ function getTypedContextTypes(schemas: QuerySchemasResponse[]) {
   return { TypedContextSubtypeMap, TypedContextSubtype };
 }
 // Call the generate function with command line arguments if this module is being run directly
-if (require.main === module) {
-  const outputPath =
-    process.argv[2] || path.join(__dirname, "..", "__generated__");
+if (import.meta.url === `file://${process.argv[1]}`) {
+  const outputPath = process.argv[2] || "__generated__";
   const outputFilename = process.argv[3] || "schema.ts";
-  const relative = process.argv[4] ? JSON.parse(process.argv[4]) : true;
-  generate(outputPath, outputFilename, relative);
+  generate(outputPath, outputFilename);
 }
