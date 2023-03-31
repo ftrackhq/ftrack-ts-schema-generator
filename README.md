@@ -60,20 +60,6 @@ or if using the script as a dependency in another project:
 yarn generate-ts-schema -- ./path/to/output/directory customSchemaFilename.ts
 ```
 
-### Choosing whether the output path is relative or absolute
-
-By default, the output path is considered relative to the current working directory. To use an absolute path, pass an additional argument `false`:
-
-```
-yarn generate -- /absolute/path/to/output/directory customSchemaFilename.ts false
-```
-
-or if using the script as a dependency in another project:
-
-```
-yarn generate-ts-schema -- /absolute/path/to/output/directory customSchemaFilename.ts false
-```
-
 ## Output
 
 The generated TypeScript file will contain interfaces for each entity type from the ftrack schema. Each interface represents the properties of that entity type, with the property names and types based on the schema.
