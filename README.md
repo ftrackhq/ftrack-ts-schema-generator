@@ -1,4 +1,4 @@
-# ts-interface-generator
+# @ftrack/ts-schema-generator
 
 A TypeScript schema generator for the ftrack platform. This package generates TypeScript types based on your ftrack standard and custom entities, allowing for type-safe interactions with the ftrack API.
 
@@ -85,15 +85,3 @@ In addition to the interfaces, the output file will also include:
 - `EntityData`: A generic type that takes an EntityType and returns the corresponding interface from EntityTypeMap.
 - `TypedContextSubtypeMap`: A map of TypedContext subtypes to their corresponding TypeScript interfaces.
 - `TypedContextSubtype`: A type representing the valid TypedContext subtypes.
-
-## Error Handling
-
-If there are any issues during the generation of the TypeScript interfaces, errors will be logged as comments at the end of the output file.
-
-## Contributing
-
-If you find any issues or have suggestions for improvements, please feel free to open a pull request or create an issue in the project repository.
-
-## License
-
-This project is licensed under the Apache 2.0 - see the LICENSE file for details.
