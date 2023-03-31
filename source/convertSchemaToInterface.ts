@@ -50,14 +50,14 @@ export async function convertSchemaToInterface(
   return { TSInterface, conversionErrors };
 }
 function getId(schema: Schema) {
-  let id = schema.id;
+  const id = schema.id;
   if (!id) {
     errors.push(`// No id defined for schema ${schema.id}`);
   }
   return id;
 }
 function addEntityTypeAndPermissions(
-  interfaceName: String,
+  interfaceName: string,
   interfaceContent: string[]
 ) {
   if (interfaceName === "TypedContext") {
@@ -103,7 +103,7 @@ function convertPropertiesToTypes(
     ([key]) => !baseSchemaProperties?.[key]
   );
 
-  var filteredProperties = baseSchemaFilteredProperties;
+  let filteredProperties = baseSchemaFilteredProperties;
   if (typeof schema?.alias_for === "object" && schema.alias_for.id === "Task") {
     filteredProperties = deprecationFilteredProperties.filter(
       ([key]) => !typedContextProperties?.[key]
