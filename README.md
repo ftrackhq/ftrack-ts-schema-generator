@@ -14,7 +14,7 @@ Please ensure these environment variables are set before running the script.
 
 ## Usage
 
-### Directly in the downloaded repository
+### From source
 
 After cloning or downloading the package, navigate to the package directory and run the following command:
 
