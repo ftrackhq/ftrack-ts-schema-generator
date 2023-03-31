@@ -20,14 +20,14 @@ const session = new Session(
 const legacySchemas = ["Conversation", "Message", "Participant"];
 
 export async function generate(
-  outputPath: string = "__generated__",
-  outputFilename: string = "schema.ts",
-  relativePath: boolean = true
+  outputPath = "__generated__",
+  outputFilename = "schema.ts",
+  relativePath = true
 ) {
   // Get the schemas from the server and sort by id in alphabetical order
   const schemas = await getSchemas();
   // For each schema in schemas, convert it to a TypeScript interface and add to a string
-  const errors: any[] = [];
+  const errors: unknown[] = [];
   let interfaces = "";
   for (const schema of schemas[0]) {
     if (legacySchemas.includes(schema.id)) return;
@@ -93,7 +93,7 @@ async function getSchemas() {
   return schemas;
 }
 async function getServerVersion() {
-  let serverVersion = await session.call<QueryServerInformationResponse>([
+  const serverVersion = await session.call<QueryServerInformationResponse>([
     {
       action: "query_server_information",
       values: ["version"],
