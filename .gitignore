@@ -60,3 +60,5 @@ package.tgz
 !.yarn/sdks
 !.yarn/versions
 __generated__/
+
+tsconfig.tsbuildinfo
