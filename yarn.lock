@@ -248,7 +248,7 @@ __metadata:
     ts-node: ^10.9.1
     typescript: ^5.0.3
   bin:
-    ts-schema-generator: ./dist/ftrack-ts-schema-generator.js
+    ftrack-ts-schema-generator: ./dist/ftrack-ts-schema-generator.js
   languageName: unknown
   linkType: soft
 
