@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 // :copyright: Copyright (c) 2023 ftrack
 // A node.js script to convert our query_schema to TypeScript types
 // TODO: Change type to module in API
@@ -8,8 +9,6 @@ import type {
 import { Session } from "@ftrack/api";
 import * as fs from "fs";
 import * as path from "path";
-import * as url from "url";
-const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
 import prettier from "prettier";
 import { convertSchemaToInterface } from "./convertSchemaToInterface.js";
 
@@ -77,7 +76,7 @@ export async function generate(
   const prettifiedContent = prettier.format(allContent, {
     parser: "typescript",
   });
-  fs.mkdirSync(path.resolve(__dirname, outputPath), { recursive: true });
+  fs.mkdirSync(path.resolve(outputPath), { recursive: true });
   fs.writeFileSync(path.join(outputPath, outputFilename), prettifiedContent);
 }
 
