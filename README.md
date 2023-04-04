@@ -36,7 +36,7 @@ Add the following script to your project's `package.json` file:
 
 ```json
 "scripts": {
-  "generate-ts-schema": "yarn run @ftrack/ts-schema-generator generate"
+  "generate-ts-schema": "ftrack-ts-schema-generator"
 }
 ```
 
@@ -48,16 +48,18 @@ yarn generate-ts-schema
 
 ### Customizing the output path and filename
 
-To customize the output path and filename, pass them as arguments after `--`:
+To customize the output path and filename, pass them as arguments:
 
 ```
-yarn generate -- ./path/to/output/directory customSchemaFilename.ts
+yarn generate ./path/to/output/directory customSchemaFilename.ts
 ```
 
 or if using the script as a dependency in another project:
 
 ```
-yarn generate-ts-schema -- ./path/to/output/directory customSchemaFilename.ts
+"scripts": {
+  "generate-ts-schema": "ftrack-ts-schema-generator ./path/to/output/directory customSchemaFilename.ts"
+}
 ```
 
 ## Output
