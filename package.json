@@ -25,7 +25,9 @@
   "bugs": {
     "url": "https://github.com/ftrackhq/ftrack-ts-schema-generator/issues"
   },
-  "bin": "./dist/ftrack-ts-schema-generator.js",
+  "bin": {
+    "ftrack-ts-schema-generator": "./path/to/program"
+  },
   "homepage": "http://ftrack.com",
   "devDependencies": {
     "@types/node": "^18.15.11",
