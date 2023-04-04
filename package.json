@@ -9,7 +9,7 @@
   },
   "scripts": {
     "generate": "node dist/ftrack-ts-schema-generator.js",
-    "build": "esbuild source/index.ts --outfile=dist/ftrack-ts-schema-generator.js --platform=node --format=esm --bundle --packages=external",
+    "build": "esbuild source/index.ts --target=esnext --outfile=dist/ftrack-ts-schema-generator.js --platform=node --format=esm --bundle --packages=external",
     "prepack": "yarn build",
     "test": "tsc && eslint --cache --fix --max-warnings=0 ./source && prettier -c ./source",
     "prepublish": "yarn test"
@@ -24,6 +24,9 @@
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/ftrackhq/ftrack-ts-schema-generator/issues"
+  },
+  "bin": {
+    "ftrack-ts-schema-generator": "./dist/ftrack-ts-schema-generator.js"
   },
   "homepage": "http://ftrack.com",
   "devDependencies": {
