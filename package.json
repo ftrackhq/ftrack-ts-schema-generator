@@ -10,6 +10,7 @@
   "scripts": {
     "generate": "node dist/ftrack-ts-schema-generator.js",
     "build": "esbuild source/index.ts --target=esnext --outfile=dist/ftrack-ts-schema-generator.js --platform=node --format=esm --bundle --packages=external",
+    "watch": "esbuild source/index.ts --target=esnext --outfile=dist/ftrack-ts-schema-generator.js --platform=node --format=esm --bundle --packages=external --watch",
     "prepack": "yarn build",
     "test": "tsc && eslint --cache --fix --max-warnings=0 ./source && prettier -c ./source",
     "prepublish": "yarn test"
