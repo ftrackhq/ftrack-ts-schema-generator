@@ -79,7 +79,7 @@ async function generate(
   fs.mkdirSync(path.resolve(outputPath), { recursive: true });
   fs.writeFileSync(path.join(outputPath, outputFilename), prettifiedContent);
 
-  return {errors, schemas};
+  return { errors, schemas };
 }
 
 async function getSchemas() {
@@ -128,13 +128,13 @@ function getTypedContextTypes(schemas: QuerySchemasResponse[]) {
 
 const outputPath = process.argv[2] || "__generated__";
 const outputFilename = process.argv[3] || "schema.ts";
-const {errors, schemas} = await generate(outputPath, outputFilename);
+const { errors, schemas } = await generate(outputPath, outputFilename);
 
 console.info(`${schemas.length} schema(s) found`);
 
-if(errors.length > 0) {
+if (errors.length > 0) {
   console.warn("One or more errors occured:");
-  for(const error of errors) {
+  for (const error of errors) {
     console.warn(error);
   }
 }
