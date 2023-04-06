@@ -20,7 +20,7 @@ const session = new Session(
 );
 const legacySchemas = ["Conversation", "Message", "Participant"];
 
-export async function generate(
+async function generate(
   outputPath = "__generated__",
   outputFilename = "schema.ts"
 ) {
