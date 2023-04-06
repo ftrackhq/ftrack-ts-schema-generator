@@ -20,7 +20,7 @@ const session = new Session(
 );
 const legacySchemas = ["Conversation", "Message", "Participant"];
 
-export async function generate(
+async function generate(
   outputPath = "__generated__",
   outputFilename = "schema.ts"
 ) {
@@ -35,7 +35,7 @@ export async function generate(
       schema,
       schemas
     );
-    errors.push(conversionErrors);
+    errors.push(...conversionErrors);
     interfaces += TSInterface;
   }
 
@@ -78,6 +78,8 @@ export async function generate(
   });
   fs.mkdirSync(path.resolve(outputPath), { recursive: true });
   fs.writeFileSync(path.join(outputPath, outputFilename), prettifiedContent);
+
+  return { errors, schemas };
 }
 
 async function getSchemas() {
@@ -123,9 +125,16 @@ function getTypedContextTypes(schemas: QuerySchemasResponse[]) {
   const TypedContextSubtype = `export type TypedContextSubtype = keyof TypedContextSubtypeMap;`;
   return { TypedContextSubtypeMap, TypedContextSubtype };
 }
-// Call the generate function with command line arguments if this module is being run directly
-if (import.meta.url === `file://${process.argv[1]}`) {
-  const outputPath = process.argv[2] || "__generated__";
-  const outputFilename = process.argv[3] || "schema.ts";
-  generate(outputPath, outputFilename);
+
+const outputPath = process.argv[2] || "__generated__";
+const outputFilename = process.argv[3] || "schema.ts";
+const { errors, schemas } = await generate(outputPath, outputFilename);
+
+console.info(`${schemas.length} schema(s) found`);
+
+if (errors.length > 0) {
+  console.warn("One or more errors occured:");
+  for (const error of errors) {
+    console.warn(error);
+  }
 }
