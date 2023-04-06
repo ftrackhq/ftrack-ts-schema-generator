@@ -126,18 +126,15 @@ function getTypedContextTypes(schemas: QuerySchemasResponse[]) {
   return { TypedContextSubtypeMap, TypedContextSubtype };
 }
 
-const isRunningDirectlyViaCLI = !require.main;
-if (isRunningDirectlyViaCLI) {
-  const outputPath = process.argv[2] || "__generated__";
-  const outputFilename = process.argv[3] || "schema.ts";
-  const {errors, schemas} = await generate(outputPath, outputFilename);
-  
-  console.info(`${schemas.length} schema(s) found`);
+const outputPath = process.argv[2] || "__generated__";
+const outputFilename = process.argv[3] || "schema.ts";
+const {errors, schemas} = await generate(outputPath, outputFilename);
 
-  if(errors.length > 0) {
-    console.warn("One or more errors occured:");
-    for(const error of errors) {
-      console.warn(error);
-    }
+console.info(`${schemas.length} schema(s) found`);
+
+if(errors.length > 0) {
+  console.warn("One or more errors occured:");
+  for(const error of errors) {
+    console.warn(error);
   }
 }
