@@ -5,7 +5,7 @@
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "git@github.com:ftrackhq/ftrack-ts-schema-generator.git"
+    "url": "https://github.com/ftrackhq/ftrack-ts-schema-generator.git"
   },
   "scripts": {
     "generate": "node dist/ftrack-ts-schema-generator.js",
