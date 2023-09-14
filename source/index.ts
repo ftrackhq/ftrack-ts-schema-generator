@@ -31,7 +31,7 @@ async function generate(
   let interfaces = "";
   for (const schema of schemas[0]) {
     if (legacySchemas.includes(schema.id)) {
-      return { errors, schemas };
+      continue;
     }
 
     const { TSInterface, conversionErrors } = await convertSchemaToInterface(
