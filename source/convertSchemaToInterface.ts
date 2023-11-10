@@ -10,7 +10,7 @@ let errors: string[] = [];
 // Add schemas from the schemas folder, to be used for finding extended schemas
 export async function convertSchemaToInterface(
   schema: Schema,
-  allSchemas: QuerySchemasResponse[]
+  allSchemas: QuerySchemasResponse[],
 ) {
   let interfaceName = getId(schema);
   // If the schema is a subtype of TypedContext, return that
@@ -30,12 +30,12 @@ export async function convertSchemaToInterface(
   let interfaceContent = convertPropertiesToTypes(
     schema,
     baseSchema?.properties,
-    typedContextSchema?.properties
+    typedContextSchema?.properties,
   );
   // Entity type and permissions are missing from the source schema, so add them to the interface
   interfaceContent = addEntityTypeAndPermissions(
     interfaceName,
-    interfaceContent
+    interfaceContent,
   );
 
   //Gets the suffix for the interface, if it extends another schema
@@ -50,8 +50,8 @@ export async function convertSchemaToInterface(
   errors = [];
   const TSInterface = `
     export interface ${interfaceName} ${interfaceSuffix} {${interfaceContent.join(
-    "; "
-  )}}`;
+      "; ",
+    )}}`;
   return { TSInterface, conversionErrors };
 }
 function getId(schema: Schema) {
@@ -63,7 +63,7 @@ function getId(schema: Schema) {
 }
 function addEntityTypeAndPermissions(
   interfaceName: string,
-  interfaceContent: string[]
+  interfaceContent: string[],
 ) {
   if (interfaceName === "TypedContext") {
     interfaceContent.push(`__entity_type__?: K`);
@@ -97,21 +97,21 @@ function getBaseSchema(schema: Schema, allSchemas: QuerySchemasResponse[]) {
 function convertPropertiesToTypes(
   schema: Schema,
   baseSchemaProperties?: SchemaProperties,
-  typedContextProperties?: SchemaProperties
+  typedContextProperties?: SchemaProperties,
 ) {
   // Filter out deprecated properties, that start with _
   const deprecationFilteredProperties = Object.entries(
-    schema.properties
+    schema.properties,
   ).filter(([key]) => !key.startsWith("_"));
   // Filter out all properties that are defined in the base schema
   const baseSchemaFilteredProperties = deprecationFilteredProperties.filter(
-    ([key]) => !baseSchemaProperties?.[key]
+    ([key]) => !baseSchemaProperties?.[key],
   );
 
   let filteredProperties = baseSchemaFilteredProperties;
   if (typeof schema?.alias_for === "object" && schema.alias_for.id === "Task") {
     filteredProperties = deprecationFilteredProperties.filter(
-      ([key]) => !typedContextProperties?.[key]
+      ([key]) => !typedContextProperties?.[key],
     );
   }
   // Sort the object by key
@@ -120,13 +120,13 @@ function convertPropertiesToTypes(
   const convertedProperties = filteredProperties.map(([key, value]) => {
     if (typeof value !== "object" || value === null) {
       throw new Error(
-        `Property ${key} in schema ${schema.id} is not an object`
+        `Property ${key} in schema ${schema.id} is not an object`,
       );
     }
     // If neither type or $ref is defined, we can't generate a type. Log an error
     if (!("type" in value) && !("$ref" in value)) {
       errors.push(
-        `// No type or $ref defined for property ${key} in schema ${schema.id}`
+        `// No type or $ref defined for property ${key} in schema ${schema.id}`,
       );
     }
 

@@ -16,13 +16,13 @@ const sessionServer = process.env.FTRACK_SERVER ?? "";
 const session = new Session(
   sessionServer,
   process.env.FTRACK_API_USER ?? "",
-  process.env.FTRACK_API_KEY ?? ""
+  process.env.FTRACK_API_KEY ?? "",
 );
 const legacySchemas = ["Conversation", "Message", "Participant"];
 
 async function generate(
   outputPath = "__generated__",
-  outputFilename = "schema.ts"
+  outputFilename = "schema.ts",
 ) {
   // Get the schemas from the server and sort by id in alphabetical order
   const schemas = await getSchemas();
@@ -33,7 +33,7 @@ async function generate(
     if (legacySchemas.includes(schema.id)) return;
     const { TSInterface, conversionErrors } = await convertSchemaToInterface(
       schema,
-      schemas
+      schemas,
     );
     errors.push(...conversionErrors);
     interfaces += TSInterface;
@@ -44,7 +44,7 @@ async function generate(
     .map((s) => s.id)
     .map((name) => `${name}: ${name};`);
   const entityTypeMap = `export interface EntityTypeMap {${schemaNames.join(
-    "\n"
+    "\n",
   )}}`;
   const entityType = `export type EntityType = keyof EntityTypeMap;`;
   const entityData = `export type EntityData<TEntityType extends EntityType = EntityType> =
@@ -58,7 +58,6 @@ async function generate(
   // Write the file, adding the preamble first and the errors to the end of the file
 
   // Hack to get around the fact that the API doesn't return the correct type for BasicLink
-  // Task: 95e02be2-c7ec-11ed-ae64-46416ff77027
   interfaces = AddBasicLinkType(interfaces);
   // End of hack
 
@@ -73,7 +72,7 @@ async function generate(
     TypedContextSubtype +
     "\n \n// Errors: \n" +
     errors.join("\n");
-  const prettifiedContent = prettier.format(allContent, {
+  const prettifiedContent = await prettier.format(allContent, {
     parser: "typescript",
   });
   fs.mkdirSync(path.resolve(outputPath), { recursive: true });
@@ -115,12 +114,12 @@ function getTypedContextTypes(schemas: QuerySchemasResponse[]) {
       (schema) =>
         (typeof schema?.alias_for === "object" &&
           schema.alias_for.id === "Task") ||
-        schema.id === "TypedContext"
+        schema.id === "TypedContext",
     )
     .map((s) => s.id)
     .map((name) => `${name}: ${name};`);
   const TypedContextSubtypeMap = `export interface TypedContextSubtypeMap {${typedContextNames.join(
-    "\n"
+    "\n",
   )}}`;
   const TypedContextSubtype = `export type TypedContextSubtype = keyof TypedContextSubtypeMap;`;
   return { TypedContextSubtypeMap, TypedContextSubtype };
