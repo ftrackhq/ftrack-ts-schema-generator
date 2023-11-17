@@ -27,7 +27,7 @@ export async function emitToFile(
   return { errors, schemas };
 }
 
-async function emitToString(
+export async function emitToString(
   serverVersion: string | undefined,
   serverUrl: string | undefined,
   schemas: QuerySchemasResponse[]
@@ -35,8 +35,14 @@ async function emitToString(
   const date = new Date().toISOString();
   const preamble = `// :copyright: Copyright (c) 2023 ftrack \n\n// Generated on ${date} using schema \n// from an instance running version ${serverVersion} using server on ${serverUrl} \n// Not intended to modify manually\n\n`;
 
-  // For each schema in schemas, convert it to a TypeScript interface and add to a string
   const errors: unknown[] = [];
+  
+  if(schemas.length < 1) {
+    errors.push('No schemas found!');
+    return;
+  }
+
+  // For each schema in schemas, convert it to a TypeScript interface and add to a string
   let interfaces = "";
   for (const schema of schemas[0]) {
     if (legacySchemas.includes(schema.id)) {
