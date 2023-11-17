@@ -86,10 +86,11 @@ function getTypeExtensionSuffix(baseSchema?: Schema, schema?: Schema) {
 }
 //Todo: update when Schema type in API is updated
 function getBaseSchema(schema: Schema, allSchemas: QuerySchemasResponse[]) {
-  if (!schema.$mixin) {
-    return;
-  }
   const baseSchema = allSchemas[0].find((s) => {
+    if (!schema.$mixin) {
+      return false;
+    }
+
     return s.id === schema.$mixin["$ref"];
   });
   return baseSchema;
@@ -149,7 +150,7 @@ function convertPropertiesToTypes(
   return convertedProperties;
 }
 
-function convertTypeToTsType(key: string, value?: TypedSchemaProperty) {
+function convertTypeToTsType(key: string, value: TypedSchemaProperty): string {
   // Fix some types that are not supported by TypeScript
 
   if (value.type === "integer") {
@@ -166,7 +167,8 @@ function convertTypeToTsType(key: string, value?: TypedSchemaProperty) {
     if (value.items.$ref) {
       return `${value.items.$ref}[]`;
     } else if ("type" in value.items && value.items.type) {
-      return `${convertTypeToTsType(value.items.type as string)}[]`;
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      return `${convertTypeToTsType(value.items.type as string, undefined!)}[]`;
     }
   }
   return value.type;
