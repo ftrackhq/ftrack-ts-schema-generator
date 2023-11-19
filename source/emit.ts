@@ -30,21 +30,24 @@ export async function emitToFile(
 export async function emitToString(
   serverVersion: string | undefined,
   serverUrl: string | undefined,
-  schemas: QuerySchemasResponse[]
+  schemas: QuerySchemasResponse
 ) {
   const date = new Date().toISOString();
   const preamble = `// :copyright: Copyright (c) 2023 ftrack \n\n// Generated on ${date} using schema \n// from an instance running version ${serverVersion} using server on ${serverUrl} \n// Not intended to modify manually\n\n`;
 
   const errors: unknown[] = [];
-  
-  if(schemas.length < 1) {
-    errors.push('No schemas found!');
-    return;
+
+  if (schemas.length < 1) {
+    errors.push("No schemas found!");
+    return {
+      prettifiedContent: "",
+      errors,
+    };
   }
 
   // For each schema in schemas, convert it to a TypeScript interface and add to a string
   let interfaces = "";
-  for (const schema of schemas[0]) {
+  for (const schema of schemas) {
     if (legacySchemas.includes(schema.id)) {
       continue;
     }
@@ -58,7 +61,7 @@ export async function emitToString(
   }
 
   // Add a map of entity types and type for EntityType and a type for EntityData
-  const schemaNames = schemas[0]
+  const schemaNames = schemas
     .map((s) => s.id)
     .map((name) => `${name}: ${name};`);
   const entityTypeMap = `export interface EntityTypeMap {${schemaNames.join(
@@ -99,7 +102,7 @@ async function getSchemas(session: Session) {
     },
   ]);
   schemas[0].sort((a, b) => (a.id > b.id ? 1 : -1));
-  return schemas;
+  return schemas[0];
 }
 
 function AddBasicLinkType(interfaces: string) {
@@ -111,8 +114,8 @@ function AddBasicLinkType(interfaces: string) {
     name: string;
   };`;
 }
-function getTypedContextTypes(schemas: QuerySchemasResponse[]) {
-  const typedContextNames = schemas[0]
+function getTypedContextTypes(schemas: QuerySchemasResponse) {
+  const typedContextNames = schemas
     .filter(
       (schema) =>
         (typeof schema?.alias_for === "object" &&

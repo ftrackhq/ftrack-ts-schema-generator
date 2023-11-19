@@ -10,7 +10,7 @@ let errors: string[] = [];
 // Add schemas from the schemas folder, to be used for finding extended schemas
 export async function convertSchemaToInterface(
   schema: Schema,
-  allSchemas: QuerySchemasResponse[]
+  allSchemas: QuerySchemasResponse
 ) {
   let interfaceName = getId(schema);
   // If the schema is a subtype of TypedContext, return that
@@ -23,7 +23,7 @@ export async function convertSchemaToInterface(
   // Check if the schema extends another schema and get that base schema
   const baseSchema = getBaseSchema(schema, allSchemas);
   // Get the typedContext schema, to filter the properties for typedContext subtypes
-  const typedContextSchema = allSchemas[0].find((schema) => {
+  const typedContextSchema = allSchemas.find((schema) => {
     return schema.id === "TypedContext";
   });
   // For each property, add a type to the interface
@@ -85,8 +85,8 @@ function getTypeExtensionSuffix(baseSchema?: Schema, schema?: Schema) {
   return baseSchemaSuffix + typedContextSubtypeSuffix;
 }
 //Todo: update when Schema type in API is updated
-function getBaseSchema(schema: Schema, allSchemas: QuerySchemasResponse[]) {
-  const baseSchema = allSchemas[0].find((s) => {
+function getBaseSchema(schema: Schema, allSchemas: QuerySchemasResponse) {
+  const baseSchema = allSchemas.find((s) => {
     if (!schema.$mixin) {
       return false;
     }
@@ -102,7 +102,7 @@ function convertPropertiesToTypes(
 ) {
   // Filter out deprecated properties, that start with _
   const deprecationFilteredProperties = Object.entries(
-    schema.properties
+    schema.properties || []
   ).filter(([key]) => !key.startsWith("_"));
   // Filter out all properties that are defined in the base schema
   const baseSchemaFilteredProperties = deprecationFilteredProperties.filter(
