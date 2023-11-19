@@ -1,6 +1,6 @@
-import { Mocked, expect, test, vi } from "vitest";
+import { expect, test, vi } from "vitest";
 import { emitToString } from "./emit";
-import { ArrayTypeSchemaProperty, QuerySchemasResponse, RefSchemaProperty, Schema, SchemaProperties, SimpleTypeSchemaProperty } from "@ftrack/api";
+import { QuerySchemasResponse, Schema } from "@ftrack/api";
 
 test("emitting with no schemas returns error", async () => {
   //act
@@ -19,13 +19,13 @@ test("schema subtype of TypedContext", async () => {
   vi.setSystemTime(new Date(2023, 1, 1));
 
   const schemas: Array<Partial<Schema>> = [
-    getTypedContextSchema(), 
+    getTypedContextSchema(),
     {
       id: "SomeInterfaceName",
       alias_for: {
-        id: "Task"
-      }
-    }
+        id: "Task",
+      },
+    },
   ];
 
   //act
@@ -45,15 +45,15 @@ test("schema has base schema", async () => {
   vi.setSystemTime(new Date(2023, 1, 1));
 
   const schemas: Array<Partial<Schema>> = [
-    getTypedContextSchema(), 
+    getTypedContextSchema(),
     {
       id: "SomeInterfaceName",
-      $mixin: { "$ref": "SomeBaseSchema" },
+      $mixin: { $ref: "SomeBaseSchema" },
     },
     {
       id: "SomeBaseSchema",
-      type: "variable"
-    }
+      type: "variable",
+    },
   ];
 
   //act
@@ -73,16 +73,16 @@ test("schema has immutable property", async () => {
   vi.setSystemTime(new Date(2023, 1, 1));
 
   const schemas: Array<Partial<Schema>> = [
-    getTypedContextSchema(), 
+    getTypedContextSchema(),
     {
       id: "SomeInterfaceName",
       properties: {
         immutableProperty: {
-          type: "variable"
-        }
+          type: "variable",
+        },
       },
-      immutable: ["immutableProperty"]
-    }
+      immutable: ["immutableProperty"],
+    },
   ];
 
   //act
@@ -102,15 +102,15 @@ test("schema has integer type", async () => {
   vi.setSystemTime(new Date(2023, 1, 1));
 
   const schemas: Array<Partial<Schema>> = [
-    getTypedContextSchema(), 
+    getTypedContextSchema(),
     {
       id: "SomeInterfaceName",
       properties: {
         integerProperty: {
-          type: "integer"
-        }
-      }
-    }
+          type: "integer",
+        },
+      },
+    },
   ];
 
   //act
@@ -130,15 +130,15 @@ test("schema has variable type", async () => {
   vi.setSystemTime(new Date(2023, 1, 1));
 
   const schemas: Array<Partial<Schema>> = [
-    getTypedContextSchema(), 
+    getTypedContextSchema(),
     {
       id: "SomeInterfaceName",
       properties: {
         integerProperty: {
-          type: "variable"
-        }
-      }
-    }
+          type: "variable",
+        },
+      },
+    },
   ];
 
   //act
@@ -158,28 +158,28 @@ test("schema has array type", async () => {
   vi.setSystemTime(new Date(2023, 1, 1));
 
   const schemas: Array<Partial<Schema>> = [
-    getTypedContextSchema(), 
+    getTypedContextSchema(),
     {
       id: "SomeInterfaceName",
       properties: {
         arrayProperty: {
           type: "array",
           items: {
-            '$ref': "ArrayItem"
-          }
+            $ref: "ArrayItem",
+          },
         },
         mappedArrayProperty: {
           type: "mapped_array",
           items: {
-            '$ref': "ArrayItem"
-          }
-        }
-      }
-    }, 
+            $ref: "ArrayItem",
+          },
+        },
+      },
+    },
     {
       id: "ArrayItem",
-      type: "variable"
-    }
+      type: "variable",
+    },
   ];
 
   //act
@@ -197,6 +197,6 @@ test("schema has array type", async () => {
 function getTypedContextSchema() {
   return {
     id: "TypedContext",
-    properties: {}
+    properties: {},
   } as Partial<Schema> as Schema;
 }
