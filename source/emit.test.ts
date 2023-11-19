@@ -211,7 +211,7 @@ test("default ftrack schema", async () => {
   vi.setSystemTime(new Date(2023, 1, 1));
 
   const schemaContents = await readFile(
-    "./source/__snapshots__/defaultSchema.json"
+    join(".", "source", "__snapshots__", "responses", "query_schemas.json")
   );
   const schemas: Array<Schema> = JSON.parse(schemaContents.toString());
 
