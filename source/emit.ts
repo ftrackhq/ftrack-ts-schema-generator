@@ -33,7 +33,7 @@ export async function emitToString(
   schemas: QuerySchemasResponse
 ) {
   const date = new Date().toISOString();
-  const preamble = `// :copyright: Copyright (c) 2023 ftrack \n\n// Generated on ${date} using schema \n// from an instance running version ${serverVersion} using server on ${serverUrl} \n// Not intended to modify manually\n\n`;
+  const preamble = `// :copyright: Copyright (c) ${new Date().getFullYear()} ftrack \n\n// Generated on ${date} using schema \n// from an instance running version ${serverVersion} using server on ${serverUrl} \n// Not intended to modify manually\n\n`;
 
   const errors: unknown[] = [];
 
