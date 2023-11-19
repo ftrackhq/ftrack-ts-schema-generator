@@ -1,7 +1,4 @@
-// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
-
-exports[`schema has variable type 1`] = `
-"// :copyright: Copyright (c) 2023 ftrack
+// :copyright: Copyright (c) 2023 ftrack
 
 // Generated on 2023-01-31T23:00:00.000Z using schema
 // from an instance running version 4.13.8 using server on https://ftrack.example.com
@@ -13,11 +10,7 @@ export interface TypedContext<
   __entity_type__?: K;
   __permissions?: Record<string, any>;
 }
-export interface SomeInterfaceName {
-  integerProperty?: string | number | boolean | string[];
-  __entity_type__?: \\"SomeInterfaceName\\";
-  __permissions?: Record<string, any>;
-}
+export type SomeInterfaceName = TypedContext<"SomeInterfaceName">;
 export interface BasicLink {
   id: string;
   type: string;
@@ -32,9 +25,8 @@ export type EntityData<TEntityType extends EntityType = EntityType> =
   EntityTypeMap[TEntityType];
 export interface TypedContextSubtypeMap {
   TypedContext: TypedContext;
+  SomeInterfaceName: SomeInterfaceName;
 }
 export type TypedContextSubtype = keyof TypedContextSubtypeMap;
 
 // Errors:
-"
-`;
