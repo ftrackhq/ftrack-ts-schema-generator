@@ -88,7 +88,7 @@ export async function emitToString(
     TypedContextSubtypeMap +
     TypedContextSubtype +
     "\n \n// Errors: \n" +
-    errors.map(error => `// ${error}`).join("\n");
+    errors.map((error) => `// ${error}`).join("\n");
   const prettifiedContent = prettier.format(allContent, {
     parser: "typescript",
   });

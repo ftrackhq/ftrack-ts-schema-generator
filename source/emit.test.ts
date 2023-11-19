@@ -39,7 +39,9 @@ test("schema subtype of TypedContext", async () => {
 
   //assert
   expect(emitResult.errors).toEqual([]);
-  expect(emitResult.prettifiedContent).toMatchFileSnapshot(join(".", "__snapshots__", "schema-subtype-of-TypedContext.snap"));
+  expect(emitResult.prettifiedContent).toMatchFileSnapshot(
+    join(".", "__snapshots__", "schema-subtype-of-TypedContext.snap")
+  );
 });
 
 test("schema has base schema", async () => {
@@ -67,7 +69,9 @@ test("schema has base schema", async () => {
 
   //assert
   expect(emitResult.errors).toEqual([]);
-  expect(emitResult.prettifiedContent).toMatchFileSnapshot(join(".", "__snapshots__", "schema-has-base-schema.snap"));
+  expect(emitResult.prettifiedContent).toMatchFileSnapshot(
+    join(".", "__snapshots__", "schema-has-base-schema.snap")
+  );
 });
 
 test("schema has immutable property", async () => {
@@ -96,7 +100,9 @@ test("schema has immutable property", async () => {
 
   //assert
   expect(emitResult.errors).toEqual([]);
-  expect(emitResult.prettifiedContent).toMatchFileSnapshot(join(".", "__snapshots__", "schema-has-immutable-property.snap"));
+  expect(emitResult.prettifiedContent).toMatchFileSnapshot(
+    join(".", "__snapshots__", "schema-has-immutable-property.snap")
+  );
 });
 
 test("schema has integer type", async () => {
@@ -124,7 +130,9 @@ test("schema has integer type", async () => {
 
   //assert
   expect(emitResult.errors).toEqual([]);
-  expect(emitResult.prettifiedContent).toMatchFileSnapshot(join(".", "__snapshots__", "schema-has-integer-type.snap"));
+  expect(emitResult.prettifiedContent).toMatchFileSnapshot(
+    join(".", "__snapshots__", "schema-has-integer-type.snap")
+  );
 });
 
 test("schema has variable type", async () => {
@@ -193,15 +201,18 @@ test("schema has array type", async () => {
 
   //assert
   expect(emitResult.errors).toEqual([]);
-  expect(emitResult.prettifiedContent).toMatchFileSnapshot(join(".", "__snapshots__", "schema-has-array-type.snap"));
+  expect(emitResult.prettifiedContent).toMatchFileSnapshot(
+    join(".", "__snapshots__", "schema-has-array-type.snap")
+  );
 });
-
 
 test("default ftrack schema", async () => {
   //arrange
   vi.setSystemTime(new Date(2023, 1, 1));
 
-  const schemaContents = await readFile("./source/__snapshots__/defaultSchema.json");
+  const schemaContents = await readFile(
+    "./source/__snapshots__/defaultSchema.json"
+  );
   const schemas: Array<Schema> = JSON.parse(schemaContents.toString());
 
   //act
@@ -213,7 +224,9 @@ test("default ftrack schema", async () => {
 
   //assert
   expect(emitResult.errors).toEqual([]);
-  expect(emitResult.prettifiedContent).toMatchFileSnapshot(join(".", "__snapshots__", "default-ftrack-schema.snap"));
+  expect(emitResult.prettifiedContent).toMatchFileSnapshot(
+    join(".", "__snapshots__", "default-ftrack-schema.snap")
+  );
 });
 
 function getTypedContextSchema() {
