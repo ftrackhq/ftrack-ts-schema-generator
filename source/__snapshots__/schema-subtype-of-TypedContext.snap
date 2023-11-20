@@ -28,5 +28,12 @@ export interface TypedContextSubtypeMap {
   SomeInterfaceName: SomeInterfaceName;
 }
 export type TypedContextSubtype = keyof TypedContextSubtypeMap;
+export function getAttributeConfigurations() {
+  return [] as const;
+}
+
+export type CustomAttributeConfiguration = ReturnType<
+  typeof getAttributeConfigurations
+>[number];
 
 // Errors:

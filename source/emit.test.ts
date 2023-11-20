@@ -3,6 +3,7 @@ import { emitToString } from "./emit";
 import { QuerySchemasResponse, Schema } from "@ftrack/api";
 import { readFile } from "fs/promises";
 import { join } from "path";
+import type CustomAttributeConfigurations from "./__snapshots__/responses/query_custom_attribute_configurations.json";
 
 beforeEach(() => {
   vi.setSystemTime(new Date(2023, 1, 1, 0, 0, 0));
@@ -14,7 +15,7 @@ test("emitting with no schemas returns error", async () => {
     "4.13.8",
     "https://ftrack.example.com",
     [],
-    [],
+    []
   );
 
   //assert
@@ -38,7 +39,7 @@ test("schema subtype of TypedContext", async () => {
     "4.13.8",
     "https://ftrack.example.com",
     schemas as QuerySchemasResponse,
-    [],
+    []
   );
 
   //assert
@@ -67,7 +68,7 @@ test("schema has base schema", async () => {
     "4.13.8",
     "https://ftrack.example.com",
     schemas as QuerySchemasResponse,
-    [],
+    []
   );
 
   //assert
@@ -97,7 +98,7 @@ test("schema has immutable property", async () => {
     "4.13.8",
     "https://ftrack.example.com",
     schemas as QuerySchemasResponse,
-    [],
+    []
   );
 
   //assert
@@ -126,7 +127,7 @@ test("schema has integer type", async () => {
     "4.13.8",
     "https://ftrack.example.com",
     schemas as QuerySchemasResponse,
-    [],
+    []
   );
 
   //assert
@@ -155,7 +156,7 @@ test("schema has variable type", async () => {
     "4.13.8",
     "https://ftrack.example.com",
     schemas as QuerySchemasResponse,
-    [],
+    []
   );
 
   //assert
@@ -197,7 +198,7 @@ test("schema has array type", async () => {
     "4.13.8",
     "https://ftrack.example.com",
     schemas as QuerySchemasResponse,
-    [],
+    []
   );
 
   //assert
@@ -219,13 +220,43 @@ test("default ftrack schema", async () => {
     "4.13.8",
     "https://ftrack.example.com",
     schemas,
-    [],
+    []
   );
 
   //assert
   expect(emitResult.errors).toEqual([]);
   expect(emitResult.prettifiedContent).toMatchFileSnapshot(
     join(".", "__snapshots__", "default-ftrack-schema.snap")
+  );
+});
+
+test("default custom attributes", async () => {
+  //arrange
+  const customAttributesContents = await readFile(
+    join(
+      ".",
+      "source",
+      "__snapshots__",
+      "responses",
+      "query_custom_attribute_configurations.json"
+    )
+  );
+  const customAttributes: typeof CustomAttributeConfigurations = JSON.parse(
+    customAttributesContents.toString()
+  );
+
+  //act
+  const emitResult = await emitToString(
+    "4.13.8",
+    "https://ftrack.example.com",
+    [getTypedContextSchema()],
+    customAttributes
+  );
+
+  //assert
+  expect(emitResult.errors).toEqual([]);
+  expect(emitResult.prettifiedContent).toMatchFileSnapshot(
+    join(".", "__snapshots__", "default-custom-attributes.snap")
   );
 });
 

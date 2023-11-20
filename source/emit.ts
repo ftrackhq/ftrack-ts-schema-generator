@@ -3,6 +3,7 @@ import * as fs from "fs";
 import * as path from "path";
 import prettier from "prettier";
 import { convertSchemaToInterface } from "./convertSchemaToInterface.js";
+import type CustomAttributeConfigurations from "./__snapshots__/responses/query_custom_attribute_configurations.json";
 
 const legacySchemas = ["Conversation", "Message", "Participant"];
 export async function emitToFile(
@@ -29,16 +30,14 @@ export async function emitToFile(
   return { errors, schemas };
 }
 
-type CustomAttributeConfiguration = {
-  key: string;
-  label: string;
-};
+type CustomAttributeConfiguration =
+  (typeof CustomAttributeConfigurations)[number];
 
 export async function emitToString(
   serverVersion: string | undefined,
   serverUrl: string | undefined,
   schemas: QuerySchemasResponse,
-  customAttributes: CustomAttributeConfiguration[],
+  customAttributes: CustomAttributeConfiguration[]
 ) {
   const preamble = `// :copyright: Copyright (c) ${new Date().getFullYear()} ftrack \n\n// Generated on ${new Date().toISOString()} using schema \n// from an instance running version ${serverVersion} using server on ${serverUrl} \n// Not intended to modify manually\n\n`;
 
@@ -67,6 +66,26 @@ export async function emitToString(
     interfaces += TSInterface;
   }
 
+  const customAttributesString = `
+    export function getAttributeConfigurations() {
+      return [
+        ${customAttributes.map(
+          (x) => `{
+            name: "${x.key}",
+            label: "${x.label}",
+            entityType: "${x.entity_type}",
+            objectType: "${x.object_type?.name}",
+            isHierarchical: ${x.is_hierarchical}
+          }`
+        )}
+      ] as const;;
+    }
+    
+    export type CustomAttributeConfiguration = ReturnType<typeof getAttributeConfigurations>[number];
+    export type CustomAttributeConfigurationName = CustomAttributeConfiguration["name"];
+    export type CustomAttributeConfigurationLabel = CustomAttributeConfiguration["label"];
+  `;
+
   // Add a map of entity types and type for EntityType and a type for EntityData
   const schemaNames = schemas
     .map((s) => s.id)
@@ -94,6 +113,7 @@ export async function emitToString(
     entityData +
     TypedContextSubtypeMap +
     TypedContextSubtype +
+    customAttributesString +
     "\n \n// Errors: \n" +
     errors.map((error) => `// ${error}`).join("\n");
   const prettifiedContent = prettier.format(allContent, {
@@ -104,7 +124,7 @@ export async function emitToString(
 
 async function getCustomAttributes(session: Session) {
   const customAttributes = await session.query<CustomAttributeConfiguration>(
-    'select label, values, key, project_id, entity_type, is_hierarchical, object_type.name from CustomAttributeConfiguration order by sort'
+    "select label, values, key, project_id, entity_type, is_hierarchical, object_type.name from CustomAttributeConfiguration order by sort"
   );
   return customAttributes.data;
 }

@@ -1422,5 +1422,12 @@ export interface TypedContextSubtypeMap {
   Information: Information;
 }
 export type TypedContextSubtype = keyof TypedContextSubtypeMap;
+export function getAttributeConfigurations() {
+  return [] as const;
+}
+
+export type CustomAttributeConfiguration = ReturnType<
+  typeof getAttributeConfigurations
+>[number];
 
 // Errors:
