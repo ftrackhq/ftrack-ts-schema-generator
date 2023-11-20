@@ -166,9 +166,6 @@ function convertTypeToTsType(key: string, value: TypedSchemaProperty): string {
     }
     if (value.items.$ref) {
       return `${value.items.$ref}[]`;
-    } else if ("type" in value.items && value.items.type) {
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      return `${convertTypeToTsType(value.items.type as string, undefined!)}[]`;
     }
   }
   return value.type;

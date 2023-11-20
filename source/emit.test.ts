@@ -1,8 +1,12 @@
-import { expect, test, vi } from "vitest";
+import { beforeEach, expect, test, vi } from "vitest";
 import { emitToString } from "./emit";
 import { QuerySchemasResponse, Schema } from "@ftrack/api";
 import { readFile } from "fs/promises";
 import { join } from "path";
+
+beforeEach(() => {
+  vi.setSystemTime(new Date(2023, 1, 1, 0, 0, 0));
+});
 
 test("emitting with no schemas returns error", async () => {
   //act
@@ -18,8 +22,6 @@ test("emitting with no schemas returns error", async () => {
 
 test("schema subtype of TypedContext", async () => {
   //arrange
-  vi.setSystemTime(new Date(2023, 1, 1));
-
   const schemas: Array<Partial<Schema>> = [
     getTypedContextSchema(),
     {
@@ -46,8 +48,6 @@ test("schema subtype of TypedContext", async () => {
 
 test("schema has base schema", async () => {
   //arrange
-  vi.setSystemTime(new Date(2023, 1, 1));
-
   const schemas: Array<Partial<Schema>> = [
     getTypedContextSchema(),
     {
@@ -76,8 +76,6 @@ test("schema has base schema", async () => {
 
 test("schema has immutable property", async () => {
   //arrange
-  vi.setSystemTime(new Date(2023, 1, 1));
-
   const schemas: Array<Partial<Schema>> = [
     getTypedContextSchema(),
     {
@@ -107,8 +105,6 @@ test("schema has immutable property", async () => {
 
 test("schema has integer type", async () => {
   //arrange
-  vi.setSystemTime(new Date(2023, 1, 1));
-
   const schemas: Array<Partial<Schema>> = [
     getTypedContextSchema(),
     {
@@ -137,8 +133,6 @@ test("schema has integer type", async () => {
 
 test("schema has variable type", async () => {
   //arrange
-  vi.setSystemTime(new Date(2023, 1, 1));
-
   const schemas: Array<Partial<Schema>> = [
     getTypedContextSchema(),
     {
@@ -160,13 +154,12 @@ test("schema has variable type", async () => {
 
   //assert
   expect(emitResult.errors).toEqual([]);
-  expect(emitResult.prettifiedContent).toMatchSnapshot();
+  expect(emitResult.prettifiedContent).toMatchFileSnapshot(
+    join(".", "__snapshots__", "schema-has-variable-type.snap"));
 });
 
 test("schema has array type", async () => {
   //arrange
-  vi.setSystemTime(new Date(2023, 1, 1));
-
   const schemas: Array<Partial<Schema>> = [
     getTypedContextSchema(),
     {
@@ -208,8 +201,6 @@ test("schema has array type", async () => {
 
 test("default ftrack schema", async () => {
   //arrange
-  vi.setSystemTime(new Date(2023, 1, 1));
-
   const schemaContents = await readFile(
     join(".", "source", "__snapshots__", "responses", "query_schemas.json")
   );
