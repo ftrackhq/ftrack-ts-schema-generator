@@ -74,7 +74,7 @@ export async function emitToString(
             name: "${x.key}",
             label: "${x.label}",
             entityType: "${x.entity_type}",
-            objectType: "${x.object_type?.name}",
+            objectType: ${x.object_type ? `"${x.object_type.name}"` : "undefined"},
             isHierarchical: ${x.is_hierarchical}
           }`
         )}

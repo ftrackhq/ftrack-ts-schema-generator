@@ -59,7 +59,7 @@ export function getAttributeConfigurations() {
       name: "fps",
       label: "fps",
       entityType: "show",
-      objectType: "undefined",
+      objectType: undefined,
       isHierarchical: false,
     },
     {
