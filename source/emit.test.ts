@@ -13,7 +13,8 @@ test("emitting with no schemas returns error", async () => {
   const emitResult = await emitToString(
     "4.13.8",
     "https://ftrack.example.com",
-    []
+    [],
+    [],
   );
 
   //assert
@@ -36,7 +37,8 @@ test("schema subtype of TypedContext", async () => {
   const emitResult = await emitToString(
     "4.13.8",
     "https://ftrack.example.com",
-    schemas as QuerySchemasResponse
+    schemas as QuerySchemasResponse,
+    [],
   );
 
   //assert
@@ -64,7 +66,8 @@ test("schema has base schema", async () => {
   const emitResult = await emitToString(
     "4.13.8",
     "https://ftrack.example.com",
-    schemas as QuerySchemasResponse
+    schemas as QuerySchemasResponse,
+    [],
   );
 
   //assert
@@ -93,7 +96,8 @@ test("schema has immutable property", async () => {
   const emitResult = await emitToString(
     "4.13.8",
     "https://ftrack.example.com",
-    schemas as QuerySchemasResponse
+    schemas as QuerySchemasResponse,
+    [],
   );
 
   //assert
@@ -121,7 +125,8 @@ test("schema has integer type", async () => {
   const emitResult = await emitToString(
     "4.13.8",
     "https://ftrack.example.com",
-    schemas as QuerySchemasResponse
+    schemas as QuerySchemasResponse,
+    [],
   );
 
   //assert
@@ -149,7 +154,8 @@ test("schema has variable type", async () => {
   const emitResult = await emitToString(
     "4.13.8",
     "https://ftrack.example.com",
-    schemas as QuerySchemasResponse
+    schemas as QuerySchemasResponse,
+    [],
   );
 
   //assert
@@ -190,7 +196,8 @@ test("schema has array type", async () => {
   const emitResult = await emitToString(
     "4.13.8",
     "https://ftrack.example.com",
-    schemas as QuerySchemasResponse
+    schemas as QuerySchemasResponse,
+    [],
   );
 
   //assert
@@ -211,7 +218,8 @@ test("default ftrack schema", async () => {
   const emitResult = await emitToString(
     "4.13.8",
     "https://ftrack.example.com",
-    schemas
+    schemas,
+    [],
   );
 
   //assert

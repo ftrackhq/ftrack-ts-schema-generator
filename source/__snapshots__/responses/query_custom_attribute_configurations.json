@@ -1,0 +1,103 @@
+[
+    {
+        "__entity_type__": "CustomAttributeConfiguration",
+        "id": "432bc746-4087-11e2-8250-0019bb4983d8",
+        "object_type": {
+            "__entity_type__": "ObjectType",
+            "id": "bad911de-3bd6-47b9-8b46-3476e237cb36",
+            "name": "Shot"
+        },
+        "key": "fend",
+        "entity_type": "task",
+        "label": "Frame end",
+        "project_id": null,
+        "is_hierarchical": false,
+        "values": []
+    },
+    {
+        "__entity_type__": "CustomAttributeConfiguration",
+        "id": "432bdfa6-4087-11e2-8250-0019bb4983d8",
+        "object_type": {
+            "__entity_type__": "ObjectType",
+            "id": "bad911de-3bd6-47b9-8b46-3476e237cb36",
+            "name": "Shot"
+        },
+        "key": "handles",
+        "entity_type": "task",
+        "label": "Frame handles",
+        "project_id": null,
+        "is_hierarchical": false,
+        "values": []
+    },
+    {
+        "__entity_type__": "CustomAttributeConfiguration",
+        "id": "928887a8-645f-4909-a7d0-d1661cacd178",
+        "object_type": {
+            "__entity_type__": "ObjectType",
+            "id": "bad911de-3bd6-47b9-8b46-3476e237cb36",
+            "name": "Shot"
+        },
+        "key": "duration",
+        "entity_type": "task",
+        "label": "Frame duration",
+        "project_id": null,
+        "is_hierarchical": false,
+        "values": []
+    },
+    {
+        "__entity_type__": "CustomAttributeConfiguration",
+        "id": "acd86546-4082-11e2-95b1-0019bb4983d8",
+        "object_type": {
+            "__entity_type__": "ObjectType",
+            "id": "bad911de-3bd6-47b9-8b46-3476e237cb36",
+            "name": "Shot"
+        },
+        "key": "fstart",
+        "entity_type": "task",
+        "label": "Frame start",
+        "project_id": null,
+        "is_hierarchical": false,
+        "values": []
+    },
+    {
+        "__entity_type__": "CustomAttributeConfiguration",
+        "id": "d25219d6-acb5-11e1-8668-f23c91df1211",
+        "object_type": null,
+        "key": "fps",
+        "entity_type": "show",
+        "label": "fps",
+        "project_id": null,
+        "is_hierarchical": false,
+        "values": []
+    },
+    {
+        "__entity_type__": "CustomAttributeConfiguration",
+        "id": "d25532e2-acb5-11e1-8668-f23c91df1211",
+        "object_type": {
+            "__entity_type__": "ObjectType",
+            "id": "e5139355-61da-4c8f-9db4-3abc870166bc",
+            "name": "Sequence"
+        },
+        "key": "fps",
+        "entity_type": "task",
+        "label": "fps",
+        "project_id": null,
+        "is_hierarchical": false,
+        "values": []
+    },
+    {
+        "__entity_type__": "CustomAttributeConfiguration",
+        "id": "d25907a0-acb5-11e1-8668-f23c91df1211",
+        "object_type": {
+            "__entity_type__": "ObjectType",
+            "id": "bad911de-3bd6-47b9-8b46-3476e237cb36",
+            "name": "Shot"
+        },
+        "key": "fps",
+        "entity_type": "task",
+        "label": "fps",
+        "project_id": null,
+        "is_hierarchical": false,
+        "values": []
+    }
+]

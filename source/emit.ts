@@ -12,6 +12,7 @@ export async function emitToFile(
 ) {
   // Get the schemas from the server and sort by id in alphabetical order
   const schemas = await getSchemas(session);
+  const customAttributes = await getCustomAttributes(session);
 
   const {
     prettifiedContent,
@@ -19,7 +20,8 @@ export async function emitToFile(
   }: { prettifiedContent: string; errors: unknown[] } = await emitToString(
     session.serverVersion,
     session.serverUrl,
-    schemas
+    schemas,
+    customAttributes
   );
   fs.mkdirSync(path.resolve(outputPath), { recursive: true });
   fs.writeFileSync(path.join(outputPath, outputFilename), prettifiedContent);
@@ -27,10 +29,16 @@ export async function emitToFile(
   return { errors, schemas };
 }
 
+type CustomAttributeConfiguration = {
+  key: string;
+  label: string;
+};
+
 export async function emitToString(
   serverVersion: string | undefined,
   serverUrl: string | undefined,
-  schemas: QuerySchemasResponse
+  schemas: QuerySchemasResponse,
+  customAttributes: CustomAttributeConfiguration[],
 ) {
   const preamble = `// :copyright: Copyright (c) ${new Date().getFullYear()} ftrack \n\n// Generated on ${new Date().toISOString()} using schema \n// from an instance running version ${serverVersion} using server on ${serverUrl} \n// Not intended to modify manually\n\n`;
 
@@ -92,6 +100,13 @@ export async function emitToString(
     parser: "typescript",
   });
   return { prettifiedContent, errors };
+}
+
+async function getCustomAttributes(session: Session) {
+  const customAttributes = await session.query<CustomAttributeConfiguration>(
+    'select label, values, key, project_id, entity_type, is_hierarchical, object_type.name from CustomAttributeConfiguration order by sort'
+  );
+  return customAttributes.data;
 }
 
 async function getSchemas(session: Session) {
