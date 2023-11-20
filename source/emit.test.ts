@@ -155,7 +155,8 @@ test("schema has variable type", async () => {
   //assert
   expect(emitResult.errors).toEqual([]);
   expect(emitResult.prettifiedContent).toMatchFileSnapshot(
-    join(".", "__snapshots__", "schema-has-variable-type.snap"));
+    join(".", "__snapshots__", "schema-has-variable-type.snap")
+  );
 });
 
 test("schema has array type", async () => {
