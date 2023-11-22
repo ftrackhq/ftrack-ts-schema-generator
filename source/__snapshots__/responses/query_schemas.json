@@ -3989,6 +3989,7 @@
         "type": "boolean"
       },
       "user_id": {
+        "type": "string",
         "alias_for": "userid",
         "format": "foreign_key",
         "description": "Foreign key(s): User.id"

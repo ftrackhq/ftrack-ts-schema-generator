@@ -127,7 +127,7 @@ function convertPropertiesToTypes(
     // If neither type or $ref is defined, we can't generate a type. Log an error
     if (!("type" in value) && !("$ref" in value) && !("alias_for" in value)) {
       errors.push(
-        `No type or $ref defined for property ${key} in schema ${schema.id}`
+        `No type or $ref defined for property ${key} in schema ${schema.id}`,
       );
     }
 
