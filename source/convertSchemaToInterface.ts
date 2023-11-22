@@ -10,7 +10,7 @@ let errors: string[] = [];
 // Add schemas from the schemas folder, to be used for finding extended schemas
 export async function convertSchemaToInterface(
   schema: Schema,
-  allSchemas: QuerySchemasResponse[]
+  allSchemas: QuerySchemasResponse
 ) {
   let interfaceName = getId(schema);
   // If the schema is a subtype of TypedContext, return that
@@ -23,7 +23,7 @@ export async function convertSchemaToInterface(
   // Check if the schema extends another schema and get that base schema
   const baseSchema = getBaseSchema(schema, allSchemas);
   // Get the typedContext schema, to filter the properties for typedContext subtypes
-  const typedContextSchema = allSchemas[0].find((schema) => {
+  const typedContextSchema = allSchemas.find((schema) => {
     return schema.id === "TypedContext";
   });
   // For each property, add a type to the interface
@@ -57,7 +57,7 @@ export async function convertSchemaToInterface(
 function getId(schema: Schema) {
   const id = schema.id;
   if (!id) {
-    errors.push(`// No id defined for schema ${schema.id}`);
+    errors.push(`No id defined for schema ${schema.id}`);
   }
   return id;
 }
@@ -85,11 +85,12 @@ function getTypeExtensionSuffix(baseSchema?: Schema, schema?: Schema) {
   return baseSchemaSuffix + typedContextSubtypeSuffix;
 }
 //Todo: update when Schema type in API is updated
-function getBaseSchema(schema: Schema, allSchemas: QuerySchemasResponse[]) {
-  if (!schema.$mixin) {
-    return;
-  }
-  const baseSchema = allSchemas[0].find((s) => {
+function getBaseSchema(schema: Schema, allSchemas: QuerySchemasResponse) {
+  const baseSchema = allSchemas.find((s) => {
+    if (!schema.$mixin) {
+      return false;
+    }
+
     return s.id === schema.$mixin["$ref"];
   });
   return baseSchema;
@@ -101,7 +102,7 @@ function convertPropertiesToTypes(
 ) {
   // Filter out deprecated properties, that start with _
   const deprecationFilteredProperties = Object.entries(
-    schema.properties
+    schema.properties || []
   ).filter(([key]) => !key.startsWith("_"));
   // Filter out all properties that are defined in the base schema
   const baseSchemaFilteredProperties = deprecationFilteredProperties.filter(
@@ -126,7 +127,7 @@ function convertPropertiesToTypes(
     // If neither type or $ref is defined, we can't generate a type. Log an error
     if (!("type" in value) && !("$ref" in value)) {
       errors.push(
-        `// No type or $ref defined for property ${key} in schema ${schema.id}`
+        `No type or $ref defined for property ${key} in schema ${schema.id}`,
       );
     }
 
@@ -149,7 +150,7 @@ function convertPropertiesToTypes(
   return convertedProperties;
 }
 
-function convertTypeToTsType(key: string, value?: TypedSchemaProperty) {
+function convertTypeToTsType(key: string, value: TypedSchemaProperty): string {
   // Fix some types that are not supported by TypeScript
 
   if (value.type === "integer") {
@@ -165,8 +166,6 @@ function convertTypeToTsType(key: string, value?: TypedSchemaProperty) {
     }
     if (value.items.$ref) {
       return `${value.items.$ref}[]`;
-    } else if ("type" in value.items && value.items.type) {
-      return `${convertTypeToTsType(value.items.type as string)}[]`;
     }
   }
   return value.type;
