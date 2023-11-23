@@ -212,6 +212,9 @@ export async function emitToString(
         )}
       ] as const;
     }
+
+    export type ProjectSchema = ReturnType<typeof getProjectSchemas>[number];
+    export type ProjectName = ProjectSchema["name"];
   `;
 
   // Add a map of entity types and type for EntityType and a type for EntityData
