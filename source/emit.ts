@@ -15,6 +15,7 @@ export async function emitToFile(
   const customAttributes = await getCustomAttributes(session);
   const types = await getTypes(session);
   const objectTypes = await getObjectTypes(session);
+  const projectSchemas = await getProjectSchemas(session);
 
   const {
     prettifiedContent,
@@ -25,7 +26,8 @@ export async function emitToFile(
     schemas,
     customAttributes,
     types,
-    objectTypes
+    objectTypes,
+    projectSchemas
   );
   fs.mkdirSync(path.resolve(outputPath), { recursive: true });
   fs.writeFileSync(path.join(outputPath, outputFilename), prettifiedContent);
@@ -52,7 +54,26 @@ export type Type = {
   }>;
 };
 
+export type ProjectSchema = {
+  __entity_type__: "ProjectSchema";
+  id: string;
+  object_types: Array<{
+    __entity_type__: "ObjectType";
+    id: string;
+  }>;
+  name: string;
+  task_templates: Array<{
+    __entity_type__: "TaskTemplate";
+    id: string;
+  }>;
+  object_type_schemas: Array<{
+    __entity_type__: "Schema";
+    id: string;
+  }>;
+};
+
 export type ObjectType = {
+  id: string;
   name: string;
   is_time_reportable: boolean;
   is_taskable: boolean;
@@ -86,7 +107,8 @@ export async function emitToString(
   schemas: QuerySchemasResponse,
   customAttributes: CustomAttributeConfiguration[],
   types: Type[],
-  objectTypes: ObjectType[]
+  objectTypes: ObjectType[],
+  projectSchemas: ProjectSchema[]
 ) {
   const preamble = `// :copyright: Copyright (c) ${new Date().getFullYear()} ftrack \n\n// Generated on ${new Date().toISOString()} using schema \n// from an instance running version ${serverVersion} using server on ${serverUrl} \n// Not intended to modify manually\n\n`;
 
@@ -121,7 +143,7 @@ export async function emitToString(
         ${types.map(
           (x) => `{
           name: "${x.name}",
-          is_billable: ${x.is_billable}
+          isBillable: ${x.is_billable}
         }`
         )}
       ] as const;
@@ -137,13 +159,13 @@ export async function emitToString(
         ${objectTypes.map(
           (x) => `{
           name: "${x.name}",
-          is_time_reportable: ${x.is_time_reportable},
-          is_taskable: ${x.is_taskable},
-          is_typeable: ${x.is_typeable},
-          is_statusable: ${x.is_statusable},
-          is_schedulable: ${x.is_schedulable},
-          is_prioritizable: ${x.is_prioritizable},
-          is_leaf: ${x.is_leaf},
+          isTimeReportable: ${x.is_time_reportable},
+          isTaskable: ${x.is_taskable},
+          isTypeable: ${x.is_typeable},
+          isStatusable: ${x.is_statusable},
+          isSchedulable: ${x.is_schedulable},
+          isPrioritizable: ${x.is_prioritizable},
+          isLeaf: ${x.is_leaf},
         }`
         )}
       ] as const;
@@ -172,6 +194,24 @@ export async function emitToString(
     export type CustomAttributeConfiguration = ReturnType<typeof getAttributeConfigurations>[number];
     export type CustomAttributeConfigurationName = CustomAttributeConfiguration["name"];
     export type CustomAttributeConfigurationLabel = CustomAttributeConfiguration["label"];
+  `;
+
+  const projectSchemasString = `
+    export function getProjectSchemas() {
+      return [
+        ${projectSchemas.map(
+          (x) => `{
+            name: "${x.name}",
+            objectTypes: [
+              ${x.object_types
+                .map(t => objectTypes.find(x => x.id === t.id))
+                .map(t => `"${t!.name}"`)
+                .join(', ')}
+            ]
+          }`
+        )}
+      ] as const;
+    }
   `;
 
   // Add a map of entity types and type for EntityType and a type for EntityData
@@ -204,6 +244,7 @@ export async function emitToString(
     customAttributesString +
     typesString +
     objectTypesString +
+    projectSchemasString +
     "\n \n// Errors: \n" +
     errors.map((error) => `// ${error}`).join("\n");
   const prettifiedContent = prettier.format(allContent, {
@@ -237,10 +278,17 @@ async function getTypes(session: Session) {
 }
 
 async function getObjectTypes(session: Session) {
-  const types = await session.query<ObjectType>(
-    "select is_leaf, is_prioritizable, is_schedulable, is_statusable, is_taskable, is_time_reportable, is_typeable, name, project_schemas, tasks from ObjectType order by sort"
+  const objectTypes = await session.query<ObjectType>(
+    "select id, is_leaf, is_prioritizable, is_schedulable, is_statusable, is_taskable, is_time_reportable, is_typeable, name, project_schemas, tasks from ObjectType order by sort"
   );
-  return types.data;
+  return objectTypes.data;
+}
+
+async function getProjectSchemas(session: Session) {
+  const projectSchemas = await session.query<ProjectSchema>(
+    "select name, asset_version_workflow_schema, name, object_type_schemas, object_types, task_templates, task_type_schema, task_workflow_schema, task_workflow_schema_overrides from ProjectSchema"
+  );
+  return projectSchemas.data;
 }
 
 function AddBasicLinkType(interfaces: string) {

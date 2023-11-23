@@ -2,6 +2,7 @@ import { beforeEach, expect, test, vi } from "vitest";
 import {
   CustomAttributeConfiguration,
   ObjectType,
+  ProjectSchema,
   Type,
   emitToString,
 } from "./emit";
@@ -18,6 +19,7 @@ test("emitting with no schemas returns error", async () => {
   const emitResult = await emitToString(
     "4.13.8",
     "https://ftrack.example.com",
+    [],
     [],
     [],
     [],
@@ -45,6 +47,7 @@ test("schema subtype of TypedContext", async () => {
     "4.13.8",
     "https://ftrack.example.com",
     schemas as QuerySchemasResponse,
+    [],
     [],
     [],
     []
@@ -76,6 +79,7 @@ test("schema has base schema", async () => {
     "4.13.8",
     "https://ftrack.example.com",
     schemas as QuerySchemasResponse,
+    [],
     [],
     [],
     []
@@ -110,6 +114,7 @@ test("schema has immutable property", async () => {
     schemas as QuerySchemasResponse,
     [],
     [],
+    [],
     []
   );
 
@@ -141,6 +146,7 @@ test("schema has integer type", async () => {
     schemas as QuerySchemasResponse,
     [],
     [],
+    [],
     []
   );
 
@@ -170,6 +176,7 @@ test("schema has variable type", async () => {
     "4.13.8",
     "https://ftrack.example.com",
     schemas as QuerySchemasResponse,
+    [],
     [],
     [],
     []
@@ -216,6 +223,7 @@ test("schema has array type", async () => {
     schemas as QuerySchemasResponse,
     [],
     [],
+    [],
     []
   );
 
@@ -228,16 +236,17 @@ test("schema has array type", async () => {
 
 test("default ftrack schema", async () => {
   //arrange
-  const schemaContents = await readFile(
+  const contents = await readFile(
     join(".", "source", "__snapshots__", "responses", "query_schemas.json")
   );
-  const schemas: Array<Schema> = JSON.parse(schemaContents.toString());
+  const schemas: Array<Schema> = JSON.parse(contents.toString());
 
   //act
   const emitResult = await emitToString(
     "4.13.8",
     "https://ftrack.example.com",
     schemas,
+    [],
     [],
     [],
     []
@@ -252,7 +261,7 @@ test("default ftrack schema", async () => {
 
 test("default custom attributes", async () => {
   //arrange
-  const customAttributesContents = await readFile(
+  const contents = await readFile(
     join(
       ".",
       "source",
@@ -262,7 +271,7 @@ test("default custom attributes", async () => {
     )
   );
   const customAttributes: CustomAttributeConfiguration[] = JSON.parse(
-    customAttributesContents.toString()
+    contents.toString()
   );
 
   //act
@@ -271,6 +280,7 @@ test("default custom attributes", async () => {
     "https://ftrack.example.com",
     [getTypedContextSchema()],
     customAttributes,
+    [],
     [],
     []
   );
@@ -284,10 +294,10 @@ test("default custom attributes", async () => {
 
 test("default types", async () => {
   //arrange
-  const customAttributesContents = await readFile(
+  const contents = await readFile(
     join(".", "source", "__snapshots__", "responses", "query_types.json")
   );
-  const types: Type[] = JSON.parse(customAttributesContents.toString());
+  const types: Type[] = JSON.parse(contents.toString());
 
   //act
   const emitResult = await emitToString(
@@ -296,6 +306,7 @@ test("default types", async () => {
     [getTypedContextSchema()],
     [],
     types,
+    [],
     []
   );
 
@@ -308,11 +319,11 @@ test("default types", async () => {
 
 test("default object types", async () => {
   //arrange
-  const customAttributesContents = await readFile(
+  const contents = await readFile(
     join(".", "source", "__snapshots__", "responses", "query_object_types.json")
   );
   const objectTypes: ObjectType[] = JSON.parse(
-    customAttributesContents.toString()
+    contents.toString()
   );
 
   //act
@@ -322,7 +333,58 @@ test("default object types", async () => {
     [getTypedContextSchema()],
     [],
     [],
-    objectTypes
+    objectTypes,
+    []
+  );
+
+  //assert
+  expect(emitResult.errors).toEqual([]);
+  expect(emitResult.prettifiedContent).toMatchFileSnapshot(
+    join(".", "__snapshots__", "default-object-types.snap")
+  );
+});
+
+test("default object types", async () => {
+  //arrange
+  const schemasContents = await readFile(
+    join(".", "source", "__snapshots__", "responses", "query_project_schema.json")
+  );
+  const schemas: Array<ProjectSchema> = JSON.parse(schemasContents.toString());
+
+  const customAttributeContents = await readFile(
+    join(
+      ".",
+      "source",
+      "__snapshots__",
+      "responses",
+      "query_custom_attribute_configurations.json"
+    )
+  );
+  const customAttributes: CustomAttributeConfiguration[] = JSON.parse(
+    customAttributeContents.toString()
+  );
+
+  const typesContents = await readFile(
+    join(".", "source", "__snapshots__", "responses", "query_types.json")
+  );
+  const types: Type[] = JSON.parse(typesContents.toString());
+
+  const objectTypeContents = await readFile(
+    join(".", "source", "__snapshots__", "responses", "query_object_types.json")
+  );
+  const objectTypes: ObjectType[] = JSON.parse(
+    objectTypeContents.toString()
+  );
+
+  //act
+  const emitResult = await emitToString(
+    "4.13.8",
+    "https://ftrack.example.com",
+    [getTypedContextSchema()],
+    customAttributes,
+    types,
+    objectTypes,
+    schemas
   );
 
   //assert
