@@ -1,9 +1,8 @@
 import { beforeEach, expect, test, vi } from "vitest";
-import { emitToString } from "./emit";
+import { CustomAttributeConfiguration, emitToString } from "./emit";
 import { QuerySchemasResponse, Schema } from "@ftrack/api";
 import { readFile } from "fs/promises";
 import { join } from "path";
-import type CustomAttributeConfigurations from "./__snapshots__/responses/query_custom_attribute_configurations.json";
 
 beforeEach(() => {
   vi.setSystemTime(new Date(2023, 1, 1, 0, 0, 0));
@@ -241,7 +240,7 @@ test("default custom attributes", async () => {
       "query_custom_attribute_configurations.json"
     )
   );
-  const customAttributes: typeof CustomAttributeConfigurations = JSON.parse(
+  const customAttributes: CustomAttributeConfiguration[] = JSON.parse(
     customAttributesContents.toString()
   );
 

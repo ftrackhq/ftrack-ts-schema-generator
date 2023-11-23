@@ -3,7 +3,6 @@ import * as fs from "fs";
 import * as path from "path";
 import prettier from "prettier";
 import { convertSchemaToInterface } from "./convertSchemaToInterface.js";
-import type CustomAttributeConfigurations from "./__snapshots__/responses/query_custom_attribute_configurations.json";
 
 const legacySchemas = ["Conversation", "Message", "Participant"];
 export async function emitToFile(
@@ -30,8 +29,21 @@ export async function emitToFile(
   return { errors, schemas };
 }
 
-type CustomAttributeConfiguration =
-  (typeof CustomAttributeConfigurations)[number];
+export type CustomAttributeConfiguration = {
+  __entity_type__: "CUstomAttributeConfiguration";
+  id: string;
+  object_type: {
+    __entity_type__: "ObjectType";
+    id: string;
+    name: string;
+  };
+  key: string;
+  entity_type: string;
+  label: string;
+  project_id: string | null;
+  is_hierarchical: boolean;
+  values: [];
+};
 
 export async function emitToString(
   serverVersion: string | undefined,
@@ -74,7 +86,9 @@ export async function emitToString(
             name: "${x.key}",
             label: "${x.label}",
             entityType: "${x.entity_type}",
-            objectType: ${x.object_type ? `"${x.object_type.name}"` : "undefined"},
+            objectType: ${
+              x.object_type ? `"${x.object_type.name}"` : "undefined"
+            },
             isHierarchical: ${x.is_hierarchical}
           }`
         )}

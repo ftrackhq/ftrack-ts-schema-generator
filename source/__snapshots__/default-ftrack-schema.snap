@@ -730,7 +730,7 @@ export interface UserView {
   name?: string;
   shared_with?: Resource[];
   user?: User;
-  user_id?: undefined;
+  user_id?: string;
   __entity_type__?: "UserView";
   __permissions?: Record<string, any>;
 }
