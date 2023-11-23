@@ -26,7 +26,64 @@ export interface TypedContextSubtypeMap {
 }
 export type TypedContextSubtype = keyof TypedContextSubtypeMap;
 export function getAttributeConfigurations() {
-  return [] as const;
+  return [
+    {
+      name: "fend",
+      label: "Frame end",
+      entityType: "task",
+      default: 1,
+      objectType: "Shot",
+      isHierarchical: false,
+    },
+    {
+      name: "handles",
+      label: "Frame handles",
+      entityType: "task",
+      default: 0,
+      objectType: "Shot",
+      isHierarchical: false,
+    },
+    {
+      name: "duration",
+      label: "Frame duration",
+      entityType: "task",
+      default: "{self.fend - self.fstart + 1}",
+      objectType: "Shot",
+      isHierarchical: false,
+    },
+    {
+      name: "fstart",
+      label: "Frame start",
+      entityType: "task",
+      default: 1,
+      objectType: "Shot",
+      isHierarchical: false,
+    },
+    {
+      name: "fps",
+      label: "fps",
+      entityType: "show",
+      default: 24,
+      objectType: undefined,
+      isHierarchical: false,
+    },
+    {
+      name: "fps",
+      label: "fps",
+      entityType: "task",
+      default: 25,
+      objectType: "Sequence",
+      isHierarchical: false,
+    },
+    {
+      name: "fps",
+      label: "fps",
+      entityType: "task",
+      default: 25,
+      objectType: "Shot",
+      isHierarchical: false,
+    },
+  ] as const;
 }
 
 export type CustomAttributeConfiguration = ReturnType<
@@ -38,7 +95,104 @@ export type CustomAttributeConfigurationLabel =
   CustomAttributeConfiguration["label"];
 
 export function getTypes() {
-  return [] as const;
+  return [
+    {
+      name: "Concept Art",
+      isBillable: true,
+    },
+    {
+      name: "Modeling",
+      isBillable: true,
+    },
+    {
+      name: "Rigging",
+      isBillable: true,
+    },
+    {
+      name: "Texture",
+      isBillable: true,
+    },
+    {
+      name: "Lookdev",
+      isBillable: true,
+    },
+    {
+      name: "Character",
+      isBillable: true,
+    },
+    {
+      name: "Prop",
+      isBillable: true,
+    },
+    {
+      name: "Furniture",
+      isBillable: false,
+    },
+    {
+      name: "Vehicle",
+      isBillable: true,
+    },
+    {
+      name: "Environment",
+      isBillable: true,
+    },
+    {
+      name: "Matte Painting",
+      isBillable: true,
+    },
+    {
+      name: "Production",
+      isBillable: false,
+    },
+    {
+      name: "Editing",
+      isBillable: true,
+    },
+    {
+      name: "Conform",
+      isBillable: true,
+    },
+    {
+      name: "Tracking",
+      isBillable: true,
+    },
+    {
+      name: "Rotoscoping",
+      isBillable: true,
+    },
+    {
+      name: "Previz",
+      isBillable: true,
+    },
+    {
+      name: "Layout",
+      isBillable: true,
+    },
+    {
+      name: "Animation",
+      isBillable: true,
+    },
+    {
+      name: "FX",
+      isBillable: true,
+    },
+    {
+      name: "Lighting",
+      isBillable: true,
+    },
+    {
+      name: "Rendering",
+      isBillable: true,
+    },
+    {
+      name: "Compositing",
+      isBillable: true,
+    },
+    {
+      name: "Deliverable",
+      isBillable: true,
+    },
+  ] as const;
 }
 
 export type Type = ReturnType<typeof getTypes>[number];
@@ -153,7 +307,49 @@ export type ObjectType = ReturnType<typeof getObjectTypes>[number];
 export type ObjectTypeName = ObjectType["name"];
 
 export function getProjectSchemas() {
-  return [] as const;
+  return [
+    {
+      name: "Model production",
+      objectTypes: ["Milestone", "Task", "Folder", "Asset Build"],
+    },
+    {
+      name: "Animation",
+      objectTypes: [
+        "Milestone",
+        "Task",
+        "Episode",
+        "Folder",
+        "Asset Build",
+        "Shot",
+        "Sequence",
+      ],
+    },
+    {
+      name: "VFX",
+      objectTypes: [
+        "Milestone",
+        "Task",
+        "Episode",
+        "Folder",
+        "Asset Build",
+        "Shot",
+        "Sequence",
+      ],
+    },
+    {
+      name: "Media production",
+      objectTypes: [
+        "Milestone",
+        "Task",
+        "Scene",
+        "Folder",
+        "Image",
+        "Asset Build",
+        "Shot",
+        "Information",
+      ],
+    },
+  ] as const;
 }
 
 // Errors:

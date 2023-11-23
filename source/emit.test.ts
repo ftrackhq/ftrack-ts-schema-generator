@@ -344,7 +344,7 @@ test("default object types", async () => {
   );
 });
 
-test("default object types", async () => {
+test("default highway test (all values specified)", async () => {
   //arrange
   const schemasContents = await readFile(
     join(".", "source", "__snapshots__", "responses", "query_project_schema.json")
@@ -390,7 +390,7 @@ test("default object types", async () => {
   //assert
   expect(emitResult.errors).toEqual([]);
   expect(emitResult.prettifiedContent).toMatchFileSnapshot(
-    join(".", "__snapshots__", "default-object-types.snap")
+    join(".", "__snapshots__", "default-highway-test.snap")
   );
 });
 
