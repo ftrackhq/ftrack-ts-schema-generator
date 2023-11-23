@@ -112,4 +112,7 @@ export function getProjectSchemas() {
   return [] as const;
 }
 
+export type ProjectSchema = ReturnType<typeof getProjectSchemas>[number];
+export type ProjectName = ProjectSchema["name"];
+
 // Errors:
