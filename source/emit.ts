@@ -30,13 +30,14 @@ export async function emitToFile(
 }
 
 export type CustomAttributeConfiguration = {
-  __entity_type__: "CUstomAttributeConfiguration";
+  __entity_type__: "CustomAttributeConfiguration";
   id: string;
   object_type: {
     __entity_type__: "ObjectType";
     id: string;
     name: string;
   };
+  default: unknown,
   key: string;
   entity_type: string;
   label: string;
@@ -86,9 +87,8 @@ export async function emitToString(
             name: "${x.key}",
             label: "${x.label}",
             entityType: "${x.entity_type}",
-            objectType: ${
-              x.object_type ? `"${x.object_type.name}"` : "undefined"
-            },
+            default: ${JSON.stringify(x.default)},
+            objectType: ${JSON.stringify(x.object_type?.name)},
             isHierarchical: ${x.is_hierarchical}
           }`
         )}
@@ -138,7 +138,7 @@ export async function emitToString(
 
 async function getCustomAttributes(session: Session) {
   const customAttributes = await session.query<CustomAttributeConfiguration>(
-    "select label, values, key, project_id, entity_type, is_hierarchical, object_type.name from CustomAttributeConfiguration order by sort"
+    "select default, label, values, key, project_id, entity_type, is_hierarchical, object_type.name from CustomAttributeConfiguration order by sort"
   );
   return customAttributes.data;
 }

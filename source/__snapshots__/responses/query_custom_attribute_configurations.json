@@ -11,6 +11,7 @@
     "entity_type": "task",
     "label": "Frame end",
     "project_id": null,
+    "default": 1,
     "is_hierarchical": false,
     "values": []
   },
@@ -26,6 +27,7 @@
     "entity_type": "task",
     "label": "Frame handles",
     "project_id": null,
+    "default": 0,
     "is_hierarchical": false,
     "values": []
   },
@@ -41,6 +43,7 @@
     "entity_type": "task",
     "label": "Frame duration",
     "project_id": null,
+    "default": "{self.fend - self.fstart + 1}",
     "is_hierarchical": false,
     "values": []
   },
@@ -56,6 +59,7 @@
     "entity_type": "task",
     "label": "Frame start",
     "project_id": null,
+    "default": 1,
     "is_hierarchical": false,
     "values": []
   },
@@ -67,6 +71,7 @@
     "entity_type": "show",
     "label": "fps",
     "project_id": null,
+    "default": 24,
     "is_hierarchical": false,
     "values": []
   },
@@ -82,6 +87,7 @@
     "entity_type": "task",
     "label": "fps",
     "project_id": null,
+    "default": 25,
     "is_hierarchical": false,
     "values": []
   },
@@ -97,6 +103,7 @@
     "entity_type": "task",
     "label": "fps",
     "project_id": null,
+    "default": 25,
     "is_hierarchical": false,
     "values": []
   }
