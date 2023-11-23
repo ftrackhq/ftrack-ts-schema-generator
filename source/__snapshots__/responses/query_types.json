@@ -1,0 +1,1366 @@
+[
+  {
+    "__entity_type__": "Type",
+    "id": "56807358-a0f4-11e9-9843-d27cf242b68b",
+    "name": "Concept Art",
+    "color": "#33CCCC",
+    "is_billable": true,
+    "task_type_schemas": [
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "9c772d44-6af0-11eb-b045-169be7b6c453"
+      },
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "b32cef32-9dca-11e9-b01a-d27cf242b68b"
+      },
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "cadd9e5a-acb5-11e1-8668-f23c91df1211"
+      }
+    ],
+    "tasks": [
+      {
+        "__entity_type__": "Task",
+        "id": "dc4f596a-65a7-11ed-a73a-92ba0fc0dc3d",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "36473c44-7cf2-11eb-a32d-861b18b6aec9"
+      }
+    ]
+  },
+  {
+    "__entity_type__": "Type",
+    "id": "44dc53c8-4164-11df-9218-0019bb4983d8",
+    "name": "Modeling",
+    "color": "#935ba2",
+    "is_billable": true,
+    "task_type_schemas": [
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "05dee0c0-40cd-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "9c772d44-6af0-11eb-b045-169be7b6c453"
+      },
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "b32cef32-9dca-11e9-b01a-d27cf242b68b"
+      },
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "cadd9e5a-acb5-11e1-8668-f23c91df1211"
+      },
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "d7355e70-bd5b-11eb-8fe6-d6270330280e"
+      },
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "faa3c894-88e6-11e3-8546-04011030cf01"
+      }
+    ],
+    "tasks": [
+      {
+        "__entity_type__": "Task",
+        "id": "005662ec-4666-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "0c7c99d8-4666-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "14f715ac-4666-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "1524a872-4662-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "20267d96-4666-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "27ee46fc-4662-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "3eef3a1e-4662-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "51103fcc-4662-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "73d328ee-4662-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "764e7228-4661-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "88485330-4662-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "89ebb8d6-4661-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "9853ffc6-8b57-11eb-98c4-c2ffbce28b68",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "33b1e354-8b3d-11eb-8e99-c2ffbce28b68"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "99cc493c-4661-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "aa75b93a-4661-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "b95620ac-4661-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "dc5159c2-65a7-11ed-a73a-92ba0fc0dc3d",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "36473c44-7cf2-11eb-a32d-861b18b6aec9"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "e007d68c-4661-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "e8c3336c-4665-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "ee8a27f0-4661-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "f559444a-4665-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "ff0ceb80-4661-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "fffb6acc-4660-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      }
+    ]
+  },
+  {
+    "__entity_type__": "Type",
+    "id": "44dd5868-4164-11df-9218-0019bb4983d8",
+    "name": "Rigging",
+    "color": "#58592d",
+    "is_billable": true,
+    "task_type_schemas": [
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "9c772d44-6af0-11eb-b045-169be7b6c453"
+      },
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "b32cef32-9dca-11e9-b01a-d27cf242b68b"
+      },
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "cadd9e5a-acb5-11e1-8668-f23c91df1211"
+      }
+    ],
+    "tasks": []
+  },
+  {
+    "__entity_type__": "Type",
+    "id": "a750a84f-b253-11eb-ad41-1e003a0c2434",
+    "name": "Texture",
+    "color": "#f1c40f",
+    "is_billable": true,
+    "task_type_schemas": [
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "05dee0c0-40cd-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "9c772d44-6af0-11eb-b045-169be7b6c453"
+      },
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "cadd9e5a-acb5-11e1-8668-f23c91df1211"
+      },
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "d7355e70-bd5b-11eb-8fe6-d6270330280e"
+      }
+    ],
+    "tasks": [
+      {
+        "__entity_type__": "Task",
+        "id": "0056add8-4666-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "0c7ce424-4666-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "14f7623c-4666-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "1524f6e2-4662-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "2026c6de-4666-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "27ee9ada-4662-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "3eef8d2a-4662-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "5110e8d2-4662-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "73d3754c-4662-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "764d8e9e-4661-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "88489c46-4662-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "89ec0368-4661-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "99cca684-4661-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "aa761006-4661-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "b95670c0-4661-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "dc4d58f4-65a7-11ed-a73a-92ba0fc0dc3d",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "36473c44-7cf2-11eb-a32d-861b18b6aec9"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "e00827f4-4661-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "e8c3818c-4665-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "ee8a799e-4661-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "f5598fea-4665-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "ff0d34b4-4661-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "fffbe498-4660-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      }
+    ]
+  },
+  {
+    "__entity_type__": "Type",
+    "id": "44dc8cd0-4164-11df-9218-0019bb4983d8",
+    "name": "Lookdev",
+    "color": "#a3635d",
+    "is_billable": true,
+    "task_type_schemas": [
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "9c772d44-6af0-11eb-b045-169be7b6c453"
+      },
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "b32cef32-9dca-11e9-b01a-d27cf242b68b"
+      },
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "cadd9e5a-acb5-11e1-8668-f23c91df1211"
+      },
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "d7355e70-bd5b-11eb-8fe6-d6270330280e"
+      },
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "faa3c894-88e6-11e3-8546-04011030cf01"
+      }
+    ],
+    "tasks": [
+      {
+        "__entity_type__": "Task",
+        "id": "a90b39e2-8b57-11eb-9cdb-c2ffbce28b68",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "33b1e354-8b3d-11eb-8e99-c2ffbce28b68"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "dc50653a-65a7-11ed-a73a-92ba0fc0dc3d",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "36473c44-7cf2-11eb-a32d-861b18b6aec9"
+      }
+    ]
+  },
+  {
+    "__entity_type__": "Type",
+    "id": "66d145f0-13c6-11e3-abf2-f23c91dfaa16",
+    "name": "Character",
+    "color": "#3a2d5a",
+    "is_billable": true,
+    "task_type_schemas": [],
+    "tasks": []
+  },
+  {
+    "__entity_type__": "Type",
+    "id": "66d1aedc-13c6-11e3-abf2-f23c91dfaa16",
+    "name": "Prop",
+    "color": "#f39c12",
+    "is_billable": true,
+    "task_type_schemas": [
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "b32cef32-9dca-11e9-b01a-d27cf242b68b"
+      },
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "faa3c894-88e6-11e3-8546-04011030cf01"
+      }
+    ],
+    "tasks": []
+  },
+  {
+    "__entity_type__": "Type",
+    "id": "0e996e82-6662-11ed-a73a-92ba0fc0dc3d",
+    "name": "Furniture",
+    "color": "#008000",
+    "is_billable": false,
+    "task_type_schemas": [],
+    "tasks": [
+      {
+        "__entity_type__": "AssetBuild",
+        "id": "00531484-4666-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "4be63b64-5010-42fb-bf1f-428af9d638f0",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "AssetBuild",
+        "id": "0c790e76-4666-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "4be63b64-5010-42fb-bf1f-428af9d638f0",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "AssetBuild",
+        "id": "14f3a232-4666-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "4be63b64-5010-42fb-bf1f-428af9d638f0",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "AssetBuild",
+        "id": "15215dac-4662-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "4be63b64-5010-42fb-bf1f-428af9d638f0",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "AssetBuild",
+        "id": "202374d4-4666-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "4be63b64-5010-42fb-bf1f-428af9d638f0",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "AssetBuild",
+        "id": "27eb27ce-4662-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "4be63b64-5010-42fb-bf1f-428af9d638f0",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "AssetBuild",
+        "id": "3eec2522-4662-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "4be63b64-5010-42fb-bf1f-428af9d638f0",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "AssetBuild",
+        "id": "510d0adc-4662-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "4be63b64-5010-42fb-bf1f-428af9d638f0",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "AssetBuild",
+        "id": "52c54bd8-4661-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "4be63b64-5010-42fb-bf1f-428af9d638f0",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "AssetBuild",
+        "id": "73cfb628-4662-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "4be63b64-5010-42fb-bf1f-428af9d638f0",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "AssetBuild",
+        "id": "88452d9a-4662-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "4be63b64-5010-42fb-bf1f-428af9d638f0",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "AssetBuild",
+        "id": "89e85402-4661-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "4be63b64-5010-42fb-bf1f-428af9d638f0",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "AssetBuild",
+        "id": "99c8e724-4661-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "4be63b64-5010-42fb-bf1f-428af9d638f0",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "AssetBuild",
+        "id": "aa726316-4661-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "4be63b64-5010-42fb-bf1f-428af9d638f0",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "AssetBuild",
+        "id": "b951d83a-4661-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "4be63b64-5010-42fb-bf1f-428af9d638f0",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "AssetBuild",
+        "id": "e0048af4-4661-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "4be63b64-5010-42fb-bf1f-428af9d638f0",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "AssetBuild",
+        "id": "e8bf8cc6-4665-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "4be63b64-5010-42fb-bf1f-428af9d638f0",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "AssetBuild",
+        "id": "ee86f9fe-4661-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "4be63b64-5010-42fb-bf1f-428af9d638f0",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "AssetBuild",
+        "id": "f555f826-4665-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "4be63b64-5010-42fb-bf1f-428af9d638f0",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "AssetBuild",
+        "id": "ff09dc42-4661-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "4be63b64-5010-42fb-bf1f-428af9d638f0",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "AssetBuild",
+        "id": "fff6caf8-4660-11ed-91db-ca81394198b0",
+        "context_type": "task",
+        "object_type_id": "4be63b64-5010-42fb-bf1f-428af9d638f0",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      }
+    ]
+  },
+  {
+    "__entity_type__": "Type",
+    "id": "8c39f908-8b4c-11eb-9cdb-c2ffbce28b68",
+    "name": "Vehicle",
+    "color": "#ABABAB",
+    "is_billable": true,
+    "task_type_schemas": [],
+    "tasks": [
+      {
+        "__entity_type__": "AssetBuild",
+        "id": "894a0516-8b57-11eb-b5d3-c2ffbce28b68",
+        "context_type": "task",
+        "object_type_id": "4be63b64-5010-42fb-bf1f-428af9d638f0",
+        "project_id": "33b1e354-8b3d-11eb-8e99-c2ffbce28b68"
+      }
+    ]
+  },
+  {
+    "__entity_type__": "Type",
+    "id": "66d1daba-13c6-11e3-abf2-f23c91dfaa16",
+    "name": "Environment",
+    "color": "#5da35e",
+    "is_billable": true,
+    "task_type_schemas": [
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "faa3c894-88e6-11e3-8546-04011030cf01"
+      }
+    ],
+    "tasks": [
+      {
+        "__entity_type__": "AssetBuild",
+        "id": "e8da48d1-a811-11eb-b22d-1e003a0c2435",
+        "context_type": "task",
+        "object_type_id": "4be63b64-5010-42fb-bf1f-428af9d638f0",
+        "project_id": "36473c44-7cf2-11eb-a32d-861b18b6aec9"
+      }
+    ]
+  },
+  {
+    "__entity_type__": "Type",
+    "id": "66d2038c-13c6-11e3-abf2-f23c91dfaa16",
+    "name": "Matte Painting",
+    "color": "#5da35e",
+    "is_billable": true,
+    "task_type_schemas": [
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "b32cef32-9dca-11e9-b01a-d27cf242b68b"
+      },
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "faa3c894-88e6-11e3-8546-04011030cf01"
+      }
+    ],
+    "tasks": []
+  },
+  {
+    "__entity_type__": "Type",
+    "id": "b628a004-ad7d-11e1-896c-f23c91df1211",
+    "name": "Production",
+    "color": "#bdc3c7",
+    "is_billable": false,
+    "task_type_schemas": [
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "9c772d44-6af0-11eb-b045-169be7b6c453"
+      },
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "cadd9e5a-acb5-11e1-8668-f23c91df1211"
+      },
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "d7355e70-bd5b-11eb-8fe6-d6270330280e"
+      },
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "faa3c894-88e6-11e3-8546-04011030cf01"
+      }
+    ],
+    "tasks": []
+  },
+  {
+    "__entity_type__": "Type",
+    "id": "cc46c4c6-13d2-11e3-8915-f23c91dfaa16",
+    "name": "Editing",
+    "color": "#f1c40f",
+    "is_billable": true,
+    "task_type_schemas": [
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "9c772d44-6af0-11eb-b045-169be7b6c453"
+      },
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "b32cef32-9dca-11e9-b01a-d27cf242b68b"
+      },
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "cadd9e5a-acb5-11e1-8668-f23c91df1211"
+      },
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "faa3c894-88e6-11e3-8546-04011030cf01"
+      }
+    ],
+    "tasks": []
+  },
+  {
+    "__entity_type__": "Type",
+    "id": "a3ead45c-ae42-11e9-9454-d27cf242b68b",
+    "name": "Conform",
+    "color": "#ABABAB",
+    "is_billable": true,
+    "task_type_schemas": [
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "cadd9e5a-acb5-11e1-8668-f23c91df1211"
+      }
+    ],
+    "tasks": []
+  },
+  {
+    "__entity_type__": "Type",
+    "id": "44dd3ed2-4164-11df-9218-0019bb4983d8",
+    "name": "Tracking",
+    "color": "#27ae60",
+    "is_billable": true,
+    "task_type_schemas": [
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "cadd9e5a-acb5-11e1-8668-f23c91df1211"
+      },
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "faa3c894-88e6-11e3-8546-04011030cf01"
+      }
+    ],
+    "tasks": [
+      {
+        "__entity_type__": "Task",
+        "id": "19d33e8e-8bff-11eb-b5d3-c2ffbce28b68",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "33b1e354-8b3d-11eb-8e99-c2ffbce28b68"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "2b8c28a8-8b4f-11eb-b695-c2ffbce28b68",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "33b1e354-8b3d-11eb-8e99-c2ffbce28b68"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "a550028a-8bff-11eb-a088-c2ffbce28b68",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "33b1e354-8b3d-11eb-8e99-c2ffbce28b68"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "ddc5b368-8bfe-11eb-a270-c2ffbce28b68",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "33b1e354-8b3d-11eb-8e99-c2ffbce28b68"
+      }
+    ]
+  },
+  {
+    "__entity_type__": "Type",
+    "id": "c3bcfdb4-ad7d-11e1-a444-f23c91df1211",
+    "name": "Rotoscoping",
+    "color": "#3498db",
+    "is_billable": true,
+    "task_type_schemas": [
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "cadd9e5a-acb5-11e1-8668-f23c91df1211"
+      },
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "faa3c894-88e6-11e3-8546-04011030cf01"
+      }
+    ],
+    "tasks": [
+      {
+        "__entity_type__": "Task",
+        "id": "2b601be6-8b4f-11eb-b695-c2ffbce28b68",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "33b1e354-8b3d-11eb-8e99-c2ffbce28b68"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "2b6afe94-8b4f-11eb-b695-c2ffbce28b68",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "33b1e354-8b3d-11eb-8e99-c2ffbce28b68"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "2b7b34bc-8b4f-11eb-b695-c2ffbce28b68",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "33b1e354-8b3d-11eb-8e99-c2ffbce28b68"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "2b837f14-8b4f-11eb-b695-c2ffbce28b68",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "33b1e354-8b3d-11eb-8e99-c2ffbce28b68"
+      }
+    ]
+  },
+  {
+    "__entity_type__": "Type",
+    "id": "44dc6ffc-4164-11df-9218-0019bb4983d8",
+    "name": "Previz",
+    "color": "#27ae60",
+    "is_billable": true,
+    "task_type_schemas": [
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "9c772d44-6af0-11eb-b045-169be7b6c453"
+      },
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "cadd9e5a-acb5-11e1-8668-f23c91df1211"
+      },
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "faa3c894-88e6-11e3-8546-04011030cf01"
+      }
+    ],
+    "tasks": []
+  },
+  {
+    "__entity_type__": "Type",
+    "id": "ffaebf7a-9dca-11e9-8346-d27cf242b68b",
+    "name": "Layout",
+    "color": "#3a2d5a",
+    "is_billable": true,
+    "task_type_schemas": [
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "9c772d44-6af0-11eb-b045-169be7b6c453"
+      },
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "b32cef32-9dca-11e9-b01a-d27cf242b68b"
+      },
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "cadd9e5a-acb5-11e1-8668-f23c91df1211"
+      },
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "f9bd62f6-a20c-11e9-81e9-d27cf242b68b"
+      }
+    ],
+    "tasks": [
+      {
+        "__entity_type__": "Task",
+        "id": "2b6282fa-8b4f-11eb-b695-c2ffbce28b68",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "33b1e354-8b3d-11eb-8e99-c2ffbce28b68"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "2b6506ba-8b4f-11eb-b695-c2ffbce28b68",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "33b1e354-8b3d-11eb-8e99-c2ffbce28b68"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "2b7d3c4e-8b4f-11eb-b695-c2ffbce28b68",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "33b1e354-8b3d-11eb-8e99-c2ffbce28b68"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "2b9abd82-8b4f-11eb-b695-c2ffbce28b68",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "33b1e354-8b3d-11eb-8e99-c2ffbce28b68"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "ee5acae4-7cf7-11eb-aaf7-861b18b6aec9",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "36473c44-7cf2-11eb-a32d-861b18b6aec9"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "ef1621e0-7cf7-11eb-aaf7-861b18b6aec9",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "36473c44-7cf2-11eb-a32d-861b18b6aec9"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "efc17e5a-7cf7-11eb-aaf7-861b18b6aec9",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "36473c44-7cf2-11eb-a32d-861b18b6aec9"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "f05c16cc-7cf7-11eb-aaf7-861b18b6aec9",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "36473c44-7cf2-11eb-a32d-861b18b6aec9"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "f10689b8-7cf7-11eb-aaf7-861b18b6aec9",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "36473c44-7cf2-11eb-a32d-861b18b6aec9"
+      }
+    ]
+  },
+  {
+    "__entity_type__": "Type",
+    "id": "44dc3636-4164-11df-9218-0019bb4983d8",
+    "name": "Animation",
+    "color": "#35592d",
+    "is_billable": true,
+    "task_type_schemas": [
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "9c772d44-6af0-11eb-b045-169be7b6c453"
+      },
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "b32cef32-9dca-11e9-b01a-d27cf242b68b"
+      },
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "cadd9e5a-acb5-11e1-8668-f23c91df1211"
+      },
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "faa3c894-88e6-11e3-8546-04011030cf01"
+      }
+    ],
+    "tasks": [
+      {
+        "__entity_type__": "Task",
+        "id": "ee187f04-7cf7-11eb-aaf7-861b18b6aec9",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "36473c44-7cf2-11eb-a32d-861b18b6aec9"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "eee445ee-7cf7-11eb-aaf7-861b18b6aec9",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "36473c44-7cf2-11eb-a32d-861b18b6aec9"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "ef88cc4a-7cf7-11eb-aaf7-861b18b6aec9",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "36473c44-7cf2-11eb-a32d-861b18b6aec9"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "eff05e96-7cf7-11eb-aaf7-861b18b6aec9",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "36473c44-7cf2-11eb-a32d-861b18b6aec9"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "f0668fc6-7cf7-11eb-aaf7-861b18b6aec9",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "36473c44-7cf2-11eb-a32d-861b18b6aec9"
+      }
+    ]
+  },
+  {
+    "__entity_type__": "Type",
+    "id": "44dcea86-4164-11df-9218-0019bb4983d8",
+    "name": "FX",
+    "color": "#9b59b6",
+    "is_billable": true,
+    "task_type_schemas": [
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "9c772d44-6af0-11eb-b045-169be7b6c453"
+      },
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "b32cef32-9dca-11e9-b01a-d27cf242b68b"
+      },
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "cadd9e5a-acb5-11e1-8668-f23c91df1211"
+      },
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "faa3c894-88e6-11e3-8546-04011030cf01"
+      }
+    ],
+    "tasks": []
+  },
+  {
+    "__entity_type__": "Type",
+    "id": "44dd08fe-4164-11df-9218-0019bb4983d8",
+    "name": "Lighting",
+    "color": "#5b5ba3",
+    "is_billable": true,
+    "task_type_schemas": [
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "9c772d44-6af0-11eb-b045-169be7b6c453"
+      },
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "b32cef32-9dca-11e9-b01a-d27cf242b68b"
+      },
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "cadd9e5a-acb5-11e1-8668-f23c91df1211"
+      },
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "faa3c894-88e6-11e3-8546-04011030cf01"
+      }
+    ],
+    "tasks": []
+  },
+  {
+    "__entity_type__": "Type",
+    "id": "262225e8-9dcb-11e9-82b8-d27cf242b68b",
+    "name": "Rendering",
+    "color": "#5ba3a3",
+    "is_billable": true,
+    "task_type_schemas": [
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "9c772d44-6af0-11eb-b045-169be7b6c453"
+      },
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "b32cef32-9dca-11e9-b01a-d27cf242b68b"
+      },
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "cadd9e5a-acb5-11e1-8668-f23c91df1211"
+      },
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "d7355e70-bd5b-11eb-8fe6-d6270330280e"
+      }
+    ],
+    "tasks": [
+      {
+        "__entity_type__": "Task",
+        "id": "2b5dda84-8b4f-11eb-b695-c2ffbce28b68",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "33b1e354-8b3d-11eb-8e99-c2ffbce28b68"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "2b74dc84-8b4f-11eb-b695-c2ffbce28b68",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "33b1e354-8b3d-11eb-8e99-c2ffbce28b68"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "2b76f4ce-8b4f-11eb-b695-c2ffbce28b68",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "33b1e354-8b3d-11eb-8e99-c2ffbce28b68"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "2b8158c4-8b4f-11eb-b695-c2ffbce28b68",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "33b1e354-8b3d-11eb-8e99-c2ffbce28b68"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "eea8f4e4-7cf7-11eb-aaf7-861b18b6aec9",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "36473c44-7cf2-11eb-a32d-861b18b6aec9"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "eeb4feec-7cf7-11eb-aaf7-861b18b6aec9",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "36473c44-7cf2-11eb-a32d-861b18b6aec9"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "eee9ef6c-7cf7-11eb-aaf7-861b18b6aec9",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "36473c44-7cf2-11eb-a32d-861b18b6aec9"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "ef7d5d1a-7cf7-11eb-aaf7-861b18b6aec9",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "36473c44-7cf2-11eb-a32d-861b18b6aec9"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "f11e44b8-7cf7-11eb-aaf7-861b18b6aec9",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "36473c44-7cf2-11eb-a32d-861b18b6aec9"
+      }
+    ]
+  },
+  {
+    "__entity_type__": "Type",
+    "id": "44dd23b6-4164-11df-9218-0019bb4983d8",
+    "name": "Compositing",
+    "color": "#2d5959",
+    "is_billable": true,
+    "task_type_schemas": [
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "8f65fa3c-74a0-11ea-af66-1e2613b538bd"
+      },
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "9c772d44-6af0-11eb-b045-169be7b6c453"
+      },
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "b32cef32-9dca-11e9-b01a-d27cf242b68b"
+      },
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "cadd9e5a-acb5-11e1-8668-f23c91df1211"
+      },
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "faa3c894-88e6-11e3-8546-04011030cf01"
+      }
+    ],
+    "tasks": [
+      {
+        "__entity_type__": "Task",
+        "id": "2b856f86-8b4f-11eb-b695-c2ffbce28b68",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "33b1e354-8b3d-11eb-8e99-c2ffbce28b68"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "2b8871cc-8b4f-11eb-b695-c2ffbce28b68",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "33b1e354-8b3d-11eb-8e99-c2ffbce28b68"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "2b90a072-8b4f-11eb-b695-c2ffbce28b68",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "33b1e354-8b3d-11eb-8e99-c2ffbce28b68"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "2b92b4d4-8b4f-11eb-b695-c2ffbce28b68",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "33b1e354-8b3d-11eb-8e99-c2ffbce28b68"
+      },
+      {
+        "__entity_type__": "Milestone",
+        "id": "4a0a6abc-8c1a-11eb-9cdb-c2ffbce28b68",
+        "context_type": "task",
+        "object_type_id": "01decdd1-51cb-11e3-9d5b-20c9d0831e59",
+        "project_id": "33b1e354-8b3d-11eb-8e99-c2ffbce28b68"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "ee6c97d8-7cf7-11eb-aaf7-861b18b6aec9",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "36473c44-7cf2-11eb-a32d-861b18b6aec9"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "ef27094c-7cf7-11eb-aaf7-861b18b6aec9",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "36473c44-7cf2-11eb-a32d-861b18b6aec9"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "ef2c562c-7cf7-11eb-aaf7-861b18b6aec9",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "36473c44-7cf2-11eb-a32d-861b18b6aec9"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "efb5a71a-7cf7-11eb-aaf7-861b18b6aec9",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "36473c44-7cf2-11eb-a32d-861b18b6aec9"
+      },
+      {
+        "__entity_type__": "Task",
+        "id": "f0a92944-7cf7-11eb-aaf7-861b18b6aec9",
+        "context_type": "task",
+        "object_type_id": "11c137c0-ee7e-4f9c-91c5-8c77cec22b2c",
+        "project_id": "36473c44-7cf2-11eb-a32d-861b18b6aec9"
+      }
+    ]
+  },
+  {
+    "__entity_type__": "Type",
+    "id": "ae1e2480-f24e-11e2-bd1f-f23c91dfaa16",
+    "name": "Deliverable",
+    "color": "#2980b9",
+    "is_billable": true,
+    "task_type_schemas": [
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "06e14152-77ef-11e4-8e7d-040132734d01"
+      },
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "d7355e70-bd5b-11eb-8fe6-d6270330280e"
+      },
+      {
+        "__entity_type__": "TaskTypeSchema",
+        "id": "faa3c894-88e6-11e3-8546-04011030cf01"
+      }
+    ],
+    "tasks": [
+      {
+        "__entity_type__": "Milestone",
+        "id": "145b78dc-4bc9-11ed-af41-e23d4a00464d",
+        "context_type": "task",
+        "object_type_id": "01decdd1-51cb-11e3-9d5b-20c9d0831e59",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "Milestone",
+        "id": "2999197a-4bc9-11ed-af41-e23d4a00464d",
+        "context_type": "task",
+        "object_type_id": "01decdd1-51cb-11e3-9d5b-20c9d0831e59",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      },
+      {
+        "__entity_type__": "Milestone",
+        "id": "646b5587-c98a-473d-be7a-16c98056c5e1",
+        "context_type": "task",
+        "object_type_id": "01decdd1-51cb-11e3-9d5b-20c9d0831e59",
+        "project_id": "36473c44-7cf2-11eb-a32d-861b18b6aec9"
+      },
+      {
+        "__entity_type__": "Milestone",
+        "id": "8b28290b-7a8d-4527-b6e2-a646abd46cab",
+        "context_type": "task",
+        "object_type_id": "01decdd1-51cb-11e3-9d5b-20c9d0831e59",
+        "project_id": "36473c44-7cf2-11eb-a32d-861b18b6aec9"
+      },
+      {
+        "__entity_type__": "Milestone",
+        "id": "939e9dbc-5cb7-4c3e-b0d7-37f38414f802",
+        "context_type": "task",
+        "object_type_id": "01decdd1-51cb-11e3-9d5b-20c9d0831e59",
+        "project_id": "36473c44-7cf2-11eb-a32d-861b18b6aec9"
+      },
+      {
+        "__entity_type__": "Milestone",
+        "id": "a95dc265-e0f1-4c0c-abc4-8329d283462e",
+        "context_type": "task",
+        "object_type_id": "01decdd1-51cb-11e3-9d5b-20c9d0831e59",
+        "project_id": "33b1e354-8b3d-11eb-8e99-c2ffbce28b68"
+      },
+      {
+        "__entity_type__": "Milestone",
+        "id": "fb98c5f2-4bc8-11ed-af41-e23d4a00464d",
+        "context_type": "task",
+        "object_type_id": "01decdd1-51cb-11e3-9d5b-20c9d0831e59",
+        "project_id": "9c3e3c78-432f-11ed-a028-8e70b81a65da"
+      }
+    ]
+  }
+]

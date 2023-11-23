@@ -49,4 +49,18 @@ export type CustomAttributeConfigurationName =
 export type CustomAttributeConfigurationLabel =
   CustomAttributeConfiguration["label"];
 
+export function getTypes() {
+  return [] as const;
+}
+
+export type Type = ReturnType<typeof getTypes>[number];
+export type TypeName = Type["name"];
+
+export function getObjectTypes() {
+  return [] as const;
+}
+
+export type ObjectType = ReturnType<typeof getObjectTypes>[number];
+export type ObjectTypeName = ObjectType["name"];
+
 // Errors:
