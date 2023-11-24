@@ -730,7 +730,7 @@ export interface UserView {
   name?: string;
   shared_with?: Resource[];
   user?: User;
-  user_id?: undefined;
+  user_id?: string;
   __entity_type__?: "UserView";
   __permissions?: Record<string, any>;
 }
@@ -1422,5 +1422,16 @@ export interface TypedContextSubtypeMap {
   Information: Information;
 }
 export type TypedContextSubtype = keyof TypedContextSubtypeMap;
+export function getAttributeConfigurations() {
+  return [] as const;
+}
+
+export type CustomAttributeConfiguration = ReturnType<
+  typeof getAttributeConfigurations
+>[number];
+export type CustomAttributeConfigurationName =
+  CustomAttributeConfiguration["name"];
+export type CustomAttributeConfigurationLabel =
+  CustomAttributeConfiguration["label"];
 
 // Errors:

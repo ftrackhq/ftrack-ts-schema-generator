@@ -12,6 +12,7 @@ export async function emitToFile(
 ) {
   // Get the schemas from the server and sort by id in alphabetical order
   const schemas = await getSchemas(session);
+  const customAttributes = await getCustomAttributes(session);
 
   const {
     prettifiedContent,
@@ -19,7 +20,8 @@ export async function emitToFile(
   }: { prettifiedContent: string; errors: unknown[] } = await emitToString(
     session.serverVersion,
     session.serverUrl,
-    schemas
+    schemas,
+    customAttributes
   );
   fs.mkdirSync(path.resolve(outputPath), { recursive: true });
   fs.writeFileSync(path.join(outputPath, outputFilename), prettifiedContent);
@@ -27,10 +29,28 @@ export async function emitToFile(
   return { errors, schemas };
 }
 
+export type CustomAttributeConfiguration = {
+  __entity_type__: "CustomAttributeConfiguration";
+  id: string;
+  object_type: {
+    __entity_type__: "ObjectType";
+    id: string;
+    name: string;
+  };
+  default: unknown,
+  key: string;
+  entity_type: string;
+  label: string;
+  project_id: string | null;
+  is_hierarchical: boolean;
+  values: [];
+};
+
 export async function emitToString(
   serverVersion: string | undefined,
   serverUrl: string | undefined,
-  schemas: QuerySchemasResponse
+  schemas: QuerySchemasResponse,
+  customAttributes: CustomAttributeConfiguration[]
 ) {
   const preamble = `// :copyright: Copyright (c) ${new Date().getFullYear()} ftrack \n\n// Generated on ${new Date().toISOString()} using schema \n// from an instance running version ${serverVersion} using server on ${serverUrl} \n// Not intended to modify manually\n\n`;
 
@@ -59,6 +79,27 @@ export async function emitToString(
     interfaces += TSInterface;
   }
 
+  const customAttributesString = `
+    export function getAttributeConfigurations() {
+      return [
+        ${customAttributes.map(
+          (x) => `{
+            name: "${x.key}",
+            label: "${x.label}",
+            entityType: "${x.entity_type}",
+            default: ${JSON.stringify(x.default)},
+            objectType: ${JSON.stringify(x.object_type?.name)},
+            isHierarchical: ${x.is_hierarchical}
+          }`
+        )}
+      ] as const;;
+    }
+    
+    export type CustomAttributeConfiguration = ReturnType<typeof getAttributeConfigurations>[number];
+    export type CustomAttributeConfigurationName = CustomAttributeConfiguration["name"];
+    export type CustomAttributeConfigurationLabel = CustomAttributeConfiguration["label"];
+  `;
+
   // Add a map of entity types and type for EntityType and a type for EntityData
   const schemaNames = schemas
     .map((s) => s.id)
@@ -86,12 +127,20 @@ export async function emitToString(
     entityData +
     TypedContextSubtypeMap +
     TypedContextSubtype +
+    customAttributesString +
     "\n \n// Errors: \n" +
     errors.map((error) => `// ${error}`).join("\n");
   const prettifiedContent = prettier.format(allContent, {
     parser: "typescript",
   });
   return { prettifiedContent, errors };
+}
+
+async function getCustomAttributes(session: Session) {
+  const customAttributes = await session.query<CustomAttributeConfiguration>(
+    "select default, label, values, key, project_id, entity_type, is_hierarchical, object_type.name from CustomAttributeConfiguration order by sort"
+  );
+  return customAttributes.data;
 }
 
 async function getSchemas(session: Session) {

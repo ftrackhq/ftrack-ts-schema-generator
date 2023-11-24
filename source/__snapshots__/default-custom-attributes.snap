@@ -10,11 +10,6 @@ export interface TypedContext<
   __entity_type__?: K;
   __permissions?: Record<string, any>;
 }
-export interface SomeInterfaceName {
-  readonly immutableProperty?: string | number | boolean | string[];
-  __entity_type__?: "SomeInterfaceName";
-  __permissions?: Record<string, any>;
-}
 export interface BasicLink {
   id: string;
   type: string;
@@ -22,7 +17,6 @@ export interface BasicLink {
 }
 export interface EntityTypeMap {
   TypedContext: TypedContext;
-  SomeInterfaceName: SomeInterfaceName;
 }
 export type EntityType = keyof EntityTypeMap;
 export type EntityData<TEntityType extends EntityType = EntityType> =
@@ -32,7 +26,57 @@ export interface TypedContextSubtypeMap {
 }
 export type TypedContextSubtype = keyof TypedContextSubtypeMap;
 export function getAttributeConfigurations() {
-  return [] as const;
+  return [
+    {
+      name: "fend",
+      label: "Frame end",
+      entityType: "task",
+      objectType: "Shot",
+      isHierarchical: false,
+    },
+    {
+      name: "handles",
+      label: "Frame handles",
+      entityType: "task",
+      objectType: "Shot",
+      isHierarchical: false,
+    },
+    {
+      name: "duration",
+      label: "Frame duration",
+      entityType: "task",
+      objectType: "Shot",
+      isHierarchical: false,
+    },
+    {
+      name: "fstart",
+      label: "Frame start",
+      entityType: "task",
+      objectType: "Shot",
+      isHierarchical: false,
+    },
+    {
+      name: "fps",
+      label: "fps",
+      entityType: "show",
+      objectType: undefined,
+      isHierarchical: false,
+    },
+    {
+      name: "fps",
+      label: "fps",
+      entityType: "task",
+      objectType: "Sequence",
+      isHierarchical: false,
+    },
+    {
+      name: "fps",
+      label: "fps",
+      entityType: "task",
+      objectType: "Shot",
+      isHierarchical: false,
+    },
+  ] as const;
 }
 
 export type CustomAttributeConfiguration = ReturnType<
