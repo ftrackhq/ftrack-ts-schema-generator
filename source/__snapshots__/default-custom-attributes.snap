@@ -31,6 +31,7 @@ export function getAttributeConfigurations() {
       name: "fend",
       label: "Frame end",
       entityType: "task",
+      default: 1,
       objectType: "Shot",
       isHierarchical: false,
     },
@@ -38,6 +39,7 @@ export function getAttributeConfigurations() {
       name: "handles",
       label: "Frame handles",
       entityType: "task",
+      default: 0,
       objectType: "Shot",
       isHierarchical: false,
     },
@@ -45,6 +47,7 @@ export function getAttributeConfigurations() {
       name: "duration",
       label: "Frame duration",
       entityType: "task",
+      default: "{self.fend - self.fstart + 1}",
       objectType: "Shot",
       isHierarchical: false,
     },
@@ -52,6 +55,7 @@ export function getAttributeConfigurations() {
       name: "fstart",
       label: "Frame start",
       entityType: "task",
+      default: 1,
       objectType: "Shot",
       isHierarchical: false,
     },
@@ -59,6 +63,7 @@ export function getAttributeConfigurations() {
       name: "fps",
       label: "fps",
       entityType: "show",
+      default: 24,
       objectType: undefined,
       isHierarchical: false,
     },
@@ -66,6 +71,7 @@ export function getAttributeConfigurations() {
       name: "fps",
       label: "fps",
       entityType: "task",
+      default: 25,
       objectType: "Sequence",
       isHierarchical: false,
     },
@@ -73,6 +79,7 @@ export function getAttributeConfigurations() {
       name: "fps",
       label: "fps",
       entityType: "task",
+      default: 25,
       objectType: "Shot",
       isHierarchical: false,
     },
@@ -86,5 +93,19 @@ export type CustomAttributeConfigurationName =
   CustomAttributeConfiguration["name"];
 export type CustomAttributeConfigurationLabel =
   CustomAttributeConfiguration["label"];
+
+export function getTypes() {
+  return [] as const;
+}
+
+export type Type = ReturnType<typeof getTypes>[number];
+export type TypeName = Type["name"];
+
+export function getObjectTypes() {
+  return [] as const;
+}
+
+export type ObjectType = ReturnType<typeof getObjectTypes>[number];
+export type ObjectTypeName = ObjectType["name"];
 
 // Errors:
