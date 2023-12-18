@@ -204,9 +204,9 @@ export async function emitToString(
             name: "${x.name}",
             objectTypes: [
               ${x.object_types
-                .map(t => objectTypes.find(x => x.id === t.id))
-                .map(t => `"${t!.name}"`)
-                .join(', ')}
+                .map((t) => objectTypes.find((x) => x.id === t.id))
+                .map((t) => `"${t?.name}"`)
+                .join(", ")}
             ]
           }`
         )}

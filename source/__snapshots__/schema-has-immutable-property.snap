@@ -1,6 +1,6 @@
 // :copyright: Copyright (c) 2023 ftrack
 
-// Generated on 2023-01-31T23:00:00.000Z using schema
+// Generated on 2023-02-01T00:00:00.000Z using schema
 // from an instance running version 4.13.8 using server on https://ftrack.example.com
 // Not intended to modify manually
 
@@ -63,6 +63,5 @@ export function getProjectSchemas() {
 
 export type ProjectSchema = ReturnType<typeof getProjectSchemas>[number];
 export type ProjectName = ProjectSchema["name"];
-
 
 // Errors:
