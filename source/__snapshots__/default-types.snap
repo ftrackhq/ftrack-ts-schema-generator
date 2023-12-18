@@ -41,99 +41,99 @@ export function getTypes() {
   return [
     {
       name: "Concept Art",
-      is_billable: true,
+      isBillable: true,
     },
     {
       name: "Modeling",
-      is_billable: true,
+      isBillable: true,
     },
     {
       name: "Rigging",
-      is_billable: true,
+      isBillable: true,
     },
     {
       name: "Texture",
-      is_billable: true,
+      isBillable: true,
     },
     {
       name: "Lookdev",
-      is_billable: true,
+      isBillable: true,
     },
     {
       name: "Character",
-      is_billable: true,
+      isBillable: true,
     },
     {
       name: "Prop",
-      is_billable: true,
+      isBillable: true,
     },
     {
       name: "Furniture",
-      is_billable: false,
+      isBillable: false,
     },
     {
       name: "Vehicle",
-      is_billable: true,
+      isBillable: true,
     },
     {
       name: "Environment",
-      is_billable: true,
+      isBillable: true,
     },
     {
       name: "Matte Painting",
-      is_billable: true,
+      isBillable: true,
     },
     {
       name: "Production",
-      is_billable: false,
+      isBillable: false,
     },
     {
       name: "Editing",
-      is_billable: true,
+      isBillable: true,
     },
     {
       name: "Conform",
-      is_billable: true,
+      isBillable: true,
     },
     {
       name: "Tracking",
-      is_billable: true,
+      isBillable: true,
     },
     {
       name: "Rotoscoping",
-      is_billable: true,
+      isBillable: true,
     },
     {
       name: "Previz",
-      is_billable: true,
+      isBillable: true,
     },
     {
       name: "Layout",
-      is_billable: true,
+      isBillable: true,
     },
     {
       name: "Animation",
-      is_billable: true,
+      isBillable: true,
     },
     {
       name: "FX",
-      is_billable: true,
+      isBillable: true,
     },
     {
       name: "Lighting",
-      is_billable: true,
+      isBillable: true,
     },
     {
       name: "Rendering",
-      is_billable: true,
+      isBillable: true,
     },
     {
       name: "Compositing",
-      is_billable: true,
+      isBillable: true,
     },
     {
       name: "Deliverable",
-      is_billable: true,
+      isBillable: true,
     },
   ] as const;
 }
@@ -147,5 +147,12 @@ export function getObjectTypes() {
 
 export type ObjectType = ReturnType<typeof getObjectTypes>[number];
 export type ObjectTypeName = ObjectType["name"];
+
+export function getProjectSchemas() {
+  return [] as const;
+}
+
+export type ProjectSchema = ReturnType<typeof getProjectSchemas>[number];
+export type ProjectName = ProjectSchema["name"];
 
 // Errors:
