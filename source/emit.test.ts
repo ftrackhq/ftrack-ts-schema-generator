@@ -322,9 +322,7 @@ test("default object types", async () => {
   const contents = await readFile(
     join(".", "source", "__snapshots__", "responses", "query_object_types.json")
   );
-  const objectTypes: ObjectType[] = JSON.parse(
-    contents.toString()
-  );
+  const objectTypes: ObjectType[] = JSON.parse(contents.toString());
 
   //act
   const emitResult = await emitToString(
@@ -347,7 +345,13 @@ test("default object types", async () => {
 test("default highway test (all values specified)", async () => {
   //arrange
   const schemasContents = await readFile(
-    join(".", "source", "__snapshots__", "responses", "query_project_schema.json")
+    join(
+      ".",
+      "source",
+      "__snapshots__",
+      "responses",
+      "query_project_schema.json"
+    )
   );
   const schemas: Array<ProjectSchema> = JSON.parse(schemasContents.toString());
 
@@ -372,9 +376,7 @@ test("default highway test (all values specified)", async () => {
   const objectTypeContents = await readFile(
     join(".", "source", "__snapshots__", "responses", "query_object_types.json")
   );
-  const objectTypes: ObjectType[] = JSON.parse(
-    objectTypeContents.toString()
-  );
+  const objectTypes: ObjectType[] = JSON.parse(objectTypeContents.toString());
 
   //act
   const emitResult = await emitToString(
