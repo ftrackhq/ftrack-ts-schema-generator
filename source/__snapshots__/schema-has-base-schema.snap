@@ -69,5 +69,4 @@ export function getProjectSchemas() {
 export type ProjectSchema = ReturnType<typeof getProjectSchemas>[number];
 export type ProjectName = ProjectSchema["name"];
 
-
 // Errors:
