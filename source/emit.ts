@@ -149,8 +149,8 @@ export async function emitToString(
       ] as const;
     }
 
-    export type Type = ReturnType<typeof getTypes>[number];
-    export type TypeName = Type["name"];
+    export type TypeRuntimeInformation = ReturnType<typeof getTypes>[number];
+    export type TypeRuntimeInformationName = TypeRuntimeInformation["name"];
   `;
 
   const objectTypesString = `
@@ -171,8 +171,8 @@ export async function emitToString(
       ] as const;
     }
 
-    export type ObjectType = ReturnType<typeof getObjectTypes>[number];
-    export type ObjectTypeName = ObjectType["name"];
+    export type ObjectTypeRuntimeInformation = ReturnType<typeof getObjectTypes>[number];
+    export type ObjectTypeRuntimeInformationName = ObjectTypeRuntimeInformation["name"];
 `;
 
   const customAttributesString = `
@@ -191,9 +191,9 @@ export async function emitToString(
       ] as const;
     }
     
-    export type CustomAttributeConfiguration = ReturnType<typeof getAttributeConfigurations>[number];
-    export type CustomAttributeConfigurationName = CustomAttributeConfiguration["name"];
-    export type CustomAttributeConfigurationLabel = CustomAttributeConfiguration["label"];
+    export type CustomAttributeConfigurationRuntimeInformation = ReturnType<typeof getAttributeConfigurations>[number];
+    export type CustomAttributeConfigurationRuntimeInformationName = CustomAttributeConfigurationRuntimeInformation["name"];
+    export type CustomAttributeConfigurationRuntimeInformationLabel = CustomAttributeConfigurationRuntimeInformation["label"];
   `;
 
   const projectSchemasString = `
@@ -213,8 +213,8 @@ export async function emitToString(
       ] as const;
     }
 
-    export type ProjectSchema = ReturnType<typeof getProjectSchemas>[number];
-    export type ProjectName = ProjectSchema["name"];
+    export type ProjectSchemaRuntimeInformation = ReturnType<typeof getProjectSchemas>[number];
+    export type ProjectSchemaRuntimeInformationName = ProjectSchemaRuntimeInformation["name"];
   `;
 
   // Add a map of entity types and type for EntityType and a type for EntityData
