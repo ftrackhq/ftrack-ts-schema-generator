@@ -344,7 +344,7 @@ test("default object types", async () => {
 
 test("default highway test (all values specified)", async () => {
   //arrange
-  const schemasContents = await readFile(
+  const projectSchemasContents = await readFile(
     join(
       ".",
       "source",
@@ -353,7 +353,14 @@ test("default highway test (all values specified)", async () => {
       "query_project_schema.json"
     )
   );
-  const schemas: Array<ProjectSchema> = JSON.parse(schemasContents.toString());
+  const projectSchemas: Array<ProjectSchema> = JSON.parse(
+    projectSchemasContents.toString()
+  );
+
+  const schemasContents = await readFile(
+    join(".", "source", "__snapshots__", "responses", "query_schemas.json")
+  );
+  const schemas: Array<Schema> = JSON.parse(schemasContents.toString());
 
   const customAttributeContents = await readFile(
     join(
@@ -382,11 +389,11 @@ test("default highway test (all values specified)", async () => {
   const emitResult = await emitToString(
     "4.13.8",
     "https://ftrack.example.com",
-    [getTypedContextSchema()],
+    schemas,
     customAttributes,
     types,
     objectTypes,
-    schemas
+    projectSchemas
   );
 
   //assert
