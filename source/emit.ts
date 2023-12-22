@@ -149,8 +149,8 @@ export async function emitToString(
       ] as const;
     }
 
-    export type Type = ReturnType<typeof getTypes>[number];
-    export type TypeName = Type["name"];
+    export type RuntimeType = ReturnType<typeof getTypes>[number];
+    export type RuntimeTypeName = RuntimeType["name"];
   `;
 
   const objectTypesString = `
@@ -171,8 +171,8 @@ export async function emitToString(
       ] as const;
     }
 
-    export type ObjectType = ReturnType<typeof getObjectTypes>[number];
-    export type ObjectTypeName = ObjectType["name"];
+    export type RuntimeObjectType = ReturnType<typeof getObjectTypes>[number];
+    export type RuntimeObjectTypeName = RuntimeObjectType["name"];
 `;
 
   const customAttributesString = `
@@ -191,9 +191,9 @@ export async function emitToString(
       ] as const;
     }
     
-    export type CustomAttributeConfiguration = ReturnType<typeof getAttributeConfigurations>[number];
-    export type CustomAttributeConfigurationName = CustomAttributeConfiguration["name"];
-    export type CustomAttributeConfigurationLabel = CustomAttributeConfiguration["label"];
+    export type RuntimeCustomAttributeConfiguration = ReturnType<typeof getAttributeConfigurations>[number];
+    export type RuntimeCustomAttributeConfigurationName = RuntimeCustomAttributeConfiguration["name"];
+    export type RuntimeCustomAttributeConfigurationLabel = RuntimeCustomAttributeConfiguration["label"];
   `;
 
   const projectSchemasString = `
@@ -213,8 +213,8 @@ export async function emitToString(
       ] as const;
     }
 
-    export type ProjectSchema = ReturnType<typeof getProjectSchemas>[number];
-    export type ProjectName = ProjectSchema["name"];
+    export type RuntimeProjectSchema = ReturnType<typeof getProjectSchemas>[number];
+    export type RuntimeProjectSchemaName = RuntimeProjectSchema["name"];
   `;
 
   // Add a map of entity types and type for EntityType and a type for EntityData
