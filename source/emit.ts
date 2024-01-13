@@ -258,7 +258,7 @@ export async function emitToString(
 
 async function getCustomAttributes(session: Session) {
   const customAttributes = await session.query<CustomAttributeConfiguration>(
-    "select default, label, values, key, project_id, entity_type, is_hierarchical, object_type.name from CustomAttributeConfiguration order by sort"
+    "select default, label, key, project_id, entity_type, is_hierarchical, object_type.name from CustomAttributeConfiguration order by sort"
   );
   return customAttributes.data;
 }
