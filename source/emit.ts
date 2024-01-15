@@ -275,14 +275,14 @@ async function getSchemas(session: Session) {
 
 async function getTypes(session: Session) {
   const types = await session.query<Type>(
-    "select color, is_billable, name, task_type_schemas, tasks from Type order by sort"
+    "select is_billable, name, task_type_schemas from Type order by sort"
   );
   return types.data;
 }
 
 async function getObjectTypes(session: Session) {
   const objectTypes = await session.query<ObjectType>(
-    "select id, is_leaf, is_prioritizable, is_schedulable, is_statusable, is_taskable, is_time_reportable, is_typeable, name, project_schemas, tasks from ObjectType order by sort"
+    "select id, is_leaf, is_prioritizable, is_schedulable, is_statusable, is_taskable, is_time_reportable, is_typeable, name, project_schemas from ObjectType order by sort"
   );
   return objectTypes.data;
 }
