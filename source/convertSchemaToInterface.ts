@@ -144,8 +144,8 @@ function convertPropertiesToTypes(
     if (schema.immutable?.includes(key) || schema.computed?.includes(key)) {
       prefix = `readonly `;
     }
-    // All properties are optional, adds a question mark
-    return `${prefix}${key}?: ${type}`;
+    
+    return `${prefix}${key}: ${type}`;
   });
   return convertedProperties;
 }
