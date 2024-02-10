@@ -131,9 +131,18 @@ function convertPropertiesToTypes(
       );
     }
 
+    let isRequired = 
+      schema.required?.includes(key) || 
+      schema.primary_key?.includes(key) || 
+      ('default' in value && !!value.default) ||
+      ('type' in value && value.type === 'array');
+
     let type;
     if ("$ref" in value && value.$ref) {
       type = value.$ref;
+      isRequired ||= 
+        schema.required?.includes(`${key}_id`) || 
+        schema.primary_key?.includes(`${key}_id`);
     }
     if ("type" in value && value.type) {
       verifyValidType(value.type);
@@ -144,8 +153,9 @@ function convertPropertiesToTypes(
     if (schema.immutable?.includes(key) || schema.computed?.includes(key)) {
       prefix = `readonly `;
     }
+
     // All properties are optional, adds a question mark
-    return `${prefix}${key}?: ${type}`;
+    return `${prefix}${key}${!isRequired ? "?" : ""}: ${type}`;
   });
   return convertedProperties;
 }
