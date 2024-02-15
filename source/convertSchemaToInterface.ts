@@ -140,9 +140,6 @@ function convertPropertiesToTypes(
     let type;
     if ("$ref" in value && value.$ref) {
       type = value.$ref;
-      isRequired ||=
-        schema.required?.includes(`${key}_id`) ||
-        schema.primary_key?.includes(`${key}_id`);
     }
     if ("type" in value && value.type) {
       verifyValidType(value.type);
