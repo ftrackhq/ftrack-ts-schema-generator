@@ -26,7 +26,7 @@ export interface BasicLink {
   name: string;
 }
 declare module "@ftrack/api" {
-  export interface EntityTypeMap {
+  export interface ExtendibleEntityTypeMap {
     TypedContext: TypedContext;
     SomeInterfaceName: SomeInterfaceName;
     ArrayItem: ArrayItem;
