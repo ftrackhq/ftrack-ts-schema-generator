@@ -1,9 +1,9 @@
 // :copyright: Copyright (c) 2023 ftrack
 import type {
-  Schema,
   QuerySchemasResponse,
-  TypedSchemaProperty,
+  Schema,
   SchemaProperties,
+  TypedSchemaProperty,
 } from "@ftrack/api";
 
 let errors: string[] = [];
@@ -131,7 +131,7 @@ function convertPropertiesToTypes(
       );
     }
 
-    let isRequired =
+    const isRequired =
       schema.required?.includes(key) ||
       schema.primary_key?.includes(key) ||
       ("default" in value && !!value.default) ||
@@ -140,9 +140,6 @@ function convertPropertiesToTypes(
     let type;
     if ("$ref" in value && value.$ref) {
       type = value.$ref;
-      isRequired ||=
-        schema.required?.includes(`${key}_id`) ||
-        schema.primary_key?.includes(`${key}_id`);
     }
     if ("type" in value && value.type) {
       verifyValidType(value.type);
