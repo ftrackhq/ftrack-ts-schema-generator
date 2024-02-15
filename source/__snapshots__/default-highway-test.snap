@@ -74,7 +74,7 @@ export interface State {
 }
 export interface AssetType {
   assets?: Asset[];
-  component: string;
+  component?: string;
   readonly id: string;
   name: string;
   short: string;
@@ -103,7 +103,7 @@ export interface TypedContextLink {
   metadata?: Metadata[];
   to?: TypedContext;
   to_id: string;
-  type: string;
+  type?: string;
   __entity_type__?: "TypedContextLink";
   __permissions?: Record<string, any>;
 }
@@ -209,7 +209,7 @@ export interface Appointment {
 }
 export interface TaskTypeSchema {
   readonly id: string;
-  name: string;
+  name?: string;
   types?: Type[];
   __entity_type__?: "TaskTypeSchema";
   __permissions?: Record<string, any>;
@@ -782,7 +782,7 @@ export interface ListCategory {
 }
 export interface WorkflowSchema {
   readonly id: string;
-  name: string;
+  name?: string;
   overrides?: ProjectSchemaOverride[];
   statuses?: Status[];
   __entity_type__?: "WorkflowSchema";
@@ -958,7 +958,7 @@ export interface ObjectType {
   icon: string;
   readonly id: string;
   is_leaf?: boolean;
-  is_prioritizable: boolean;
+  is_prioritizable?: boolean;
   is_schedulable: boolean;
   is_statusable: boolean;
   is_taskable: boolean;
@@ -1012,7 +1012,7 @@ export interface AssetVersionStatusChange
 export interface Setting {
   readonly group: string;
   readonly name: string;
-  value: string;
+  value?: string;
   __entity_type__?: "Setting";
   __permissions?: Record<string, any>;
 }
@@ -1079,7 +1079,7 @@ export interface List {
   owner?: User;
   project?: Project;
   project_id: string;
-  system_type: string;
+  system_type?: string;
   user_id?: string;
   __entity_type__?: "List";
   __permissions?: Record<string, any>;
