@@ -221,12 +221,9 @@ export async function emitToString(
   const schemaNames = schemas
     .map((s) => s.id)
     .map((name) => `${name}: ${name};`);
-  const entityTypeMap = `export interface EntityTypeMap {${schemaNames.join(
+  const entityTypeMap = `declare module "@ftrack/api" { export interface ExtendibleEntityTypeMap {${schemaNames.join(
     "\n"
-  )}}`;
-  const entityType = `export type EntityType = keyof EntityTypeMap;`;
-  const entityData = `export type EntityData<TEntityType extends EntityType = EntityType> =
-    EntityTypeMap[TEntityType];`;
+  )}}}`;
   // Add a map of TypedContext subtypes and type for TypedContextSubtype
   const { TypedContextSubtypeMap, TypedContextSubtype } =
     getTypedContextTypes(schemas);
@@ -240,8 +237,6 @@ export async function emitToString(
     preamble +
     interfaces +
     entityTypeMap +
-    entityType +
-    entityData +
     TypedContextSubtypeMap +
     TypedContextSubtype +
     customAttributesString +

@@ -64,12 +64,9 @@ or if using the script as a dependency in another project:
 
 ## Output
 
-The generated TypeScript file will contain interfaces for each entity type from the ftrack schema. Each interface represents the properties of that entity type, with the property names and types based on the schema.
+The generated TypeScript file will contain interfaces for each entity type from the ftrack schema. Each interface represents the properties of that entity type, with the property names and types based on the schema. They are output as TypeScript module augmentations for the @ftrack/api package, giving full typing integrations between the API client and your ftrack instance.
 
 In addition to the interfaces, the output file will also include:
 
-- `EntityTypeMap`: A map of entity types to their corresponding TypeScript interfaces.
-- `EntityType`: A type representing the valid entity type names.
-- `EntityData`: A generic type that takes an EntityType and returns the corresponding interface from EntityTypeMap.
 - `TypedContextSubtypeMap`: A map of TypedContext subtypes to their corresponding TypeScript interfaces.
 - `TypedContextSubtype`: A type representing the valid TypedContext subtypes.

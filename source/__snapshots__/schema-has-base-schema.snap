@@ -24,14 +24,13 @@ export interface BasicLink {
   type: string;
   name: string;
 }
-export interface EntityTypeMap {
-  TypedContext: TypedContext;
-  SomeInterfaceName: SomeInterfaceName;
-  SomeBaseSchema: SomeBaseSchema;
+declare module "@ftrack/api" {
+  export interface EntityTypeMap {
+    TypedContext: TypedContext;
+    SomeInterfaceName: SomeInterfaceName;
+    SomeBaseSchema: SomeBaseSchema;
+  }
 }
-export type EntityType = keyof EntityTypeMap;
-export type EntityData<TEntityType extends EntityType = EntityType> =
-  EntityTypeMap[TEntityType];
 export interface TypedContextSubtypeMap {
   TypedContext: TypedContext;
 }
