@@ -134,8 +134,7 @@ function convertPropertiesToTypes(
     const isRequired =
       schema.required?.includes(key) ||
       schema.primary_key?.includes(key) ||
-      ("default" in value && !!value.default) ||
-      ("type" in value && value.type === "array");
+      ("default" in value && !!value.default);
 
     let type;
     if ("$ref" in value && value.$ref) {
