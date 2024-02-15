@@ -1,9 +1,9 @@
 // :copyright: Copyright (c) 2023 ftrack
 import type {
-  Schema,
   QuerySchemasResponse,
-  TypedSchemaProperty,
+  Schema,
   SchemaProperties,
+  TypedSchemaProperty,
 } from "@ftrack/api";
 
 let errors: string[] = [];
@@ -131,7 +131,7 @@ function convertPropertiesToTypes(
       );
     }
 
-    let isRequired =
+    const isRequired =
       schema.required?.includes(key) ||
       schema.primary_key?.includes(key) ||
       ("default" in value && !!value.default) ||
