@@ -11,7 +11,7 @@ export interface TypedContext<
   __permissions?: Record<string, any>;
 }
 export interface SomeInterfaceName {
-  arrayProperty: ArrayItem[];
+  arrayProperty?: ArrayItem[];
   mappedArrayProperty?: ArrayItem[];
   __entity_type__?: "SomeInterfaceName";
   __permissions?: Record<string, any>;
