@@ -1,0 +1,42 @@
+[
+  {
+    "__entity_type__": "Priority",
+    "id": "847fb90e-ead3-11e2-846c-f23c91dfaa16",
+    "name": "Urgent",
+    "value": 0,
+    "sort": 0,
+    "color": "#E74C3C"
+  },
+  {
+    "__entity_type__": "Priority",
+    "id": "847f9cda-ead3-11e2-846c-f23c91dfaa16",
+    "name": "High",
+    "value": 0,
+    "sort": 1,
+    "color": "#E67E22"
+  },
+  {
+    "__entity_type__": "Priority",
+    "id": "847f8146-ead3-11e2-846c-f23c91dfaa16",
+    "name": "Medium",
+    "value": 0,
+    "sort": 2,
+    "color": "#F1C40F"
+  },
+  {
+    "__entity_type__": "Priority",
+    "id": "847f663e-ead3-11e2-846c-f23c91dfaa16",
+    "name": "Low",
+    "value": 0,
+    "sort": 3,
+    "color": "#1CBC90"
+  },
+  {
+    "__entity_type__": "Priority",
+    "id": "9661b320-3a0c-11e2-81c1-0800200c9a66",
+    "name": "None",
+    "value": 0,
+    "sort": 4,
+    "color": "#CACACA"
+  }
+]
