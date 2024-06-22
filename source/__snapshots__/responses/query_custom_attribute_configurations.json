@@ -1,6 +1,104 @@
 [
   {
     "__entity_type__": "CustomAttributeConfiguration",
+    "id": "1d995c42-c8b8-4879-88ce-996c4c991727",
+    "object_type": null,
+    "key": "somedynamicenumerator",
+    "entity_type": "show",
+    "label": "Some Dynamic Enumerator",
+    "project_id": null,
+    "type": {
+      "__entity_type__": "CustomAttributeType",
+      "id": "882e4aee-fae6-11e3-b623-20c9d0831e59",
+      "name": "dynamic enumerator"
+    },
+    "default": [],
+    "is_hierarchical": true
+  },
+  {
+    "__entity_type__": "CustomAttributeConfiguration",
+    "id": "2c835780-c006-41c5-b831-01c90a59ec20",
+    "object_type": null,
+    "key": "somedate",
+    "entity_type": "show",
+    "label": "Some Date",
+    "project_id": null,
+    "type": {
+      "__entity_type__": "CustomAttributeType",
+      "id": "79968e9e-381c-11e0-acff-0019bb49847a",
+      "name": "date"
+    },
+    "default": "2024-06-22T00:00:00.000Z",
+    "is_hierarchical": true
+  },
+  {
+    "__entity_type__": "CustomAttributeConfiguration",
+    "id": "404d70bb-c6d6-4588-9e1b-8fadedf0b153",
+    "object_type": null,
+    "key": "sometext",
+    "entity_type": "show",
+    "label": "Some Text",
+    "project_id": null,
+    "type": {
+      "__entity_type__": "CustomAttributeType",
+      "id": "6268aef0-381c-11e0-acff-0019bb49847a",
+      "name": "text"
+    },
+    "default": "",
+    "is_hierarchical": true
+  },
+  {
+    "__entity_type__": "CustomAttributeConfiguration",
+    "id": "84c3d4ac-747d-421e-9201-5c165c02f4ca",
+    "object_type": null,
+    "key": "someurl",
+    "entity_type": "asset",
+    "label": "Some URL",
+    "project_id": null,
+    "type": {
+      "__entity_type__": "CustomAttributeType",
+      "id": "ec616dcd-56e2-4147-99f8-7e4a4f040cf9",
+      "name": "url"
+    },
+    "default": null,
+    "is_hierarchical": false
+  },
+  {
+    "__entity_type__": "CustomAttributeConfiguration",
+    "id": "e5b221ae-e7cb-4a4f-82c0-d7afc8d5fdb1",
+    "object_type": null,
+    "key": "someenumerator",
+    "entity_type": "show",
+    "label": "Some Enumerator",
+    "project_id": null,
+    "type": {
+      "__entity_type__": "CustomAttributeType",
+      "id": "6ff9c812-ead3-11e2-846c-f23c91dfaa16",
+      "name": "enumerator"
+    },
+    "default": [
+      "value1"
+    ],
+    "is_hierarchical": true
+  },
+  {
+    "__entity_type__": "CustomAttributeConfiguration",
+    "id": "f8f51553-b0a1-408e-82c7-508dd87de8ce",
+    "object_type": null,
+    "key": "someboolean",
+    "entity_type": "show",
+    "label": "Some Boolean",
+    "project_id": null,
+    "type": {
+      "__entity_type__": "CustomAttributeType",
+      "id": "ad1034d8-15e2-11e1-b21a-0019bb4983d8",
+      "name": "boolean"
+    },
+    "default": false,
+    "is_hierarchical": true
+  },
+  {
+    "__entity_type__": "CustomAttributeConfiguration",
     "id": "432bc746-4087-11e2-8250-0019bb4983d8",
     "object_type": {
       "__entity_type__": "ObjectType",
@@ -11,9 +109,13 @@
     "entity_type": "task",
     "label": "Frame end",
     "project_id": null,
+    "type": {
+      "__entity_type__": "CustomAttributeType",
+      "id": "92009b00-381c-11e0-acff-0019bb49847a",
+      "name": "number"
+    },
     "default": 1,
-    "is_hierarchical": false,
-    "values": []
+    "is_hierarchical": false
   },
   {
     "__entity_type__": "CustomAttributeConfiguration",
@@ -27,9 +129,13 @@
     "entity_type": "task",
     "label": "Frame handles",
     "project_id": null,
+    "type": {
+      "__entity_type__": "CustomAttributeType",
+      "id": "92009b00-381c-11e0-acff-0019bb49847a",
+      "name": "number"
+    },
     "default": 0,
-    "is_hierarchical": false,
-    "values": []
+    "is_hierarchical": false
   },
   {
     "__entity_type__": "CustomAttributeConfiguration",
@@ -43,9 +149,13 @@
     "entity_type": "task",
     "label": "Frame duration",
     "project_id": null,
+    "type": {
+      "__entity_type__": "CustomAttributeType",
+      "id": "d2e6a530-357f-11e2-bd73-0019bb4985b8",
+      "name": "expression"
+    },
     "default": "{self.fend - self.fstart + 1}",
-    "is_hierarchical": false,
-    "values": []
+    "is_hierarchical": false
   },
   {
     "__entity_type__": "CustomAttributeConfiguration",
@@ -59,9 +169,13 @@
     "entity_type": "task",
     "label": "Frame start",
     "project_id": null,
+    "type": {
+      "__entity_type__": "CustomAttributeType",
+      "id": "92009b00-381c-11e0-acff-0019bb49847a",
+      "name": "number"
+    },
     "default": 1,
-    "is_hierarchical": false,
-    "values": []
+    "is_hierarchical": false
   },
   {
     "__entity_type__": "CustomAttributeConfiguration",
@@ -71,9 +185,13 @@
     "entity_type": "show",
     "label": "fps",
     "project_id": null,
+    "type": {
+      "__entity_type__": "CustomAttributeType",
+      "id": "92009b00-381c-11e0-acff-0019bb49847a",
+      "name": "number"
+    },
     "default": 24,
-    "is_hierarchical": false,
-    "values": []
+    "is_hierarchical": false
   },
   {
     "__entity_type__": "CustomAttributeConfiguration",
@@ -87,9 +205,13 @@
     "entity_type": "task",
     "label": "fps",
     "project_id": null,
+    "type": {
+      "__entity_type__": "CustomAttributeType",
+      "id": "92009b00-381c-11e0-acff-0019bb49847a",
+      "name": "number"
+    },
     "default": 25,
-    "is_hierarchical": false,
-    "values": []
+    "is_hierarchical": false
   },
   {
     "__entity_type__": "CustomAttributeConfiguration",
@@ -103,8 +225,12 @@
     "entity_type": "task",
     "label": "fps",
     "project_id": null,
+    "type": {
+      "__entity_type__": "CustomAttributeType",
+      "id": "92009b00-381c-11e0-acff-0019bb49847a",
+      "name": "number"
+    },
     "default": 25,
-    "is_hierarchical": false,
-    "values": []
+    "is_hierarchical": false
   }
 ]

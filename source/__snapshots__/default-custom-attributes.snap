@@ -28,7 +28,62 @@ export type TypedContextSubtype = keyof TypedContextSubtypeMap;
 export function getAttributeConfigurations() {
   return [
     {
+      name: "somedynamicenumerator",
+      type: "dynamic enumerator",
+      label: "Some Dynamic Enumerator",
+      entityType: "show",
+      default: [],
+      objectType: undefined,
+      isHierarchical: true,
+    },
+    {
+      name: "somedate",
+      type: "date",
+      label: "Some Date",
+      entityType: "show",
+      default: "2024-06-22T00:00:00.000Z",
+      objectType: undefined,
+      isHierarchical: true,
+    },
+    {
+      name: "sometext",
+      type: "text",
+      label: "Some Text",
+      entityType: "show",
+      default: "",
+      objectType: undefined,
+      isHierarchical: true,
+    },
+    {
+      name: "someurl",
+      type: "url",
+      label: "Some URL",
+      entityType: "asset",
+      default: null,
+      objectType: undefined,
+      isHierarchical: false,
+    },
+    {
+      name: "someenumerator",
+      type: "enumerator",
+      label: "Some Enumerator",
+      entityType: "show",
+      default: ["value1"],
+      objectType: undefined,
+      isHierarchical: true,
+    },
+    {
+      name: "someboolean",
+      type: "boolean",
+      label: "Some Boolean",
+      entityType: "show",
+      default: false,
+      objectType: undefined,
+      isHierarchical: true,
+    },
+    {
       name: "fend",
+      type: "number",
       label: "Frame end",
       entityType: "task",
       default: 1,
@@ -37,6 +92,7 @@ export function getAttributeConfigurations() {
     },
     {
       name: "handles",
+      type: "number",
       label: "Frame handles",
       entityType: "task",
       default: 0,
@@ -45,6 +101,7 @@ export function getAttributeConfigurations() {
     },
     {
       name: "duration",
+      type: "expression",
       label: "Frame duration",
       entityType: "task",
       default: "{self.fend - self.fstart + 1}",
@@ -53,6 +110,7 @@ export function getAttributeConfigurations() {
     },
     {
       name: "fstart",
+      type: "number",
       label: "Frame start",
       entityType: "task",
       default: 1,
@@ -61,6 +119,7 @@ export function getAttributeConfigurations() {
     },
     {
       name: "fps",
+      type: "number",
       label: "fps",
       entityType: "show",
       default: 24,
@@ -69,6 +128,7 @@ export function getAttributeConfigurations() {
     },
     {
       name: "fps",
+      type: "number",
       label: "fps",
       entityType: "task",
       default: 25,
@@ -77,6 +137,7 @@ export function getAttributeConfigurations() {
     },
     {
       name: "fps",
+      type: "number",
       label: "fps",
       entityType: "task",
       default: 25,
