@@ -1,0 +1,134 @@
+[
+  {
+    "__entity_type__": "Status",
+    "id": "9bb65936-88e7-11e3-9264-04011030cf01",
+    "name": "Completed",
+    "sort": 0,
+    "color": "#1cbc90",
+    "is_active": true,
+    "state": {
+      "__entity_type__": "State",
+      "id": "cea116d4-acb5-11e1-8668-f23c91df1211"
+    }
+  },
+  {
+    "__entity_type__": "Status",
+    "id": "a0bc3f24-15e2-11e1-b21a-0019bb4983d8",
+    "name": "Omitted",
+    "sort": 1,
+    "color": "#E74C3C",
+    "is_active": true,
+    "state": {
+      "__entity_type__": "State",
+      "id": "5709c04e-2f4b-11e2-b663-0019bb4983d8"
+    }
+  },
+  {
+    "__entity_type__": "Status",
+    "id": "a0bc2444-15e2-11e1-b21a-0019bb4983d8",
+    "name": "On Hold",
+    "sort": 2,
+    "color": "#E74C3C",
+    "is_active": true,
+    "state": {
+      "__entity_type__": "State",
+      "id": "5709c04e-2f4b-11e2-b663-0019bb4983d8"
+    }
+  },
+  {
+    "__entity_type__": "Status",
+    "id": "2286947e-a2d4-11e9-825d-d27cf242b68b",
+    "name": "Revise",
+    "sort": 3,
+    "color": "#FF6600",
+    "is_active": true,
+    "state": {
+      "__entity_type__": "State",
+      "id": "cea0efc4-acb5-11e1-8668-f23c91df1211"
+    }
+  },
+  {
+    "__entity_type__": "Status",
+    "id": "d5d6d8ca-ebb2-11e2-aef9-f23c91dfaa16",
+    "name": "Client approved",
+    "sort": 4,
+    "color": "#1CBC90",
+    "is_active": true,
+    "state": {
+      "__entity_type__": "State",
+      "id": "cea116d4-acb5-11e1-8668-f23c91df1211"
+    }
+  },
+  {
+    "__entity_type__": "Status",
+    "id": "44de097a-4164-11df-9218-0019bb4983d8",
+    "name": "Approved",
+    "sort": 5,
+    "color": "#1cbc90",
+    "is_active": true,
+    "state": {
+      "__entity_type__": "State",
+      "id": "cea116d4-acb5-11e1-8668-f23c91df1211"
+    }
+  },
+  {
+    "__entity_type__": "Status",
+    "id": "44dded64-4164-11df-9218-0019bb4983d8",
+    "name": "Pending Review",
+    "sort": 6,
+    "color": "#F1C40F",
+    "is_active": true,
+    "state": {
+      "__entity_type__": "State",
+      "id": "cea0efc4-acb5-11e1-8668-f23c91df1211"
+    }
+  },
+  {
+    "__entity_type__": "Status",
+    "id": "44ddd0fe-4164-11df-9218-0019bb4983d8",
+    "name": "In progress",
+    "sort": 7,
+    "color": "#3498DB",
+    "is_active": true,
+    "state": {
+      "__entity_type__": "State",
+      "id": "cea0efc4-acb5-11e1-8668-f23c91df1211"
+    }
+  },
+  {
+    "__entity_type__": "Status",
+    "id": "cadb9a06-acb5-11e1-8668-f23c91df1211",
+    "name": "WIP",
+    "sort": 8,
+    "color": "#CC99FF",
+    "is_active": true,
+    "state": {
+      "__entity_type__": "State",
+      "id": "cea0ba04-acb5-11e1-8668-f23c91df1211"
+    }
+  },
+  {
+    "__entity_type__": "Status",
+    "id": "9078de1a-40ce-11ed-a028-8e70b81a65da",
+    "name": "Ready to start",
+    "sort": 9,
+    "color": "#00FFFF",
+    "is_active": true,
+    "state": {
+      "__entity_type__": "State",
+      "id": "cea0ba04-acb5-11e1-8668-f23c91df1211"
+    }
+  },
+  {
+    "__entity_type__": "Status",
+    "id": "44dd9fb2-4164-11df-9218-0019bb4983d8",
+    "name": "Not started",
+    "sort": 10,
+    "color": "#CACACA",
+    "is_active": true,
+    "state": {
+      "__entity_type__": "State",
+      "id": "cea0ba04-acb5-11e1-8668-f23c91df1211"
+    }
+  }
+]

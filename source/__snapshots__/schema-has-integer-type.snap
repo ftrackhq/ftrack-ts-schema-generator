@@ -64,4 +64,18 @@ export function getProjectSchemas() {
 export type RuntimeProjectSchema = ReturnType<typeof getProjectSchemas>[number];
 export type RuntimeProjectSchemaName = RuntimeProjectSchema["name"];
 
+export function getPriorities() {
+  return [] as const;
+}
+
+export type RuntimePriority = ReturnType<typeof getPriorities>[number];
+export type RuntimePriorityName = RuntimePriority["name"];
+
+export function getStatuses() {
+  return [] as const;
+}
+
+export type RuntimeStatus = ReturnType<typeof getStatuses>[number];
+export type RuntimeStatusName = RuntimeStatus["name"];
+
 // Errors:

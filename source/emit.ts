@@ -16,6 +16,8 @@ export async function emitToFile(
   const types = await getTypes(session);
   const objectTypes = await getObjectTypes(session);
   const projectSchemas = await getProjectSchemas(session);
+  const statuses = await getStatuses(session);
+  const priorities = await getPriorities(session);
 
   const {
     prettifiedContent,
@@ -27,7 +29,9 @@ export async function emitToFile(
     customAttributes,
     types,
     objectTypes,
-    projectSchemas
+    projectSchemas,
+    statuses,
+    priorities
   );
   fs.mkdirSync(path.resolve(outputPath), { recursive: true });
   fs.writeFileSync(path.join(outputPath, outputFilename), prettifiedContent);
@@ -84,6 +88,22 @@ export type ObjectType = {
   is_leaf: boolean;
 };
 
+export type Priority = {
+  color: string;
+  id: string;
+  name: string;
+  sort: number;
+  value: number;
+};
+
+export type Status = {
+  color: string;
+  id: string;
+  is_active: boolean;
+  name: string;
+  sort: number;
+};
+
 export type CustomAttributeConfiguration = {
   __entity_type__: "CustomAttributeConfiguration";
   id: string;
@@ -113,7 +133,9 @@ export async function emitToString(
   customAttributes: CustomAttributeConfiguration[],
   types: Type[],
   objectTypes: ObjectType[],
-  projectSchemas: ProjectSchema[]
+  projectSchemas: ProjectSchema[],
+  statuses: Status[],
+  priorities: Priority[]
 ) {
   const preamble = `// :copyright: Copyright (c) ${new Date().getFullYear()} ftrack \n\n// Generated on ${new Date().toISOString()} using schema \n// from an instance running version ${serverVersion} using server on ${serverUrl} \n// Not intended to modify manually\n\n`;
 
@@ -156,6 +178,42 @@ export async function emitToString(
 
     export type RuntimeType = ReturnType<typeof getTypes>[number];
     export type RuntimeTypeName = RuntimeType["name"];
+  `;
+
+  const statusesString = `
+    export function getStatuses() {
+      return [
+        ${statuses.map(
+          (x) => `{
+          name: "${x.name}",
+          color: "${x.color}",
+          isActive: ${x.is_active},
+          sort: ${x.sort}
+        }`
+        )}
+      ] as const;
+    }
+
+    export type RuntimeStatus = ReturnType<typeof getStatuses>[number];
+    export type RuntimeStatusName = RuntimeStatus["name"];
+  `;
+
+  const prioritiesString = `
+    export function getPriorities() {
+      return [
+        ${priorities.map(
+          (x) => `{
+          name: "${x.name}",
+          color: "${x.color}",
+          value: ${x.value},
+          sort: ${x.sort}
+        }`
+        )}
+      ] as const;
+    }
+
+    export type RuntimePriority = ReturnType<typeof getPriorities>[number];
+    export type RuntimePriorityName = RuntimePriority["name"];
   `;
 
   const objectTypesString = `
@@ -254,6 +312,8 @@ export async function emitToString(
     typesString +
     objectTypesString +
     projectSchemasString +
+    prioritiesString +
+    statusesString +
     "\n \n// Errors: \n" +
     errors.map((error) => `// ${error}`).join("\n");
   const prettifiedContent = prettier.format(allContent, {
@@ -284,6 +344,20 @@ async function getTypes(session: Session) {
     "select is_billable, name, task_type_schemas from Type order by sort"
   );
   return types.data;
+}
+
+async function getPriorities(session: Session) {
+  const priorities = await session.query<Priority>(
+    "select id, color, name, sort, value from Priority order by sort"
+  );
+  return priorities.data;
+}
+
+async function getStatuses(session: Session) {
+  const priorities = await session.query<Status>(
+    "select id, color, is_active, name, sort, state from Status order by sort"
+  );
+  return priorities.data;
 }
 
 async function getObjectTypes(session: Session) {
