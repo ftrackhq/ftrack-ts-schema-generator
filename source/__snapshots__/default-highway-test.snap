@@ -1120,16 +1120,108 @@ export interface Priority {
   __entity_type__?: "Priority";
   __permissions?: Record<string, any>;
 }
-export type Milestone = TypedContext<"Milestone">;
-export type Task = TypedContext<"Task">;
-export type Episode = TypedContext<"Episode">;
-export type Scene = TypedContext<"Scene">;
-export type Folder = TypedContext<"Folder">;
-export type Image = TypedContext<"Image">;
-export type AssetBuild = TypedContext<"AssetBuild">;
-export type Shot = TypedContext<"Shot">;
-export type Sequence = TypedContext<"Sequence">;
-export type Information = TypedContext<"Information">;
+export type Milestone = Omit<TypedContext<"Milestone">, "custom_attributes"> & {
+  custom_attributes: Array<
+    | CustomAttributeValue_somedynamicenumerator
+    | CustomAttributeValue_somedate
+    | CustomAttributeValue_sometext
+    | CustomAttributeValue_someenumerator
+    | CustomAttributeValue_someboolean
+  >;
+};
+export type Task = Omit<TypedContext<"Task">, "custom_attributes"> & {
+  custom_attributes: Array<
+    | CustomAttributeValue_somedynamicenumerator
+    | CustomAttributeValue_somedate
+    | CustomAttributeValue_sometext
+    | CustomAttributeValue_someenumerator
+    | CustomAttributeValue_someboolean
+  >;
+};
+export type Episode = Omit<TypedContext<"Episode">, "custom_attributes"> & {
+  custom_attributes: Array<
+    | CustomAttributeValue_somedynamicenumerator
+    | CustomAttributeValue_somedate
+    | CustomAttributeValue_sometext
+    | CustomAttributeValue_someenumerator
+    | CustomAttributeValue_someboolean
+  >;
+};
+export type Scene = Omit<TypedContext<"Scene">, "custom_attributes"> & {
+  custom_attributes: Array<
+    | CustomAttributeValue_somedynamicenumerator
+    | CustomAttributeValue_somedate
+    | CustomAttributeValue_sometext
+    | CustomAttributeValue_someenumerator
+    | CustomAttributeValue_someboolean
+  >;
+};
+export type Folder = Omit<TypedContext<"Folder">, "custom_attributes"> & {
+  custom_attributes: Array<
+    | CustomAttributeValue_somedynamicenumerator
+    | CustomAttributeValue_somedate
+    | CustomAttributeValue_sometext
+    | CustomAttributeValue_someenumerator
+    | CustomAttributeValue_someboolean
+  >;
+};
+export type Image = Omit<TypedContext<"Image">, "custom_attributes"> & {
+  custom_attributes: Array<
+    | CustomAttributeValue_somedynamicenumerator
+    | CustomAttributeValue_somedate
+    | CustomAttributeValue_sometext
+    | CustomAttributeValue_someenumerator
+    | CustomAttributeValue_someboolean
+  >;
+};
+export type AssetBuild = Omit<
+  TypedContext<"AssetBuild">,
+  "custom_attributes"
+> & {
+  custom_attributes: Array<
+    | CustomAttributeValue_somedynamicenumerator
+    | CustomAttributeValue_somedate
+    | CustomAttributeValue_sometext
+    | CustomAttributeValue_someenumerator
+    | CustomAttributeValue_someboolean
+  >;
+};
+export type Shot = Omit<TypedContext<"Shot">, "custom_attributes"> & {
+  custom_attributes: Array<
+    | CustomAttributeValue_somedynamicenumerator
+    | CustomAttributeValue_somedate
+    | CustomAttributeValue_sometext
+    | CustomAttributeValue_someenumerator
+    | CustomAttributeValue_someboolean
+    | CustomAttributeValue_fend
+    | CustomAttributeValue_handles
+    | CustomAttributeValue_duration
+    | CustomAttributeValue_fstart
+    | CustomAttributeValue_fps
+  >;
+};
+export type Sequence = Omit<TypedContext<"Sequence">, "custom_attributes"> & {
+  custom_attributes: Array<
+    | CustomAttributeValue_somedynamicenumerator
+    | CustomAttributeValue_somedate
+    | CustomAttributeValue_sometext
+    | CustomAttributeValue_someenumerator
+    | CustomAttributeValue_someboolean
+    | CustomAttributeValue_fps
+  >;
+};
+export type Information = Omit<
+  TypedContext<"Information">,
+  "custom_attributes"
+> & {
+  custom_attributes: Array<
+    | CustomAttributeValue_somedynamicenumerator
+    | CustomAttributeValue_somedate
+    | CustomAttributeValue_sometext
+    | CustomAttributeValue_someenumerator
+    | CustomAttributeValue_someboolean
+  >;
+};
 export interface ContextCustomAttributeValue {
   configuration?: CustomAttributeConfiguration;
   readonly configuration_id: string;
@@ -1551,6 +1643,98 @@ export type RuntimeCustomAttributeConfigurationName =
   RuntimeCustomAttributeConfiguration["name"];
 export type RuntimeCustomAttributeConfigurationLabel =
   RuntimeCustomAttributeConfiguration["label"];
+
+type CustomAttributeValue_somedynamicenumerator = Omit<
+  ContextCustomAttributeValue,
+  "key" | "value"
+> & {
+  key: "somedynamicenumerator";
+  value: string[];
+};
+type CustomAttributeValue_somedate = Omit<
+  ContextCustomAttributeValue,
+  "key" | "value"
+> & {
+  key: "somedate";
+  value: string;
+};
+type CustomAttributeValue_sometext = Omit<
+  ContextCustomAttributeValue,
+  "key" | "value"
+> & {
+  key: "sometext";
+  value: string;
+};
+type CustomAttributeValue_someurl = Omit<
+  ContextCustomAttributeValue,
+  "key" | "value"
+> & {
+  key: "someurl";
+  value: string;
+};
+type CustomAttributeValue_someenumerator = Omit<
+  ContextCustomAttributeValue,
+  "key" | "value"
+> & {
+  key: "someenumerator";
+  value: string[];
+};
+type CustomAttributeValue_someboolean = Omit<
+  ContextCustomAttributeValue,
+  "key" | "value"
+> & {
+  key: "someboolean";
+  value: boolean;
+};
+type CustomAttributeValue_fend = Omit<
+  ContextCustomAttributeValue,
+  "key" | "value"
+> & {
+  key: "fend";
+  value: number;
+};
+type CustomAttributeValue_handles = Omit<
+  ContextCustomAttributeValue,
+  "key" | "value"
+> & {
+  key: "handles";
+  value: number;
+};
+type CustomAttributeValue_duration = Omit<
+  ContextCustomAttributeValue,
+  "key" | "value"
+> & {
+  key: "duration";
+  value: string;
+};
+type CustomAttributeValue_fstart = Omit<
+  ContextCustomAttributeValue,
+  "key" | "value"
+> & {
+  key: "fstart";
+  value: number;
+};
+type CustomAttributeValue_fps = Omit<
+  ContextCustomAttributeValue,
+  "key" | "value"
+> & {
+  key: "fps";
+  value: number;
+};
+type CustomAttributeValue_fps = Omit<
+  ContextCustomAttributeValue,
+  "key" | "value"
+> & {
+  key: "fps";
+  value: number;
+};
+type CustomAttributeValue_fps = Omit<
+  ContextCustomAttributeValue,
+  "key" | "value"
+> & {
+  key: "fps";
+  value: number;
+};
 
 export function getTypes() {
   return [

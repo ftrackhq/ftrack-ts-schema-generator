@@ -3,6 +3,7 @@ import * as fs from "fs";
 import * as path from "path";
 import prettier from "prettier";
 import { convertSchemaToInterface } from "./convertSchemaToInterface.js";
+import { CustomAttributeConfiguration, emitCustomAttributes } from "./emitCustomAttributes.js";
 
 const legacySchemas = ["Conversation", "Message", "Participant"];
 export async function emitToFile(
@@ -104,28 +105,6 @@ export type Status = {
   sort: number;
 };
 
-export type CustomAttributeConfiguration = {
-  __entity_type__: "CustomAttributeConfiguration";
-  id: string;
-  object_type: {
-    __entity_type__: "ObjectType";
-    id: string;
-    name: string;
-  };
-  default: boolean | string[] | string | number;
-  key: string;
-  entity_type: string;
-  label: string;
-  project_id: string | null;
-  is_hierarchical: boolean;
-  values: [];
-  type: {
-    __entity_type__: "CustomAttributeType";
-    id: string;
-    name: string;
-  }
-};
-
 export async function emitToString(
   serverVersion: string | undefined,
   serverUrl: string | undefined,
@@ -158,7 +137,8 @@ export async function emitToString(
 
     const { TSInterface, conversionErrors } = await convertSchemaToInterface(
       schema,
-      schemas
+      schemas,
+      customAttributes
     );
     errors.push(...conversionErrors);
     interfaces += TSInterface;
@@ -238,27 +218,7 @@ export async function emitToString(
     export type RuntimeObjectTypeName = RuntimeObjectType["name"];
 `;
 
-  const customAttributesString = `
-    export function getAttributeConfigurations() {
-      return [
-        ${customAttributes.map(
-          (x) => `{
-            name: "${x.key}",
-            type: ${JSON.stringify(x.type?.name)},
-            label: "${x.label}",
-            entityType: "${x.entity_type}",
-            default: ${JSON.stringify(x.default)},
-            objectType: ${JSON.stringify(x.object_type?.name)},
-            isHierarchical: ${x.is_hierarchical}
-          }`
-        )}
-      ] as const;
-    }
-    
-    export type RuntimeCustomAttributeConfiguration = ReturnType<typeof getAttributeConfigurations>[number];
-    export type RuntimeCustomAttributeConfigurationName = RuntimeCustomAttributeConfiguration["name"];
-    export type RuntimeCustomAttributeConfigurationLabel = RuntimeCustomAttributeConfiguration["label"];
-  `;
+  const customAttributesString = emitCustomAttributes(customAttributes);
 
   const projectSchemasString = `
     export function getProjectSchemas() {
@@ -383,6 +343,7 @@ function AddBasicLinkType(interfaces: string) {
     name: string;
   };`;
 }
+
 function getTypedContextTypes(schemas: QuerySchemasResponse) {
   const typedContextNames = schemas
     .filter(
@@ -399,3 +360,4 @@ function getTypedContextTypes(schemas: QuerySchemasResponse) {
   const TypedContextSubtype = `export type TypedContextSubtype = keyof TypedContextSubtypeMap;`;
   return { TypedContextSubtypeMap, TypedContextSubtype };
 }
+
