@@ -1,8 +1,10 @@
 import { chain } from "lodash";
 import { TypeScriptEmitter } from "./typescriptEmitter";
+import { QuerySchemasResponse } from "@ftrack/api";
 
 export function emitCustomAttributes(
   typescriptEmitter: TypeScriptEmitter,
+  schemas: QuerySchemasResponse,
   customAttributes: CustomAttributeConfiguration[]
 ) {
   typescriptEmitter.appendCode(`
@@ -45,6 +47,17 @@ export function emitCustomAttributes(
         key: K;
         value: TypedCustomAttributeValueMap[K];
     };
+
+    export type TypedContextCustomAttributesMap = {
+      ${schemas.map(schema => `
+        ${schema.id}: ${customAttributes
+            .filter(
+              (x) => x.is_hierarchical || x.object_type?.name === schema.id
+            )
+            .map((x) => `TypedCustomAttributeValue<"${x.key}">`)
+            .join("|")}
+      `).join(';')}
+      };
   `);
 }
 

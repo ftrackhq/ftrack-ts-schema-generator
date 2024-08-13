@@ -11,7 +11,7 @@ export interface Dashboard {
   is_shared_with_everyone?: boolean;
   name?: string;
   widgets?: DashboardWidget[];
-  __entity_type__?: "Dashboard";
+  __entity_type__: "Dashboard";
   __permissions?: Record<string, any>;
 }
 export interface Timer {
@@ -23,7 +23,7 @@ export interface Timer {
   start: string;
   user?: User;
   user_id: string;
-  __entity_type__?: "Timer";
+  __entity_type__: "Timer";
   __permissions?: Record<string, any>;
 }
 export interface StatusChange {
@@ -37,14 +37,14 @@ export interface StatusChange {
   status_id?: string;
   user?: User;
   user_id?: string;
-  __entity_type__?: "StatusChange";
+  __entity_type__: "StatusChange";
   __permissions?: Record<string, any>;
 }
 export interface TypedContextStatusRuleGroup
-  extends Omit<StatusRuleGroup, "__entity_type__" | "__permissions"> {
+  extends Omit<StatusRuleGroup, "__entity_type__" | "__persmissions"> {
   object_type?: ObjectType;
   object_type_id: string;
-  __entity_type__?: "TypedContextStatusRuleGroup";
+  __entity_type__: "TypedContextStatusRuleGroup";
   __permissions?: Record<string, any>;
 }
 export interface CalendarEventResource {
@@ -56,19 +56,19 @@ export interface CalendarEventResource {
   readonly id: string;
   resource?: Resource;
   resource_id: string;
-  __entity_type__?: "CalendarEventResource";
+  __entity_type__: "CalendarEventResource";
   __permissions?: Record<string, any>;
 }
 export interface FileComponent
-  extends Omit<Component, "__entity_type__" | "__permissions"> {
-  __entity_type__?: "FileComponent";
+  extends Omit<Component, "__entity_type__" | "__persmissions"> {
+  __entity_type__: "FileComponent";
   __permissions?: Record<string, any>;
 }
 export interface State {
   readonly id: string;
   name?: string;
   short?: string;
-  __entity_type__?: "State";
+  __entity_type__: "State";
   __permissions?: Record<string, any>;
 }
 export interface AssetType {
@@ -77,11 +77,11 @@ export interface AssetType {
   readonly id: string;
   name: string;
   short: string;
-  __entity_type__?: "AssetType";
+  __entity_type__: "AssetType";
   __permissions?: Record<string, any>;
 }
 export interface Group
-  extends Omit<Resource, "__entity_type__" | "__permissions"> {
+  extends Omit<Resource, "__entity_type__" | "__persmissions"> {
   children?: Group[];
   custom_attribute_links?: CustomAttributeLink[];
   custom_attribute_links_from?: CustomAttributeLinkFrom[];
@@ -91,7 +91,7 @@ export interface Group
   name: string;
   parent?: Group;
   parent_id?: string;
-  __entity_type__?: "Group";
+  __entity_type__: "Group";
   __permissions?: Record<string, any>;
 }
 export interface TypedContextLink {
@@ -103,7 +103,7 @@ export interface TypedContextLink {
   to?: TypedContext;
   to_id: string;
   type?: string;
-  __entity_type__?: "TypedContextLink";
+  __entity_type__: "TypedContextLink";
   __permissions?: Record<string, any>;
 }
 export interface CalendarEvent {
@@ -125,7 +125,7 @@ export interface CalendarEvent {
   start: string;
   type?: Type;
   type_id?: string;
-  __entity_type__?: "CalendarEvent";
+  __entity_type__: "CalendarEvent";
   __permissions?: Record<string, any>;
 }
 export interface CustomAttributeLink {
@@ -136,7 +136,7 @@ export interface CustomAttributeLink {
   readonly id: string;
   to_entity_type?: string;
   to_id: string;
-  __entity_type__?: "CustomAttributeLink";
+  __entity_type__: "CustomAttributeLink";
   __permissions?: Record<string, any>;
 }
 export interface Membership {
@@ -145,7 +145,7 @@ export interface Membership {
   readonly id: string;
   user?: User;
   user_id: string;
-  __entity_type__?: "Membership";
+  __entity_type__: "Membership";
   __permissions?: Record<string, any>;
 }
 export interface DashboardWidget {
@@ -155,12 +155,12 @@ export interface DashboardWidget {
   readonly id: string;
   sort?: number;
   type?: string;
-  __entity_type__?: "DashboardWidget";
+  __entity_type__: "DashboardWidget";
   __permissions?: Record<string, any>;
 }
 export interface AssetVersionStatusRuleGroup
-  extends Omit<StatusRuleGroup, "__entity_type__" | "__permissions"> {
-  __entity_type__?: "AssetVersionStatusRuleGroup";
+  extends Omit<StatusRuleGroup, "__entity_type__" | "__persmissions"> {
+  __entity_type__: "AssetVersionStatusRuleGroup";
   __permissions?: Record<string, any>;
 }
 export interface ReviewSessionObject {
@@ -177,7 +177,7 @@ export interface ReviewSessionObject {
   statuses?: ReviewSessionObjectStatus[];
   version: string;
   version_id: string;
-  __entity_type__?: "ReviewSessionObject";
+  __entity_type__: "ReviewSessionObject";
   __permissions?: Record<string, any>;
 }
 export interface ProjectSchema {
@@ -193,7 +193,7 @@ export interface ProjectSchema {
   task_workflow_schema?: WorkflowSchema;
   task_workflow_schema_id?: string;
   task_workflow_schema_overrides?: ProjectSchemaOverride[];
-  __entity_type__?: "ProjectSchema";
+  __entity_type__: "ProjectSchema";
   __permissions?: Record<string, any>;
 }
 export interface Appointment {
@@ -203,14 +203,14 @@ export interface Appointment {
   resource?: Resource;
   resource_id: string;
   type: string;
-  __entity_type__?: "Appointment";
+  __entity_type__: "Appointment";
   __permissions?: Record<string, any>;
 }
 export interface TaskTypeSchema {
   readonly id: string;
   name?: string;
   types?: Type[];
-  __entity_type__?: "TaskTypeSchema";
+  __entity_type__: "TaskTypeSchema";
   __permissions?: Record<string, any>;
 }
 export interface ReviewSessionFolder {
@@ -219,7 +219,7 @@ export interface ReviewSessionFolder {
   project?: Project;
   project_id?: string;
   review_sessions?: ReviewSession[];
-  __entity_type__?: "ReviewSessionFolder";
+  __entity_type__: "ReviewSessionFolder";
   __permissions?: Record<string, any>;
 }
 export interface CustomAttributeLinkFrom {
@@ -230,7 +230,7 @@ export interface CustomAttributeLinkFrom {
   readonly id: string;
   to_entity_type?: string;
   to_id: string;
-  __entity_type__?: "CustomAttributeLinkFrom";
+  __entity_type__: "CustomAttributeLinkFrom";
   __permissions?: Record<string, any>;
 }
 export interface Location {
@@ -239,14 +239,14 @@ export interface Location {
   label?: string;
   location_components?: ComponentLocation[];
   name: string;
-  __entity_type__?: "Location";
+  __entity_type__: "Location";
   __permissions?: Record<string, any>;
 }
 export interface CustomAttributeGroup {
   custom_attribute_configurations?: CustomAttributeConfiguration[];
   readonly id: string;
   name?: string;
-  __entity_type__?: "CustomAttributeGroup";
+  __entity_type__: "CustomAttributeGroup";
   __permissions?: Record<string, any>;
 }
 export interface CustomAttributeValue {
@@ -254,7 +254,7 @@ export interface CustomAttributeValue {
   readonly configuration_id: string;
   readonly entity_id: string;
   value?: string | number | boolean | string[];
-  __entity_type__?: "CustomAttributeValue";
+  __entity_type__: "CustomAttributeValue";
   __permissions?: Record<string, any>;
 }
 export interface UserSecurityRole {
@@ -266,7 +266,7 @@ export interface UserSecurityRole {
   user?: User;
   user_id?: string;
   user_security_role_projects?: UserSecurityRoleProject[];
-  __entity_type__?: "UserSecurityRole";
+  __entity_type__: "UserSecurityRole";
   __permissions?: Record<string, any>;
 }
 export interface DashboardResource {
@@ -274,7 +274,7 @@ export interface DashboardResource {
   readonly dashboard_id: string;
   resource?: Resource;
   readonly resource_id: string;
-  __entity_type__?: "DashboardResource";
+  __entity_type__: "DashboardResource";
   __permissions?: Record<string, any>;
 }
 export interface Component {
@@ -291,35 +291,35 @@ export interface Component {
   system_type: string;
   version?: AssetVersion;
   version_id?: string;
-  __entity_type__?: "Component";
+  __entity_type__: "Component";
   __permissions?: Record<string, any>;
 }
 export interface NoteAnnotationComponent
-  extends Omit<NoteComponent, "__entity_type__" | "__permissions"> {
+  extends Omit<NoteComponent, "__entity_type__" | "__persmissions"> {
   data?: object;
-  __entity_type__?: "NoteAnnotationComponent";
+  __entity_type__: "NoteAnnotationComponent";
   __permissions?: Record<string, any>;
 }
 export interface SequenceComponent
-  extends Omit<ContainerComponent, "__entity_type__" | "__permissions"> {
+  extends Omit<ContainerComponent, "__entity_type__" | "__persmissions"> {
   padding: number;
-  __entity_type__?: "SequenceComponent";
+  __entity_type__: "SequenceComponent";
   __permissions?: Record<string, any>;
 }
 export interface Collaborator
-  extends Omit<BaseUser, "__entity_type__" | "__permissions"> {
+  extends Omit<BaseUser, "__entity_type__" | "__persmissions"> {
   created_from_shared_url?: string;
-  __entity_type__?: "Collaborator";
+  __entity_type__: "Collaborator";
   __permissions?: Record<string, any>;
 }
 export interface CustomAttributeConfiguration
-  extends Omit<CustomConfigurationBase, "__entity_type__" | "__permissions"> {
+  extends Omit<CustomConfigurationBase, "__entity_type__" | "__persmissions"> {
   default?: string | number | boolean | string[];
   is_hierarchical?: boolean;
   type?: CustomAttributeType;
   type_id?: string;
   values?: CustomAttributeValue[];
-  __entity_type__?: "CustomAttributeConfiguration";
+  __entity_type__: "CustomAttributeConfiguration";
   __permissions?: Record<string, any>;
 }
 export interface Status {
@@ -330,13 +330,13 @@ export interface Status {
   sort?: number;
   state?: State;
   tasks?: Task[];
-  __entity_type__?: "Status";
+  __entity_type__: "Status";
   __permissions?: Record<string, any>;
 }
 export interface Scope {
   readonly id: string;
   name: string;
-  __entity_type__?: "Scope";
+  __entity_type__: "Scope";
   __permissions?: Record<string, any>;
 }
 export interface StatusRuleGroup {
@@ -349,12 +349,15 @@ export interface StatusRuleGroup {
   status?: Status;
   status_id: string;
   status_rules?: StatusRule[];
-  __entity_type__?: "StatusRuleGroup";
+  __entity_type__: "StatusRuleGroup";
   __permissions?: Record<string, any>;
 }
 export interface TypedContext<
   K extends TypedContextSubtype = TypedContextSubtype
-> extends Omit<Context, "__entity_type__" | "__permissions"> {
+> extends Omit<
+    Context,
+    "__entity_type__" | "__persmissions" | "custom_attributes"
+  > {
   ancestors?: TypedContext[];
   bid: number;
   readonly bid_time_logged_difference?: number;
@@ -380,8 +383,9 @@ export interface TypedContext<
   readonly time_logged?: number;
   type?: Type;
   type_id: string;
-  __entity_type__?: "TypedContext<K extends TypedContextSubtype = TypedContextSubtype>";
+  __entity_type__: K;
   __permissions?: Record<string, any>;
+  custom_attributes?: TypedContextCustomAttributesMap["TypedContext"];
 }
 export interface Manager {
   context?: Context;
@@ -391,7 +395,7 @@ export interface Manager {
   type_id?: string;
   user?: User;
   user_id?: string;
-  __entity_type__?: "Manager";
+  __entity_type__: "Manager";
   __permissions?: Record<string, any>;
 }
 export interface CustomConfigurationBase {
@@ -409,7 +413,7 @@ export interface CustomConfigurationBase {
   read_security_roles?: SecurityRole[];
   sort?: number;
   write_security_roles?: SecurityRole[];
-  __entity_type__?: "CustomConfigurationBase";
+  __entity_type__: "CustomConfigurationBase";
   __permissions?: Record<string, any>;
 }
 export interface AssetVersionLink {
@@ -419,7 +423,7 @@ export interface AssetVersionLink {
   metadata?: Metadata[];
   to?: AssetVersion;
   to_id: string;
-  __entity_type__?: "AssetVersionLink";
+  __entity_type__: "AssetVersionLink";
   __permissions?: Record<string, any>;
 }
 export interface ReviewSessionObjectAnnotation {
@@ -430,42 +434,46 @@ export interface ReviewSessionObjectAnnotation {
   review_session_object?: ReviewSessionObject;
   review_session_object_id?: string;
   updated_at?: string;
-  __entity_type__?: "ReviewSessionObjectAnnotation";
+  __entity_type__: "ReviewSessionObjectAnnotation";
   __permissions?: Record<string, any>;
 }
 export interface TypedContextList
-  extends Omit<List, "__entity_type__" | "__permissions"> {
+  extends Omit<
+    List,
+    "__entity_type__" | "__persmissions" | "custom_attributes"
+  > {
   items?: Task[];
-  __entity_type__?: "TypedContextList";
+  __entity_type__: "TypedContextList";
   __permissions?: Record<string, any>;
+  custom_attributes?: TypedContextCustomAttributesMap["TypedContextList"];
 }
 export interface NoteLabelLink {
   label?: NoteLabel;
   readonly label_id: string;
   note?: Note;
   readonly note_id: string;
-  __entity_type__?: "NoteLabelLink";
+  __entity_type__: "NoteLabelLink";
   __permissions?: Record<string, any>;
 }
 export interface TypedContextStatusChange
-  extends Omit<StatusChange, "__entity_type__" | "__permissions"> {
+  extends Omit<StatusChange, "__entity_type__" | "__persmissions"> {
   parent?: TypedContext;
-  __entity_type__?: "TypedContextStatusChange";
+  __entity_type__: "TypedContextStatusChange";
   __permissions?: Record<string, any>;
 }
 export interface CustomAttributeLinkConfiguration
-  extends Omit<CustomConfigurationBase, "__entity_type__" | "__permissions"> {
+  extends Omit<CustomConfigurationBase, "__entity_type__" | "__persmissions"> {
   readonly entity_type_to: string;
   readonly object_type_id_to?: string;
   object_type_to?: ObjectType;
   one_to_one?: boolean;
-  __entity_type__?: "CustomAttributeLinkConfiguration";
+  __entity_type__: "CustomAttributeLinkConfiguration";
   __permissions?: Record<string, any>;
 }
 export interface ContainerComponent
-  extends Omit<Component, "__entity_type__" | "__permissions"> {
+  extends Omit<Component, "__entity_type__" | "__persmissions"> {
   members?: Component[];
-  __entity_type__?: "ContainerComponent";
+  __entity_type__: "ContainerComponent";
   __permissions?: Record<string, any>;
 }
 export interface AssetVersion {
@@ -475,7 +483,6 @@ export interface AssetVersion {
   components?: Component[];
   custom_attribute_links?: CustomAttributeLink[];
   custom_attribute_links_from?: CustomAttributeLinkFrom[];
-  custom_attributes?: AssetVersionCustomAttributeValue[];
   date?: string;
   readonly id: string;
   incoming_links?: AssetVersionLink[];
@@ -501,22 +508,23 @@ export interface AssetVersion {
   user_id?: string;
   uses_versions?: AssetVersion[];
   version?: number;
-  __entity_type__?: "AssetVersion";
+  __entity_type__: "AssetVersion";
   __permissions?: Record<string, any>;
+  custom_attributes?: TypedContextCustomAttributesMap["AssetVersion"];
 }
 export interface SecurityRole {
   readonly id: string;
   name?: string;
   type?: string;
   user_security_roles?: UserSecurityRole[];
-  __entity_type__?: "SecurityRole";
+  __entity_type__: "SecurityRole";
   __permissions?: Record<string, any>;
 }
 export interface UserApplicationState {
   readonly key: string;
   readonly user_id: string;
   value: string;
-  __entity_type__?: "UserApplicationState";
+  __entity_type__: "UserApplicationState";
   __permissions?: Record<string, any>;
 }
 export interface ReviewSessionInvitee {
@@ -533,7 +541,7 @@ export interface ReviewSessionInvitee {
   review_session?: ReviewSession;
   review_session_id: string;
   statuses?: ReviewSessionObjectStatus[];
-  __entity_type__?: "ReviewSessionInvitee";
+  __entity_type__: "ReviewSessionInvitee";
   __permissions?: Record<string, any>;
 }
 export interface Note {
@@ -561,7 +569,7 @@ export interface Note {
   replies?: Note[];
   thread_activity?: string;
   user_id: string;
-  __entity_type__?: "Note";
+  __entity_type__: "Note";
   __permissions?: Record<string, any>;
 }
 export interface Event {
@@ -577,23 +585,27 @@ export interface Event {
   project_id?: string;
   user?: User;
   user_id?: string;
-  __entity_type__?: "Event";
+  __entity_type__: "Event";
   __permissions?: Record<string, any>;
 }
 export interface ListObject {
-  custom_attributes?: ListObjectCustomAttributeValue[];
   entity_id: string;
   readonly id: string;
   list?: List;
   list_id: string;
-  __entity_type__?: "ListObject";
+  __entity_type__: "ListObject";
   __permissions?: Record<string, any>;
+  custom_attributes?: TypedContextCustomAttributesMap["ListObject"];
 }
 export interface AssetVersionList
-  extends Omit<List, "__entity_type__" | "__permissions"> {
+  extends Omit<
+    List,
+    "__entity_type__" | "__persmissions" | "custom_attributes"
+  > {
   items?: AssetVersion[];
-  __entity_type__?: "AssetVersionList";
+  __entity_type__: "AssetVersionList";
   __permissions?: Record<string, any>;
+  custom_attributes?: TypedContextCustomAttributesMap["AssetVersionList"];
 }
 export interface UserSession {
   accessed_time?: string;
@@ -601,7 +613,7 @@ export interface UserSession {
   readonly id: string;
   user?: User;
   user_id?: string;
-  __entity_type__?: "UserSession";
+  __entity_type__: "UserSession";
   __permissions?: Record<string, any>;
 }
 export interface EntitySetting {
@@ -610,7 +622,7 @@ export interface EntitySetting {
   readonly parent_id: string;
   parent_type: string;
   value: string;
-  __entity_type__?: "EntitySetting";
+  __entity_type__: "EntitySetting";
   __permissions?: Record<string, any>;
 }
 export interface Disk {
@@ -619,7 +631,7 @@ export interface Disk {
   projects?: Project[];
   unix?: string;
   windows?: string;
-  __entity_type__?: "Disk";
+  __entity_type__: "Disk";
   __permissions?: Record<string, any>;
 }
 export interface Job {
@@ -632,7 +644,7 @@ export interface Job {
   readonly type: string;
   user?: User;
   user_id?: string;
-  __entity_type__?: "Job";
+  __entity_type__: "Job";
   __permissions?: Record<string, any>;
 }
 export interface TaskTemplateItem {
@@ -641,7 +653,7 @@ export interface TaskTemplateItem {
   task_type_id: string;
   template?: TaskTemplate;
   template_id: string;
-  __entity_type__?: "TaskTemplateItem";
+  __entity_type__: "TaskTemplateItem";
   __permissions?: Record<string, any>;
 }
 export interface ProjectSchemaOverride {
@@ -650,14 +662,13 @@ export interface ProjectSchemaOverride {
   type_id?: string;
   workflow_schema?: WorkflowSchema;
   workflow_schema_id?: string;
-  __entity_type__?: "ProjectSchemaOverride";
+  __entity_type__: "ProjectSchemaOverride";
   __permissions?: Record<string, any>;
 }
 export interface User
-  extends Omit<BaseUser, "__entity_type__" | "__permissions"> {
+  extends Omit<BaseUser, "__entity_type__" | "__persmissions"> {
   custom_attribute_links?: CustomAttributeLink[];
   custom_attribute_links_from?: CustomAttributeLinkFrom[];
-  custom_attributes?: UserCustomAttributeValue[];
   is_active: boolean;
   is_otp_enabled?: boolean;
   is_totp_enabled?: boolean;
@@ -669,8 +680,9 @@ export interface User
   user_type?: UserType;
   user_type_id?: string;
   username: string;
-  __entity_type__?: "User";
+  __entity_type__: "User";
   __permissions?: Record<string, any>;
+  custom_attributes?: TypedContextCustomAttributesMap["User"];
 }
 export interface Feed {
   cluster_id?: string;
@@ -681,18 +693,18 @@ export interface Feed {
   owner_id?: string;
   relation?: string;
   social_id?: number;
-  __entity_type__?: "Feed";
+  __entity_type__: "Feed";
   __permissions?: Record<string, any>;
 }
 export interface BaseUser
-  extends Omit<Resource, "__entity_type__" | "__permissions"> {
+  extends Omit<Resource, "__entity_type__" | "__persmissions"> {
   email?: string;
   first_name?: string;
   last_name?: string;
   thumbnail?: Component;
   thumbnail_id?: string;
   readonly thumbnail_url?: object;
-  __entity_type__?: "BaseUser";
+  __entity_type__: "BaseUser";
   __permissions?: Record<string, any>;
 }
 export interface ReviewSession {
@@ -720,7 +732,7 @@ export interface ReviewSession {
   readonly thumbnail_id?: string;
   thumbnail_source_id?: string;
   readonly thumbnail_url?: object;
-  __entity_type__?: "ReviewSession";
+  __entity_type__: "ReviewSession";
   __permissions?: Record<string, any>;
 }
 export interface UserView {
@@ -730,7 +742,7 @@ export interface UserView {
   shared_with?: Resource[];
   user?: User;
   user_id?: string;
-  __entity_type__?: "UserView";
+  __entity_type__: "UserView";
   __permissions?: Record<string, any>;
 }
 export interface Metadata {
@@ -738,12 +750,12 @@ export interface Metadata {
   readonly parent_id: string;
   parent_type: string;
   value: string;
-  __entity_type__?: "Metadata";
+  __entity_type__: "Metadata";
   __permissions?: Record<string, any>;
 }
 export interface NoteCategory
-  extends Omit<NoteLabel, "__entity_type__" | "__permissions"> {
-  __entity_type__?: "NoteCategory";
+  extends Omit<NoteLabel, "__entity_type__" | "__persmissions"> {
+  __entity_type__: "NoteCategory";
   __permissions?: Record<string, any>;
 }
 export interface Type {
@@ -754,13 +766,13 @@ export interface Type {
   sort: number;
   task_type_schemas?: TaskTypeSchema[];
   tasks?: Task[];
-  __entity_type__?: "Type";
+  __entity_type__: "Type";
   __permissions?: Record<string, any>;
 }
 export interface UserType {
   readonly id: string;
   readonly name?: string;
-  __entity_type__?: "UserType";
+  __entity_type__: "UserType";
   __permissions?: Record<string, any>;
 }
 export interface JobComponent {
@@ -769,14 +781,14 @@ export interface JobComponent {
   job?: Job;
   readonly job_id: string;
   readonly url?: object;
-  __entity_type__?: "JobComponent";
+  __entity_type__: "JobComponent";
   __permissions?: Record<string, any>;
 }
 export interface ListCategory {
   readonly id: string;
   lists?: List[];
   name?: string;
-  __entity_type__?: "ListCategory";
+  __entity_type__: "ListCategory";
   __permissions?: Record<string, any>;
 }
 export interface WorkflowSchema {
@@ -784,7 +796,7 @@ export interface WorkflowSchema {
   name?: string;
   overrides?: ProjectSchemaOverride[];
   statuses?: Status[];
-  __entity_type__?: "WorkflowSchema";
+  __entity_type__: "WorkflowSchema";
   __permissions?: Record<string, any>;
 }
 export interface ReviewSessionObjectStatus {
@@ -797,7 +809,7 @@ export interface ReviewSessionObjectStatus {
   review_session_object?: ReviewSessionObject;
   review_session_object_id?: string;
   status?: string;
-  __entity_type__?: "ReviewSessionObjectStatus";
+  __entity_type__: "ReviewSessionObjectStatus";
   __permissions?: Record<string, any>;
 }
 export interface Context {
@@ -812,7 +824,6 @@ export interface Context {
   readonly created_by_id?: string;
   custom_attribute_links?: CustomAttributeLink[];
   custom_attribute_links_from?: CustomAttributeLinkFrom[];
-  custom_attributes?: ContextCustomAttributeValue[];
   readonly id: string;
   readonly link?: BasicLink[];
   managers?: Manager[];
@@ -826,8 +837,9 @@ export interface Context {
   thumbnail_id?: string;
   readonly thumbnail_url?: object;
   timelogs?: Timelog[];
-  __entity_type__?: "Context";
+  __entity_type__: "Context";
   __permissions?: Record<string, any>;
+  custom_attributes?: TypedContextCustomAttributesMap["Context"];
 }
 export interface Schema {
   readonly id: string;
@@ -836,13 +848,13 @@ export interface Schema {
   statuses?: SchemaStatus[];
   type_id: string;
   types?: SchemaType[];
-  __entity_type__?: "Schema";
+  __entity_type__: "Schema";
   __permissions?: Record<string, any>;
 }
 export interface WorkflowSchemaStatus {
   readonly status_id: string;
   readonly workflow_schema_id: string;
-  __entity_type__?: "WorkflowSchemaStatus";
+  __entity_type__: "WorkflowSchemaStatus";
   __permissions?: Record<string, any>;
 }
 export interface SchemaType {
@@ -850,7 +862,7 @@ export interface SchemaType {
   sort?: number;
   task_type?: Type;
   readonly type_id: string;
-  __entity_type__?: "SchemaType";
+  __entity_type__: "SchemaType";
   __permissions?: Record<string, any>;
 }
 export interface Asset {
@@ -858,7 +870,6 @@ export interface Asset {
   context_id?: string;
   custom_attribute_links?: CustomAttributeLink[];
   custom_attribute_links_from?: CustomAttributeLinkFrom[];
-  custom_attributes?: AssetCustomAttributeValue[];
   readonly id: string;
   readonly latest_version?: AssetVersion;
   metadata?: Metadata[];
@@ -868,8 +879,9 @@ export interface Asset {
   type?: AssetType;
   type_id?: string;
   versions?: AssetVersion[];
-  __entity_type__?: "Asset";
+  __entity_type__: "Asset";
   __permissions?: Record<string, any>;
+  custom_attributes?: TypedContextCustomAttributesMap["Asset"];
 }
 export interface SettingComponent {
   component?: Component;
@@ -879,7 +891,7 @@ export interface SettingComponent {
   setting?: Setting;
   readonly thumbnail_url?: object;
   readonly url?: object;
-  __entity_type__?: "SettingComponent";
+  __entity_type__: "SettingComponent";
   __permissions?: Record<string, any>;
 }
 export interface StatusRule {
@@ -888,7 +900,7 @@ export interface StatusRule {
   status_id: string;
   status_rule_group?: StatusRuleGroup;
   status_rule_group_id: string;
-  __entity_type__?: "StatusRule";
+  __entity_type__: "StatusRule";
   __permissions?: Record<string, any>;
 }
 export interface ComponentLocation {
@@ -899,7 +911,7 @@ export interface ComponentLocation {
   location_id?: string;
   resource_identifier?: string;
   readonly url?: object;
-  __entity_type__?: "ComponentLocation";
+  __entity_type__: "ComponentLocation";
   __permissions?: Record<string, any>;
 }
 export interface ReviewSessionObjectAnnotationComponent {
@@ -910,7 +922,7 @@ export interface ReviewSessionObjectAnnotationComponent {
   readonly review_session_object_id: string;
   readonly thumbnail_url?: object;
   readonly url?: object;
-  __entity_type__?: "ReviewSessionObjectAnnotationComponent";
+  __entity_type__: "ReviewSessionObjectAnnotationComponent";
   __permissions?: Record<string, any>;
 }
 export interface CustomAttributeType {
@@ -919,7 +931,7 @@ export interface CustomAttributeType {
   form_config?: string;
   readonly id: string;
   name?: string;
-  __entity_type__?: "CustomAttributeType";
+  __entity_type__: "CustomAttributeType";
   __permissions?: Record<string, any>;
 }
 export interface Timelog {
@@ -933,7 +945,7 @@ export interface Timelog {
   time_zone_offset?: number;
   user?: User;
   user_id?: string;
-  __entity_type__?: "Timelog";
+  __entity_type__: "Timelog";
   __permissions?: Record<string, any>;
 }
 export interface SchemaStatus {
@@ -941,7 +953,7 @@ export interface SchemaStatus {
   sort?: number;
   readonly status_id: string;
   task_status?: Status;
-  __entity_type__?: "SchemaStatus";
+  __entity_type__: "SchemaStatus";
   __permissions?: Record<string, any>;
 }
 export interface UserSecurityRoleProject {
@@ -950,7 +962,7 @@ export interface UserSecurityRoleProject {
   project_id?: string;
   user_security_role?: UserSecurityRole;
   user_security_role_id?: string;
-  __entity_type__?: "UserSecurityRoleProject";
+  __entity_type__: "UserSecurityRoleProject";
   __permissions?: Record<string, any>;
 }
 export interface ObjectType {
@@ -967,11 +979,14 @@ export interface ObjectType {
   project_schemas?: ProjectSchema[];
   sort: number;
   tasks?: Task[];
-  __entity_type__?: "ObjectType";
+  __entity_type__: "ObjectType";
   __permissions?: Record<string, any>;
 }
 export interface Project
-  extends Omit<Context, "__entity_type__" | "__permissions"> {
+  extends Omit<
+    Context,
+    "__entity_type__" | "__persmissions" | "custom_attributes"
+  > {
   calendar_events?: CalendarEvent[];
   color?: string;
   descendants?: TypedContext[];
@@ -990,8 +1005,9 @@ export interface Project
   start_date?: string;
   status: string;
   user_security_role_projects?: UserSecurityRoleProject[];
-  __entity_type__?: "Project";
+  __entity_type__: "Project";
   __permissions?: Record<string, any>;
+  custom_attributes?: TypedContextCustomAttributesMap["Project"];
 }
 export interface TaskTemplate {
   readonly id: string;
@@ -999,20 +1015,20 @@ export interface TaskTemplate {
   name: string;
   project_schema?: ProjectSchema;
   project_schema_id: string;
-  __entity_type__?: "TaskTemplate";
+  __entity_type__: "TaskTemplate";
   __permissions?: Record<string, any>;
 }
 export interface AssetVersionStatusChange
-  extends Omit<StatusChange, "__entity_type__" | "__permissions"> {
+  extends Omit<StatusChange, "__entity_type__" | "__persmissions"> {
   parent?: AssetVersion;
-  __entity_type__?: "AssetVersionStatusChange";
+  __entity_type__: "AssetVersionStatusChange";
   __permissions?: Record<string, any>;
 }
 export interface Setting {
   readonly group: string;
   readonly name: string;
   value?: string;
-  __entity_type__?: "Setting";
+  __entity_type__: "Setting";
   __permissions?: Record<string, any>;
 }
 export interface ApiKey {
@@ -1020,7 +1036,7 @@ export interface ApiKey {
   identifier?: string;
   prefix?: string;
   resource_id?: string;
-  __entity_type__?: "ApiKey";
+  __entity_type__: "ApiKey";
   __permissions?: Record<string, any>;
 }
 export interface NoteLabel {
@@ -1028,13 +1044,13 @@ export interface NoteLabel {
   readonly id: string;
   name?: string;
   sort?: number;
-  __entity_type__?: "NoteLabel";
+  __entity_type__: "NoteLabel";
   __permissions?: Record<string, any>;
 }
 export interface ManagerType {
   readonly id: string;
   name?: string;
-  __entity_type__?: "ManagerType";
+  __entity_type__: "ManagerType";
   __permissions?: Record<string, any>;
 }
 export interface Recipient {
@@ -1044,7 +1060,7 @@ export interface Recipient {
   readonly resource_id: string;
   text_mentioned?: string;
   user?: User;
-  __entity_type__?: "Recipient";
+  __entity_type__: "Recipient";
   __permissions?: Record<string, any>;
 }
 export interface NoteComponent {
@@ -1054,7 +1070,7 @@ export interface NoteComponent {
   readonly note_id: string;
   readonly thumbnail_url?: object;
   readonly url?: object;
-  __entity_type__?: "NoteComponent";
+  __entity_type__: "NoteComponent";
   __permissions?: Record<string, any>;
 }
 export interface ProjectSchemaObjectType {
@@ -1062,7 +1078,7 @@ export interface ProjectSchemaObjectType {
   readonly object_type_id: string;
   project_schema?: ProjectSchema;
   readonly project_schema_id: string;
-  __entity_type__?: "ProjectSchemaObjectType";
+  __entity_type__: "ProjectSchemaObjectType";
   __permissions?: Record<string, any>;
 }
 export interface List {
@@ -1070,7 +1086,6 @@ export interface List {
   category_id: string;
   custom_attribute_links?: CustomAttributeLink[];
   custom_attribute_links_from?: CustomAttributeLinkFrom[];
-  custom_attributes?: ListCustomAttributeValue[];
   date?: string;
   readonly id: string;
   is_open: boolean;
@@ -1080,8 +1095,9 @@ export interface List {
   project_id: string;
   system_type?: string;
   user_id?: string;
-  __entity_type__?: "List";
+  __entity_type__: "List";
   __permissions?: Record<string, any>;
+  custom_attributes?: TypedContextCustomAttributesMap["List"];
 }
 export interface SplitTaskPart {
   end_date: string;
@@ -1090,7 +1106,7 @@ export interface SplitTaskPart {
   start_date: string;
   task?: Task;
   task_id: string;
-  __entity_type__?: "SplitTaskPart";
+  __entity_type__: "SplitTaskPart";
   __permissions?: Record<string, any>;
 }
 export interface Resource {
@@ -1100,13 +1116,13 @@ export interface Resource {
   dashboard_resources?: DashboardResource[];
   readonly id: string;
   resource_type: string;
-  __entity_type__?: "Resource";
+  __entity_type__: "Resource";
   __permissions?: Record<string, any>;
 }
 export interface TaskTypeSchemaType {
   readonly task_type_schema_id: string;
   readonly type_id: string;
-  __entity_type__?: "TaskTypeSchemaType";
+  __entity_type__: "TaskTypeSchemaType";
   __permissions?: Record<string, any>;
 }
 export interface Priority {
@@ -1116,120 +1132,28 @@ export interface Priority {
   sort?: number;
   tasks?: Task[];
   value?: number;
-  __entity_type__?: "Priority";
+  __entity_type__: "Priority";
   __permissions?: Record<string, any>;
 }
-export type Milestone = Omit<TypedContext<"Milestone">, "custom_attributes"> & {
-  custom_attributes: Array<
-    | TypedCustomAttributeValue<"somedynamicenumerator">
-    | TypedCustomAttributeValue<"somedate">
-    | TypedCustomAttributeValue<"sometext">
-    | TypedCustomAttributeValue<"someenumerator">
-    | TypedCustomAttributeValue<"someboolean">
-  >;
-};
+export type Milestone = TypedContext<"Milestone">;
 
-export type Task = Omit<TypedContext<"Task">, "custom_attributes"> & {
-  custom_attributes: Array<
-    | TypedCustomAttributeValue<"somedynamicenumerator">
-    | TypedCustomAttributeValue<"somedate">
-    | TypedCustomAttributeValue<"sometext">
-    | TypedCustomAttributeValue<"someenumerator">
-    | TypedCustomAttributeValue<"someboolean">
-  >;
-};
+export type Task = TypedContext<"Task">;
 
-export type Episode = Omit<TypedContext<"Episode">, "custom_attributes"> & {
-  custom_attributes: Array<
-    | TypedCustomAttributeValue<"somedynamicenumerator">
-    | TypedCustomAttributeValue<"somedate">
-    | TypedCustomAttributeValue<"sometext">
-    | TypedCustomAttributeValue<"someenumerator">
-    | TypedCustomAttributeValue<"someboolean">
-  >;
-};
+export type Episode = TypedContext<"Episode">;
 
-export type Scene = Omit<TypedContext<"Scene">, "custom_attributes"> & {
-  custom_attributes: Array<
-    | TypedCustomAttributeValue<"somedynamicenumerator">
-    | TypedCustomAttributeValue<"somedate">
-    | TypedCustomAttributeValue<"sometext">
-    | TypedCustomAttributeValue<"someenumerator">
-    | TypedCustomAttributeValue<"someboolean">
-  >;
-};
+export type Scene = TypedContext<"Scene">;
 
-export type Folder = Omit<TypedContext<"Folder">, "custom_attributes"> & {
-  custom_attributes: Array<
-    | TypedCustomAttributeValue<"somedynamicenumerator">
-    | TypedCustomAttributeValue<"somedate">
-    | TypedCustomAttributeValue<"sometext">
-    | TypedCustomAttributeValue<"someenumerator">
-    | TypedCustomAttributeValue<"someboolean">
-  >;
-};
+export type Folder = TypedContext<"Folder">;
 
-export type Image = Omit<TypedContext<"Image">, "custom_attributes"> & {
-  custom_attributes: Array<
-    | TypedCustomAttributeValue<"somedynamicenumerator">
-    | TypedCustomAttributeValue<"somedate">
-    | TypedCustomAttributeValue<"sometext">
-    | TypedCustomAttributeValue<"someenumerator">
-    | TypedCustomAttributeValue<"someboolean">
-  >;
-};
+export type Image = TypedContext<"Image">;
 
-export type AssetBuild = Omit<
-  TypedContext<"AssetBuild">,
-  "custom_attributes"
-> & {
-  custom_attributes: Array<
-    | TypedCustomAttributeValue<"somedynamicenumerator">
-    | TypedCustomAttributeValue<"somedate">
-    | TypedCustomAttributeValue<"sometext">
-    | TypedCustomAttributeValue<"someenumerator">
-    | TypedCustomAttributeValue<"someboolean">
-  >;
-};
+export type AssetBuild = TypedContext<"AssetBuild">;
 
-export type Shot = Omit<TypedContext<"Shot">, "custom_attributes"> & {
-  custom_attributes: Array<
-    | TypedCustomAttributeValue<"somedynamicenumerator">
-    | TypedCustomAttributeValue<"somedate">
-    | TypedCustomAttributeValue<"sometext">
-    | TypedCustomAttributeValue<"someenumerator">
-    | TypedCustomAttributeValue<"someboolean">
-    | TypedCustomAttributeValue<"fend">
-    | TypedCustomAttributeValue<"handles">
-    | TypedCustomAttributeValue<"duration">
-    | TypedCustomAttributeValue<"fstart">
-    | TypedCustomAttributeValue<"fps">
-  >;
-};
+export type Shot = TypedContext<"Shot">;
 
-export type Sequence = Omit<TypedContext<"Sequence">, "custom_attributes"> & {
-  custom_attributes: Array<
-    | TypedCustomAttributeValue<"somedynamicenumerator">
-    | TypedCustomAttributeValue<"somedate">
-    | TypedCustomAttributeValue<"sometext">
-    | TypedCustomAttributeValue<"someenumerator">
-    | TypedCustomAttributeValue<"someboolean">
-    | TypedCustomAttributeValue<"fps">
-  >;
-};
+export type Sequence = TypedContext<"Sequence">;
 
-export type Information = Omit<
-  TypedContext<"Information">,
-  "custom_attributes"
-> & {
-  custom_attributes: Array<
-    | TypedCustomAttributeValue<"somedynamicenumerator">
-    | TypedCustomAttributeValue<"somedate">
-    | TypedCustomAttributeValue<"sometext">
-    | TypedCustomAttributeValue<"someenumerator">
-    | TypedCustomAttributeValue<"someboolean">
-  >;
-};
+export type Information = TypedContext<"Information">;
 
 export interface ContextCustomAttributeValue {
   configuration?: CustomAttributeConfiguration;
@@ -1237,7 +1161,7 @@ export interface ContextCustomAttributeValue {
   readonly entity_id: string;
   key?: string;
   value?: string | number | boolean | string[];
-  __entity_type__?: "ContextCustomAttributeValue";
+  __entity_type__: "ContextCustomAttributeValue";
   __permissions?: Record<string, any>;
 }
 export interface AssetVersionCustomAttributeValue {
@@ -1246,7 +1170,7 @@ export interface AssetVersionCustomAttributeValue {
   readonly entity_id: string;
   key?: string;
   value?: string | number | boolean | string[];
-  __entity_type__?: "AssetVersionCustomAttributeValue";
+  __entity_type__: "AssetVersionCustomAttributeValue";
   __permissions?: Record<string, any>;
 }
 export interface ListCustomAttributeValue {
@@ -1255,7 +1179,7 @@ export interface ListCustomAttributeValue {
   readonly entity_id: string;
   key?: string;
   value?: string | number | boolean | string[];
-  __entity_type__?: "ListCustomAttributeValue";
+  __entity_type__: "ListCustomAttributeValue";
   __permissions?: Record<string, any>;
 }
 export interface ListObjectCustomAttributeValue {
@@ -1264,7 +1188,7 @@ export interface ListObjectCustomAttributeValue {
   readonly entity_id: string;
   key?: string;
   value?: string | number | boolean | string[];
-  __entity_type__?: "ListObjectCustomAttributeValue";
+  __entity_type__: "ListObjectCustomAttributeValue";
   __permissions?: Record<string, any>;
 }
 export interface UserCustomAttributeValue {
@@ -1273,7 +1197,7 @@ export interface UserCustomAttributeValue {
   readonly entity_id: string;
   key?: string;
   value?: string | number | boolean | string[];
-  __entity_type__?: "UserCustomAttributeValue";
+  __entity_type__: "UserCustomAttributeValue";
   __permissions?: Record<string, any>;
 }
 export interface AssetCustomAttributeValue {
@@ -1282,91 +1206,91 @@ export interface AssetCustomAttributeValue {
   readonly entity_id: string;
   key?: string;
   value?: string | number | boolean | string[];
-  __entity_type__?: "AssetCustomAttributeValue";
+  __entity_type__: "AssetCustomAttributeValue";
   __permissions?: Record<string, any>;
 }
 export interface ContextCustomAttributeLink
-  extends Omit<CustomAttributeLink, "__entity_type__" | "__permissions"> {
+  extends Omit<CustomAttributeLink, "__entity_type__" | "__persmissions"> {
   context?: Context;
-  __entity_type__?: "ContextCustomAttributeLink";
+  __entity_type__: "ContextCustomAttributeLink";
   __permissions?: Record<string, any>;
 }
 export interface ContextCustomAttributeLinkFrom
-  extends Omit<CustomAttributeLinkFrom, "__entity_type__" | "__permissions"> {
+  extends Omit<CustomAttributeLinkFrom, "__entity_type__" | "__persmissions"> {
   context?: Context;
-  __entity_type__?: "ContextCustomAttributeLinkFrom";
+  __entity_type__: "ContextCustomAttributeLinkFrom";
   __permissions?: Record<string, any>;
 }
 export interface AssetVersionCustomAttributeLink
-  extends Omit<CustomAttributeLink, "__entity_type__" | "__permissions"> {
+  extends Omit<CustomAttributeLink, "__entity_type__" | "__persmissions"> {
   asset_version?: AssetVersion;
-  __entity_type__?: "AssetVersionCustomAttributeLink";
+  __entity_type__: "AssetVersionCustomAttributeLink";
   __permissions?: Record<string, any>;
 }
 export interface AssetVersionCustomAttributeLinkFrom
-  extends Omit<CustomAttributeLinkFrom, "__entity_type__" | "__permissions"> {
+  extends Omit<CustomAttributeLinkFrom, "__entity_type__" | "__persmissions"> {
   asset_version?: AssetVersion;
-  __entity_type__?: "AssetVersionCustomAttributeLinkFrom";
+  __entity_type__: "AssetVersionCustomAttributeLinkFrom";
   __permissions?: Record<string, any>;
 }
 export interface ListCustomAttributeLink
-  extends Omit<CustomAttributeLink, "__entity_type__" | "__permissions"> {
+  extends Omit<CustomAttributeLink, "__entity_type__" | "__persmissions"> {
   list?: List;
-  __entity_type__?: "ListCustomAttributeLink";
+  __entity_type__: "ListCustomAttributeLink";
   __permissions?: Record<string, any>;
 }
 export interface ListCustomAttributeLinkFrom
-  extends Omit<CustomAttributeLinkFrom, "__entity_type__" | "__permissions"> {
+  extends Omit<CustomAttributeLinkFrom, "__entity_type__" | "__persmissions"> {
   list?: List;
-  __entity_type__?: "ListCustomAttributeLinkFrom";
+  __entity_type__: "ListCustomAttributeLinkFrom";
   __permissions?: Record<string, any>;
 }
 export interface UserCustomAttributeLink
-  extends Omit<CustomAttributeLink, "__entity_type__" | "__permissions"> {
+  extends Omit<CustomAttributeLink, "__entity_type__" | "__persmissions"> {
   user?: User;
-  __entity_type__?: "UserCustomAttributeLink";
+  __entity_type__: "UserCustomAttributeLink";
   __permissions?: Record<string, any>;
 }
 export interface UserCustomAttributeLinkFrom
-  extends Omit<CustomAttributeLinkFrom, "__entity_type__" | "__permissions"> {
+  extends Omit<CustomAttributeLinkFrom, "__entity_type__" | "__persmissions"> {
   user?: User;
-  __entity_type__?: "UserCustomAttributeLinkFrom";
+  __entity_type__: "UserCustomAttributeLinkFrom";
   __permissions?: Record<string, any>;
 }
 export interface GroupCustomAttributeLink
-  extends Omit<CustomAttributeLink, "__entity_type__" | "__permissions"> {
+  extends Omit<CustomAttributeLink, "__entity_type__" | "__persmissions"> {
   group?: Group;
-  __entity_type__?: "GroupCustomAttributeLink";
+  __entity_type__: "GroupCustomAttributeLink";
   __permissions?: Record<string, any>;
 }
 export interface GroupCustomAttributeLinkFrom
-  extends Omit<CustomAttributeLinkFrom, "__entity_type__" | "__permissions"> {
+  extends Omit<CustomAttributeLinkFrom, "__entity_type__" | "__persmissions"> {
   group?: Group;
-  __entity_type__?: "GroupCustomAttributeLinkFrom";
+  __entity_type__: "GroupCustomAttributeLinkFrom";
   __permissions?: Record<string, any>;
 }
 export interface AssetCustomAttributeLink
-  extends Omit<CustomAttributeLink, "__entity_type__" | "__permissions"> {
+  extends Omit<CustomAttributeLink, "__entity_type__" | "__persmissions"> {
   asset?: Asset;
-  __entity_type__?: "AssetCustomAttributeLink";
+  __entity_type__: "AssetCustomAttributeLink";
   __permissions?: Record<string, any>;
 }
 export interface AssetCustomAttributeLinkFrom
-  extends Omit<CustomAttributeLinkFrom, "__entity_type__" | "__permissions"> {
+  extends Omit<CustomAttributeLinkFrom, "__entity_type__" | "__persmissions"> {
   asset?: Asset;
-  __entity_type__?: "AssetCustomAttributeLinkFrom";
+  __entity_type__: "AssetCustomAttributeLinkFrom";
   __permissions?: Record<string, any>;
 }
 export interface ComponentCustomAttributeLink
-  extends Omit<CustomAttributeLink, "__entity_type__" | "__permissions"> {
+  extends Omit<CustomAttributeLink, "__entity_type__" | "__persmissions"> {
   component?: Component;
-  __entity_type__?: "ComponentCustomAttributeLink";
+  __entity_type__: "ComponentCustomAttributeLink";
   __permissions?: Record<string, any>;
 }
 export interface ComponentCustomAttributeLinkFrom
-  extends Omit<CustomAttributeLinkFrom, "__entity_type__" | "__permissions"> {
+  extends Omit<CustomAttributeLinkFrom, "__entity_type__" | "__persmissions"> {
   component?: Component;
-  __entity_type__?: "ComponentCustomAttributeLinkFrom";
+  __entity_type__: "ComponentCustomAttributeLinkFrom";
   __permissions?: Record<string, any>;
 }
 export function getTypes() {
@@ -2054,4 +1978,793 @@ export type TypedCustomAttributeValue<
 > = BaseCustomAttributeValue & {
   key: K;
   value: TypedCustomAttributeValueMap[K];
+};
+
+export type TypedContextCustomAttributesMap = {
+  Dashboard:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Timer:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  StatusChange:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  TypedContextStatusRuleGroup:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  CalendarEventResource:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  FileComponent:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  State:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  AssetType:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Group:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  TypedContextLink:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  CalendarEvent:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  CustomAttributeLink:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Membership:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  DashboardWidget:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  AssetVersionStatusRuleGroup:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  ReviewSessionObject:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  ProjectSchema:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Appointment:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  TaskTypeSchema:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  ReviewSessionFolder:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  CustomAttributeLinkFrom:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Location:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  CustomAttributeGroup:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  CustomAttributeValue:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  UserSecurityRole:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  DashboardResource:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Component:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  NoteAnnotationComponent:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  SequenceComponent:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Collaborator:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  CustomAttributeConfiguration:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Status:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Scope:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  StatusRuleGroup:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  TypedContext:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Manager:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  CustomConfigurationBase:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  AssetVersionLink:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  ReviewSessionObjectAnnotation:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  TypedContextList:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  NoteLabelLink:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  TypedContextStatusChange:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  CustomAttributeLinkConfiguration:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  ContainerComponent:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  AssetVersion:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  SecurityRole:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  UserApplicationState:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  ReviewSessionInvitee:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Note:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Event:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  ListObject:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  AssetVersionList:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  UserSession:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  EntitySetting:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Disk:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Job:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  TaskTemplateItem:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  ProjectSchemaOverride:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  User:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Feed:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  BaseUser:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  ReviewSession:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  UserView:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Metadata:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  NoteCategory:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Type:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  UserType:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  JobComponent:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  ListCategory:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  WorkflowSchema:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  ReviewSessionObjectStatus:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Context:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Schema:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  WorkflowSchemaStatus:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  SchemaType:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Asset:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  SettingComponent:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  StatusRule:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  ComponentLocation:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  ReviewSessionObjectAnnotationComponent:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  CustomAttributeType:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Timelog:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  SchemaStatus:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  UserSecurityRoleProject:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  ObjectType:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Project:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  TaskTemplate:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  AssetVersionStatusChange:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Setting:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  ApiKey:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  NoteLabel:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  ManagerType:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Recipient:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  NoteComponent:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  ProjectSchemaObjectType:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  List:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  SplitTaskPart:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Resource:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  TaskTypeSchemaType:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Priority:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Milestone:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Task:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Episode:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Scene:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Folder:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Image:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  AssetBuild:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Shot:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">
+    | TypedCustomAttributeValue<"fend">
+    | TypedCustomAttributeValue<"handles">
+    | TypedCustomAttributeValue<"duration">
+    | TypedCustomAttributeValue<"fstart">
+    | TypedCustomAttributeValue<"fps">;
+  Sequence:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">
+    | TypedCustomAttributeValue<"fps">;
+  Information:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  ContextCustomAttributeValue:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  AssetVersionCustomAttributeValue:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  ListCustomAttributeValue:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  ListObjectCustomAttributeValue:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  UserCustomAttributeValue:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  AssetCustomAttributeValue:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  ContextCustomAttributeLink:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  ContextCustomAttributeLinkFrom:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  AssetVersionCustomAttributeLink:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  AssetVersionCustomAttributeLinkFrom:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  ListCustomAttributeLink:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  ListCustomAttributeLinkFrom:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  UserCustomAttributeLink:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  UserCustomAttributeLinkFrom:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  GroupCustomAttributeLink:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  GroupCustomAttributeLinkFrom:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  AssetCustomAttributeLink:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  AssetCustomAttributeLinkFrom:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  ComponentCustomAttributeLink:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  ComponentCustomAttributeLinkFrom:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
 };

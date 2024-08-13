@@ -5,7 +5,6 @@ import type {
   SchemaProperties,
   TypedSchemaProperty,
 } from "@ftrack/api";
-import { type CustomAttributeConfiguration } from "./emitCustomAttributes";
 import { type TypeScriptEmitter } from "./typescriptEmitter";
 
 // Add schemas from the schemas folder, to be used for finding extended schemas
@@ -13,23 +12,13 @@ export async function emitSchemaInterface(
   typescriptEmitter: TypeScriptEmitter,
   schema: Schema,
   allSchemas: QuerySchemasResponse,
-  customAttributes: CustomAttributeConfiguration[]
 ) {
-  const interfaceName = getTypeScriptInterfaceNameForInterface(typescriptEmitter, schema);
+  const interfaceName = getTypeScriptInterfaceNameForInterface(schema);
 
   // If the schema is a subtype of TypedContext, return that
   if (typeof schema?.alias_for === "object" && schema.alias_for.id === "Task") {
     typescriptEmitter.appendCode(`
-      export type ${interfaceName} = Omit<TypedContext<"${interfaceName}">, 'custom_attributes'> & {
-        custom_attributes: Array<
-          ${customAttributes
-            .filter(
-              (x) => x.is_hierarchical || x.object_type?.name === interfaceName
-            )
-            .map((x) => `TypedCustomAttributeValue<"${x.key}">`)
-            .join("|")}
-        >
-      };
+      export type ${interfaceName} = TypedContext<"${interfaceName}">;
     `)
     return;
   }
@@ -55,55 +44,61 @@ export async function emitSchemaInterface(
   );
 
   // Entity type and permissions are missing from the source schema, so add them to the interface
-  emitEntityTypeAndPermissionProperties(
+  emitSpecialProperties(
     typescriptEmitter,
-    interfaceName,
+    schema,
   );
 
   typescriptEmitter.appendCode(`}`);
 }
 
-function getTypeScriptInterfaceNameForInterface(typescriptEmitter: TypeScriptEmitter, schema: Schema) {
-  let interfaceName = getId(typescriptEmitter, schema);
-
+function getTypeScriptInterfaceNameForInterface(schema: Schema) {
   // Adds a generic to the interface to TypedContext, which is used for subtypes of TypedContext
-  if (interfaceName === "TypedContext") {
-    interfaceName =
-      "TypedContext<K extends TypedContextSubtype = TypedContextSubtype>";
-  }
-  return interfaceName;
-}
-
-function getId(typescriptEmitter: TypeScriptEmitter, schema: Schema) {
-  const id = schema.id;
-  if (!id) {
-    typescriptEmitter.appendError(`No ID defined for schema ${schema.id}`);
+  if (isSchemaTypedContext(schema)) {
+    return "TypedContext<K extends TypedContextSubtype = TypedContextSubtype>";
   }
 
-  return id;
+  return schema.id;
 }
-function emitEntityTypeAndPermissionProperties(
+
+function isSchemaTypedContext(schema: Schema) {
+  return schema.id === "TypedContext";
+}
+
+function emitSpecialProperties(
   typescriptEmitter: TypeScriptEmitter,
-  interfaceName: string
+  schema: Schema
 ) {
-  if (interfaceName === "TypedContext") {
-    typescriptEmitter.appendCode(`__entity_type__?: K;`);
+  if (isSchemaTypedContext(schema)) {
+    typescriptEmitter.appendCode(`__entity_type__: K;`);
   } else {
-    typescriptEmitter.appendCode(`__entity_type__?: "${interfaceName}";`);
+    typescriptEmitter.appendCode(`__entity_type__: "${schema.id}";`);
   }
   typescriptEmitter.appendCode(`__permissions?: Record<string, any>;`);
+
+  if('custom_attributes' in schema.properties) {
+    typescriptEmitter.appendCode(`custom_attributes?: TypedContextCustomAttributesMap["${schema.id}"];`);
+  }
 }
 
-function getTypeExtensionSuffix(baseSchema?: Schema, schema?: Schema) {
-  const omit = `"__entity_type__" | "__permissions"`;
+function getTypeExtensionSuffix(baseSchema: Schema | undefined, schema: Schema) {
+  const omitList = [
+    "__entity_type__",
+    "__persmissions",
+  ];
+  if(baseSchema && 'custom_attributes' in baseSchema.properties) {
+    omitList.push('custom_attributes');
+  }
+
+  const omitString = `"${omitList.join('" | "')}"`
 
   const baseSchemaSuffix = baseSchema?.id
-    ? ` extends Omit<${baseSchema.id}, ${omit}>`
+    ? ` extends Omit<${baseSchema.id}, ${omitString}>`
     : "";
 
   const typedContextSubtypeSuffix =
     typeof schema?.alias_for === "object" && schema.alias_for.id === "Task"
-      ? ` extends Omit<TypedContext, ${omit}>`
+      ? ` extends Omit<TypedContext, ${omitString}>`
       : "";
 
   //Both should never be true, but ¯\_(ツ)_/¯
@@ -182,6 +177,10 @@ function emitTypeProperties(
     */
     if(key === "link" && type === "string") {
       type = "BasicLink[]";
+    }
+
+    if(key === "custom_attributes") {
+      return;
     }
 
     // All properties are optional, adds a question mark

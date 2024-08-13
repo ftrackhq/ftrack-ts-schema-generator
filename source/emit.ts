@@ -147,7 +147,6 @@ export async function emitToString(
       emitter,
       schema,
       schemas,
-      customAttributes
     );
   }
 
@@ -277,7 +276,7 @@ export async function emitToString(
   // Add a map of TypedContext subtypes and type for TypedContextSubtype
   emitTypedContextTypes(emitter, schemas);
 
-  emitCustomAttributes(emitter, customAttributes);
+  emitCustomAttributes(emitter, schemas, customAttributes);
 
   return { 
     prettifiedContent: emitter.toString(), 
