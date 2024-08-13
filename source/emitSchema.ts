@@ -77,11 +77,11 @@ function emitSpecialProperties(
   if (schema.properties && "custom_attributes" in schema.properties) {
     if (isSchemaTypedContext(schema)) {
       typescriptEmitter.appendCode(
-        `custom_attributes?: Array<TypedContextCustomAttributesMap[K]>;`
+        `custom_attributes: Array<TypedContextCustomAttributesMap[K]>;`
       );
     } else {
       typescriptEmitter.appendCode(
-        `custom_attributes?: Array<TypedContextCustomAttributesMap["${schema.id}"]>;`
+        `custom_attributes: Array<TypedContextCustomAttributesMap["${schema.id}"]>;`
       );
     }
   }
