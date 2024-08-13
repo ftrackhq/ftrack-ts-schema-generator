@@ -27,9 +27,7 @@ export async function emitSchemaInterface(
   const baseSchema = getBaseSchema(schema, allSchemas);
 
   // Get the typedContext schema, to filter the properties for typedContext subtypes
-  const typedContextSchema = allSchemas.find((schema) => {
-    return schema.id === "TypedContext";
-  });
+  const typedContextSchema = allSchemas.find(isSchemaTypedContext);
 
   typescriptEmitter.appendCode(`
     export interface ${interfaceName}${getTypeExtensionSuffix(

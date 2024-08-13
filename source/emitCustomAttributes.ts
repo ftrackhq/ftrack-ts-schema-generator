@@ -60,7 +60,7 @@ export function emitCustomAttributes(
               (x) => x.is_hierarchical || x.object_type?.name === schema.id
             )
             .map((x) => `TypedCustomAttributeValue<"${x.key}">`)
-            .join("|")}
+            .join("|") || 'void'}
       `
         )
         .join(";")}

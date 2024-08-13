@@ -1,5 +1,4 @@
 // :copyright: Copyright (c) 2023 ftrack
-
 // Generated on 2023-02-01T00:00:00.000Z using schema
 // from an instance running version 4.13.8 using server on https://ftrack.example.com
 // Not intended to modify manually
@@ -7,43 +6,10 @@
 export interface TypedContext<
   K extends TypedContextSubtype = TypedContextSubtype
 > {
-  __entity_type__?: K;
+  __entity_type__: K;
   __permissions?: Record<string, any>;
 }
-export type SomeInterfaceName = Omit<
-  TypedContext<"SomeInterfaceName">,
-  "custom_attributes"
-> & {
-  custom_attributes: Array<>;
-};
-export interface BasicLink {
-  id: string;
-  type: string;
-  name: string;
-}
-export interface EntityTypeMap {
-  TypedContext: TypedContext;
-  SomeInterfaceName: SomeInterfaceName;
-}
-export type EntityType = keyof EntityTypeMap;
-export type EntityData<TEntityType extends EntityType = EntityType> =
-  EntityTypeMap[TEntityType];
-export interface TypedContextSubtypeMap {
-  TypedContext: TypedContext;
-  SomeInterfaceName: SomeInterfaceName;
-}
-export type TypedContextSubtype = keyof TypedContextSubtypeMap;
-export function getAttributeConfigurations() {
-  return [] as const;
-}
-
-export type RuntimeCustomAttributeConfiguration = ReturnType<
-  typeof getAttributeConfigurations
->[number];
-export type RuntimeCustomAttributeConfigurationName =
-  RuntimeCustomAttributeConfiguration["name"];
-export type RuntimeCustomAttributeConfigurationLabel =
-  RuntimeCustomAttributeConfiguration["label"];
+export type SomeInterfaceName = TypedContext<"SomeInterfaceName">;
 
 export function getTypes() {
   return [] as const;
@@ -51,6 +17,20 @@ export function getTypes() {
 
 export type RuntimeType = ReturnType<typeof getTypes>[number];
 export type RuntimeTypeName = RuntimeType["name"];
+
+export function getStatuses() {
+  return [] as const;
+}
+
+export type RuntimeStatus = ReturnType<typeof getStatuses>[number];
+export type RuntimeStatusName = RuntimeStatus["name"];
+
+export function getPriorities() {
+  return [] as const;
+}
+
+export type RuntimePriority = ReturnType<typeof getPriorities>[number];
+export type RuntimePriorityName = RuntimePriority["name"];
 
 export function getObjectTypes() {
   return [] as const;
@@ -66,18 +46,54 @@ export function getProjectSchemas() {
 export type RuntimeProjectSchema = ReturnType<typeof getProjectSchemas>[number];
 export type RuntimeProjectSchemaName = RuntimeProjectSchema["name"];
 
-export function getPriorities() {
+export interface EntityTypeMap {
+  TypedContext: TypedContext;
+  SomeInterfaceName: SomeInterfaceName;
+}
+
+export type EntityType = keyof EntityTypeMap;
+export type EntityData<TEntityType extends EntityType = EntityType> =
+  EntityTypeMap[TEntityType];
+
+export interface BasicLink {
+  id: string;
+  type: string;
+  name: string;
+}
+
+export interface TypedContextSubtypeMap {
+  TypedContext: TypedContext;
+  SomeInterfaceName: SomeInterfaceName;
+}
+export type TypedContextSubtype = keyof TypedContextSubtypeMap;
+
+export function getAttributeConfigurations() {
   return [] as const;
 }
 
-export type RuntimePriority = ReturnType<typeof getPriorities>[number];
-export type RuntimePriorityName = RuntimePriority["name"];
+export type RuntimeCustomAttributeConfiguration = ReturnType<
+  typeof getAttributeConfigurations
+>[number];
+export type RuntimeCustomAttributeConfigurationName =
+  RuntimeCustomAttributeConfiguration["name"];
+export type RuntimeCustomAttributeConfigurationLabel =
+  RuntimeCustomAttributeConfiguration["label"];
 
-export function getStatuses() {
-  return [] as const;
-}
+type BaseCustomAttributeValue = Omit<
+  ContextCustomAttributeValue,
+  "key" | "value"
+>;
 
-export type RuntimeStatus = ReturnType<typeof getStatuses>[number];
-export type RuntimeStatusName = RuntimeStatus["name"];
+export interface TypedCustomAttributeValueMap {}
 
-// Errors:
+export type TypedCustomAttributeValue<
+  K extends keyof TypedCustomAttributeValueMap
+> = BaseCustomAttributeValue & {
+  key: K;
+  value: TypedCustomAttributeValueMap[K];
+};
+
+export type TypedContextCustomAttributesMap = {
+  TypedContext: void;
+  SomeInterfaceName: void;
+};

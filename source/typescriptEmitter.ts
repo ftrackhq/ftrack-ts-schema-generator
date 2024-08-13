@@ -30,8 +30,13 @@ export class TypeScriptEmitter {
       contents += this._errors.map((x) => `//${x}`).join("\n");
     }
 
-    return prettier.format(contents, {
-      parser: "typescript",
-    });
+    try {
+      return prettier.format(contents, {
+        parser: "typescript",
+      });
+    } catch(e) {
+      console.error('Format failed', e, this._code)
+      throw e;
+    }
   }
 }
