@@ -385,7 +385,7 @@ export interface TypedContext<
   type_id: string;
   __entity_type__: K;
   __permissions?: Record<string, any>;
-  custom_attributes?: TypedContextCustomAttributesMap["TypedContext"];
+  custom_attributes?: Array<TypedContextCustomAttributesMap["TypedContext"]>;
 }
 export interface Manager {
   context?: Context;
@@ -445,7 +445,9 @@ export interface TypedContextList
   items?: Task[];
   __entity_type__: "TypedContextList";
   __permissions?: Record<string, any>;
-  custom_attributes?: TypedContextCustomAttributesMap["TypedContextList"];
+  custom_attributes?: Array<
+    TypedContextCustomAttributesMap["TypedContextList"]
+  >;
 }
 export interface NoteLabelLink {
   label?: NoteLabel;
@@ -510,7 +512,7 @@ export interface AssetVersion {
   version?: number;
   __entity_type__: "AssetVersion";
   __permissions?: Record<string, any>;
-  custom_attributes?: TypedContextCustomAttributesMap["AssetVersion"];
+  custom_attributes?: Array<TypedContextCustomAttributesMap["AssetVersion"]>;
 }
 export interface SecurityRole {
   readonly id: string;
@@ -595,7 +597,7 @@ export interface ListObject {
   list_id: string;
   __entity_type__: "ListObject";
   __permissions?: Record<string, any>;
-  custom_attributes?: TypedContextCustomAttributesMap["ListObject"];
+  custom_attributes?: Array<TypedContextCustomAttributesMap["ListObject"]>;
 }
 export interface AssetVersionList
   extends Omit<
@@ -605,7 +607,9 @@ export interface AssetVersionList
   items?: AssetVersion[];
   __entity_type__: "AssetVersionList";
   __permissions?: Record<string, any>;
-  custom_attributes?: TypedContextCustomAttributesMap["AssetVersionList"];
+  custom_attributes?: Array<
+    TypedContextCustomAttributesMap["AssetVersionList"]
+  >;
 }
 export interface UserSession {
   accessed_time?: string;
@@ -682,7 +686,7 @@ export interface User
   username: string;
   __entity_type__: "User";
   __permissions?: Record<string, any>;
-  custom_attributes?: TypedContextCustomAttributesMap["User"];
+  custom_attributes?: Array<TypedContextCustomAttributesMap["User"]>;
 }
 export interface Feed {
   cluster_id?: string;
@@ -839,7 +843,7 @@ export interface Context {
   timelogs?: Timelog[];
   __entity_type__: "Context";
   __permissions?: Record<string, any>;
-  custom_attributes?: TypedContextCustomAttributesMap["Context"];
+  custom_attributes?: Array<TypedContextCustomAttributesMap["Context"]>;
 }
 export interface Schema {
   readonly id: string;
@@ -881,7 +885,7 @@ export interface Asset {
   versions?: AssetVersion[];
   __entity_type__: "Asset";
   __permissions?: Record<string, any>;
-  custom_attributes?: TypedContextCustomAttributesMap["Asset"];
+  custom_attributes?: Array<TypedContextCustomAttributesMap["Asset"]>;
 }
 export interface SettingComponent {
   component?: Component;
@@ -1007,7 +1011,7 @@ export interface Project
   user_security_role_projects?: UserSecurityRoleProject[];
   __entity_type__: "Project";
   __permissions?: Record<string, any>;
-  custom_attributes?: TypedContextCustomAttributesMap["Project"];
+  custom_attributes?: Array<TypedContextCustomAttributesMap["Project"]>;
 }
 export interface TaskTemplate {
   readonly id: string;
@@ -1097,7 +1101,7 @@ export interface List {
   user_id?: string;
   __entity_type__: "List";
   __permissions?: Record<string, any>;
-  custom_attributes?: TypedContextCustomAttributesMap["List"];
+  custom_attributes?: Array<TypedContextCustomAttributesMap["List"]>;
 }
 export interface SplitTaskPart {
   end_date: string;
