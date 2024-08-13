@@ -35,9 +35,12 @@ export function emitCustomAttributes(
           .groupBy((x) => x.key)
           .map(
             (x) =>
-              `${x[0].key}: ${chain(x).map((y) =>
-                getTypeScriptTypeFromCustomAttributeType(y.type.name)
-              ).uniq().join('|')}`
+              `${x[0].key}: ${chain(x)
+                .map((y) =>
+                  getTypeScriptTypeFromCustomAttributeType(y.type.name)
+                )
+                .uniq()
+                .join("|")}`
           )
           .join("\n")
           .value()}
@@ -49,14 +52,18 @@ export function emitCustomAttributes(
     };
 
     export type TypedContextCustomAttributesMap = {
-      ${schemas.map(schema => `
+      ${schemas
+        .map(
+          (schema) => `
         ${schema.id}: ${customAttributes
             .filter(
               (x) => x.is_hierarchical || x.object_type?.name === schema.id
             )
             .map((x) => `TypedCustomAttributeValue<"${x.key}">`)
             .join("|")}
-      `).join(';')}
+      `
+        )
+        .join(";")}
       };
   `);
 }

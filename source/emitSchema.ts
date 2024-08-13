@@ -11,7 +11,7 @@ import { type TypeScriptEmitter } from "./typescriptEmitter";
 export async function emitSchemaInterface(
   typescriptEmitter: TypeScriptEmitter,
   schema: Schema,
-  allSchemas: QuerySchemasResponse,
+  allSchemas: QuerySchemasResponse
 ) {
   const interfaceName = getTypeScriptInterfaceNameForInterface(schema);
 
@@ -19,10 +19,10 @@ export async function emitSchemaInterface(
   if (typeof schema?.alias_for === "object" && schema.alias_for.id === "Task") {
     typescriptEmitter.appendCode(`
       export type ${interfaceName} = TypedContext<"${interfaceName}">;
-    `)
+    `);
     return;
   }
-  
+
   // Check if the schema extends another schema and get that base schema
   const baseSchema = getBaseSchema(schema, allSchemas);
 
@@ -32,7 +32,10 @@ export async function emitSchemaInterface(
   });
 
   typescriptEmitter.appendCode(`
-    export interface ${interfaceName}${getTypeExtensionSuffix(baseSchema, schema)} {
+    export interface ${interfaceName}${getTypeExtensionSuffix(
+    baseSchema,
+    schema
+  )} {
   `);
 
   // For each property, add a type to the interface
@@ -44,10 +47,7 @@ export async function emitSchemaInterface(
   );
 
   // Entity type and permissions are missing from the source schema, so add them to the interface
-  emitSpecialProperties(
-    typescriptEmitter,
-    schema,
-  );
+  emitSpecialProperties(typescriptEmitter, schema);
 
   typescriptEmitter.appendCode(`}`);
 }
@@ -76,21 +76,23 @@ function emitSpecialProperties(
   }
   typescriptEmitter.appendCode(`__permissions?: Record<string, any>;`);
 
-  if('custom_attributes' in schema.properties) {
-    typescriptEmitter.appendCode(`custom_attributes?: TypedContextCustomAttributesMap["${schema.id}"];`);
+  if (schema.properties && "custom_attributes" in schema.properties) {
+    typescriptEmitter.appendCode(
+      `custom_attributes?: TypedContextCustomAttributesMap["${schema.id}"];`
+    );
   }
 }
 
-function getTypeExtensionSuffix(baseSchema: Schema | undefined, schema: Schema) {
-  const omitList = [
-    "__entity_type__",
-    "__persmissions",
-  ];
-  if(baseSchema && 'custom_attributes' in baseSchema.properties) {
-    omitList.push('custom_attributes');
+function getTypeExtensionSuffix(
+  baseSchema: Schema | undefined,
+  schema: Schema
+) {
+  const omitList = ["__entity_type__", "__persmissions"];
+  if (baseSchema?.properties && "custom_attributes" in baseSchema.properties) {
+    omitList.push("custom_attributes");
   }
 
-  const omitString = `"${omitList.join('" | "')}"`
+  const omitString = `"${omitList.join('" | "')}"`;
 
   const baseSchemaSuffix = baseSchema?.id
     ? ` extends Omit<${baseSchema.id}, ${omitString}>`
@@ -175,16 +177,18 @@ function emitTypeProperties(
     Hack to get around the fact that the API doesn't return the correct type for BasicLink
     Task: 95e02be2-c7ec-11ed-ae64-46416ff77027
     */
-    if(key === "link" && type === "string") {
+    if (key === "link" && type === "string") {
       type = "BasicLink[]";
     }
 
-    if(key === "custom_attributes") {
+    if (key === "custom_attributes") {
       return;
     }
 
     // All properties are optional, adds a question mark
-    typescriptEmitter.appendCode(`${prefix}${key}${!isRequired ? "?" : ""}: ${type};`);
+    typescriptEmitter.appendCode(
+      `${prefix}${key}${!isRequired ? "?" : ""}: ${type};`
+    );
   });
 }
 

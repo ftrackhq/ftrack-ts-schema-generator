@@ -250,7 +250,7 @@ test("schema has array type", async () => {
   );
 });
 
-test.only("default highway test (all values specified)", async () => {
+test("default highway test (all values specified)", async () => {
   //arrange
   const projectSchemas = await parseJsonFromFile<ProjectSchema[]>(
     join(

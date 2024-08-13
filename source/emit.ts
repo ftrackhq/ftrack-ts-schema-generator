@@ -23,10 +23,7 @@ export async function emitToFile(
   const statuses = await getStatuses(session);
   const priorities = await getPriorities(session);
 
-  const {
-    prettifiedContent,
-    errors,
-  } = await emitToString(
+  const { prettifiedContent, errors } = await emitToString(
     session.serverVersion,
     session.serverUrl,
     schemas,
@@ -129,7 +126,7 @@ export async function emitToString(
     };
   }
 
-  const emitter = new TypeScriptEmitter()
+  const emitter = new TypeScriptEmitter();
   emitter.appendCode(`
     // :copyright: Copyright (c) ${new Date().getFullYear()} ftrack
     // Generated on ${new Date().toISOString()} using schema
@@ -143,13 +140,8 @@ export async function emitToString(
       continue;
     }
 
-    await emitSchemaInterface(
-      emitter,
-      schema,
-      schemas,
-    );
+    await emitSchemaInterface(emitter, schema, schemas);
   }
-
 
   emitter.appendCode(`
     export function getTypes() {
@@ -252,9 +244,7 @@ export async function emitToString(
       ${schemas
         .map((s) => s.id)
         .map((name) => `${name}: ${name};`)
-        .join(
-        "\n"
-      )}
+        .join("\n")}
     }
     
     export type EntityType = keyof EntityTypeMap;
@@ -271,16 +261,16 @@ export async function emitToString(
       type: string;
       name: string;
     }
-  `)
+  `);
 
   // Add a map of TypedContext subtypes and type for TypedContextSubtype
   emitTypedContextTypes(emitter, schemas);
 
   emitCustomAttributes(emitter, schemas, customAttributes);
 
-  return { 
-    prettifiedContent: emitter.toString(), 
-    errors: emitter.errors
+  return {
+    prettifiedContent: emitter.toString(),
+    errors: emitter.errors,
   };
 }
 
@@ -336,7 +326,10 @@ async function getProjectSchemas(session: Session) {
   return projectSchemas.data;
 }
 
-function emitTypedContextTypes(builder: TypeScriptEmitter, schemas: QuerySchemasResponse) {
+function emitTypedContextTypes(
+  builder: TypeScriptEmitter,
+  schemas: QuerySchemasResponse
+) {
   builder.appendCode(`
     export interface TypedContextSubtypeMap {
       ${schemas
@@ -347,9 +340,8 @@ function emitTypedContextTypes(builder: TypeScriptEmitter, schemas: QuerySchemas
             schema.id === "TypedContext"
         )
         .map((s) => s.id)
-        .map((name) => `${name}: ${name};`).join(
-        "\n"
-      )}
+        .map((name) => `${name}: ${name};`)
+        .join("\n")}
     }
     export type TypedContextSubtype = keyof TypedContextSubtypeMap;
   `);
