@@ -1879,6 +1879,12 @@ export type EntityType = keyof EntityTypeMap;
 export type EntityData<TEntityType extends EntityType = EntityType> =
   EntityTypeMap[TEntityType];
 
+export interface BasicLink {
+  id: string;
+  type: string;
+  name: string;
+}
+
 export interface TypedContextSubtypeMap {
   TypedContext: TypedContext;
   Milestone: Milestone;
@@ -2049,8 +2055,3 @@ export type TypedCustomAttributeValue<
   key: K;
   value: TypedCustomAttributeValueMap[K];
 };
- export interface BasicLink {
-    id: string;
-    type: string;
-    name: string;
-  };

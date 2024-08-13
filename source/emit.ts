@@ -262,13 +262,25 @@ export async function emitToString(
     export type EntityData<TEntityType extends EntityType = EntityType> = EntityTypeMap[TEntityType];
   `);
 
+  /**
+  BasicLink needs to be added explicitly, as it is not returned by the API.
+  Task: 95e02be2-c7ec-11ed-ae64-46416ff77027
+  */
+  emitter.appendCode(`
+    export interface BasicLink {
+      id: string;
+      type: string;
+      name: string;
+    }
+  `)
+
   // Add a map of TypedContext subtypes and type for TypedContextSubtype
   emitTypedContextTypes(emitter, schemas);
 
   emitCustomAttributes(emitter, customAttributes);
 
   return { 
-    prettifiedContent: AddBasicLinkType(emitter.toString()), 
+    prettifiedContent: emitter.toString(), 
     errors: emitter.errors
   };
 }
@@ -323,21 +335,6 @@ async function getProjectSchemas(session: Session) {
     "select name, asset_version_workflow_schema, name, object_type_schemas, object_types, task_templates, task_type_schema, task_workflow_schema, task_workflow_schema_overrides from ProjectSchema"
   );
   return projectSchemas.data;
-}
-
-/**
-  Write the file, adding the preamble first and the errors to the end of the file
-  Hack to get around the fact that the API doesn't return the correct type for BasicLink
-  Task: 95e02be2-c7ec-11ed-ae64-46416ff77027
- */
-function AddBasicLinkType(interfaces: string) {
-  const regex = /link\?:\s*string/gi;
-  const modifiedInterfaces = interfaces.replace(regex, "link?: BasicLink[]");
-  return `${modifiedInterfaces} export interface BasicLink {
-    id: string;
-    type: string;
-    name: string;
-  };`;
 }
 
 function emitTypedContextTypes(builder: TypeScriptEmitter, schemas: QuerySchemasResponse) {

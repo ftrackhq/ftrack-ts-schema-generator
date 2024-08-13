@@ -6,7 +6,7 @@ import type {
   TypedSchemaProperty,
 } from "@ftrack/api";
 import { type CustomAttributeConfiguration } from "./emitCustomAttributes";
-import { TypeScriptEmitter } from "./typescriptEmitter";
+import { type TypeScriptEmitter } from "./typescriptEmitter";
 
 // Add schemas from the schemas folder, to be used for finding extended schemas
 export async function emitSchemaInterface(
@@ -174,6 +174,14 @@ function emitTypeProperties(
     // If the property is immutable, add a readonly prefix
     if (schema.immutable?.includes(key) || schema.computed?.includes(key)) {
       prefix = `readonly `;
+    }
+
+    /**
+    Hack to get around the fact that the API doesn't return the correct type for BasicLink
+    Task: 95e02be2-c7ec-11ed-ae64-46416ff77027
+    */
+    if(key === "link" && type === "string") {
+      type = "BasicLink[]";
     }
 
     // All properties are optional, adds a question mark
