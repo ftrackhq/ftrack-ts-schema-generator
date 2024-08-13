@@ -1,32 +1,40 @@
 export function emitCustomAttributes(customAttributes: CustomAttributeConfiguration[]) {
     return `
-      export function getAttributeConfigurations() {
+    export function getAttributeConfigurations() {
         return [
-          ${customAttributes.map(
+            ${customAttributes.map(
         (x) => `{
-              name: "${x.key}",
-              type: ${JSON.stringify(x.type?.name)},
-              label: "${x.label}",
-              entityType: "${x.entity_type}",
-              default: ${JSON.stringify(x.default)},
-              objectType: ${JSON.stringify(x.object_type?.name)},
-              isHierarchical: ${x.is_hierarchical}
+                name: "${x.key}",
+                type: ${JSON.stringify(x.type?.name)},
+                label: "${x.label}",
+                entityType: "${x.entity_type}",
+                default: ${JSON.stringify(x.default)},
+                objectType: ${JSON.stringify(x.object_type?.name)},
+                isHierarchical: ${x.is_hierarchical}
             }`
     )}
         ] as const;
-      }
+    }
       
-      export type RuntimeCustomAttributeConfiguration = ReturnType<typeof getAttributeConfigurations>[number];
-      export type RuntimeCustomAttributeConfigurationName = RuntimeCustomAttributeConfiguration["name"];
-      export type RuntimeCustomAttributeConfigurationLabel = RuntimeCustomAttributeConfiguration["label"];
-  
-      ${customAttributes
-        .map(x => `type ${getCustomAttributeTypeNameFromAttribute(x)} = Omit<ContextCustomAttributeValue, 'key' | 'value'> & {
-            key: "${x.key}",
-            value: ${getTypeScriptTypeFromCustomAttributeType(x.type.name)}
-        }`)
-        .join('\n')}
-    `;
+    export type RuntimeCustomAttributeConfiguration = ReturnType<typeof getAttributeConfigurations>[number];
+    export type RuntimeCustomAttributeConfigurationName = RuntimeCustomAttributeConfiguration["name"];
+    export type RuntimeCustomAttributeConfigurationLabel = RuntimeCustomAttributeConfiguration["label"];
+
+    type BaseCustomAttributeValue {
+        configuration?: CustomAttributeConfiguration;
+        readonly configuration_id: string;
+        readonly entity_id: string;
+        __entity_type__?: "ContextCustomAttributeValue";
+        __permissions?: Record<string, any>;
+    }
+
+    ${customAttributes
+    .map(x => `type ${getCustomAttributeTypeNameFromAttribute(x)} = BaseCustomAttributeValue & {
+        key: "${x.key}",
+        value: ${getTypeScriptTypeFromCustomAttributeType(x.type.name)}
+    }`)
+    .join('\n')}
+`;
 }
 
 export function getCustomAttributeTypeNameFromAttribute(x: CustomAttributeConfiguration) {
