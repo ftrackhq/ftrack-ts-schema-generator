@@ -34,8 +34,8 @@ export class TypeScriptEmitter {
       return prettier.format(contents, {
         parser: "typescript",
       });
-    } catch(e) {
-      console.error('Format failed', e, this._code)
+    } catch (e) {
+      console.error("Format failed", e, this._code);
       throw e;
     }
   }

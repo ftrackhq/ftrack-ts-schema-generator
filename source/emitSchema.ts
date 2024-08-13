@@ -75,9 +75,15 @@ function emitSpecialProperties(
   typescriptEmitter.appendCode(`__permissions?: Record<string, any>;`);
 
   if (schema.properties && "custom_attributes" in schema.properties) {
-    typescriptEmitter.appendCode(
-      `custom_attributes?: Array<TypedContextCustomAttributesMap["${schema.id}"]>;`
-    );
+    if (isSchemaTypedContext(schema)) {
+      typescriptEmitter.appendCode(
+        `custom_attributes?: Array<TypedContextCustomAttributesMap[K]>;`
+      );
+    } else {
+      typescriptEmitter.appendCode(
+        `custom_attributes?: Array<TypedContextCustomAttributesMap["${schema.id}"]>;`
+      );
+    }
   }
 }
 
