@@ -389,6 +389,7 @@ __metadata:
   resolution: "@ftrack/ts-schema-generator@workspace:."
   dependencies:
     "@ftrack/api": ^1.4.5
+    "@types/lodash": ^4
     "@types/node": ^18.15.11
     "@types/prettier": ^2.7.2
     "@typescript-eslint/eslint-plugin": ^5.57.0
@@ -398,6 +399,7 @@ __metadata:
     eslint: ^8.37.0
     husky: ^8.0.3
     lint-staged: ^13.2.0
+    lodash: ^4.17.21
     prettier: ^2.8.7
     ts-node: ^10.9.1
     typescript: ^5.0.3
@@ -732,6 +734,13 @@ __metadata:
   dependencies:
     "@types/node": "*"
   checksum: e009a2bfb50e90ca9b7c6e8f648f8464067271fd99116f881073fa6fa76dc8d0133181dd65e6614d5fb1220d671d67b0124aef7d97dc02d7e342ab143a47779d
+  languageName: node
+  linkType: hard
+
+"@types/lodash@npm:^4":
+  version: 4.17.7
+  resolution: "@types/lodash@npm:4.17.7"
+  checksum: 09e58a119cd8a70acfb33f8623dc2fc54f74cdce3b3429b879fc2daac4807fe376190a04b9e024dd300f9a3ee1876d6623979cefe619f70654ca0fe0c47679a7
   languageName: node
   linkType: hard
 
@@ -2609,7 +2618,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash@npm:^4.17.15":
+"lodash@npm:^4.17.15, lodash@npm:^4.17.21":
   version: 4.17.21
   resolution: "lodash@npm:4.17.21"
   checksum: eb835a2e51d381e561e508ce932ea50a8e5a68f4ebdd771ea240d3048244a8d13658acbd502cd4829768c56f2e16bdd4340b9ea141297d472517b83868e677f7

@@ -76,9 +76,7 @@
       "id": "6ff9c812-ead3-11e2-846c-f23c91dfaa16",
       "name": "enumerator"
     },
-    "default": [
-      "value1"
-    ],
+    "default": ["value1"],
     "is_hierarchical": true
   },
   {

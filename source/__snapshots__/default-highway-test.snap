@@ -1,5 +1,4 @@
 // :copyright: Copyright (c) 2023 ftrack
-
 // Generated on 2023-02-01T00:00:00.000Z using schema
 // from an instance running version 4.13.8 using server on https://ftrack.example.com
 // Not intended to modify manually
@@ -381,7 +380,7 @@ export interface TypedContext<
   readonly time_logged?: number;
   type?: Type;
   type_id: string;
-  __entity_type__?: K;
+  __entity_type__?: "TypedContext<K extends TypedContextSubtype = TypedContextSubtype>";
   __permissions?: Record<string, any>;
 }
 export interface Manager {
@@ -1122,106 +1121,116 @@ export interface Priority {
 }
 export type Milestone = Omit<TypedContext<"Milestone">, "custom_attributes"> & {
   custom_attributes: Array<
-    | CustomAttributeValue_somedynamicenumerator
-    | CustomAttributeValue_somedate
-    | CustomAttributeValue_sometext
-    | CustomAttributeValue_someenumerator
-    | CustomAttributeValue_someboolean
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">
   >;
 };
+
 export type Task = Omit<TypedContext<"Task">, "custom_attributes"> & {
   custom_attributes: Array<
-    | CustomAttributeValue_somedynamicenumerator
-    | CustomAttributeValue_somedate
-    | CustomAttributeValue_sometext
-    | CustomAttributeValue_someenumerator
-    | CustomAttributeValue_someboolean
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">
   >;
 };
+
 export type Episode = Omit<TypedContext<"Episode">, "custom_attributes"> & {
   custom_attributes: Array<
-    | CustomAttributeValue_somedynamicenumerator
-    | CustomAttributeValue_somedate
-    | CustomAttributeValue_sometext
-    | CustomAttributeValue_someenumerator
-    | CustomAttributeValue_someboolean
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">
   >;
 };
+
 export type Scene = Omit<TypedContext<"Scene">, "custom_attributes"> & {
   custom_attributes: Array<
-    | CustomAttributeValue_somedynamicenumerator
-    | CustomAttributeValue_somedate
-    | CustomAttributeValue_sometext
-    | CustomAttributeValue_someenumerator
-    | CustomAttributeValue_someboolean
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">
   >;
 };
+
 export type Folder = Omit<TypedContext<"Folder">, "custom_attributes"> & {
   custom_attributes: Array<
-    | CustomAttributeValue_somedynamicenumerator
-    | CustomAttributeValue_somedate
-    | CustomAttributeValue_sometext
-    | CustomAttributeValue_someenumerator
-    | CustomAttributeValue_someboolean
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">
   >;
 };
+
 export type Image = Omit<TypedContext<"Image">, "custom_attributes"> & {
   custom_attributes: Array<
-    | CustomAttributeValue_somedynamicenumerator
-    | CustomAttributeValue_somedate
-    | CustomAttributeValue_sometext
-    | CustomAttributeValue_someenumerator
-    | CustomAttributeValue_someboolean
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">
   >;
 };
+
 export type AssetBuild = Omit<
   TypedContext<"AssetBuild">,
   "custom_attributes"
 > & {
   custom_attributes: Array<
-    | CustomAttributeValue_somedynamicenumerator
-    | CustomAttributeValue_somedate
-    | CustomAttributeValue_sometext
-    | CustomAttributeValue_someenumerator
-    | CustomAttributeValue_someboolean
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">
   >;
 };
+
 export type Shot = Omit<TypedContext<"Shot">, "custom_attributes"> & {
   custom_attributes: Array<
-    | CustomAttributeValue_somedynamicenumerator
-    | CustomAttributeValue_somedate
-    | CustomAttributeValue_sometext
-    | CustomAttributeValue_someenumerator
-    | CustomAttributeValue_someboolean
-    | CustomAttributeValue_fend
-    | CustomAttributeValue_handles
-    | CustomAttributeValue_duration
-    | CustomAttributeValue_fstart
-    | CustomAttributeValue_fps
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">
+    | TypedCustomAttributeValue<"fend">
+    | TypedCustomAttributeValue<"handles">
+    | TypedCustomAttributeValue<"duration">
+    | TypedCustomAttributeValue<"fstart">
+    | TypedCustomAttributeValue<"fps">
   >;
 };
+
 export type Sequence = Omit<TypedContext<"Sequence">, "custom_attributes"> & {
   custom_attributes: Array<
-    | CustomAttributeValue_somedynamicenumerator
-    | CustomAttributeValue_somedate
-    | CustomAttributeValue_sometext
-    | CustomAttributeValue_someenumerator
-    | CustomAttributeValue_someboolean
-    | CustomAttributeValue_fps
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">
+    | TypedCustomAttributeValue<"fps">
   >;
 };
+
 export type Information = Omit<
   TypedContext<"Information">,
   "custom_attributes"
 > & {
   custom_attributes: Array<
-    | CustomAttributeValue_somedynamicenumerator
-    | CustomAttributeValue_somedate
-    | CustomAttributeValue_sometext
-    | CustomAttributeValue_someenumerator
-    | CustomAttributeValue_someboolean
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">
   >;
 };
+
 export interface ContextCustomAttributeValue {
   configuration?: CustomAttributeConfiguration;
   readonly configuration_id: string;
@@ -1360,382 +1369,6 @@ export interface ComponentCustomAttributeLinkFrom
   __entity_type__?: "ComponentCustomAttributeLinkFrom";
   __permissions?: Record<string, any>;
 }
-export interface BasicLink {
-  id: string;
-  type: string;
-  name: string;
-}
-export interface EntityTypeMap {
-  Dashboard: Dashboard;
-  Timer: Timer;
-  StatusChange: StatusChange;
-  TypedContextStatusRuleGroup: TypedContextStatusRuleGroup;
-  CalendarEventResource: CalendarEventResource;
-  FileComponent: FileComponent;
-  State: State;
-  AssetType: AssetType;
-  Group: Group;
-  TypedContextLink: TypedContextLink;
-  CalendarEvent: CalendarEvent;
-  CustomAttributeLink: CustomAttributeLink;
-  Membership: Membership;
-  DashboardWidget: DashboardWidget;
-  AssetVersionStatusRuleGroup: AssetVersionStatusRuleGroup;
-  ReviewSessionObject: ReviewSessionObject;
-  ProjectSchema: ProjectSchema;
-  Appointment: Appointment;
-  TaskTypeSchema: TaskTypeSchema;
-  ReviewSessionFolder: ReviewSessionFolder;
-  CustomAttributeLinkFrom: CustomAttributeLinkFrom;
-  Location: Location;
-  CustomAttributeGroup: CustomAttributeGroup;
-  CustomAttributeValue: CustomAttributeValue;
-  UserSecurityRole: UserSecurityRole;
-  DashboardResource: DashboardResource;
-  Component: Component;
-  NoteAnnotationComponent: NoteAnnotationComponent;
-  SequenceComponent: SequenceComponent;
-  Collaborator: Collaborator;
-  CustomAttributeConfiguration: CustomAttributeConfiguration;
-  Status: Status;
-  Scope: Scope;
-  StatusRuleGroup: StatusRuleGroup;
-  TypedContext: TypedContext;
-  Manager: Manager;
-  CustomConfigurationBase: CustomConfigurationBase;
-  AssetVersionLink: AssetVersionLink;
-  ReviewSessionObjectAnnotation: ReviewSessionObjectAnnotation;
-  TypedContextList: TypedContextList;
-  NoteLabelLink: NoteLabelLink;
-  TypedContextStatusChange: TypedContextStatusChange;
-  CustomAttributeLinkConfiguration: CustomAttributeLinkConfiguration;
-  ContainerComponent: ContainerComponent;
-  AssetVersion: AssetVersion;
-  SecurityRole: SecurityRole;
-  UserApplicationState: UserApplicationState;
-  ReviewSessionInvitee: ReviewSessionInvitee;
-  Note: Note;
-  Event: Event;
-  ListObject: ListObject;
-  AssetVersionList: AssetVersionList;
-  UserSession: UserSession;
-  EntitySetting: EntitySetting;
-  Disk: Disk;
-  Job: Job;
-  TaskTemplateItem: TaskTemplateItem;
-  ProjectSchemaOverride: ProjectSchemaOverride;
-  User: User;
-  Feed: Feed;
-  BaseUser: BaseUser;
-  ReviewSession: ReviewSession;
-  UserView: UserView;
-  Metadata: Metadata;
-  NoteCategory: NoteCategory;
-  Type: Type;
-  UserType: UserType;
-  JobComponent: JobComponent;
-  ListCategory: ListCategory;
-  WorkflowSchema: WorkflowSchema;
-  ReviewSessionObjectStatus: ReviewSessionObjectStatus;
-  Context: Context;
-  Schema: Schema;
-  WorkflowSchemaStatus: WorkflowSchemaStatus;
-  SchemaType: SchemaType;
-  Asset: Asset;
-  SettingComponent: SettingComponent;
-  StatusRule: StatusRule;
-  ComponentLocation: ComponentLocation;
-  ReviewSessionObjectAnnotationComponent: ReviewSessionObjectAnnotationComponent;
-  CustomAttributeType: CustomAttributeType;
-  Timelog: Timelog;
-  SchemaStatus: SchemaStatus;
-  UserSecurityRoleProject: UserSecurityRoleProject;
-  ObjectType: ObjectType;
-  Project: Project;
-  TaskTemplate: TaskTemplate;
-  AssetVersionStatusChange: AssetVersionStatusChange;
-  Setting: Setting;
-  ApiKey: ApiKey;
-  NoteLabel: NoteLabel;
-  ManagerType: ManagerType;
-  Recipient: Recipient;
-  NoteComponent: NoteComponent;
-  ProjectSchemaObjectType: ProjectSchemaObjectType;
-  List: List;
-  SplitTaskPart: SplitTaskPart;
-  Resource: Resource;
-  TaskTypeSchemaType: TaskTypeSchemaType;
-  Priority: Priority;
-  Milestone: Milestone;
-  Task: Task;
-  Episode: Episode;
-  Scene: Scene;
-  Folder: Folder;
-  Image: Image;
-  AssetBuild: AssetBuild;
-  Shot: Shot;
-  Sequence: Sequence;
-  Information: Information;
-  ContextCustomAttributeValue: ContextCustomAttributeValue;
-  AssetVersionCustomAttributeValue: AssetVersionCustomAttributeValue;
-  ListCustomAttributeValue: ListCustomAttributeValue;
-  ListObjectCustomAttributeValue: ListObjectCustomAttributeValue;
-  UserCustomAttributeValue: UserCustomAttributeValue;
-  AssetCustomAttributeValue: AssetCustomAttributeValue;
-  ContextCustomAttributeLink: ContextCustomAttributeLink;
-  ContextCustomAttributeLinkFrom: ContextCustomAttributeLinkFrom;
-  AssetVersionCustomAttributeLink: AssetVersionCustomAttributeLink;
-  AssetVersionCustomAttributeLinkFrom: AssetVersionCustomAttributeLinkFrom;
-  ListCustomAttributeLink: ListCustomAttributeLink;
-  ListCustomAttributeLinkFrom: ListCustomAttributeLinkFrom;
-  UserCustomAttributeLink: UserCustomAttributeLink;
-  UserCustomAttributeLinkFrom: UserCustomAttributeLinkFrom;
-  GroupCustomAttributeLink: GroupCustomAttributeLink;
-  GroupCustomAttributeLinkFrom: GroupCustomAttributeLinkFrom;
-  AssetCustomAttributeLink: AssetCustomAttributeLink;
-  AssetCustomAttributeLinkFrom: AssetCustomAttributeLinkFrom;
-  ComponentCustomAttributeLink: ComponentCustomAttributeLink;
-  ComponentCustomAttributeLinkFrom: ComponentCustomAttributeLinkFrom;
-}
-export type EntityType = keyof EntityTypeMap;
-export type EntityData<TEntityType extends EntityType = EntityType> =
-  EntityTypeMap[TEntityType];
-export interface TypedContextSubtypeMap {
-  TypedContext: TypedContext;
-  Milestone: Milestone;
-  Task: Task;
-  Episode: Episode;
-  Scene: Scene;
-  Folder: Folder;
-  Image: Image;
-  AssetBuild: AssetBuild;
-  Shot: Shot;
-  Sequence: Sequence;
-  Information: Information;
-}
-export type TypedContextSubtype = keyof TypedContextSubtypeMap;
-export function getAttributeConfigurations() {
-  return [
-    {
-      name: "somedynamicenumerator",
-      type: "dynamic enumerator",
-      label: "Some Dynamic Enumerator",
-      entityType: "show",
-      default: [],
-      objectType: undefined,
-      isHierarchical: true,
-    },
-    {
-      name: "somedate",
-      type: "date",
-      label: "Some Date",
-      entityType: "show",
-      default: "2024-06-22T00:00:00.000Z",
-      objectType: undefined,
-      isHierarchical: true,
-    },
-    {
-      name: "sometext",
-      type: "text",
-      label: "Some Text",
-      entityType: "show",
-      default: "",
-      objectType: undefined,
-      isHierarchical: true,
-    },
-    {
-      name: "someurl",
-      type: "url",
-      label: "Some URL",
-      entityType: "asset",
-      default: null,
-      objectType: undefined,
-      isHierarchical: false,
-    },
-    {
-      name: "someenumerator",
-      type: "enumerator",
-      label: "Some Enumerator",
-      entityType: "show",
-      default: ["value1"],
-      objectType: undefined,
-      isHierarchical: true,
-    },
-    {
-      name: "someboolean",
-      type: "boolean",
-      label: "Some Boolean",
-      entityType: "show",
-      default: false,
-      objectType: undefined,
-      isHierarchical: true,
-    },
-    {
-      name: "fend",
-      type: "number",
-      label: "Frame end",
-      entityType: "task",
-      default: 1,
-      objectType: "Shot",
-      isHierarchical: false,
-    },
-    {
-      name: "handles",
-      type: "number",
-      label: "Frame handles",
-      entityType: "task",
-      default: 0,
-      objectType: "Shot",
-      isHierarchical: false,
-    },
-    {
-      name: "duration",
-      type: "expression",
-      label: "Frame duration",
-      entityType: "task",
-      default: "{self.fend - self.fstart + 1}",
-      objectType: "Shot",
-      isHierarchical: false,
-    },
-    {
-      name: "fstart",
-      type: "number",
-      label: "Frame start",
-      entityType: "task",
-      default: 1,
-      objectType: "Shot",
-      isHierarchical: false,
-    },
-    {
-      name: "fps",
-      type: "number",
-      label: "fps",
-      entityType: "show",
-      default: 24,
-      objectType: undefined,
-      isHierarchical: false,
-    },
-    {
-      name: "fps",
-      type: "number",
-      label: "fps",
-      entityType: "task",
-      default: 25,
-      objectType: "Sequence",
-      isHierarchical: false,
-    },
-    {
-      name: "fps",
-      type: "number",
-      label: "fps",
-      entityType: "task",
-      default: 25,
-      objectType: "Shot",
-      isHierarchical: false,
-    },
-  ] as const;
-}
-
-export type RuntimeCustomAttributeConfiguration = ReturnType<
-  typeof getAttributeConfigurations
->[number];
-export type RuntimeCustomAttributeConfigurationName =
-  RuntimeCustomAttributeConfiguration["name"];
-export type RuntimeCustomAttributeConfigurationLabel =
-  RuntimeCustomAttributeConfiguration["label"];
-
-type CustomAttributeValue_somedynamicenumerator = Omit<
-  ContextCustomAttributeValue,
-  "key" | "value"
-> & {
-  key: "somedynamicenumerator";
-  value: string[];
-};
-type CustomAttributeValue_somedate = Omit<
-  ContextCustomAttributeValue,
-  "key" | "value"
-> & {
-  key: "somedate";
-  value: string;
-};
-type CustomAttributeValue_sometext = Omit<
-  ContextCustomAttributeValue,
-  "key" | "value"
-> & {
-  key: "sometext";
-  value: string;
-};
-type CustomAttributeValue_someurl = Omit<
-  ContextCustomAttributeValue,
-  "key" | "value"
-> & {
-  key: "someurl";
-  value: string;
-};
-type CustomAttributeValue_someenumerator = Omit<
-  ContextCustomAttributeValue,
-  "key" | "value"
-> & {
-  key: "someenumerator";
-  value: string[];
-};
-type CustomAttributeValue_someboolean = Omit<
-  ContextCustomAttributeValue,
-  "key" | "value"
-> & {
-  key: "someboolean";
-  value: boolean;
-};
-type CustomAttributeValue_fend = Omit<
-  ContextCustomAttributeValue,
-  "key" | "value"
-> & {
-  key: "fend";
-  value: number;
-};
-type CustomAttributeValue_handles = Omit<
-  ContextCustomAttributeValue,
-  "key" | "value"
-> & {
-  key: "handles";
-  value: number;
-};
-type CustomAttributeValue_duration = Omit<
-  ContextCustomAttributeValue,
-  "key" | "value"
-> & {
-  key: "duration";
-  value: string;
-};
-type CustomAttributeValue_fstart = Omit<
-  ContextCustomAttributeValue,
-  "key" | "value"
-> & {
-  key: "fstart";
-  value: number;
-};
-type CustomAttributeValue_fps = Omit<
-  ContextCustomAttributeValue,
-  "key" | "value"
-> & {
-  key: "fps";
-  value: number;
-};
-type CustomAttributeValue_fps = Omit<
-  ContextCustomAttributeValue,
-  "key" | "value"
-> & {
-  key: "fps";
-  value: number;
-};
-type CustomAttributeValue_fps = Omit<
-  ContextCustomAttributeValue,
-  "key" | "value"
-> & {
-  key: "fps";
-  value: number;
-};
-
 export function getTypes() {
   return [
     {
@@ -1839,6 +1472,118 @@ export function getTypes() {
 
 export type RuntimeType = ReturnType<typeof getTypes>[number];
 export type RuntimeTypeName = RuntimeType["name"];
+
+export function getStatuses() {
+  return [
+    {
+      name: "Completed",
+      color: "#1cbc90",
+      isActive: true,
+      sort: 0,
+    },
+    {
+      name: "Omitted",
+      color: "#E74C3C",
+      isActive: true,
+      sort: 1,
+    },
+    {
+      name: "On Hold",
+      color: "#E74C3C",
+      isActive: true,
+      sort: 2,
+    },
+    {
+      name: "Revise",
+      color: "#FF6600",
+      isActive: true,
+      sort: 3,
+    },
+    {
+      name: "Client approved",
+      color: "#1CBC90",
+      isActive: true,
+      sort: 4,
+    },
+    {
+      name: "Approved",
+      color: "#1cbc90",
+      isActive: true,
+      sort: 5,
+    },
+    {
+      name: "Pending Review",
+      color: "#F1C40F",
+      isActive: true,
+      sort: 6,
+    },
+    {
+      name: "In progress",
+      color: "#3498DB",
+      isActive: true,
+      sort: 7,
+    },
+    {
+      name: "WIP",
+      color: "#CC99FF",
+      isActive: true,
+      sort: 8,
+    },
+    {
+      name: "Ready to start",
+      color: "#00FFFF",
+      isActive: true,
+      sort: 9,
+    },
+    {
+      name: "Not started",
+      color: "#CACACA",
+      isActive: true,
+      sort: 10,
+    },
+  ] as const;
+}
+
+export type RuntimeStatus = ReturnType<typeof getStatuses>[number];
+export type RuntimeStatusName = RuntimeStatus["name"];
+
+export function getPriorities() {
+  return [
+    {
+      name: "Urgent",
+      color: "#E74C3C",
+      value: 0,
+      sort: 0,
+    },
+    {
+      name: "High",
+      color: "#E67E22",
+      value: 0,
+      sort: 1,
+    },
+    {
+      name: "Medium",
+      color: "#F1C40F",
+      value: 0,
+      sort: 2,
+    },
+    {
+      name: "Low",
+      color: "#1CBC90",
+      value: 0,
+      sort: 3,
+    },
+    {
+      name: "None",
+      color: "#CACACA",
+      value: 0,
+      sort: 4,
+    },
+  ] as const;
+}
+
+export type RuntimePriority = ReturnType<typeof getPriorities>[number];
+export type RuntimePriorityName = RuntimePriority["name"];
 
 export function getObjectTypes() {
   return [
@@ -1997,116 +1742,315 @@ export function getProjectSchemas() {
 export type RuntimeProjectSchema = ReturnType<typeof getProjectSchemas>[number];
 export type RuntimeProjectSchemaName = RuntimeProjectSchema["name"];
 
-export function getPriorities() {
+export interface EntityTypeMap {
+  Dashboard: Dashboard;
+  Timer: Timer;
+  StatusChange: StatusChange;
+  TypedContextStatusRuleGroup: TypedContextStatusRuleGroup;
+  CalendarEventResource: CalendarEventResource;
+  FileComponent: FileComponent;
+  State: State;
+  AssetType: AssetType;
+  Group: Group;
+  TypedContextLink: TypedContextLink;
+  CalendarEvent: CalendarEvent;
+  CustomAttributeLink: CustomAttributeLink;
+  Membership: Membership;
+  DashboardWidget: DashboardWidget;
+  AssetVersionStatusRuleGroup: AssetVersionStatusRuleGroup;
+  ReviewSessionObject: ReviewSessionObject;
+  ProjectSchema: ProjectSchema;
+  Appointment: Appointment;
+  TaskTypeSchema: TaskTypeSchema;
+  ReviewSessionFolder: ReviewSessionFolder;
+  CustomAttributeLinkFrom: CustomAttributeLinkFrom;
+  Location: Location;
+  CustomAttributeGroup: CustomAttributeGroup;
+  CustomAttributeValue: CustomAttributeValue;
+  UserSecurityRole: UserSecurityRole;
+  DashboardResource: DashboardResource;
+  Component: Component;
+  NoteAnnotationComponent: NoteAnnotationComponent;
+  SequenceComponent: SequenceComponent;
+  Collaborator: Collaborator;
+  CustomAttributeConfiguration: CustomAttributeConfiguration;
+  Status: Status;
+  Scope: Scope;
+  StatusRuleGroup: StatusRuleGroup;
+  TypedContext: TypedContext;
+  Manager: Manager;
+  CustomConfigurationBase: CustomConfigurationBase;
+  AssetVersionLink: AssetVersionLink;
+  ReviewSessionObjectAnnotation: ReviewSessionObjectAnnotation;
+  TypedContextList: TypedContextList;
+  NoteLabelLink: NoteLabelLink;
+  TypedContextStatusChange: TypedContextStatusChange;
+  CustomAttributeLinkConfiguration: CustomAttributeLinkConfiguration;
+  ContainerComponent: ContainerComponent;
+  AssetVersion: AssetVersion;
+  SecurityRole: SecurityRole;
+  UserApplicationState: UserApplicationState;
+  ReviewSessionInvitee: ReviewSessionInvitee;
+  Note: Note;
+  Event: Event;
+  ListObject: ListObject;
+  AssetVersionList: AssetVersionList;
+  UserSession: UserSession;
+  EntitySetting: EntitySetting;
+  Disk: Disk;
+  Job: Job;
+  TaskTemplateItem: TaskTemplateItem;
+  ProjectSchemaOverride: ProjectSchemaOverride;
+  User: User;
+  Feed: Feed;
+  BaseUser: BaseUser;
+  ReviewSession: ReviewSession;
+  UserView: UserView;
+  Metadata: Metadata;
+  NoteCategory: NoteCategory;
+  Type: Type;
+  UserType: UserType;
+  JobComponent: JobComponent;
+  ListCategory: ListCategory;
+  WorkflowSchema: WorkflowSchema;
+  ReviewSessionObjectStatus: ReviewSessionObjectStatus;
+  Context: Context;
+  Schema: Schema;
+  WorkflowSchemaStatus: WorkflowSchemaStatus;
+  SchemaType: SchemaType;
+  Asset: Asset;
+  SettingComponent: SettingComponent;
+  StatusRule: StatusRule;
+  ComponentLocation: ComponentLocation;
+  ReviewSessionObjectAnnotationComponent: ReviewSessionObjectAnnotationComponent;
+  CustomAttributeType: CustomAttributeType;
+  Timelog: Timelog;
+  SchemaStatus: SchemaStatus;
+  UserSecurityRoleProject: UserSecurityRoleProject;
+  ObjectType: ObjectType;
+  Project: Project;
+  TaskTemplate: TaskTemplate;
+  AssetVersionStatusChange: AssetVersionStatusChange;
+  Setting: Setting;
+  ApiKey: ApiKey;
+  NoteLabel: NoteLabel;
+  ManagerType: ManagerType;
+  Recipient: Recipient;
+  NoteComponent: NoteComponent;
+  ProjectSchemaObjectType: ProjectSchemaObjectType;
+  List: List;
+  SplitTaskPart: SplitTaskPart;
+  Resource: Resource;
+  TaskTypeSchemaType: TaskTypeSchemaType;
+  Priority: Priority;
+  Milestone: Milestone;
+  Task: Task;
+  Episode: Episode;
+  Scene: Scene;
+  Folder: Folder;
+  Image: Image;
+  AssetBuild: AssetBuild;
+  Shot: Shot;
+  Sequence: Sequence;
+  Information: Information;
+  ContextCustomAttributeValue: ContextCustomAttributeValue;
+  AssetVersionCustomAttributeValue: AssetVersionCustomAttributeValue;
+  ListCustomAttributeValue: ListCustomAttributeValue;
+  ListObjectCustomAttributeValue: ListObjectCustomAttributeValue;
+  UserCustomAttributeValue: UserCustomAttributeValue;
+  AssetCustomAttributeValue: AssetCustomAttributeValue;
+  ContextCustomAttributeLink: ContextCustomAttributeLink;
+  ContextCustomAttributeLinkFrom: ContextCustomAttributeLinkFrom;
+  AssetVersionCustomAttributeLink: AssetVersionCustomAttributeLink;
+  AssetVersionCustomAttributeLinkFrom: AssetVersionCustomAttributeLinkFrom;
+  ListCustomAttributeLink: ListCustomAttributeLink;
+  ListCustomAttributeLinkFrom: ListCustomAttributeLinkFrom;
+  UserCustomAttributeLink: UserCustomAttributeLink;
+  UserCustomAttributeLinkFrom: UserCustomAttributeLinkFrom;
+  GroupCustomAttributeLink: GroupCustomAttributeLink;
+  GroupCustomAttributeLinkFrom: GroupCustomAttributeLinkFrom;
+  AssetCustomAttributeLink: AssetCustomAttributeLink;
+  AssetCustomAttributeLinkFrom: AssetCustomAttributeLinkFrom;
+  ComponentCustomAttributeLink: ComponentCustomAttributeLink;
+  ComponentCustomAttributeLinkFrom: ComponentCustomAttributeLinkFrom;
+}
+
+export type EntityType = keyof EntityTypeMap;
+export type EntityData<TEntityType extends EntityType = EntityType> =
+  EntityTypeMap[TEntityType];
+
+export interface TypedContextSubtypeMap {
+  TypedContext: TypedContext;
+  Milestone: Milestone;
+  Task: Task;
+  Episode: Episode;
+  Scene: Scene;
+  Folder: Folder;
+  Image: Image;
+  AssetBuild: AssetBuild;
+  Shot: Shot;
+  Sequence: Sequence;
+  Information: Information;
+}
+export type TypedContextSubtype = keyof TypedContextSubtypeMap;
+
+export function getAttributeConfigurations() {
   return [
     {
-      name: "Urgent",
-      color: "#E74C3C",
-      value: 0,
-      sort: 0,
+      name: "somedynamicenumerator",
+      type: "dynamic enumerator",
+      label: "Some Dynamic Enumerator",
+      entityType: "show",
+      default: [],
+      objectType: undefined,
+      isHierarchical: true,
     },
     {
-      name: "High",
-      color: "#E67E22",
-      value: 0,
-      sort: 1,
+      name: "somedate",
+      type: "date",
+      label: "Some Date",
+      entityType: "show",
+      default: "2024-06-22T00:00:00.000Z",
+      objectType: undefined,
+      isHierarchical: true,
     },
     {
-      name: "Medium",
-      color: "#F1C40F",
-      value: 0,
-      sort: 2,
+      name: "sometext",
+      type: "text",
+      label: "Some Text",
+      entityType: "show",
+      default: "",
+      objectType: undefined,
+      isHierarchical: true,
     },
     {
-      name: "Low",
-      color: "#1CBC90",
-      value: 0,
-      sort: 3,
+      name: "someurl",
+      type: "url",
+      label: "Some URL",
+      entityType: "asset",
+      default: null,
+      objectType: undefined,
+      isHierarchical: false,
     },
     {
-      name: "None",
-      color: "#CACACA",
-      value: 0,
-      sort: 4,
+      name: "someenumerator",
+      type: "enumerator",
+      label: "Some Enumerator",
+      entityType: "show",
+      default: ["value1"],
+      objectType: undefined,
+      isHierarchical: true,
+    },
+    {
+      name: "someboolean",
+      type: "boolean",
+      label: "Some Boolean",
+      entityType: "show",
+      default: false,
+      objectType: undefined,
+      isHierarchical: true,
+    },
+    {
+      name: "fend",
+      type: "number",
+      label: "Frame end",
+      entityType: "task",
+      default: 1,
+      objectType: "Shot",
+      isHierarchical: false,
+    },
+    {
+      name: "handles",
+      type: "number",
+      label: "Frame handles",
+      entityType: "task",
+      default: 0,
+      objectType: "Shot",
+      isHierarchical: false,
+    },
+    {
+      name: "duration",
+      type: "expression",
+      label: "Frame duration",
+      entityType: "task",
+      default: "{self.fend - self.fstart + 1}",
+      objectType: "Shot",
+      isHierarchical: false,
+    },
+    {
+      name: "fstart",
+      type: "number",
+      label: "Frame start",
+      entityType: "task",
+      default: 1,
+      objectType: "Shot",
+      isHierarchical: false,
+    },
+    {
+      name: "fps",
+      type: "number",
+      label: "fps",
+      entityType: "show",
+      default: 24,
+      objectType: undefined,
+      isHierarchical: false,
+    },
+    {
+      name: "fps",
+      type: "number",
+      label: "fps",
+      entityType: "task",
+      default: 25,
+      objectType: "Sequence",
+      isHierarchical: false,
+    },
+    {
+      name: "fps",
+      type: "number",
+      label: "fps",
+      entityType: "task",
+      default: 25,
+      objectType: "Shot",
+      isHierarchical: false,
     },
   ] as const;
 }
 
-export type RuntimePriority = ReturnType<typeof getPriorities>[number];
-export type RuntimePriorityName = RuntimePriority["name"];
+export type RuntimeCustomAttributeConfiguration = ReturnType<
+  typeof getAttributeConfigurations
+>[number];
+export type RuntimeCustomAttributeConfigurationName =
+  RuntimeCustomAttributeConfiguration["name"];
+export type RuntimeCustomAttributeConfigurationLabel =
+  RuntimeCustomAttributeConfiguration["label"];
 
-export function getStatuses() {
-  return [
-    {
-      name: "Completed",
-      color: "#1cbc90",
-      isActive: true,
-      sort: 0,
-    },
-    {
-      name: "Omitted",
-      color: "#E74C3C",
-      isActive: true,
-      sort: 1,
-    },
-    {
-      name: "On Hold",
-      color: "#E74C3C",
-      isActive: true,
-      sort: 2,
-    },
-    {
-      name: "Revise",
-      color: "#FF6600",
-      isActive: true,
-      sort: 3,
-    },
-    {
-      name: "Client approved",
-      color: "#1CBC90",
-      isActive: true,
-      sort: 4,
-    },
-    {
-      name: "Approved",
-      color: "#1cbc90",
-      isActive: true,
-      sort: 5,
-    },
-    {
-      name: "Pending Review",
-      color: "#F1C40F",
-      isActive: true,
-      sort: 6,
-    },
-    {
-      name: "In progress",
-      color: "#3498DB",
-      isActive: true,
-      sort: 7,
-    },
-    {
-      name: "WIP",
-      color: "#CC99FF",
-      isActive: true,
-      sort: 8,
-    },
-    {
-      name: "Ready to start",
-      color: "#00FFFF",
-      isActive: true,
-      sort: 9,
-    },
-    {
-      name: "Not started",
-      color: "#CACACA",
-      isActive: true,
-      sort: 10,
-    },
-  ] as const;
+type BaseCustomAttributeValue = Omit<
+  ContextCustomAttributeValue,
+  "key" | "value"
+>;
+
+export interface TypedCustomAttributeValueMap {
+  somedynamicenumerator: string[];
+  somedate: string;
+  sometext: string;
+  someurl: string;
+  someenumerator: string[];
+  someboolean: boolean;
+  fend: number;
+  handles: number;
+  duration: string;
+  fstart: number;
+  fps: number;
 }
 
-export type RuntimeStatus = ReturnType<typeof getStatuses>[number];
-export type RuntimeStatusName = RuntimeStatus["name"];
-
-// Errors:
+export type TypedCustomAttributeValue<
+  K extends keyof TypedCustomAttributeValueMap
+> = BaseCustomAttributeValue & {
+  key: K;
+  value: TypedCustomAttributeValueMap[K];
+};
+ export interface BasicLink {
+    id: string;
+    type: string;
+    name: string;
+  };

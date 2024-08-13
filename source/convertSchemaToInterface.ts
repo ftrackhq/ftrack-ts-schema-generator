@@ -5,31 +5,35 @@ import type {
   SchemaProperties,
   TypedSchemaProperty,
 } from "@ftrack/api";
-import { getCustomAttributeTypeNameFromAttribute, type CustomAttributeConfiguration } from "./emitCustomAttributes";
+import { type CustomAttributeConfiguration } from "./emitCustomAttributes";
+import { TypeScriptEmitter } from "./typescriptEmitter";
 
-let errors: string[] = [];
 // Add schemas from the schemas folder, to be used for finding extended schemas
-export async function convertSchemaToInterface(
+export async function emitSchemaInterface(
+  typescriptEmitter: TypeScriptEmitter,
   schema: Schema,
   allSchemas: QuerySchemasResponse,
-  customAttributes: CustomAttributeConfiguration[],
+  customAttributes: CustomAttributeConfiguration[]
 ) {
-  let interfaceName = getId(schema);
+  const interfaceName = getTypeScriptInterfaceNameForInterface(typescriptEmitter, schema);
 
   // If the schema is a subtype of TypedContext, return that
   if (typeof schema?.alias_for === "object" && schema.alias_for.id === "Task") {
-    return {
-      TSInterface: `export type ${interfaceName} = Omit<TypedContext<"${interfaceName}">, 'custom_attributes'> & {
+    typescriptEmitter.appendCode(`
+      export type ${interfaceName} = Omit<TypedContext<"${interfaceName}">, 'custom_attributes'> & {
         custom_attributes: Array<
           ${customAttributes
-            .filter(x => x.is_hierarchical || x.object_type?.name === interfaceName)
-            .map(x => getCustomAttributeTypeNameFromAttribute(x))
-            .join('|')}
+            .filter(
+              (x) => x.is_hierarchical || x.object_type?.name === interfaceName
+            )
+            .map((x) => `TypedCustomAttributeValue<"${x.key}">`)
+            .join("|")}
         >
-      };`,
-      conversionErrors: [],
-    };
+      };
+    `)
+    return;
   }
+  
   // Check if the schema extends another schema and get that base schema
   const baseSchema = getBaseSchema(schema, allSchemas);
 
@@ -38,59 +42,60 @@ export async function convertSchemaToInterface(
     return schema.id === "TypedContext";
   });
 
+  typescriptEmitter.appendCode(`
+    export interface ${interfaceName}${getTypeExtensionSuffix(baseSchema, schema)} {
+  `);
+
   // For each property, add a type to the interface
-  let interfaceContent = convertPropertiesToTypes(
+  emitTypeProperties(
+    typescriptEmitter,
     schema,
     baseSchema?.properties,
     typedContextSchema?.properties
   );
 
   // Entity type and permissions are missing from the source schema, so add them to the interface
-  interfaceContent = addEntityTypeAndPermissions(
+  emitEntityTypeAndPermissionProperties(
+    typescriptEmitter,
     interfaceName,
-    interfaceContent
   );
 
-  //Gets the suffix for the interface, if it extends another schema
-  const interfaceSuffix = getTypeExtensionSuffix(baseSchema, schema);
+  typescriptEmitter.appendCode(`}`);
+}
+
+function getTypeScriptInterfaceNameForInterface(typescriptEmitter: TypeScriptEmitter, schema: Schema) {
+  let interfaceName = getId(typescriptEmitter, schema);
 
   // Adds a generic to the interface to TypedContext, which is used for subtypes of TypedContext
   if (interfaceName === "TypedContext") {
     interfaceName =
       "TypedContext<K extends TypedContextSubtype = TypedContextSubtype>";
   }
-
-  const conversionErrors = errors;
-  errors = [];
-  const TSInterface = `
-    export interface ${interfaceName}${interfaceSuffix} {${interfaceContent.join(
-    "; "
-  )}}`;
-  return { TSInterface, conversionErrors };
+  return interfaceName;
 }
 
-function getId(schema: Schema) {
+function getId(typescriptEmitter: TypeScriptEmitter, schema: Schema) {
   const id = schema.id;
   if (!id) {
-    errors.push(`No id defined for schema ${schema.id}`);
+    typescriptEmitter.appendError(`No ID defined for schema ${schema.id}`);
   }
+
   return id;
 }
-function addEntityTypeAndPermissions(
-  interfaceName: string,
-  interfaceContent: string[]
+function emitEntityTypeAndPermissionProperties(
+  typescriptEmitter: TypeScriptEmitter,
+  interfaceName: string
 ) {
   if (interfaceName === "TypedContext") {
-    interfaceContent.push(`__entity_type__?: K`);
+    typescriptEmitter.appendCode(`__entity_type__?: K;`);
   } else {
-    interfaceContent.push(`__entity_type__?: "${interfaceName}"`);
+    typescriptEmitter.appendCode(`__entity_type__?: "${interfaceName}";`);
   }
-  interfaceContent.push(`__permissions?: Record<string, any>`);
-  return interfaceContent;
+  typescriptEmitter.appendCode(`__permissions?: Record<string, any>;`);
 }
 
 function getTypeExtensionSuffix(baseSchema?: Schema, schema?: Schema) {
-  const omit = `"__entity_type__" | "__permissions"`
+  const omit = `"__entity_type__" | "__permissions"`;
 
   const baseSchemaSuffix = baseSchema?.id
     ? ` extends Omit<${baseSchema.id}, ${omit}>`
@@ -116,7 +121,8 @@ function getBaseSchema(schema: Schema, allSchemas: QuerySchemasResponse) {
   });
   return baseSchema;
 }
-function convertPropertiesToTypes(
+function emitTypeProperties(
+  typescriptEmitter: TypeScriptEmitter,
   schema: Schema,
   baseSchemaProperties?: SchemaProperties,
   typedContextProperties?: SchemaProperties
@@ -139,7 +145,7 @@ function convertPropertiesToTypes(
   // Sort the object by key
   filteredProperties.sort((a, b) => (a[0] > b[0] ? 1 : -1));
 
-  const convertedProperties = filteredProperties.map(([key, value]) => {
+  filteredProperties.forEach(([key, value]) => {
     if (typeof value !== "object" || value === null) {
       throw new Error(
         `Property ${key} in schema ${schema.id} is not an object`
@@ -148,7 +154,7 @@ function convertPropertiesToTypes(
 
     // If neither type or $ref is defined, we can't generate a type. Log an error
     if (!("type" in value) && !("$ref" in value)) {
-      errors.push(
+      typescriptEmitter.appendError(
         `No type or $ref defined for property ${key} in schema ${schema.id}`
       );
     }
@@ -171,10 +177,8 @@ function convertPropertiesToTypes(
     }
 
     // All properties are optional, adds a question mark
-    return `${prefix}${key}${!isRequired ? "?" : ""}: ${type}`;
+    typescriptEmitter.appendCode(`${prefix}${key}${!isRequired ? "?" : ""}: ${type};`);
   });
-
-  return convertedProperties;
 }
 
 function convertTypeToTsType(key: string, value: TypedSchemaProperty): string {

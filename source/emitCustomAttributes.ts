@@ -1,9 +1,15 @@
-export function emitCustomAttributes(customAttributes: CustomAttributeConfiguration[]) {
-    return `
+import { chain } from "lodash";
+import { TypeScriptEmitter } from "./typescriptEmitter";
+
+export function emitCustomAttributes(
+  typescriptEmitter: TypeScriptEmitter,
+  customAttributes: CustomAttributeConfiguration[]
+) {
+  typescriptEmitter.appendCode(`
     export function getAttributeConfigurations() {
         return [
             ${customAttributes.map(
-        (x) => `{
+              (x) => `{
                 name: "${x.key}",
                 type: ${JSON.stringify(x.type?.name)},
                 label: "${x.label}",
@@ -12,7 +18,7 @@ export function emitCustomAttributes(customAttributes: CustomAttributeConfigurat
                 objectType: ${JSON.stringify(x.object_type?.name)},
                 isHierarchical: ${x.is_hierarchical}
             }`
-    )}
+            )}
         ] as const;
     }
       
@@ -20,69 +26,72 @@ export function emitCustomAttributes(customAttributes: CustomAttributeConfigurat
     export type RuntimeCustomAttributeConfigurationName = RuntimeCustomAttributeConfiguration["name"];
     export type RuntimeCustomAttributeConfigurationLabel = RuntimeCustomAttributeConfiguration["label"];
 
-    type BaseCustomAttributeValue {
-        configuration?: CustomAttributeConfiguration;
-        readonly configuration_id: string;
-        readonly entity_id: string;
-        __entity_type__?: "ContextCustomAttributeValue";
-        __permissions?: Record<string, any>;
+    type BaseCustomAttributeValue = Omit<ContextCustomAttributeValue, 'key' | 'value'>;
+
+    export interface TypedCustomAttributeValueMap {
+        ${chain(customAttributes)
+          .groupBy((x) => x.key)
+          .map(
+            (x) =>
+              `${x[0].key}: ${chain(x).map((y) =>
+                getTypeScriptTypeFromCustomAttributeType(y.type.name)
+              ).uniq().join('|')}`
+          )
+          .join("\n")
+          .value()}
     }
 
-    ${customAttributes
-    .map(x => `type ${getCustomAttributeTypeNameFromAttribute(x)} = BaseCustomAttributeValue & {
-        key: "${x.key}",
-        value: ${getTypeScriptTypeFromCustomAttributeType(x.type.name)}
-    }`)
-    .join('\n')}
-`;
+    export type TypedCustomAttributeValue<K extends keyof TypedCustomAttributeValueMap> = BaseCustomAttributeValue & {
+        key: K;
+        value: TypedCustomAttributeValueMap[K];
+    };
+  `);
 }
 
-export function getCustomAttributeTypeNameFromAttribute(x: CustomAttributeConfiguration) {
-  return `CustomAttributeValue_${x.key}`;
-}
+export function getTypeScriptTypeFromCustomAttributeType(
+  customAttributeType: string
+) {
+  switch (customAttributeType) {
+    case "dynamic enumerator":
+      return "string[]";
 
-export function getTypeScriptTypeFromCustomAttributeType(customAttributeType: string) {
-    switch (customAttributeType) {
-        case 'dynamic enumerator':
-            return 'string[]';
+    case "date":
+      return "string";
 
-        case 'date':
-            return 'string';
+    case "text":
+      return "string";
 
-        case 'text':
-            return 'string';
+    case "url":
+      return "string";
 
-        case 'url':
-            return 'string';
+    case "enumerator":
+      return "string[]";
 
-        case 'enumerator':
-            return 'string[]';
+    case "expression":
+      return "string";
+  }
 
-        case 'expression':
-            return 'string';
-    }
-
-    return customAttributeType;
+  return customAttributeType;
 }
 
 export type CustomAttributeConfiguration = {
-    __entity_type__: "CustomAttributeConfiguration";
+  __entity_type__: "CustomAttributeConfiguration";
+  id: string;
+  object_type: {
+    __entity_type__: "ObjectType";
     id: string;
-    object_type: {
-        __entity_type__: "ObjectType";
-        id: string;
-        name: string;
-    };
-    default: boolean | string[] | string | number;
-    key: string;
-    entity_type: string;
-    label: string;
-    project_id: string | null;
-    is_hierarchical: boolean;
-    values: [];
-    type: {
-        __entity_type__: "CustomAttributeType";
-        id: string;
-        name: string;
-    }
+    name: string;
+  };
+  default: boolean | string[] | string | number;
+  key: string;
+  entity_type: string;
+  label: string;
+  project_id: string | null;
+  is_hierarchical: boolean;
+  values: [];
+  type: {
+    __entity_type__: "CustomAttributeType";
+    id: string;
+    name: string;
+  };
 };
