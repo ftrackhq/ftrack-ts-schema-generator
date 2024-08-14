@@ -1138,25 +1138,25 @@ export interface Priority {
   __entity_type__?: "Priority";
   __permissions?: Record<string, any>;
 }
-export type Milestone = TypedContextForSubtype<"Milestone">;
+type Milestone = TypedContextForSubtype<"Milestone">;
 
-export type Task = TypedContextForSubtype<"Task">;
+type Task = TypedContextForSubtype<"Task">;
 
-export type Episode = TypedContextForSubtype<"Episode">;
+type Episode = TypedContextForSubtype<"Episode">;
 
-export type Scene = TypedContextForSubtype<"Scene">;
+type Scene = TypedContextForSubtype<"Scene">;
 
-export type Folder = TypedContextForSubtype<"Folder">;
+type Folder = TypedContextForSubtype<"Folder">;
 
-export type Image = TypedContextForSubtype<"Image">;
+type Image = TypedContextForSubtype<"Image">;
 
-export type AssetBuild = TypedContextForSubtype<"AssetBuild">;
+type AssetBuild = TypedContextForSubtype<"AssetBuild">;
 
-export type Shot = TypedContextForSubtype<"Shot">;
+type Shot = TypedContextForSubtype<"Shot">;
 
-export type Sequence = TypedContextForSubtype<"Sequence">;
+type Sequence = TypedContextForSubtype<"Sequence">;
 
-export type Information = TypedContextForSubtype<"Information">;
+type Information = TypedContextForSubtype<"Information">;
 
 export interface ContextCustomAttributeValue {
   configuration?: CustomAttributeConfiguration;
