@@ -191,42 +191,6 @@ export async function emitToString(
   `);
 
   emitter.appendCode(`
-    export function getStatuses() {
-      return [
-        ${statuses.map(
-          (x) => `{
-          name: "${x.name}",
-          color: "${x.color}",
-          isActive: ${x.is_active},
-          sort: ${x.sort}
-        }`
-        )}
-      ] as const;
-    }
-
-    export type RuntimeStatus = ReturnType<typeof getStatuses>[number];
-    export type RuntimeStatusName = RuntimeStatus["name"];
-  `);
-
-  emitter.appendCode(`
-    export function getPriorities() {
-      return [
-        ${priorities.map(
-          (x) => `{
-          name: "${x.name}",
-          color: "${x.color}",
-          value: ${x.value},
-          sort: ${x.sort}
-        }`
-        )}
-      ] as const;
-    }
-
-    export type RuntimePriority = ReturnType<typeof getPriorities>[number];
-    export type RuntimePriorityName = RuntimePriority["name"];
-  `);
-
-  emitter.appendCode(`
     export function getObjectTypes() {
       return [
         ${objectTypes.map(
@@ -247,6 +211,42 @@ export async function emitToString(
     export type RuntimeObjectType = ReturnType<typeof getObjectTypes>[number];
     export type RuntimeObjectTypeName = RuntimeObjectType["name"];
 `);
+
+emitter.appendCode(`
+  export function getPriorities() {
+    return [
+      ${priorities.map(
+        (x) => `{
+        name: "${x.name}",
+        color: "${x.color}",
+        value: ${x.value},
+        sort: ${x.sort}
+      }`
+      )}
+    ] as const;
+  }
+
+  export type RuntimePriority = ReturnType<typeof getPriorities>[number];
+  export type RuntimePriorityName = RuntimePriority["name"];
+`);
+
+  emitter.appendCode(`
+    export function getStatuses() {
+      return [
+        ${statuses.map(
+          (x) => `{
+          name: "${x.name}",
+          color: "${x.color}",
+          isActive: ${x.is_active},
+          sort: ${x.sort}
+        }`
+        )}
+      ] as const;
+    }
+
+    export type RuntimeStatus = ReturnType<typeof getStatuses>[number];
+    export type RuntimeStatusName = RuntimeStatus["name"];
+  `);
 
   emitter.appendCode(`
     export function getProjectSchemas() {
