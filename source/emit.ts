@@ -212,24 +212,6 @@ export async function emitToString(
     export type RuntimeObjectTypeName = RuntimeObjectType["name"];
 `);
 
-emitter.appendCode(`
-  export function getPriorities() {
-    return [
-      ${priorities.map(
-        (x) => `{
-        name: "${x.name}",
-        color: "${x.color}",
-        value: ${x.value},
-        sort: ${x.sort}
-      }`
-      )}
-    ] as const;
-  }
-
-  export type RuntimePriority = ReturnType<typeof getPriorities>[number];
-  export type RuntimePriorityName = RuntimePriority["name"];
-`);
-
   emitter.appendCode(`
     export function getStatuses() {
       return [
@@ -267,6 +249,24 @@ emitter.appendCode(`
 
     export type RuntimeProjectSchema = ReturnType<typeof getProjectSchemas>[number];
     export type RuntimeProjectSchemaName = RuntimeProjectSchema["name"];
+  `);
+
+  emitter.appendCode(`
+    export function getPriorities() {
+      return [
+        ${priorities.map(
+          (x) => `{
+          name: "${x.name}",
+          color: "${x.color}",
+          value: ${x.value},
+          sort: ${x.sort}
+        }`
+        )}
+      ] as const;
+    }
+  
+    export type RuntimePriority = ReturnType<typeof getPriorities>[number];
+    export type RuntimePriorityName = RuntimePriority["name"];
   `);
 
   return {
