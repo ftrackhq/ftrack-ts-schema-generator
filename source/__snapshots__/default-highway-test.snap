@@ -352,9 +352,8 @@ export interface StatusRuleGroup {
   __entity_type__?: "StatusRuleGroup";
   __permissions?: Record<string, any>;
 }
-export interface TypedContext<
-  K extends TypedContextSubtype = TypedContextSubtype
-> extends Omit<
+export interface TypedContextForSubtype<K extends TypedContextSubtype>
+  extends Omit<
     Context,
     "__entity_type__" | "__permissions" | "custom_attributes"
   > {
@@ -1139,25 +1138,25 @@ export interface Priority {
   __entity_type__?: "Priority";
   __permissions?: Record<string, any>;
 }
-type Milestone = TypedContext<"Milestone">;
+type Milestone = TypedContextForSubtype<"Milestone">;
 
-type Task = TypedContext<"Task">;
+type Task = TypedContextForSubtype<"Task">;
 
-type Episode = TypedContext<"Episode">;
+type Episode = TypedContextForSubtype<"Episode">;
 
-type Scene = TypedContext<"Scene">;
+type Scene = TypedContextForSubtype<"Scene">;
 
-type Folder = TypedContext<"Folder">;
+type Folder = TypedContextForSubtype<"Folder">;
 
-type Image = TypedContext<"Image">;
+type Image = TypedContextForSubtype<"Image">;
 
-type AssetBuild = TypedContext<"AssetBuild">;
+type AssetBuild = TypedContextForSubtype<"AssetBuild">;
 
-type Shot = TypedContext<"Shot">;
+type Shot = TypedContextForSubtype<"Shot">;
 
-type Sequence = TypedContext<"Sequence">;
+type Sequence = TypedContextForSubtype<"Sequence">;
 
-type Information = TypedContext<"Information">;
+type Information = TypedContextForSubtype<"Information">;
 
 export interface ContextCustomAttributeValue {
   configuration?: CustomAttributeConfiguration;
@@ -1441,6 +1440,7 @@ export type EntityData<TEntityType extends EntityType = EntityType> =
   EntityTypeMap[TEntityType];
 
 export interface TypedContextSubtypeMap {
+  TypedContext: TypedContext;
   Milestone: Milestone;
   Task: Task;
   Episode: Episode;
@@ -1453,6 +1453,14 @@ export interface TypedContextSubtypeMap {
   Information: Information;
 }
 export type TypedContextSubtype = keyof TypedContextSubtypeMap;
+
+type TypedContextSubtypeMapWithoutTypedContext = Omit<
+  TypedContextSubtypeMap,
+  "TypedContext"
+>;
+
+export type TypedContext =
+  TypedContextSubtypeMapWithoutTypedContext[keyof TypedContextSubtypeMapWithoutTypedContext];
 
 export function getAttributeConfigurations() {
   return [
