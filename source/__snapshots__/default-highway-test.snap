@@ -1566,275 +1566,6 @@ export function getTypes() {
 export type RuntimeType = ReturnType<typeof getTypes>[number];
 export type RuntimeTypeName = RuntimeType["name"];
 
-export function getStatuses() {
-  return [
-    {
-      name: "Completed",
-      color: "#1cbc90",
-      isActive: true,
-      sort: 0,
-    },
-    {
-      name: "Omitted",
-      color: "#E74C3C",
-      isActive: true,
-      sort: 1,
-    },
-    {
-      name: "On Hold",
-      color: "#E74C3C",
-      isActive: true,
-      sort: 2,
-    },
-    {
-      name: "Revise",
-      color: "#FF6600",
-      isActive: true,
-      sort: 3,
-    },
-    {
-      name: "Client approved",
-      color: "#1CBC90",
-      isActive: true,
-      sort: 4,
-    },
-    {
-      name: "Approved",
-      color: "#1cbc90",
-      isActive: true,
-      sort: 5,
-    },
-    {
-      name: "Pending Review",
-      color: "#F1C40F",
-      isActive: true,
-      sort: 6,
-    },
-    {
-      name: "In progress",
-      color: "#3498DB",
-      isActive: true,
-      sort: 7,
-    },
-    {
-      name: "WIP",
-      color: "#CC99FF",
-      isActive: true,
-      sort: 8,
-    },
-    {
-      name: "Ready to start",
-      color: "#00FFFF",
-      isActive: true,
-      sort: 9,
-    },
-    {
-      name: "Not started",
-      color: "#CACACA",
-      isActive: true,
-      sort: 10,
-    },
-  ] as const;
-}
-
-export type RuntimeStatus = ReturnType<typeof getStatuses>[number];
-export type RuntimeStatusName = RuntimeStatus["name"];
-
-export function getPriorities() {
-  return [
-    {
-      name: "Urgent",
-      color: "#E74C3C",
-      value: 0,
-      sort: 0,
-    },
-    {
-      name: "High",
-      color: "#E67E22",
-      value: 0,
-      sort: 1,
-    },
-    {
-      name: "Medium",
-      color: "#F1C40F",
-      value: 0,
-      sort: 2,
-    },
-    {
-      name: "Low",
-      color: "#1CBC90",
-      value: 0,
-      sort: 3,
-    },
-    {
-      name: "None",
-      color: "#CACACA",
-      value: 0,
-      sort: 4,
-    },
-  ] as const;
-}
-
-export type RuntimePriority = ReturnType<typeof getPriorities>[number];
-export type RuntimePriorityName = RuntimePriority["name"];
-
-export function getObjectTypes() {
-  return [
-    {
-      name: "Folder",
-      isTimeReportable: false,
-      isTaskable: true,
-      isTypeable: false,
-      isStatusable: false,
-      isSchedulable: false,
-      isPrioritizable: true,
-      isLeaf: false,
-    },
-    {
-      name: "Asset Build",
-      isTimeReportable: false,
-      isTaskable: true,
-      isTypeable: true,
-      isStatusable: true,
-      isSchedulable: false,
-      isPrioritizable: true,
-      isLeaf: false,
-    },
-    {
-      name: "Episode",
-      isTimeReportable: false,
-      isTaskable: true,
-      isTypeable: false,
-      isStatusable: true,
-      isSchedulable: false,
-      isPrioritizable: true,
-      isLeaf: false,
-    },
-    {
-      name: "Scene",
-      isTimeReportable: false,
-      isTaskable: true,
-      isTypeable: false,
-      isStatusable: true,
-      isSchedulable: false,
-      isPrioritizable: false,
-      isLeaf: false,
-    },
-    {
-      name: "Sequence",
-      isTimeReportable: false,
-      isTaskable: true,
-      isTypeable: false,
-      isStatusable: false,
-      isSchedulable: false,
-      isPrioritizable: true,
-      isLeaf: false,
-    },
-    {
-      name: "Shot",
-      isTimeReportable: false,
-      isTaskable: true,
-      isTypeable: false,
-      isStatusable: true,
-      isSchedulable: false,
-      isPrioritizable: true,
-      isLeaf: false,
-    },
-    {
-      name: "Milestone",
-      isTimeReportable: false,
-      isTaskable: false,
-      isTypeable: true,
-      isStatusable: true,
-      isSchedulable: true,
-      isPrioritizable: true,
-      isLeaf: true,
-    },
-    {
-      name: "Task",
-      isTimeReportable: true,
-      isTaskable: false,
-      isTypeable: true,
-      isStatusable: true,
-      isSchedulable: true,
-      isPrioritizable: true,
-      isLeaf: true,
-    },
-    {
-      name: "Image",
-      isTimeReportable: false,
-      isTaskable: true,
-      isTypeable: false,
-      isStatusable: false,
-      isSchedulable: false,
-      isPrioritizable: false,
-      isLeaf: false,
-    },
-    {
-      name: "Information",
-      isTimeReportable: false,
-      isTaskable: true,
-      isTypeable: false,
-      isStatusable: false,
-      isSchedulable: false,
-      isPrioritizable: false,
-      isLeaf: false,
-    },
-  ] as const;
-}
-
-export type RuntimeObjectType = ReturnType<typeof getObjectTypes>[number];
-export type RuntimeObjectTypeName = RuntimeObjectType["name"];
-
-export function getProjectSchemas() {
-  return [
-    {
-      name: "Model production",
-      objectTypes: ["Milestone", "Task", "Folder", "Asset Build"],
-    },
-    {
-      name: "Animation",
-      objectTypes: [
-        "Milestone",
-        "Task",
-        "Episode",
-        "Folder",
-        "Asset Build",
-        "Shot",
-        "Sequence",
-      ],
-    },
-    {
-      name: "VFX",
-      objectTypes: [
-        "Milestone",
-        "Task",
-        "Episode",
-        "Folder",
-        "Asset Build",
-        "Shot",
-        "Sequence",
-      ],
-    },
-    {
-      name: "Media production",
-      objectTypes: [
-        "Milestone",
-        "Task",
-        "Scene",
-        "Folder",
-        "Image",
-        "Asset Build",
-        "Shot",
-        "Information",
-      ],
-    },
-  ] as const;
-}
-
-export type RuntimeProjectSchema = ReturnType<typeof getProjectSchemas>[number];
-export type RuntimeProjectSchemaName = RuntimeProjectSchema["name"];
-
 export function getAttributeConfigurations() {
   return [
     {
@@ -2779,3 +2510,272 @@ export type TypedContextCustomAttributesMap = {
     | TypedCustomAttributeValue<"someenumerator">
     | TypedCustomAttributeValue<"someboolean">;
 };
+
+export function getStatuses() {
+  return [
+    {
+      name: "Completed",
+      color: "#1cbc90",
+      isActive: true,
+      sort: 0,
+    },
+    {
+      name: "Omitted",
+      color: "#E74C3C",
+      isActive: true,
+      sort: 1,
+    },
+    {
+      name: "On Hold",
+      color: "#E74C3C",
+      isActive: true,
+      sort: 2,
+    },
+    {
+      name: "Revise",
+      color: "#FF6600",
+      isActive: true,
+      sort: 3,
+    },
+    {
+      name: "Client approved",
+      color: "#1CBC90",
+      isActive: true,
+      sort: 4,
+    },
+    {
+      name: "Approved",
+      color: "#1cbc90",
+      isActive: true,
+      sort: 5,
+    },
+    {
+      name: "Pending Review",
+      color: "#F1C40F",
+      isActive: true,
+      sort: 6,
+    },
+    {
+      name: "In progress",
+      color: "#3498DB",
+      isActive: true,
+      sort: 7,
+    },
+    {
+      name: "WIP",
+      color: "#CC99FF",
+      isActive: true,
+      sort: 8,
+    },
+    {
+      name: "Ready to start",
+      color: "#00FFFF",
+      isActive: true,
+      sort: 9,
+    },
+    {
+      name: "Not started",
+      color: "#CACACA",
+      isActive: true,
+      sort: 10,
+    },
+  ] as const;
+}
+
+export type RuntimeStatus = ReturnType<typeof getStatuses>[number];
+export type RuntimeStatusName = RuntimeStatus["name"];
+
+export function getPriorities() {
+  return [
+    {
+      name: "Urgent",
+      color: "#E74C3C",
+      value: 0,
+      sort: 0,
+    },
+    {
+      name: "High",
+      color: "#E67E22",
+      value: 0,
+      sort: 1,
+    },
+    {
+      name: "Medium",
+      color: "#F1C40F",
+      value: 0,
+      sort: 2,
+    },
+    {
+      name: "Low",
+      color: "#1CBC90",
+      value: 0,
+      sort: 3,
+    },
+    {
+      name: "None",
+      color: "#CACACA",
+      value: 0,
+      sort: 4,
+    },
+  ] as const;
+}
+
+export type RuntimePriority = ReturnType<typeof getPriorities>[number];
+export type RuntimePriorityName = RuntimePriority["name"];
+
+export function getObjectTypes() {
+  return [
+    {
+      name: "Folder",
+      isTimeReportable: false,
+      isTaskable: true,
+      isTypeable: false,
+      isStatusable: false,
+      isSchedulable: false,
+      isPrioritizable: true,
+      isLeaf: false,
+    },
+    {
+      name: "Asset Build",
+      isTimeReportable: false,
+      isTaskable: true,
+      isTypeable: true,
+      isStatusable: true,
+      isSchedulable: false,
+      isPrioritizable: true,
+      isLeaf: false,
+    },
+    {
+      name: "Episode",
+      isTimeReportable: false,
+      isTaskable: true,
+      isTypeable: false,
+      isStatusable: true,
+      isSchedulable: false,
+      isPrioritizable: true,
+      isLeaf: false,
+    },
+    {
+      name: "Scene",
+      isTimeReportable: false,
+      isTaskable: true,
+      isTypeable: false,
+      isStatusable: true,
+      isSchedulable: false,
+      isPrioritizable: false,
+      isLeaf: false,
+    },
+    {
+      name: "Sequence",
+      isTimeReportable: false,
+      isTaskable: true,
+      isTypeable: false,
+      isStatusable: false,
+      isSchedulable: false,
+      isPrioritizable: true,
+      isLeaf: false,
+    },
+    {
+      name: "Shot",
+      isTimeReportable: false,
+      isTaskable: true,
+      isTypeable: false,
+      isStatusable: true,
+      isSchedulable: false,
+      isPrioritizable: true,
+      isLeaf: false,
+    },
+    {
+      name: "Milestone",
+      isTimeReportable: false,
+      isTaskable: false,
+      isTypeable: true,
+      isStatusable: true,
+      isSchedulable: true,
+      isPrioritizable: true,
+      isLeaf: true,
+    },
+    {
+      name: "Task",
+      isTimeReportable: true,
+      isTaskable: false,
+      isTypeable: true,
+      isStatusable: true,
+      isSchedulable: true,
+      isPrioritizable: true,
+      isLeaf: true,
+    },
+    {
+      name: "Image",
+      isTimeReportable: false,
+      isTaskable: true,
+      isTypeable: false,
+      isStatusable: false,
+      isSchedulable: false,
+      isPrioritizable: false,
+      isLeaf: false,
+    },
+    {
+      name: "Information",
+      isTimeReportable: false,
+      isTaskable: true,
+      isTypeable: false,
+      isStatusable: false,
+      isSchedulable: false,
+      isPrioritizable: false,
+      isLeaf: false,
+    },
+  ] as const;
+}
+
+export type RuntimeObjectType = ReturnType<typeof getObjectTypes>[number];
+export type RuntimeObjectTypeName = RuntimeObjectType["name"];
+
+export function getProjectSchemas() {
+  return [
+    {
+      name: "Model production",
+      objectTypes: ["Milestone", "Task", "Folder", "Asset Build"],
+    },
+    {
+      name: "Animation",
+      objectTypes: [
+        "Milestone",
+        "Task",
+        "Episode",
+        "Folder",
+        "Asset Build",
+        "Shot",
+        "Sequence",
+      ],
+    },
+    {
+      name: "VFX",
+      objectTypes: [
+        "Milestone",
+        "Task",
+        "Episode",
+        "Folder",
+        "Asset Build",
+        "Shot",
+        "Sequence",
+      ],
+    },
+    {
+      name: "Media production",
+      objectTypes: [
+        "Milestone",
+        "Task",
+        "Scene",
+        "Folder",
+        "Image",
+        "Asset Build",
+        "Shot",
+        "Information",
+      ],
+    },
+  ] as const;
+}
+
+export type RuntimeProjectSchema = ReturnType<typeof getProjectSchemas>[number];
+export type RuntimeProjectSchemaName = RuntimeProjectSchema["name"];

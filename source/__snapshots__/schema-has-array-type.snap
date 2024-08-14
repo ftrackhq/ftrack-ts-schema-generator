@@ -53,34 +53,6 @@ export function getTypes() {
 export type RuntimeType = ReturnType<typeof getTypes>[number];
 export type RuntimeTypeName = RuntimeType["name"];
 
-export function getStatuses() {
-  return [] as const;
-}
-
-export type RuntimeStatus = ReturnType<typeof getStatuses>[number];
-export type RuntimeStatusName = RuntimeStatus["name"];
-
-export function getPriorities() {
-  return [] as const;
-}
-
-export type RuntimePriority = ReturnType<typeof getPriorities>[number];
-export type RuntimePriorityName = RuntimePriority["name"];
-
-export function getObjectTypes() {
-  return [] as const;
-}
-
-export type RuntimeObjectType = ReturnType<typeof getObjectTypes>[number];
-export type RuntimeObjectTypeName = RuntimeObjectType["name"];
-
-export function getProjectSchemas() {
-  return [] as const;
-}
-
-export type RuntimeProjectSchema = ReturnType<typeof getProjectSchemas>[number];
-export type RuntimeProjectSchemaName = RuntimeProjectSchema["name"];
-
 export function getAttributeConfigurations() {
   return [] as const;
 }
@@ -112,3 +84,31 @@ export type TypedContextCustomAttributesMap = {
   SomeInterfaceName: void;
   ArrayItem: void;
 };
+
+export function getStatuses() {
+  return [] as const;
+}
+
+export type RuntimeStatus = ReturnType<typeof getStatuses>[number];
+export type RuntimeStatusName = RuntimeStatus["name"];
+
+export function getPriorities() {
+  return [] as const;
+}
+
+export type RuntimePriority = ReturnType<typeof getPriorities>[number];
+export type RuntimePriorityName = RuntimePriority["name"];
+
+export function getObjectTypes() {
+  return [] as const;
+}
+
+export type RuntimeObjectType = ReturnType<typeof getObjectTypes>[number];
+export type RuntimeObjectTypeName = RuntimeObjectType["name"];
+
+export function getProjectSchemas() {
+  return [] as const;
+}
+
+export type RuntimeProjectSchema = ReturnType<typeof getProjectSchemas>[number];
+export type RuntimeProjectSchemaName = RuntimeProjectSchema["name"];

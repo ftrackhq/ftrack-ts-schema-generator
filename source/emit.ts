@@ -188,6 +188,8 @@ export async function emitToString(
     export type RuntimeTypeName = RuntimeType["name"];
   `);
 
+  emitCustomAttributes(emitter, schemas, customAttributes);
+
   emitter.appendCode(`
     export function getStatuses() {
       return [
@@ -266,8 +268,6 @@ export async function emitToString(
     export type RuntimeProjectSchema = ReturnType<typeof getProjectSchemas>[number];
     export type RuntimeProjectSchemaName = RuntimeProjectSchema["name"];
   `);
-
-  emitCustomAttributes(emitter, schemas, customAttributes);
 
   return {
     prettifiedContent: emitter.toString(),
