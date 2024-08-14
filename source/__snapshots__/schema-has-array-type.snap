@@ -23,6 +23,16 @@ export interface BasicLink {
   name: string;
 }
 
+export interface EntityTypeMap {
+  TypedContext: TypedContext;
+  SomeInterfaceName: SomeInterfaceName;
+  ArrayItem: ArrayItem;
+}
+
+export type EntityType = keyof EntityTypeMap;
+export type EntityData<TEntityType extends EntityType = EntityType> =
+  EntityTypeMap[TEntityType];
+
 export function getTypes() {
   return [] as const;
 }
@@ -57,16 +67,6 @@ export function getProjectSchemas() {
 
 export type RuntimeProjectSchema = ReturnType<typeof getProjectSchemas>[number];
 export type RuntimeProjectSchemaName = RuntimeProjectSchema["name"];
-
-export interface EntityTypeMap {
-  TypedContext: TypedContext;
-  SomeInterfaceName: SomeInterfaceName;
-  ArrayItem: ArrayItem;
-}
-
-export type EntityType = keyof EntityTypeMap;
-export type EntityData<TEntityType extends EntityType = EntityType> =
-  EntityTypeMap[TEntityType];
 
 export interface TypedContextSubtypeMap {
   TypedContext: TypedContext;

@@ -156,6 +156,19 @@ export async function emitToString(
     }
   `);
 
+  // Add a map of entity types and type for EntityType and a type for EntityData
+  emitter.appendCode(`
+    export interface EntityTypeMap {
+      ${schemas
+        .map((s) => s.id)
+        .map((name) => `${name}: ${name};`)
+        .join("\n")}
+    }
+    
+    export type EntityType = keyof EntityTypeMap;
+    export type EntityData<TEntityType extends EntityType = EntityType> = EntityTypeMap[TEntityType];
+  `);
+
   emitter.appendCode(`
     export function getTypes() {
       return [
@@ -249,19 +262,6 @@ export async function emitToString(
 
     export type RuntimeProjectSchema = ReturnType<typeof getProjectSchemas>[number];
     export type RuntimeProjectSchemaName = RuntimeProjectSchema["name"];
-  `);
-
-  // Add a map of entity types and type for EntityType and a type for EntityData
-  emitter.appendCode(`
-    export interface EntityTypeMap {
-      ${schemas
-        .map((s) => s.id)
-        .map((name) => `${name}: ${name};`)
-        .join("\n")}
-    }
-    
-    export type EntityType = keyof EntityTypeMap;
-    export type EntityData<TEntityType extends EntityType = EntityType> = EntityTypeMap[TEntityType];
   `);
 
   // Add a map of TypedContext subtypes and type for TypedContextSubtype
