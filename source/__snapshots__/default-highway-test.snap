@@ -41,7 +41,7 @@ export interface StatusChange {
   __permissions?: Record<string, any>;
 }
 export interface TypedContextStatusRuleGroup
-  extends Omit<StatusRuleGroup, "__entity_type__" | "__persmissions"> {
+  extends Omit<StatusRuleGroup, "__entity_type__" | "__permissions"> {
   object_type?: ObjectType;
   object_type_id: string;
   __entity_type__: "TypedContextStatusRuleGroup";
@@ -60,7 +60,7 @@ export interface CalendarEventResource {
   __permissions?: Record<string, any>;
 }
 export interface FileComponent
-  extends Omit<Component, "__entity_type__" | "__persmissions"> {
+  extends Omit<Component, "__entity_type__" | "__permissions"> {
   __entity_type__: "FileComponent";
   __permissions?: Record<string, any>;
 }
@@ -81,7 +81,7 @@ export interface AssetType {
   __permissions?: Record<string, any>;
 }
 export interface Group
-  extends Omit<Resource, "__entity_type__" | "__persmissions"> {
+  extends Omit<Resource, "__entity_type__" | "__permissions"> {
   children?: Group[];
   custom_attribute_links?: CustomAttributeLink[];
   custom_attribute_links_from?: CustomAttributeLinkFrom[];
@@ -159,7 +159,7 @@ export interface DashboardWidget {
   __permissions?: Record<string, any>;
 }
 export interface AssetVersionStatusRuleGroup
-  extends Omit<StatusRuleGroup, "__entity_type__" | "__persmissions"> {
+  extends Omit<StatusRuleGroup, "__entity_type__" | "__permissions"> {
   __entity_type__: "AssetVersionStatusRuleGroup";
   __permissions?: Record<string, any>;
 }
@@ -295,25 +295,25 @@ export interface Component {
   __permissions?: Record<string, any>;
 }
 export interface NoteAnnotationComponent
-  extends Omit<NoteComponent, "__entity_type__" | "__persmissions"> {
+  extends Omit<NoteComponent, "__entity_type__" | "__permissions"> {
   data?: object;
   __entity_type__: "NoteAnnotationComponent";
   __permissions?: Record<string, any>;
 }
 export interface SequenceComponent
-  extends Omit<ContainerComponent, "__entity_type__" | "__persmissions"> {
+  extends Omit<ContainerComponent, "__entity_type__" | "__permissions"> {
   padding: number;
   __entity_type__: "SequenceComponent";
   __permissions?: Record<string, any>;
 }
 export interface Collaborator
-  extends Omit<BaseUser, "__entity_type__" | "__persmissions"> {
+  extends Omit<BaseUser, "__entity_type__" | "__permissions"> {
   created_from_shared_url?: string;
   __entity_type__: "Collaborator";
   __permissions?: Record<string, any>;
 }
 export interface CustomAttributeConfiguration
-  extends Omit<CustomConfigurationBase, "__entity_type__" | "__persmissions"> {
+  extends Omit<CustomConfigurationBase, "__entity_type__" | "__permissions"> {
   default?: string | number | boolean | string[];
   is_hierarchical?: boolean;
   type?: CustomAttributeType;
@@ -356,7 +356,7 @@ export interface TypedContext<
   K extends TypedContextSubtype = TypedContextSubtype
 > extends Omit<
     Context,
-    "__entity_type__" | "__persmissions" | "custom_attributes"
+    "__entity_type__" | "__permissions" | "custom_attributes"
   > {
   ancestors?: TypedContext[];
   bid: number;
@@ -440,7 +440,7 @@ export interface ReviewSessionObjectAnnotation {
 export interface TypedContextList
   extends Omit<
     List,
-    "__entity_type__" | "__persmissions" | "custom_attributes"
+    "__entity_type__" | "__permissions" | "custom_attributes"
   > {
   items?: Task[];
   __entity_type__: "TypedContextList";
@@ -456,13 +456,13 @@ export interface NoteLabelLink {
   __permissions?: Record<string, any>;
 }
 export interface TypedContextStatusChange
-  extends Omit<StatusChange, "__entity_type__" | "__persmissions"> {
+  extends Omit<StatusChange, "__entity_type__" | "__permissions"> {
   parent?: TypedContext;
   __entity_type__: "TypedContextStatusChange";
   __permissions?: Record<string, any>;
 }
 export interface CustomAttributeLinkConfiguration
-  extends Omit<CustomConfigurationBase, "__entity_type__" | "__persmissions"> {
+  extends Omit<CustomConfigurationBase, "__entity_type__" | "__permissions"> {
   readonly entity_type_to: string;
   readonly object_type_id_to?: string;
   object_type_to?: ObjectType;
@@ -471,7 +471,7 @@ export interface CustomAttributeLinkConfiguration
   __permissions?: Record<string, any>;
 }
 export interface ContainerComponent
-  extends Omit<Component, "__entity_type__" | "__persmissions"> {
+  extends Omit<Component, "__entity_type__" | "__permissions"> {
   members?: Component[];
   __entity_type__: "ContainerComponent";
   __permissions?: Record<string, any>;
@@ -600,7 +600,7 @@ export interface ListObject {
 export interface AssetVersionList
   extends Omit<
     List,
-    "__entity_type__" | "__persmissions" | "custom_attributes"
+    "__entity_type__" | "__permissions" | "custom_attributes"
   > {
   items?: AssetVersion[];
   __entity_type__: "AssetVersionList";
@@ -666,7 +666,7 @@ export interface ProjectSchemaOverride {
   __permissions?: Record<string, any>;
 }
 export interface User
-  extends Omit<BaseUser, "__entity_type__" | "__persmissions"> {
+  extends Omit<BaseUser, "__entity_type__" | "__permissions"> {
   custom_attribute_links?: CustomAttributeLink[];
   custom_attribute_links_from?: CustomAttributeLinkFrom[];
   is_active: boolean;
@@ -697,7 +697,7 @@ export interface Feed {
   __permissions?: Record<string, any>;
 }
 export interface BaseUser
-  extends Omit<Resource, "__entity_type__" | "__persmissions"> {
+  extends Omit<Resource, "__entity_type__" | "__permissions"> {
   email?: string;
   first_name?: string;
   last_name?: string;
@@ -754,7 +754,7 @@ export interface Metadata {
   __permissions?: Record<string, any>;
 }
 export interface NoteCategory
-  extends Omit<NoteLabel, "__entity_type__" | "__persmissions"> {
+  extends Omit<NoteLabel, "__entity_type__" | "__permissions"> {
   __entity_type__: "NoteCategory";
   __permissions?: Record<string, any>;
 }
@@ -985,7 +985,7 @@ export interface ObjectType {
 export interface Project
   extends Omit<
     Context,
-    "__entity_type__" | "__persmissions" | "custom_attributes"
+    "__entity_type__" | "__permissions" | "custom_attributes"
   > {
   calendar_events?: CalendarEvent[];
   color?: string;
@@ -1019,7 +1019,7 @@ export interface TaskTemplate {
   __permissions?: Record<string, any>;
 }
 export interface AssetVersionStatusChange
-  extends Omit<StatusChange, "__entity_type__" | "__persmissions"> {
+  extends Omit<StatusChange, "__entity_type__" | "__permissions"> {
   parent?: AssetVersion;
   __entity_type__: "AssetVersionStatusChange";
   __permissions?: Record<string, any>;
@@ -1210,85 +1210,85 @@ export interface AssetCustomAttributeValue {
   __permissions?: Record<string, any>;
 }
 export interface ContextCustomAttributeLink
-  extends Omit<CustomAttributeLink, "__entity_type__" | "__persmissions"> {
+  extends Omit<CustomAttributeLink, "__entity_type__" | "__permissions"> {
   context?: Context;
   __entity_type__: "ContextCustomAttributeLink";
   __permissions?: Record<string, any>;
 }
 export interface ContextCustomAttributeLinkFrom
-  extends Omit<CustomAttributeLinkFrom, "__entity_type__" | "__persmissions"> {
+  extends Omit<CustomAttributeLinkFrom, "__entity_type__" | "__permissions"> {
   context?: Context;
   __entity_type__: "ContextCustomAttributeLinkFrom";
   __permissions?: Record<string, any>;
 }
 export interface AssetVersionCustomAttributeLink
-  extends Omit<CustomAttributeLink, "__entity_type__" | "__persmissions"> {
+  extends Omit<CustomAttributeLink, "__entity_type__" | "__permissions"> {
   asset_version?: AssetVersion;
   __entity_type__: "AssetVersionCustomAttributeLink";
   __permissions?: Record<string, any>;
 }
 export interface AssetVersionCustomAttributeLinkFrom
-  extends Omit<CustomAttributeLinkFrom, "__entity_type__" | "__persmissions"> {
+  extends Omit<CustomAttributeLinkFrom, "__entity_type__" | "__permissions"> {
   asset_version?: AssetVersion;
   __entity_type__: "AssetVersionCustomAttributeLinkFrom";
   __permissions?: Record<string, any>;
 }
 export interface ListCustomAttributeLink
-  extends Omit<CustomAttributeLink, "__entity_type__" | "__persmissions"> {
+  extends Omit<CustomAttributeLink, "__entity_type__" | "__permissions"> {
   list?: List;
   __entity_type__: "ListCustomAttributeLink";
   __permissions?: Record<string, any>;
 }
 export interface ListCustomAttributeLinkFrom
-  extends Omit<CustomAttributeLinkFrom, "__entity_type__" | "__persmissions"> {
+  extends Omit<CustomAttributeLinkFrom, "__entity_type__" | "__permissions"> {
   list?: List;
   __entity_type__: "ListCustomAttributeLinkFrom";
   __permissions?: Record<string, any>;
 }
 export interface UserCustomAttributeLink
-  extends Omit<CustomAttributeLink, "__entity_type__" | "__persmissions"> {
+  extends Omit<CustomAttributeLink, "__entity_type__" | "__permissions"> {
   user?: User;
   __entity_type__: "UserCustomAttributeLink";
   __permissions?: Record<string, any>;
 }
 export interface UserCustomAttributeLinkFrom
-  extends Omit<CustomAttributeLinkFrom, "__entity_type__" | "__persmissions"> {
+  extends Omit<CustomAttributeLinkFrom, "__entity_type__" | "__permissions"> {
   user?: User;
   __entity_type__: "UserCustomAttributeLinkFrom";
   __permissions?: Record<string, any>;
 }
 export interface GroupCustomAttributeLink
-  extends Omit<CustomAttributeLink, "__entity_type__" | "__persmissions"> {
+  extends Omit<CustomAttributeLink, "__entity_type__" | "__permissions"> {
   group?: Group;
   __entity_type__: "GroupCustomAttributeLink";
   __permissions?: Record<string, any>;
 }
 export interface GroupCustomAttributeLinkFrom
-  extends Omit<CustomAttributeLinkFrom, "__entity_type__" | "__persmissions"> {
+  extends Omit<CustomAttributeLinkFrom, "__entity_type__" | "__permissions"> {
   group?: Group;
   __entity_type__: "GroupCustomAttributeLinkFrom";
   __permissions?: Record<string, any>;
 }
 export interface AssetCustomAttributeLink
-  extends Omit<CustomAttributeLink, "__entity_type__" | "__persmissions"> {
+  extends Omit<CustomAttributeLink, "__entity_type__" | "__permissions"> {
   asset?: Asset;
   __entity_type__: "AssetCustomAttributeLink";
   __permissions?: Record<string, any>;
 }
 export interface AssetCustomAttributeLinkFrom
-  extends Omit<CustomAttributeLinkFrom, "__entity_type__" | "__persmissions"> {
+  extends Omit<CustomAttributeLinkFrom, "__entity_type__" | "__permissions"> {
   asset?: Asset;
   __entity_type__: "AssetCustomAttributeLinkFrom";
   __permissions?: Record<string, any>;
 }
 export interface ComponentCustomAttributeLink
-  extends Omit<CustomAttributeLink, "__entity_type__" | "__persmissions"> {
+  extends Omit<CustomAttributeLink, "__entity_type__" | "__permissions"> {
   component?: Component;
   __entity_type__: "ComponentCustomAttributeLink";
   __permissions?: Record<string, any>;
 }
 export interface ComponentCustomAttributeLinkFrom
-  extends Omit<CustomAttributeLinkFrom, "__entity_type__" | "__persmissions"> {
+  extends Omit<CustomAttributeLinkFrom, "__entity_type__" | "__permissions"> {
   component?: Component;
   __entity_type__: "ComponentCustomAttributeLinkFrom";
   __permissions?: Record<string, any>;

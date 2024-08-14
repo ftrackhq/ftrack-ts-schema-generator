@@ -91,7 +91,7 @@ function getTypeExtensionSuffix(
   baseSchema: Schema | undefined,
   schema: Schema
 ) {
-  const omitList = ["__entity_type__", "__persmissions"];
+  const omitList = ["__entity_type__", "__permissions"];
   if (baseSchema?.properties && "custom_attributes" in baseSchema.properties) {
     omitList.push("custom_attributes");
   }

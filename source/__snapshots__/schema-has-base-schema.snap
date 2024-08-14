@@ -10,7 +10,7 @@ export interface TypedContext<
   __permissions?: Record<string, any>;
 }
 export interface SomeInterfaceName
-  extends Omit<SomeBaseSchema, "__entity_type__" | "__persmissions"> {
+  extends Omit<SomeBaseSchema, "__entity_type__" | "__permissions"> {
   __entity_type__: "SomeInterfaceName";
   __permissions?: Record<string, any>;
 }
