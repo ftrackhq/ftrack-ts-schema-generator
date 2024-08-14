@@ -6,7 +6,7 @@
 export interface TypedContext<
   K extends TypedContextSubtype = TypedContextSubtype
 > {
-  __entity_type__: K;
+  __entity_type__?: K;
   __permissions?: Record<string, any>;
 }
 export type SomeInterfaceName = TypedContext<"SomeInterfaceName">;
@@ -66,6 +66,11 @@ export interface TypedContextSubtypeMap {
   SomeInterfaceName: SomeInterfaceName;
 }
 export type TypedContextSubtype = keyof TypedContextSubtypeMap;
+
+type TypedContextSubtypeMapWithoutTypedContext = Omit<
+  TypedContextSubtypeMap,
+  "TypedContext"
+>;
 
 export function getAttributeConfigurations() {
   return [] as const;

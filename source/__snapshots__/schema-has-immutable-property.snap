@@ -6,12 +6,12 @@
 export interface TypedContext<
   K extends TypedContextSubtype = TypedContextSubtype
 > {
-  __entity_type__: K;
+  __entity_type__?: K;
   __permissions?: Record<string, any>;
 }
 export interface SomeInterfaceName {
   readonly immutableProperty?: string | number | boolean | string[];
-  __entity_type__: "SomeInterfaceName";
+  __entity_type__?: "SomeInterfaceName";
   __permissions?: Record<string, any>;
 }
 export function getTypes() {
@@ -68,6 +68,11 @@ export interface TypedContextSubtypeMap {
   TypedContext: TypedContext;
 }
 export type TypedContextSubtype = keyof TypedContextSubtypeMap;
+
+type TypedContextSubtypeMapWithoutTypedContext = Omit<
+  TypedContextSubtypeMap,
+  "TypedContext"
+>;
 
 export function getAttributeConfigurations() {
   return [] as const;

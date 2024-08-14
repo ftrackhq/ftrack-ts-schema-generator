@@ -6,6 +6,7 @@ import type {
   TypedSchemaProperty,
 } from "@ftrack/api";
 import { type TypeScriptEmitter } from "./typescriptEmitter";
+import { isSchemaTypedContext } from "./utils";
 
 // Add schemas from the schemas folder, to be used for finding extended schemas
 export async function emitSchemaInterface(
@@ -57,10 +58,6 @@ function getTypeScriptInterfaceNameForInterface(schema: Schema) {
   }
 
   return schema.id;
-}
-
-function isSchemaTypedContext(schema: Schema) {
-  return schema.id === "TypedContext";
 }
 
 function emitSpecialProperties(

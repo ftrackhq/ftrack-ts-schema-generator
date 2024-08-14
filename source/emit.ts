@@ -1,12 +1,13 @@
 import type { QuerySchemasResponse, Session } from "@ftrack/api";
 import * as fs from "fs";
 import * as path from "path";
-import { emitSchemaInterface } from "./emitSchema.js";
 import {
   CustomAttributeConfiguration,
   emitCustomAttributes,
 } from "./emitCustomAttributes.js";
+import { emitSchemaInterface } from "./emitSchema.js";
 import { TypeScriptEmitter } from "./typescriptEmitter.js";
+import { isSchemaTypedContext } from "./utils.js";
 
 const legacySchemas = ["Conversation", "Message", "Participant"];
 export async function emitToFile(
@@ -337,12 +338,14 @@ function emitTypedContextTypes(
           (schema) =>
             (typeof schema?.alias_for === "object" &&
               schema.alias_for.id === "Task") ||
-            schema.id === "TypedContext"
+            isSchemaTypedContext(schema)
         )
         .map((s) => s.id)
         .map((name) => `${name}: ${name};`)
         .join("\n")}
     }
     export type TypedContextSubtype = keyof TypedContextSubtypeMap;
+    
+    type TypedContextSubtypeMapWithoutTypedContext = Omit<TypedContextSubtypeMap, "TypedContext">;
   `);
 }
