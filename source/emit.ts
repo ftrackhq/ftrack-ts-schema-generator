@@ -169,6 +169,9 @@ export async function emitToString(
     export type EntityData<TEntityType extends EntityType = EntityType> = EntityTypeMap[TEntityType];
   `);
 
+  // Add a map of TypedContext subtypes and type for TypedContextSubtype
+  emitTypedContextTypes(emitter, schemas);
+
   emitter.appendCode(`
     export function getTypes() {
       return [
@@ -263,9 +266,6 @@ export async function emitToString(
     export type RuntimeProjectSchema = ReturnType<typeof getProjectSchemas>[number];
     export type RuntimeProjectSchemaName = RuntimeProjectSchema["name"];
   `);
-
-  // Add a map of TypedContext subtypes and type for TypedContextSubtype
-  emitTypedContextTypes(emitter, schemas);
 
   emitCustomAttributes(emitter, schemas, customAttributes);
 

@@ -1439,6 +1439,29 @@ export type EntityType = keyof EntityTypeMap;
 export type EntityData<TEntityType extends EntityType = EntityType> =
   EntityTypeMap[TEntityType];
 
+export interface TypedContextSubtypeMap {
+  TypedContext: TypedContext;
+  Milestone: Milestone;
+  Task: Task;
+  Episode: Episode;
+  Scene: Scene;
+  Folder: Folder;
+  Image: Image;
+  AssetBuild: AssetBuild;
+  Shot: Shot;
+  Sequence: Sequence;
+  Information: Information;
+}
+export type TypedContextSubtype = keyof TypedContextSubtypeMap;
+
+type TypedContextSubtypeMapWithoutTypedContext = Omit<
+  TypedContextSubtypeMap,
+  "TypedContext"
+>;
+
+export type TypedContext =
+  TypedContextSubtypeMapWithoutTypedContext[keyof TypedContextSubtypeMapWithoutTypedContext];
+
 export function getTypes() {
   return [
     {
@@ -1811,29 +1834,6 @@ export function getProjectSchemas() {
 
 export type RuntimeProjectSchema = ReturnType<typeof getProjectSchemas>[number];
 export type RuntimeProjectSchemaName = RuntimeProjectSchema["name"];
-
-export interface TypedContextSubtypeMap {
-  TypedContext: TypedContext;
-  Milestone: Milestone;
-  Task: Task;
-  Episode: Episode;
-  Scene: Scene;
-  Folder: Folder;
-  Image: Image;
-  AssetBuild: AssetBuild;
-  Shot: Shot;
-  Sequence: Sequence;
-  Information: Information;
-}
-export type TypedContextSubtype = keyof TypedContextSubtypeMap;
-
-type TypedContextSubtypeMapWithoutTypedContext = Omit<
-  TypedContextSubtypeMap,
-  "TypedContext"
->;
-
-export type TypedContext =
-  TypedContextSubtypeMapWithoutTypedContext[keyof TypedContextSubtypeMapWithoutTypedContext];
 
 export function getAttributeConfigurations() {
   return [
