@@ -347,5 +347,7 @@ function emitTypedContextTypes(
     export type TypedContextSubtype = keyof TypedContextSubtypeMap;
     
     type TypedContextSubtypeMapWithoutTypedContext = Omit<TypedContextSubtypeMap, "TypedContext">;
+
+    export type TypedContext = TypedContextSubtypeMapWithoutTypedContext[keyof TypedContextSubtypeMapWithoutTypedContext];
   `);
 }

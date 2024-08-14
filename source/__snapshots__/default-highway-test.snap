@@ -352,9 +352,8 @@ export interface StatusRuleGroup {
   __entity_type__?: "StatusRuleGroup";
   __permissions?: Record<string, any>;
 }
-export interface TypedContext<
-  K extends TypedContextSubtype = TypedContextSubtype
-> extends Omit<
+export interface TypedContextForSubtype<K extends TypedContextSubtype>
+  extends Omit<
     Context,
     "__entity_type__" | "__permissions" | "custom_attributes"
   > {
@@ -1139,25 +1138,25 @@ export interface Priority {
   __entity_type__?: "Priority";
   __permissions?: Record<string, any>;
 }
-export type Milestone = TypedContext<"Milestone">;
+export type Milestone = TypedContextForSubtype<"Milestone">;
 
-export type Task = TypedContext<"Task">;
+export type Task = TypedContextForSubtype<"Task">;
 
-export type Episode = TypedContext<"Episode">;
+export type Episode = TypedContextForSubtype<"Episode">;
 
-export type Scene = TypedContext<"Scene">;
+export type Scene = TypedContextForSubtype<"Scene">;
 
-export type Folder = TypedContext<"Folder">;
+export type Folder = TypedContextForSubtype<"Folder">;
 
-export type Image = TypedContext<"Image">;
+export type Image = TypedContextForSubtype<"Image">;
 
-export type AssetBuild = TypedContext<"AssetBuild">;
+export type AssetBuild = TypedContextForSubtype<"AssetBuild">;
 
-export type Shot = TypedContext<"Shot">;
+export type Shot = TypedContextForSubtype<"Shot">;
 
-export type Sequence = TypedContext<"Sequence">;
+export type Sequence = TypedContextForSubtype<"Sequence">;
 
-export type Information = TypedContext<"Information">;
+export type Information = TypedContextForSubtype<"Information">;
 
 export interface ContextCustomAttributeValue {
   configuration?: CustomAttributeConfiguration;
@@ -1832,6 +1831,9 @@ type TypedContextSubtypeMapWithoutTypedContext = Omit<
   TypedContextSubtypeMap,
   "TypedContext"
 >;
+
+export type TypedContext =
+  TypedContextSubtypeMapWithoutTypedContext[keyof TypedContextSubtypeMapWithoutTypedContext];
 
 export function getAttributeConfigurations() {
   return [
