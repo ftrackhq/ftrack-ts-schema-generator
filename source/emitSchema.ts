@@ -68,20 +68,20 @@ function emitSpecialProperties(
   schema: Schema
 ) {
   if (isSchemaTypedContext(schema)) {
-    typescriptEmitter.appendCode(`__entity_type__: K;`);
+    typescriptEmitter.appendCode(`__entity_type__?: K;`);
   } else {
-    typescriptEmitter.appendCode(`__entity_type__: "${schema.id}";`);
+    typescriptEmitter.appendCode(`__entity_type__?: "${schema.id}";`);
   }
   typescriptEmitter.appendCode(`__permissions?: Record<string, any>;`);
 
   if (schema.properties && "custom_attributes" in schema.properties) {
     if (isSchemaTypedContext(schema)) {
       typescriptEmitter.appendCode(
-        `custom_attributes: Array<TypedContextCustomAttributesMap[K]>;`
+        `custom_attributes?: Array<TypedContextCustomAttributesMap[K]>;`
       );
     } else {
       typescriptEmitter.appendCode(
-        `custom_attributes: Array<TypedContextCustomAttributesMap["${schema.id}"]>;`
+        `custom_attributes?: Array<TypedContextCustomAttributesMap["${schema.id}"]>;`
       );
     }
   }
