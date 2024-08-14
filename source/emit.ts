@@ -144,6 +144,18 @@ export async function emitToString(
     await emitSchemaInterface(emitter, schema, schemas);
   }
 
+  /**
+  BasicLink needs to be added explicitly, as it is not returned by the API.
+  Task: 95e02be2-c7ec-11ed-ae64-46416ff77027
+  */
+  emitter.appendCode(`
+    export interface BasicLink {
+      id: string;
+      type: string;
+      name: string;
+    }
+  `);
+
   emitter.appendCode(`
     export function getTypes() {
       return [
@@ -250,18 +262,6 @@ export async function emitToString(
     
     export type EntityType = keyof EntityTypeMap;
     export type EntityData<TEntityType extends EntityType = EntityType> = EntityTypeMap[TEntityType];
-  `);
-
-  /**
-  BasicLink needs to be added explicitly, as it is not returned by the API.
-  Task: 95e02be2-c7ec-11ed-ae64-46416ff77027
-  */
-  emitter.appendCode(`
-    export interface BasicLink {
-      id: string;
-      type: string;
-      name: string;
-    }
   `);
 
   // Add a map of TypedContext subtypes and type for TypedContextSubtype

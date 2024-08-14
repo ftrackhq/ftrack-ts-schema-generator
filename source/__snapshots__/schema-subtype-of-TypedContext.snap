@@ -9,6 +9,12 @@ export interface TypedContextForSubtype<K extends TypedContextSubtype> {
 }
 export type SomeInterfaceName = TypedContextForSubtype<"SomeInterfaceName">;
 
+export interface BasicLink {
+  id: string;
+  type: string;
+  name: string;
+}
+
 export function getTypes() {
   return [] as const;
 }
@@ -52,12 +58,6 @@ export interface EntityTypeMap {
 export type EntityType = keyof EntityTypeMap;
 export type EntityData<TEntityType extends EntityType = EntityType> =
   EntityTypeMap[TEntityType];
-
-export interface BasicLink {
-  id: string;
-  type: string;
-  name: string;
-}
 
 export interface TypedContextSubtypeMap {
   TypedContext: TypedContext;

@@ -1296,6 +1296,12 @@ export interface ComponentCustomAttributeLinkFrom
   __entity_type__?: "ComponentCustomAttributeLinkFrom";
   __permissions?: Record<string, any>;
 }
+export interface BasicLink {
+  id: string;
+  type: string;
+  name: string;
+}
+
 export function getTypes() {
   return [
     {
@@ -1805,12 +1811,6 @@ export interface EntityTypeMap {
 export type EntityType = keyof EntityTypeMap;
 export type EntityData<TEntityType extends EntityType = EntityType> =
   EntityTypeMap[TEntityType];
-
-export interface BasicLink {
-  id: string;
-  type: string;
-  name: string;
-}
 
 export interface TypedContextSubtypeMap {
   TypedContext: TypedContext;
