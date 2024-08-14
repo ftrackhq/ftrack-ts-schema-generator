@@ -2619,80 +2619,6 @@ export function getObjectTypes() {
 export type RuntimeObjectType = ReturnType<typeof getObjectTypes>[number];
 export type RuntimeObjectTypeName = RuntimeObjectType["name"];
 
-export function getStatuses() {
-  return [
-    {
-      name: "Completed",
-      color: "#1cbc90",
-      isActive: true,
-      sort: 0,
-    },
-    {
-      name: "Omitted",
-      color: "#E74C3C",
-      isActive: true,
-      sort: 1,
-    },
-    {
-      name: "On Hold",
-      color: "#E74C3C",
-      isActive: true,
-      sort: 2,
-    },
-    {
-      name: "Revise",
-      color: "#FF6600",
-      isActive: true,
-      sort: 3,
-    },
-    {
-      name: "Client approved",
-      color: "#1CBC90",
-      isActive: true,
-      sort: 4,
-    },
-    {
-      name: "Approved",
-      color: "#1cbc90",
-      isActive: true,
-      sort: 5,
-    },
-    {
-      name: "Pending Review",
-      color: "#F1C40F",
-      isActive: true,
-      sort: 6,
-    },
-    {
-      name: "In progress",
-      color: "#3498DB",
-      isActive: true,
-      sort: 7,
-    },
-    {
-      name: "WIP",
-      color: "#CC99FF",
-      isActive: true,
-      sort: 8,
-    },
-    {
-      name: "Ready to start",
-      color: "#00FFFF",
-      isActive: true,
-      sort: 9,
-    },
-    {
-      name: "Not started",
-      color: "#CACACA",
-      isActive: true,
-      sort: 10,
-    },
-  ] as const;
-}
-
-export type RuntimeStatus = ReturnType<typeof getStatuses>[number];
-export type RuntimeStatusName = RuntimeStatus["name"];
-
 export function getProjectSchemas() {
   return [
     {
@@ -2779,3 +2705,77 @@ export function getPriorities() {
 
 export type RuntimePriority = ReturnType<typeof getPriorities>[number];
 export type RuntimePriorityName = RuntimePriority["name"];
+
+export function getStatuses() {
+  return [
+    {
+      name: "Completed",
+      color: "#1cbc90",
+      isActive: true,
+      sort: 0,
+    },
+    {
+      name: "Omitted",
+      color: "#E74C3C",
+      isActive: true,
+      sort: 1,
+    },
+    {
+      name: "On Hold",
+      color: "#E74C3C",
+      isActive: true,
+      sort: 2,
+    },
+    {
+      name: "Revise",
+      color: "#FF6600",
+      isActive: true,
+      sort: 3,
+    },
+    {
+      name: "Client approved",
+      color: "#1CBC90",
+      isActive: true,
+      sort: 4,
+    },
+    {
+      name: "Approved",
+      color: "#1cbc90",
+      isActive: true,
+      sort: 5,
+    },
+    {
+      name: "Pending Review",
+      color: "#F1C40F",
+      isActive: true,
+      sort: 6,
+    },
+    {
+      name: "In progress",
+      color: "#3498DB",
+      isActive: true,
+      sort: 7,
+    },
+    {
+      name: "WIP",
+      color: "#CC99FF",
+      isActive: true,
+      sort: 8,
+    },
+    {
+      name: "Ready to start",
+      color: "#00FFFF",
+      isActive: true,
+      sort: 9,
+    },
+    {
+      name: "Not started",
+      color: "#CACACA",
+      isActive: true,
+      sort: 10,
+    },
+  ] as const;
+}
+
+export type RuntimeStatus = ReturnType<typeof getStatuses>[number];
+export type RuntimeStatusName = RuntimeStatus["name"];
