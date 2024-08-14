@@ -172,6 +172,8 @@ export async function emitToString(
   // Add a map of TypedContext subtypes and type for TypedContextSubtype
   emitTypedContextTypes(emitter, schemas);
 
+  emitCustomAttributes(emitter, schemas, customAttributes);
+
   emitter.appendCode(`
     export function getTypes() {
       return [
@@ -187,8 +189,6 @@ export async function emitToString(
     export type RuntimeType = ReturnType<typeof getTypes>[number];
     export type RuntimeTypeName = RuntimeType["name"];
   `);
-
-  emitCustomAttributes(emitter, schemas, customAttributes);
 
   emitter.appendCode(`
     export function getStatuses() {

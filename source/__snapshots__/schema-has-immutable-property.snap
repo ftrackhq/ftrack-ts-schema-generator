@@ -40,13 +40,6 @@ type TypedContextSubtypeMapWithoutTypedContext = Omit<
 export type TypedContext =
   TypedContextSubtypeMapWithoutTypedContext[keyof TypedContextSubtypeMapWithoutTypedContext];
 
-export function getTypes() {
-  return [] as const;
-}
-
-export type RuntimeType = ReturnType<typeof getTypes>[number];
-export type RuntimeTypeName = RuntimeType["name"];
-
 export function getAttributeConfigurations() {
   return [] as const;
 }
@@ -77,6 +70,13 @@ export type TypedContextCustomAttributesMap = {
   TypedContext: void;
   SomeInterfaceName: void;
 };
+
+export function getTypes() {
+  return [] as const;
+}
+
+export type RuntimeType = ReturnType<typeof getTypes>[number];
+export type RuntimeTypeName = RuntimeType["name"];
 
 export function getStatuses() {
   return [] as const;
