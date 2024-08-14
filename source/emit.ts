@@ -340,14 +340,11 @@ function emitTypedContextTypes(
               schema.alias_for.id === "Task") ||
             isSchemaTypedContext(schema)
         )
+        .filter(x => !isSchemaTypedContext(x))
         .map((s) => s.id)
         .map((name) => `${name}: ${name};`)
         .join("\n")}
     }
     export type TypedContextSubtype = keyof TypedContextSubtypeMap;
-    
-    type TypedContextSubtypeMapWithoutTypedContext = Omit<TypedContextSubtypeMap, "TypedContext">;
-
-    export type TypedContext = TypedContextSubtypeMapWithoutTypedContext[keyof TypedContextSubtypeMapWithoutTypedContext];
   `);
 }

@@ -19,7 +19,7 @@ export async function emitSchemaInterface(
   // If the schema is a subtype of TypedContext, return that
   if (typeof schema?.alias_for === "object" && schema.alias_for.id === "Task") {
     typescriptEmitter.appendCode(`
-      type ${interfaceName} = TypedContextForSubtype<"${interfaceName}">;
+      type ${interfaceName} = TypedContext<"${interfaceName}">;
     `);
     return;
   }
@@ -54,7 +54,7 @@ export async function emitSchemaInterface(
 function getTypeScriptInterfaceNameForInterface(schema: Schema) {
   // Adds a generic to the interface to TypedContext, which is used for subtypes of TypedContext
   if (isSchemaTypedContext(schema)) {
-    return "TypedContextForSubtype<K extends TypedContextSubtype>";
+    return "TypedContext<K extends TypedContextSubtype = TypedContextSubtype>";
   }
 
   return schema.id;

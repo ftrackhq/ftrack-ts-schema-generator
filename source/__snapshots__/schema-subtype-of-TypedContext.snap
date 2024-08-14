@@ -3,11 +3,13 @@
 // from an instance running version 4.13.8 using server on https://ftrack.example.com
 // Not intended to modify manually
 
-export interface TypedContextForSubtype<K extends TypedContextSubtype> {
+export interface TypedContext<
+  K extends TypedContextSubtype = TypedContextSubtype
+> {
   __entity_type__?: K;
   __permissions?: Record<string, any>;
 }
-type SomeInterfaceName = TypedContextForSubtype<"SomeInterfaceName">;
+type SomeInterfaceName = TypedContext<"SomeInterfaceName">;
 
 export interface BasicLink {
   id: string;
@@ -25,18 +27,9 @@ export type EntityData<TEntityType extends EntityType = EntityType> =
   EntityTypeMap[TEntityType];
 
 export interface TypedContextSubtypeMap {
-  TypedContext: TypedContext;
   SomeInterfaceName: SomeInterfaceName;
 }
 export type TypedContextSubtype = keyof TypedContextSubtypeMap;
-
-type TypedContextSubtypeMapWithoutTypedContext = Omit<
-  TypedContextSubtypeMap,
-  "TypedContext"
->;
-
-export type TypedContext =
-  TypedContextSubtypeMapWithoutTypedContext[keyof TypedContextSubtypeMapWithoutTypedContext];
 
 export function getAttributeConfigurations() {
   return [] as const;
