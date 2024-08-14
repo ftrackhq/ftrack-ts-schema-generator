@@ -32,9 +32,7 @@ export type EntityType = keyof EntityTypeMap;
 export type EntityData<TEntityType extends EntityType = EntityType> =
   EntityTypeMap[TEntityType];
 
-export interface TypedContextSubtypeMap {
-  TypedContext: TypedContext;
-}
+export interface TypedContextSubtypeMap {}
 export type TypedContextSubtype = keyof TypedContextSubtypeMap;
 
 export type TypedContext = TypedContextSubtypeMap[TypedContextSubtype];

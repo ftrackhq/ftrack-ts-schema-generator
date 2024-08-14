@@ -25,7 +25,6 @@ export type EntityData<TEntityType extends EntityType = EntityType> =
   EntityTypeMap[TEntityType];
 
 export interface TypedContextSubtypeMap {
-  TypedContext: TypedContext;
   SomeInterfaceName: SomeInterfaceName;
 }
 export type TypedContextSubtype = keyof TypedContextSubtypeMap;
