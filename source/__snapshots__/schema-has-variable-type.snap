@@ -58,10 +58,7 @@ export type TypedCustomAttributeValue<
   value: TypedCustomAttributeValueMap[K];
 };
 
-export type TypedContextCustomAttributesMap = {
-  TypedContext: void;
-  SomeInterfaceName: void;
-};
+export type TypedContextCustomAttributesMap = {};
 
 export function getTypes() {
   return [] as const;
