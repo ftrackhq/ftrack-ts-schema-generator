@@ -19,7 +19,7 @@ export async function emitSchemaInterface(
   // If the schema is a subtype of TypedContext, return that
   if (typeof schema?.alias_for === "object" && schema.alias_for.id === "Task") {
     typescriptEmitter.appendCode(`
-      type ${interfaceName} = TypedContextForSubtype<"${interfaceName}">;
+      export type ${interfaceName} = TypedContextForSubtype<"${interfaceName}">;
     `);
     return;
   }

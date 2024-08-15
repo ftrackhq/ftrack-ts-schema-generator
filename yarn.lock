@@ -389,7 +389,6 @@ __metadata:
   resolution: "@ftrack/ts-schema-generator@workspace:."
   dependencies:
     "@ftrack/api": ^1.4.5
-    "@types/lodash": ^4
     "@types/lodash-es": ^4
     "@types/node": ^18.15.11
     "@types/prettier": ^2.7.2
@@ -747,7 +746,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/lodash@npm:*, @types/lodash@npm:^4":
+"@types/lodash@npm:*":
   version: 4.17.7
   resolution: "@types/lodash@npm:4.17.7"
   checksum: 09e58a119cd8a70acfb33f8623dc2fc54f74cdce3b3429b879fc2daac4807fe376190a04b9e024dd300f9a3ee1876d6623979cefe619f70654ca0fe0c47679a7
