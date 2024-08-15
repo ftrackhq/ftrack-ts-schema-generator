@@ -1,6 +1,6 @@
-import { chain } from "lodash";
-import { TypeScriptEmitter } from "./typescriptEmitter";
 import { QuerySchemasResponse } from "@ftrack/api";
+import { chain } from "lodash-es";
+import { TypeScriptEmitter } from "./typescriptEmitter";
 
 export function emitCustomAttributes(
   typescriptEmitter: TypeScriptEmitter,

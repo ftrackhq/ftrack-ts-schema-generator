@@ -340,7 +340,7 @@ function emitTypedContextTypes(
               schema.alias_for.id === "Task") ||
             isSchemaTypedContext(schema)
         )
-        .filter(x => !isSchemaTypedContext(x))
+        .filter((x) => !isSchemaTypedContext(x))
         .map((s) => s.id)
         .map((name) => `${name}: ${name};`)
         .join("\n")}
