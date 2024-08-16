@@ -4,7 +4,7 @@
 // Not intended to modify manually
 
 export interface TypedContextForSubtype<K extends TypedContextSubtype> {
-  __entity_type__?: K;
+  __entity_type__: K;
   __permissions?: Record<string, any>;
 }
 export type SomeInterfaceName = TypedContextForSubtype<"SomeInterfaceName">;

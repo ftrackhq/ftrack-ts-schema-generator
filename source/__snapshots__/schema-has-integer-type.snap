@@ -4,12 +4,12 @@
 // Not intended to modify manually
 
 export interface TypedContextForSubtype<K extends TypedContextSubtype> {
-  __entity_type__?: K;
+  __entity_type__: K;
   __permissions?: Record<string, any>;
 }
 export interface SomeInterfaceName {
   integerProperty?: number;
-  __entity_type__?: "SomeInterfaceName";
+  __entity_type__: "SomeInterfaceName";
   __permissions?: Record<string, any>;
 }
 export interface BasicLink {
