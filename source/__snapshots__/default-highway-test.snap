@@ -1,5 +1,4 @@
 // :copyright: Copyright (c) 2023 ftrack
-
 // Generated on 2023-02-01T00:00:00.000Z using schema
 // from an instance running version 4.13.8 using server on https://ftrack.example.com
 // Not intended to modify manually
@@ -353,9 +352,11 @@ export interface StatusRuleGroup {
   __entity_type__?: "StatusRuleGroup";
   __permissions?: Record<string, any>;
 }
-export interface TypedContext<
-  K extends TypedContextSubtype = TypedContextSubtype
-> extends Omit<Context, "__entity_type__" | "__permissions"> {
+export interface TypedContextForSubtype<K extends TypedContextSubtype>
+  extends Omit<
+    Context,
+    "__entity_type__" | "__permissions" | "custom_attributes"
+  > {
   ancestors?: TypedContext[];
   bid: number;
   readonly bid_time_logged_difference?: number;
@@ -383,6 +384,7 @@ export interface TypedContext<
   type_id: string;
   __entity_type__?: K;
   __permissions?: Record<string, any>;
+  custom_attributes?: Array<TypedContextCustomAttributesMap[K]>;
 }
 export interface Manager {
   context?: Context;
@@ -435,10 +437,16 @@ export interface ReviewSessionObjectAnnotation {
   __permissions?: Record<string, any>;
 }
 export interface TypedContextList
-  extends Omit<List, "__entity_type__" | "__permissions"> {
+  extends Omit<
+    List,
+    "__entity_type__" | "__permissions" | "custom_attributes"
+  > {
   items?: Task[];
   __entity_type__?: "TypedContextList";
   __permissions?: Record<string, any>;
+  custom_attributes?: Array<
+    TypedContextCustomAttributesMap["TypedContextList"]
+  >;
 }
 export interface NoteLabelLink {
   label?: NoteLabel;
@@ -476,7 +484,6 @@ export interface AssetVersion {
   components?: Component[];
   custom_attribute_links?: CustomAttributeLink[];
   custom_attribute_links_from?: CustomAttributeLinkFrom[];
-  custom_attributes?: AssetVersionCustomAttributeValue[];
   date?: string;
   readonly id: string;
   incoming_links?: AssetVersionLink[];
@@ -504,6 +511,7 @@ export interface AssetVersion {
   version?: number;
   __entity_type__?: "AssetVersion";
   __permissions?: Record<string, any>;
+  custom_attributes?: Array<TypedContextCustomAttributesMap["AssetVersion"]>;
 }
 export interface SecurityRole {
   readonly id: string;
@@ -582,19 +590,25 @@ export interface Event {
   __permissions?: Record<string, any>;
 }
 export interface ListObject {
-  custom_attributes?: ListObjectCustomAttributeValue[];
   entity_id: string;
   readonly id: string;
   list?: List;
   list_id: string;
   __entity_type__?: "ListObject";
   __permissions?: Record<string, any>;
+  custom_attributes?: Array<TypedContextCustomAttributesMap["ListObject"]>;
 }
 export interface AssetVersionList
-  extends Omit<List, "__entity_type__" | "__permissions"> {
+  extends Omit<
+    List,
+    "__entity_type__" | "__permissions" | "custom_attributes"
+  > {
   items?: AssetVersion[];
   __entity_type__?: "AssetVersionList";
   __permissions?: Record<string, any>;
+  custom_attributes?: Array<
+    TypedContextCustomAttributesMap["AssetVersionList"]
+  >;
 }
 export interface UserSession {
   accessed_time?: string;
@@ -658,7 +672,6 @@ export interface User
   extends Omit<BaseUser, "__entity_type__" | "__permissions"> {
   custom_attribute_links?: CustomAttributeLink[];
   custom_attribute_links_from?: CustomAttributeLinkFrom[];
-  custom_attributes?: UserCustomAttributeValue[];
   is_active: boolean;
   is_otp_enabled?: boolean;
   is_totp_enabled?: boolean;
@@ -672,6 +685,7 @@ export interface User
   username: string;
   __entity_type__?: "User";
   __permissions?: Record<string, any>;
+  custom_attributes?: Array<TypedContextCustomAttributesMap["User"]>;
 }
 export interface Feed {
   cluster_id?: string;
@@ -813,7 +827,6 @@ export interface Context {
   readonly created_by_id?: string;
   custom_attribute_links?: CustomAttributeLink[];
   custom_attribute_links_from?: CustomAttributeLinkFrom[];
-  custom_attributes?: ContextCustomAttributeValue[];
   readonly id: string;
   readonly link?: BasicLink[];
   managers?: Manager[];
@@ -829,6 +842,7 @@ export interface Context {
   timelogs?: Timelog[];
   __entity_type__?: "Context";
   __permissions?: Record<string, any>;
+  custom_attributes?: Array<TypedContextCustomAttributesMap["Context"]>;
 }
 export interface Schema {
   readonly id: string;
@@ -859,7 +873,6 @@ export interface Asset {
   context_id?: string;
   custom_attribute_links?: CustomAttributeLink[];
   custom_attribute_links_from?: CustomAttributeLinkFrom[];
-  custom_attributes?: AssetCustomAttributeValue[];
   readonly id: string;
   readonly latest_version?: AssetVersion;
   metadata?: Metadata[];
@@ -871,6 +884,7 @@ export interface Asset {
   versions?: AssetVersion[];
   __entity_type__?: "Asset";
   __permissions?: Record<string, any>;
+  custom_attributes?: Array<TypedContextCustomAttributesMap["Asset"]>;
 }
 export interface SettingComponent {
   component?: Component;
@@ -972,7 +986,10 @@ export interface ObjectType {
   __permissions?: Record<string, any>;
 }
 export interface Project
-  extends Omit<Context, "__entity_type__" | "__permissions"> {
+  extends Omit<
+    Context,
+    "__entity_type__" | "__permissions" | "custom_attributes"
+  > {
   calendar_events?: CalendarEvent[];
   color?: string;
   descendants?: TypedContext[];
@@ -993,6 +1010,7 @@ export interface Project
   user_security_role_projects?: UserSecurityRoleProject[];
   __entity_type__?: "Project";
   __permissions?: Record<string, any>;
+  custom_attributes?: Array<TypedContextCustomAttributesMap["Project"]>;
 }
 export interface TaskTemplate {
   readonly id: string;
@@ -1071,7 +1089,6 @@ export interface List {
   category_id: string;
   custom_attribute_links?: CustomAttributeLink[];
   custom_attribute_links_from?: CustomAttributeLinkFrom[];
-  custom_attributes?: ListCustomAttributeValue[];
   date?: string;
   readonly id: string;
   is_open: boolean;
@@ -1083,6 +1100,7 @@ export interface List {
   user_id?: string;
   __entity_type__?: "List";
   __permissions?: Record<string, any>;
+  custom_attributes?: Array<TypedContextCustomAttributesMap["List"]>;
 }
 export interface SplitTaskPart {
   end_date: string;
@@ -1120,16 +1138,26 @@ export interface Priority {
   __entity_type__?: "Priority";
   __permissions?: Record<string, any>;
 }
-export type Milestone = TypedContext<"Milestone">;
-export type Task = TypedContext<"Task">;
-export type Episode = TypedContext<"Episode">;
-export type Scene = TypedContext<"Scene">;
-export type Folder = TypedContext<"Folder">;
-export type Image = TypedContext<"Image">;
-export type AssetBuild = TypedContext<"AssetBuild">;
-export type Shot = TypedContext<"Shot">;
-export type Sequence = TypedContext<"Sequence">;
-export type Information = TypedContext<"Information">;
+export type Milestone = TypedContextForSubtype<"Milestone">;
+
+export type Task = TypedContextForSubtype<"Task">;
+
+export type Episode = TypedContextForSubtype<"Episode">;
+
+export type Scene = TypedContextForSubtype<"Scene">;
+
+export type Folder = TypedContextForSubtype<"Folder">;
+
+export type Image = TypedContextForSubtype<"Image">;
+
+export type AssetBuild = TypedContextForSubtype<"AssetBuild">;
+
+export type Shot = TypedContextForSubtype<"Shot">;
+
+export type Sequence = TypedContextForSubtype<"Sequence">;
+
+export type Information = TypedContextForSubtype<"Information">;
+
 export interface ContextCustomAttributeValue {
   configuration?: CustomAttributeConfiguration;
   readonly configuration_id: string;
@@ -1273,6 +1301,7 @@ export interface BasicLink {
   type: string;
   name: string;
 }
+
 export interface EntityTypeMap {
   Dashboard: Dashboard;
   Timer: Timer;
@@ -1405,11 +1434,12 @@ export interface EntityTypeMap {
   ComponentCustomAttributeLink: ComponentCustomAttributeLink;
   ComponentCustomAttributeLinkFrom: ComponentCustomAttributeLinkFrom;
 }
+
 export type EntityType = keyof EntityTypeMap;
 export type EntityData<TEntityType extends EntityType = EntityType> =
   EntityTypeMap[TEntityType];
+
 export interface TypedContextSubtypeMap {
-  TypedContext: TypedContext;
   Milestone: Milestone;
   Task: Task;
   Episode: Episode;
@@ -1422,6 +1452,9 @@ export interface TypedContextSubtypeMap {
   Information: Information;
 }
 export type TypedContextSubtype = keyof TypedContextSubtypeMap;
+
+export type TypedContext = TypedContextSubtypeMap[TypedContextSubtype];
+
 export function getAttributeConfigurations() {
   return [
     {
@@ -1551,6 +1584,821 @@ export type RuntimeCustomAttributeConfigurationName =
   RuntimeCustomAttributeConfiguration["name"];
 export type RuntimeCustomAttributeConfigurationLabel =
   RuntimeCustomAttributeConfiguration["label"];
+
+type BaseCustomAttributeValue = Omit<
+  ContextCustomAttributeValue,
+  "key" | "value"
+>;
+
+export interface TypedCustomAttributeValueMap {
+  somedynamicenumerator: string[];
+  somedate: string;
+  sometext: string;
+  someurl: string;
+  someenumerator: string[];
+  someboolean: boolean;
+  fend: number;
+  handles: number;
+  duration: string;
+  fstart: number;
+  fps: number;
+}
+
+export type TypedCustomAttributeValue<
+  K extends keyof TypedCustomAttributeValueMap
+> = BaseCustomAttributeValue & {
+  key: K;
+  value: TypedCustomAttributeValueMap[K];
+};
+
+export type TypedContextCustomAttributesMap = {
+  Dashboard:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Timer:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  StatusChange:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  TypedContextStatusRuleGroup:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  CalendarEventResource:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  FileComponent:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  State:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  AssetType:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Group:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  TypedContextLink:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  CalendarEvent:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  CustomAttributeLink:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Membership:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  DashboardWidget:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  AssetVersionStatusRuleGroup:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  ReviewSessionObject:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  ProjectSchema:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Appointment:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  TaskTypeSchema:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  ReviewSessionFolder:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  CustomAttributeLinkFrom:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Location:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  CustomAttributeGroup:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  CustomAttributeValue:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  UserSecurityRole:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  DashboardResource:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Component:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  NoteAnnotationComponent:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  SequenceComponent:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Collaborator:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  CustomAttributeConfiguration:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Status:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Scope:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  StatusRuleGroup:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  TypedContext:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Manager:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  CustomConfigurationBase:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  AssetVersionLink:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  ReviewSessionObjectAnnotation:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  TypedContextList:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  NoteLabelLink:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  TypedContextStatusChange:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  CustomAttributeLinkConfiguration:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  ContainerComponent:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  AssetVersion:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  SecurityRole:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  UserApplicationState:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  ReviewSessionInvitee:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Note:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Event:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  ListObject:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  AssetVersionList:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  UserSession:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  EntitySetting:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Disk:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Job:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  TaskTemplateItem:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  ProjectSchemaOverride:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  User:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Feed:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  BaseUser:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  ReviewSession:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  UserView:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Metadata:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  NoteCategory:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Type:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  UserType:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  JobComponent:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  ListCategory:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  WorkflowSchema:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  ReviewSessionObjectStatus:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Context:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Schema:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  WorkflowSchemaStatus:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  SchemaType:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Asset:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  SettingComponent:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  StatusRule:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  ComponentLocation:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  ReviewSessionObjectAnnotationComponent:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  CustomAttributeType:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Timelog:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  SchemaStatus:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  UserSecurityRoleProject:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  ObjectType:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Project:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  TaskTemplate:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  AssetVersionStatusChange:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Setting:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  ApiKey:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  NoteLabel:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  ManagerType:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Recipient:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  NoteComponent:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  ProjectSchemaObjectType:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  List:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  SplitTaskPart:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Resource:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  TaskTypeSchemaType:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Priority:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Milestone:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Task:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Episode:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Scene:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Folder:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Image:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  AssetBuild:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  Shot:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">
+    | TypedCustomAttributeValue<"fend">
+    | TypedCustomAttributeValue<"handles">
+    | TypedCustomAttributeValue<"duration">
+    | TypedCustomAttributeValue<"fstart">
+    | TypedCustomAttributeValue<"fps">;
+  Sequence:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">
+    | TypedCustomAttributeValue<"fps">;
+  Information:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  ContextCustomAttributeValue:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  AssetVersionCustomAttributeValue:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  ListCustomAttributeValue:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  ListObjectCustomAttributeValue:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  UserCustomAttributeValue:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  AssetCustomAttributeValue:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  ContextCustomAttributeLink:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  ContextCustomAttributeLinkFrom:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  AssetVersionCustomAttributeLink:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  AssetVersionCustomAttributeLinkFrom:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  ListCustomAttributeLink:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  ListCustomAttributeLinkFrom:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  UserCustomAttributeLink:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  UserCustomAttributeLinkFrom:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  GroupCustomAttributeLink:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  GroupCustomAttributeLinkFrom:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  AssetCustomAttributeLink:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  AssetCustomAttributeLinkFrom:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  ComponentCustomAttributeLink:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+  ComponentCustomAttributeLinkFrom:
+    | TypedCustomAttributeValue<"somedynamicenumerator">
+    | TypedCustomAttributeValue<"somedate">
+    | TypedCustomAttributeValue<"sometext">
+    | TypedCustomAttributeValue<"someenumerator">
+    | TypedCustomAttributeValue<"someboolean">;
+};
 
 export function getTypes() {
   return [
@@ -1924,5 +2772,3 @@ export function getStatuses() {
 
 export type RuntimeStatus = ReturnType<typeof getStatuses>[number];
 export type RuntimeStatusName = RuntimeStatus["name"];
-
-// Errors:

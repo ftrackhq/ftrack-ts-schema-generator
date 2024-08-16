@@ -1,33 +1,36 @@
 // :copyright: Copyright (c) 2023 ftrack
-
 // Generated on 2023-02-01T00:00:00.000Z using schema
 // from an instance running version 4.13.8 using server on https://ftrack.example.com
 // Not intended to modify manually
 
-export interface TypedContext<
-  K extends TypedContextSubtype = TypedContextSubtype
-> {
+export interface TypedContextForSubtype<K extends TypedContextSubtype> {
   __entity_type__?: K;
   __permissions?: Record<string, any>;
 }
-export type SomeInterfaceName = TypedContext<"SomeInterfaceName">;
+export type SomeInterfaceName = TypedContextForSubtype<"SomeInterfaceName">;
+
 export interface BasicLink {
   id: string;
   type: string;
   name: string;
 }
+
 export interface EntityTypeMap {
   TypedContext: TypedContext;
   SomeInterfaceName: SomeInterfaceName;
 }
+
 export type EntityType = keyof EntityTypeMap;
 export type EntityData<TEntityType extends EntityType = EntityType> =
   EntityTypeMap[TEntityType];
+
 export interface TypedContextSubtypeMap {
-  TypedContext: TypedContext;
   SomeInterfaceName: SomeInterfaceName;
 }
 export type TypedContextSubtype = keyof TypedContextSubtypeMap;
+
+export type TypedContext = TypedContextSubtypeMap[TypedContextSubtype];
+
 export function getAttributeConfigurations() {
   return [] as const;
 }
@@ -39,6 +42,25 @@ export type RuntimeCustomAttributeConfigurationName =
   RuntimeCustomAttributeConfiguration["name"];
 export type RuntimeCustomAttributeConfigurationLabel =
   RuntimeCustomAttributeConfiguration["label"];
+
+type BaseCustomAttributeValue = Omit<
+  ContextCustomAttributeValue,
+  "key" | "value"
+>;
+
+export interface TypedCustomAttributeValueMap {}
+
+export type TypedCustomAttributeValue<
+  K extends keyof TypedCustomAttributeValueMap
+> = BaseCustomAttributeValue & {
+  key: K;
+  value: TypedCustomAttributeValueMap[K];
+};
+
+export type TypedContextCustomAttributesMap = {
+  TypedContext: never;
+  SomeInterfaceName: never;
+};
 
 export function getTypes() {
   return [] as const;
@@ -74,5 +96,3 @@ export function getStatuses() {
 
 export type RuntimeStatus = ReturnType<typeof getStatuses>[number];
 export type RuntimeStatusName = RuntimeStatus["name"];
-
-// Errors:

@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@ftrack/api": "^1.4.5",
+    "lodash-es": "^4.17.21",
     "prettier": "^2.8.7"
   },
   "files": [
@@ -31,6 +32,7 @@
   },
   "homepage": "http://ftrack.com",
   "devDependencies": {
+    "@types/lodash-es": "^4",
     "@types/node": "^18.15.11",
     "@types/prettier": "^2.7.2",
     "@typescript-eslint/eslint-plugin": "^5.57.0",

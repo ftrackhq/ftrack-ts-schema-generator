@@ -1,6 +1,5 @@
 import { beforeEach, expect, test, vi } from "vitest";
 import {
-  CustomAttributeConfiguration,
   ObjectType,
   Priority,
   ProjectSchema,
@@ -11,6 +10,7 @@ import {
 import { QuerySchemasResponse, Schema } from "@ftrack/api";
 import { readFile } from "fs/promises";
 import { join } from "path";
+import { CustomAttributeConfiguration } from "./emitCustomAttributes";
 
 beforeEach(() => {
   vi.setSystemTime(new Date(2023, 1, 1, 0, 0, 0));
