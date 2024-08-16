@@ -53,21 +53,18 @@ export function emitCustomAttributes(
 
     export type TypedContextCustomAttributesMap = {
       ${schemas
-        .map((schema) => {
-          const matchingCustomAttributesForSchema = customAttributes
-            .filter(
-              (x) => x.is_hierarchical || x.object_type?.name === schema.id
-            )
-            .map((x) => `TypedCustomAttributeValue<"${x.key}">`);
-          if (matchingCustomAttributesForSchema.length === 0) {
-            return null;
+        .map(
+          (schema) => `
+              ${schema.id}: ${
+            customAttributes
+              .filter(
+                (x) => x.is_hierarchical || x.object_type?.name === schema.id
+              )
+              .map((x) => `TypedCustomAttributeValue<"${x.key}">`)
+              .join("|") || "never"
           }
-
-          return `
-              ${schema.id}: ${matchingCustomAttributesForSchema.join("|")}
-            `;
-        })
-        .filter((x) => !!x)
+            `
+        )
         .join(";")}
       };
   `);

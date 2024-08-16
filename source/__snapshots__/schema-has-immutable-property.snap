@@ -58,7 +58,10 @@ export type TypedCustomAttributeValue<
   value: TypedCustomAttributeValueMap[K];
 };
 
-export type TypedContextCustomAttributesMap = {};
+export type TypedContextCustomAttributesMap = {
+  TypedContext: never;
+  SomeInterfaceName: never;
+};
 
 export function getTypes() {
   return [] as const;
