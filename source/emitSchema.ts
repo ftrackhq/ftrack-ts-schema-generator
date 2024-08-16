@@ -65,9 +65,9 @@ function emitSpecialProperties(
   schema: Schema
 ) {
   if (isSchemaTypedContext(schema)) {
-    typescriptEmitter.appendCode(`__entity_type__?: K;`);
+    typescriptEmitter.appendCode(`__entity_type__: K;`);
   } else {
-    typescriptEmitter.appendCode(`__entity_type__?: "${schema.id}";`);
+    typescriptEmitter.appendCode(`__entity_type__: "${schema.id}";`);
   }
   typescriptEmitter.appendCode(`__permissions?: Record<string, any>;`);
 
