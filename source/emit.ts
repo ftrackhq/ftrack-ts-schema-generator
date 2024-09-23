@@ -347,6 +347,6 @@ function emitTypedContextTypes(
     }
     export type TypedContextSubtype = keyof TypedContextSubtypeMap;
 
-    export type TypedContext = TypedContextSubtypeMap[TypedContextSubtype];
+    export type TypedContext = TypedContextForSubtype<TypedContextSubtype>;
   `);
 }
