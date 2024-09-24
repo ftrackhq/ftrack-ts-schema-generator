@@ -2,7 +2,6 @@
 // Generated on 2023-02-01T00:00:00.000Z using schema
 // from an instance running version 4.13.8 using server on https://ftrack.example.com
 // Not intended to modify manually
-
 export interface TypedContextForSubtype<K extends TypedContextSubtype> {
   __entity_type__?: K;
   __permissions?: Record<string, any>;

@@ -2,7 +2,6 @@
 // Generated on 2023-02-01T00:00:00.000Z using schema
 // from an instance running version 4.13.8 using server on https://ftrack.example.com
 // Not intended to modify manually
-
 export interface Dashboard {
   created_by?: User;
   created_by_id?: string;
@@ -1149,7 +1148,6 @@ export type Shot = TypedContextForSubtype<"Shot">;
 export type Sequence = TypedContextForSubtype<"Sequence">;
 
 export type Information = TypedContextForSubtype<"Information">;
-
 export interface ContextCustomAttributeValue {
   configuration?: CustomAttributeConfiguration;
   readonly configuration_id: string;
