@@ -41,7 +41,7 @@ export interface StatusChange {
 }
 export interface TypedContextStatusRuleGroup
   extends Omit<StatusRuleGroup, "__entity_type__" | "__permissions"> {
-  object_type?: ObjectType;
+  object_type?: ObjectType<"TypedContextStatusRuleGroup">;
   object_type_id: string;
   __entity_type__?: "TypedContextStatusRuleGroup";
   __permissions?: Record<string, any>;
@@ -122,7 +122,7 @@ export interface CalendarEvent {
   project?: Project;
   project_id?: string;
   start: string;
-  type?: Type;
+  type?: Type<"CalendarEvent">;
   type_id?: string;
   __entity_type__?: "CalendarEvent";
   __permissions?: Record<string, any>;
@@ -365,7 +365,7 @@ export interface TypedContextForSubtype<K extends TypedContextSubtype>
   incoming_links?: TypedContextLink[];
   lists?: TypedContextList[];
   metadata?: Metadata[];
-  object_type?: ObjectType;
+  object_type?: ObjectType<K>;
   object_type_id: string;
   outgoing_links?: TypedContextLink[];
   priority?: Priority;
@@ -379,7 +379,7 @@ export interface TypedContextForSubtype<K extends TypedContextSubtype>
   status_id: string;
   readonly thumbnail_source_id?: string;
   readonly time_logged?: number;
-  type?: Type;
+  type?: Type<K>;
   type_id: string;
   __entity_type__?: K;
   __permissions?: Record<string, any>;
@@ -404,7 +404,7 @@ export interface CustomConfigurationBase {
   readonly id: string;
   key?: string;
   label?: string;
-  object_type?: ObjectType;
+  object_type?: ObjectType<"CustomConfigurationBase">;
   object_type_id?: string;
   project_id?: string;
   read_security_roles?: SecurityRole[];
@@ -1068,7 +1068,7 @@ export interface NoteComponent {
   __permissions?: Record<string, any>;
 }
 export interface ProjectSchemaObjectType {
-  object_type?: ObjectType;
+  object_type?: ObjectType<"ProjectSchemaObjectType">;
   readonly object_type_id: string;
   project_schema?: ProjectSchema;
   readonly project_schema_id: string;
