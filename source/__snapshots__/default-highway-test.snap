@@ -2127,7 +2127,8 @@ export type TypedContextCustomAttributesMap = {
     | TypedCustomAttributeValue<"somedate">
     | TypedCustomAttributeValue<"sometext">
     | TypedCustomAttributeValue<"someenumerator">
-    | TypedCustomAttributeValue<"someboolean">;
+    | TypedCustomAttributeValue<"someboolean">
+    | TypedCustomAttributeValue<"fps">;
   TaskTemplate:
     | TypedCustomAttributeValue<"somedynamicenumerator">
     | TypedCustomAttributeValue<"somedate">
