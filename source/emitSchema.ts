@@ -1,12 +1,14 @@
 // :copyright: Copyright (c) 2023 ftrack
 import type {
   QuerySchemasResponse,
+  RefSchemaProperty,
   Schema,
   SchemaProperties,
   TypedSchemaProperty,
 } from "@ftrack/api";
 import { type TypeScriptEmitter } from "./typescriptEmitter";
 import { isSchemaTypedContext } from "./utils";
+import { chain } from "lodash-es";
 
 // Add schemas from the schemas folder, to be used for finding extended schemas
 export async function emitSchemaInterface(
@@ -14,12 +16,10 @@ export async function emitSchemaInterface(
   schema: Schema,
   allSchemas: QuerySchemasResponse
 ) {
-  const interfaceName = getTypeScriptInterfaceNameForInterface(schema);
-
-  // If the schema is a subtype of TypedContext, return that
-  if (typeof schema?.alias_for === "object" && schema.alias_for.id === "Task") {
-    typescriptEmitter.appendCode(`
-      export type ${interfaceName} = TypedContextForSubtype<"${interfaceName}">;
+  const isSchemaSubtypeOfTypedContext = typeof schema?.alias_for === "object" && schema.alias_for.id === "Task";
+  if (isSchemaSubtypeOfTypedContext) {
+    typescriptEmitter.appendBlock(`
+      export type ${schema.id} = TypedContextForSubtype<"${schema.id}">;
     `);
     return;
   }
@@ -30,12 +30,17 @@ export async function emitSchemaInterface(
   // Get the typedContext schema, to filter the properties for typedContext subtypes
   const typedContextSchema = allSchemas.find(isSchemaTypedContext);
 
-  typescriptEmitter.appendCode(`
-    export interface ${interfaceName}${getTypeExtensionSuffix(
+  const interfaceName = isSchemaTypedContext(schema) ?
+    `TypedContextForSubtype<K extends TypedContextSubtype>` :
+    `${schema.id}`;
+  typescriptEmitter.appendBlock(`export interface ${interfaceName}`);
+    
+  typescriptEmitter.appendInline(getTypeExtensionSuffix(
     baseSchema,
     schema
-  )} {
-  `);
+  ));
+
+  typescriptEmitter.appendBlock(`{`);
 
   // For each property, add a type to the interface
   emitTypeProperties(
@@ -48,16 +53,7 @@ export async function emitSchemaInterface(
   // Entity type and permissions are missing from the source schema, so add them to the interface
   emitSpecialProperties(typescriptEmitter, schema);
 
-  typescriptEmitter.appendCode(`}`);
-}
-
-function getTypeScriptInterfaceNameForInterface(schema: Schema) {
-  // Adds a generic to the interface to TypedContext, which is used for subtypes of TypedContext
-  if (isSchemaTypedContext(schema)) {
-    return "TypedContextForSubtype<K extends TypedContextSubtype>";
-  }
-
-  return schema.id;
+  typescriptEmitter.appendBlock(`}`);
 }
 
 function emitSpecialProperties(
@@ -65,23 +61,11 @@ function emitSpecialProperties(
   schema: Schema
 ) {
   if (isSchemaTypedContext(schema)) {
-    typescriptEmitter.appendCode(`__entity_type__?: K;`);
+    typescriptEmitter.appendBlock(`__entity_type__?: K;`);
   } else {
-    typescriptEmitter.appendCode(`__entity_type__?: "${schema.id}";`);
+    typescriptEmitter.appendBlock(`__entity_type__?: "${schema.id}";`);
   }
-  typescriptEmitter.appendCode(`__permissions?: Record<string, any>;`);
-
-  if (schema.properties && "custom_attributes" in schema.properties) {
-    if (isSchemaTypedContext(schema)) {
-      typescriptEmitter.appendCode(
-        `custom_attributes?: Array<TypedContextCustomAttributesMap[K]>;`
-      );
-    } else {
-      typescriptEmitter.appendCode(
-        `custom_attributes?: Array<TypedContextCustomAttributesMap["${schema.id}"]>;`
-      );
-    }
-  }
+  typescriptEmitter.appendBlock(`__permissions?: Record<string, any>;`);
 }
 
 function getTypeExtensionSuffix(
@@ -119,78 +103,72 @@ function getBaseSchema(schema: Schema, allSchemas: QuerySchemasResponse) {
   });
   return baseSchema;
 }
+
 function emitTypeProperties(
   typescriptEmitter: TypeScriptEmitter,
   schema: Schema,
   baseSchemaProperties?: SchemaProperties,
   typedContextProperties?: SchemaProperties
 ) {
-  // Filter out deprecated properties, that start with _
-  const deprecationFilteredProperties = Object.entries(
-    schema.properties || []
-  ).filter(([key]) => !key.startsWith("_"));
-  // Filter out all properties that are defined in the base schema
-  const baseSchemaFilteredProperties = deprecationFilteredProperties.filter(
-    ([key]) => !baseSchemaProperties?.[key]
-  );
+  const properties = chain(Object.entries(schema.properties || []))
+    .filter(([propertyName]) => !isPropertyNameDeprecated(propertyName))
+    .filter(([propertyName]) => typeof schema?.alias_for === "object" && schema.alias_for.id === "Task" ?
+      !doesPropertyExistInSchema(typedContextProperties, propertyName) :
+      !doesPropertyExistInSchema(baseSchemaProperties, propertyName))
+    .orderBy(([propertyName]) => propertyName, 'asc')
+    .value();
 
-  let filteredProperties = baseSchemaFilteredProperties;
-  if (typeof schema?.alias_for === "object" && schema.alias_for.id === "Task") {
-    filteredProperties = deprecationFilteredProperties.filter(
-      ([key]) => !typedContextProperties?.[key]
-    );
-  }
-  // Sort the object by key
-  filteredProperties.sort((a, b) => (a[0] > b[0] ? 1 : -1));
-
-  filteredProperties.forEach(([key, value]) => {
-    if (typeof value !== "object" || value === null) {
-      throw new Error(
-        `Property ${key} in schema ${schema.id} is not an object`
-      );
-    }
-
-    // If neither type or $ref is defined, we can't generate a type. Log an error
-    if (!("type" in value) && !("$ref" in value)) {
+  for(const [propertyName, value] of properties) {
+    const type = getTypeOfSchemaProperty(schema, propertyName, value);
+    if (!type) {
       typescriptEmitter.appendError(
-        `No type or $ref defined for property ${key} in schema ${schema.id}`
+        `No type or $ref defined for property ${propertyName} in schema ${schema.id}`
       );
+      continue;
     }
+
+    const isImmutable = schema.immutable?.includes(propertyName) || schema.computed?.includes(propertyName);
+    if (isImmutable) {
+      typescriptEmitter.appendBlock("readonly");
+    }
+
+    typescriptEmitter.appendInline(propertyName);
 
     const isRequired =
-      schema.required?.includes(key) || schema.primary_key?.includes(key);
-
-    let type;
-    if ("$ref" in value && value.$ref) {
-      type = value.$ref;
-    }
-    if ("type" in value && value.type) {
-      verifyValidType(value.type);
-      type = convertTypeToTsType(key, value);
-    }
-    let prefix = "";
-    // If the property is immutable, add a readonly prefix
-    if (schema.immutable?.includes(key) || schema.computed?.includes(key)) {
-      prefix = `readonly `;
+      schema.required?.includes(propertyName) || schema.primary_key?.includes(propertyName);
+    if (!isRequired) {
+      typescriptEmitter.appendInline("?");
     }
 
-    /**
-    Hack to get around the fact that the API doesn't return the correct type for BasicLink
-    Task: 95e02be2-c7ec-11ed-ae64-46416ff77027
-    */
-    if (key === "link" && type === "string") {
-      type = "BasicLink[]";
-    }
+    typescriptEmitter.appendInline(`: ${type}; `);
+  }
+}
 
-    if (key === "custom_attributes") {
-      return;
+function getTypeOfSchemaProperty(schema: Schema, propertyName: string, value: TypedSchemaProperty | RefSchemaProperty) {
+  if(propertyName === "custom_attributes") {
+    if (isSchemaTypedContext(schema)) {
+      return "Array<TypedContextCustomAttributesMap[K]>";
+    } else {
+      return `Array<TypedContextCustomAttributesMap["${schema.id}"]>`;
     }
+  }
 
-    // All properties are optional, adds a question mark
-    typescriptEmitter.appendCode(
-      `${prefix}${key}${!isRequired ? "?" : ""}: ${type};`
-    );
-  });
+  let type;
+  if ("$ref" in value && value.$ref) {
+    type = value.$ref;
+  } else if ("type" in value && value.type) {
+    type = convertTypeToTsType(propertyName, value);
+  }
+
+  /**
+  Hack to get around the fact that the API doesn't return the correct type for BasicLink
+  Task: 95e02be2-c7ec-11ed-ae64-46416ff77027
+  */
+  if (propertyName === "link" && type === "string") {
+    return "BasicLink[]";
+  }
+
+  return type;
 }
 
 function convertTypeToTsType(key: string, value: TypedSchemaProperty): string {
@@ -216,19 +194,11 @@ function convertTypeToTsType(key: string, value: TypedSchemaProperty): string {
 
   return value.type;
 }
-function verifyValidType(type: string) {
-  if (
-    ![
-      "object",
-      "array",
-      "string",
-      "number",
-      "boolean",
-      "mapped_array",
-      "integer",
-      "variable",
-    ].includes(type)
-  ) {
-    throw new Error(`Invalid type ${type}`);
-  }
+
+function doesPropertyExistInSchema(typedContextProperties: SchemaProperties | undefined, propertyName: string) {
+  return typedContextProperties?.[propertyName];
+}
+
+function isPropertyNameDeprecated(propertyName: string) {
+  return propertyName.startsWith("_");
 }

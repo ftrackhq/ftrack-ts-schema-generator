@@ -128,7 +128,7 @@ export async function emitToString(
   }
 
   const emitter = new TypeScriptEmitter();
-  emitter.appendCode(`
+  emitter.appendBlock(`
     // :copyright: Copyright (c) ${new Date().getFullYear()} ftrack
     // Generated on ${new Date().toISOString()} using schema
     // from an instance running version ${serverVersion} using server on ${serverUrl}
@@ -148,7 +148,7 @@ export async function emitToString(
   BasicLink needs to be added explicitly, as it is not returned by the API.
   Task: 95e02be2-c7ec-11ed-ae64-46416ff77027
   */
-  emitter.appendCode(`
+  emitter.appendBlock(`
     export interface BasicLink {
       id: string;
       type: string;
@@ -157,7 +157,7 @@ export async function emitToString(
   `);
 
   // Add a map of entity types and type for EntityType and a type for EntityData
-  emitter.appendCode(`
+  emitter.appendBlock(`
     export interface EntityTypeMap {
       ${schemas
         .map((s) => s.id)
@@ -174,7 +174,7 @@ export async function emitToString(
 
   emitCustomAttributes(emitter, schemas, customAttributes);
 
-  emitter.appendCode(`
+  emitter.appendBlock(`
     export function getTypes() {
       return [
         ${types.map(
@@ -190,7 +190,7 @@ export async function emitToString(
     export type RuntimeTypeName = RuntimeType["name"];
   `);
 
-  emitter.appendCode(`
+  emitter.appendBlock(`
     export function getObjectTypes() {
       return [
         ${objectTypes.map(
@@ -212,7 +212,7 @@ export async function emitToString(
     export type RuntimeObjectTypeName = RuntimeObjectType["name"];
 `);
 
-  emitter.appendCode(`
+  emitter.appendBlock(`
     export function getProjectSchemas() {
       return [
         ${projectSchemas.map(
@@ -233,7 +233,7 @@ export async function emitToString(
     export type RuntimeProjectSchemaName = RuntimeProjectSchema["name"];
   `);
 
-  emitter.appendCode(`
+  emitter.appendBlock(`
     export function getPriorities() {
       return [
         ${priorities.map(
@@ -251,7 +251,7 @@ export async function emitToString(
     export type RuntimePriorityName = RuntimePriority["name"];
   `);
 
-  emitter.appendCode(`
+  emitter.appendBlock(`
     export function getStatuses() {
       return [
         ${statuses.map(
@@ -331,7 +331,7 @@ function emitTypedContextTypes(
   builder: TypeScriptEmitter,
   schemas: QuerySchemasResponse
 ) {
-  builder.appendCode(`
+  builder.appendBlock(`
     export interface TypedContextSubtypeMap {
       ${schemas
         .filter(
