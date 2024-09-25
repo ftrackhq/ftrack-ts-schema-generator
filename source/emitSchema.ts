@@ -97,20 +97,6 @@ function emitTypeProperties(
   }
 }
 
-//TODO: maybe NormalizedSchemaProperty could already contain this standardized property format in it, so that this function wouldn't have to be called
-function getTypeOfNormalizedSchemaProperty(
-  property: TypedSchemaProperty | RefSchemaProperty
-) {
-  let type;
-  if ("$ref" in property && property.$ref) {
-    type = property.$ref;
-  } else if ("type" in property && property.type) {
-    type = convertNormalizedSchemaPropertyToTypeScriptType(property);
-  }
-
-  return type;
-}
-
 function getOverriddenSchemaType(
   schema?: Schema,
   baseSchema?: Schema | undefined
