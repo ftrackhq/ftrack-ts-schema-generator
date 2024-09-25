@@ -8,7 +8,7 @@ import type {
 } from "@ftrack/api";
 import { type TypeScriptEmitter } from "./typescriptEmitter";
 import { isSchemaTypedContext } from "./utils";
-import { chain, uniqBy } from "lodash-es";
+import { chain } from "lodash-es";
 
 // Add schemas from the schemas folder, to be used for finding extended schemas
 export async function emitSchemaInterface(
