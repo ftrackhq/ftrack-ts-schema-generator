@@ -7,7 +7,7 @@ export function emitCustomAttributes(
   schemas: QuerySchemasResponse,
   customAttributes: CustomAttributeConfiguration[]
 ) {
-  typescriptEmitter.appendCode(`
+  typescriptEmitter.appendBlock(`
     export function getAttributeConfigurations() {
         return [
             ${customAttributes.map(

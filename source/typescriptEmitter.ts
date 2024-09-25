@@ -13,9 +13,13 @@ export class TypeScriptEmitter {
     this._errors = [];
   }
 
-  public appendCode(text: string) {
-    this._code += ` ${text} `;
+  public appendInline(text: string) {
+    this._code += text;
     return this;
+  }
+
+  public appendBlock(text: string) {
+    return this.appendInline(` ${text} `);
   }
 
   public appendError(message: string) {

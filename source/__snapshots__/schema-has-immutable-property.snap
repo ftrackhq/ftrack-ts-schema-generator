@@ -2,15 +2,14 @@
 // Generated on 2023-02-01T00:00:00.000Z using schema
 // from an instance running version 4.13.8 using server on https://ftrack.example.com
 // Not intended to modify manually
-
 export interface TypedContextForSubtype<K extends TypedContextSubtype> {
   __entity_type__?: K;
   __permissions?: Record<string, any>;
 }
 export interface SomeInterfaceName {
-  readonly immutableProperty?: string | number | boolean | string[];
   __entity_type__?: "SomeInterfaceName";
   __permissions?: Record<string, any>;
+  readonly immutableProperty?: string | number | boolean | string[];
 }
 export interface BasicLink {
   id: string;
@@ -70,12 +69,21 @@ export function getTypes() {
 export type RuntimeType = ReturnType<typeof getTypes>[number];
 export type RuntimeTypeName = RuntimeType["name"];
 
+interface TypeFor<T extends TypedContextSubtype> extends Omit<Type, "name"> {
+  name: T;
+}
+
 export function getObjectTypes() {
   return [] as const;
 }
 
 export type RuntimeObjectType = ReturnType<typeof getObjectTypes>[number];
 export type RuntimeObjectTypeName = RuntimeObjectType["name"];
+
+interface ObjectTypeFor<T extends TypedContextSubtype>
+  extends Omit<ObjectType, "name"> {
+  name: T;
+}
 
 export function getProjectSchemas() {
   return [] as const;
