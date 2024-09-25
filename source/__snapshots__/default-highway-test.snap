@@ -40,13 +40,10 @@ export interface StatusChange {
   user_id?: string;
 }
 export interface TypedContextStatusRuleGroup
-  extends Omit<
-    StatusRuleGroup,
-    "__entity_type__" | "__permissions" | "object_type"
-  > {
+  extends Omit<StatusRuleGroup, "__entity_type__" | "__permissions"> {
   __entity_type__?: "TypedContextStatusRuleGroup";
   __permissions?: Record<string, any>;
-  object_type?: ObjectTypeFor<"TypedContextStatusRuleGroup">;
+  object_type?: ObjectType;
   object_type_id: string;
 }
 export interface CalendarEventResource {
@@ -317,7 +314,7 @@ export interface Collaborator
 export interface CustomAttributeConfiguration
   extends Omit<
     CustomConfigurationBase,
-    "__entity_type__" | "__permissions" | "type" | "object_type"
+    "__entity_type__" | "__permissions" | "type"
   > {
   __entity_type__?: "CustomAttributeConfiguration";
   __permissions?: Record<string, any>;
@@ -360,11 +357,7 @@ export interface StatusRuleGroup {
 export interface TypedContextForSubtype<K extends TypedContextSubtype>
   extends Omit<
     Context,
-    | "__entity_type__"
-    | "__permissions"
-    | "custom_attributes"
-    | "type"
-    | "object_type"
+    "__entity_type__" | "__permissions" | "custom_attributes" | "type"
   > {
   __entity_type__?: K;
   __permissions?: Record<string, any>;
@@ -416,7 +409,7 @@ export interface CustomConfigurationBase {
   readonly id: string;
   key?: string;
   label?: string;
-  object_type?: ObjectTypeFor<"CustomConfigurationBase">;
+  object_type?: ObjectType;
   object_type_id?: string;
   project_id?: string;
   read_security_roles?: SecurityRole[];
@@ -468,10 +461,7 @@ export interface TypedContextStatusChange
   parent?: TypedContext;
 }
 export interface CustomAttributeLinkConfiguration
-  extends Omit<
-    CustomConfigurationBase,
-    "__entity_type__" | "__permissions" | "object_type"
-  > {
+  extends Omit<CustomConfigurationBase, "__entity_type__" | "__permissions"> {
   __entity_type__?: "CustomAttributeLinkConfiguration";
   __permissions?: Record<string, any>;
   readonly entity_type_to: string;
@@ -769,13 +759,13 @@ export interface NoteCategory
   __entity_type__?: "NoteCategory";
   __permissions?: Record<string, any>;
 }
-export interface Type<K = string> {
+export interface Type {
   __entity_type__?: "Type";
   __permissions?: Record<string, any>;
   color: string;
   readonly id: string;
   is_billable: boolean;
-  name?: K;
+  name?: string;
   sort: number;
   task_type_schemas?: TaskTypeSchema[];
   tasks?: Task[];
@@ -976,7 +966,7 @@ export interface UserSecurityRoleProject {
   user_security_role?: UserSecurityRole;
   user_security_role_id?: string;
 }
-export interface ObjectType<K = string> {
+export interface ObjectType {
   __entity_type__?: "ObjectType";
   __permissions?: Record<string, any>;
   icon: string;
@@ -988,7 +978,7 @@ export interface ObjectType<K = string> {
   is_taskable: boolean;
   is_time_reportable: boolean;
   is_typeable: boolean;
-  name: K;
+  name: string;
   project_schemas?: ProjectSchema[];
   sort: number;
   tasks?: Task[];
@@ -1086,7 +1076,7 @@ export interface NoteComponent {
 export interface ProjectSchemaObjectType {
   __entity_type__?: "ProjectSchemaObjectType";
   __permissions?: Record<string, any>;
-  object_type?: ObjectTypeFor<"ProjectSchemaObjectType">;
+  object_type?: ObjectType;
   readonly object_type_id: string;
   project_schema?: ProjectSchema;
   readonly project_schema_id: string;
@@ -2623,7 +2613,7 @@ export type RuntimeObjectType = ReturnType<typeof getObjectTypes>[number];
 export type RuntimeObjectTypeName = RuntimeObjectType["name"];
 
 interface ObjectTypeFor<T extends TypedContextSubtype>
-  extends Omit<Type, "name"> {
+  extends Omit<ObjectType, "name"> {
   name: T;
 }
 

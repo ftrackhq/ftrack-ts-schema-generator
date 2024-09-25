@@ -215,7 +215,7 @@ export async function emitToString(
     export type RuntimeObjectType = ReturnType<typeof getObjectTypes>[number];
     export type RuntimeObjectTypeName = RuntimeObjectType["name"];
 
-    interface ObjectTypeFor<T extends TypedContextSubtype> extends Omit<Type, "name"> {
+    interface ObjectTypeFor<T extends TypedContextSubtype> extends Omit<ObjectType, "name"> {
       name: T;
     };
 `);

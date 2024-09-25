@@ -105,17 +105,6 @@ function getOverriddenSchemaType(schema?: Schema, baseSchema?: Schema|undefined)
     return {};
   }
 
-  const entityTypeMapKeyName = isSchemaTypedContext(schema) ? "K" : `"${schema.id}"`;
-
-  if(schema.id === "Type" || schema.id === "ObjectType") {
-    return {
-      genericArguments: ["K = string"],
-      properties: [
-        { name: "name", typescriptType: "K" }
-      ]
-    }
-  }
-
   const globalPropertiesForBaseSchema = getGlobalPropertiesForSchema(baseSchema);
 
   const overriddenPropertiesFromBaseSchema = (getOverriddenSchemaType(baseSchema).properties || [])
@@ -127,6 +116,7 @@ function getOverriddenSchemaType(schema?: Schema, baseSchema?: Schema|undefined)
     ...overriddenPropertiesFromBaseSchema
   ];
   
+  const entityTypeMapKeyName = isSchemaTypedContext(schema) ? "K" : `"${schema.id}"`;
   if(isSchemaTypedContext(schema)) {
     return {
       name: "TypedContextForSubtype",
@@ -150,7 +140,6 @@ function getOverriddenSchemaType(schema?: Schema, baseSchema?: Schema|undefined)
     properties: [
       { name: "custom_attributes", typescriptType: `Array<TypedContextCustomAttributesMap[${entityTypeMapKeyName}]>` },
       { name: "type", typescriptType: `TypeFor<${entityTypeMapKeyName}>` },
-      { name: "object_type", typescriptType: `ObjectTypeFor<${entityTypeMapKeyName}>` },
     ]
   };
 }
