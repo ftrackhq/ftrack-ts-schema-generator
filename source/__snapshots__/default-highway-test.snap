@@ -3,6 +3,8 @@
 // from an instance running version 4.13.8 using server on https://ftrack.example.com
 // Not intended to modify manually
 export interface Dashboard {
+  __entity_type__?: "Dashboard";
+  __permissions?: Record<string, any>;
   created_by?: User;
   created_by_id?: string;
   dashboard_resources?: DashboardResource[];
@@ -10,10 +12,10 @@ export interface Dashboard {
   is_shared_with_everyone?: boolean;
   name?: string;
   widgets?: DashboardWidget[];
-  __entity_type__?: "Dashboard";
-  __permissions?: Record<string, any>;
 }
 export interface Timer {
+  __entity_type__?: "Timer";
+  __permissions?: Record<string, any>;
   comment: string;
   context?: Context;
   context_id?: string;
@@ -22,10 +24,10 @@ export interface Timer {
   start: string;
   user?: User;
   user_id: string;
-  __entity_type__?: "Timer";
-  __permissions?: Record<string, any>;
 }
 export interface StatusChange {
+  __entity_type__?: "StatusChange";
+  __permissions?: Record<string, any>;
   date?: string;
   from_status?: Status;
   from_status_id?: string;
@@ -36,17 +38,20 @@ export interface StatusChange {
   status_id?: string;
   user?: User;
   user_id?: string;
-  __entity_type__?: "StatusChange";
-  __permissions?: Record<string, any>;
 }
 export interface TypedContextStatusRuleGroup
-  extends Omit<StatusRuleGroup, "__entity_type__" | "__permissions"> {
-  object_type?: ObjectType<"TypedContextStatusRuleGroup">;
-  object_type_id: string;
+  extends Omit<
+    StatusRuleGroup,
+    "__entity_type__" | "__permissions" | "object_type"
+  > {
   __entity_type__?: "TypedContextStatusRuleGroup";
   __permissions?: Record<string, any>;
+  object_type?: ObjectTypeFor<"TypedContextStatusRuleGroup">;
+  object_type_id: string;
 }
 export interface CalendarEventResource {
+  __entity_type__?: "CalendarEventResource";
+  __permissions?: Record<string, any>;
   calendar_event?: CalendarEvent;
   calendar_event_id: string;
   created_at?: string;
@@ -55,8 +60,6 @@ export interface CalendarEventResource {
   readonly id: string;
   resource?: Resource;
   resource_id: string;
-  __entity_type__?: "CalendarEventResource";
-  __permissions?: Record<string, any>;
 }
 export interface FileComponent
   extends Omit<Component, "__entity_type__" | "__permissions"> {
@@ -64,36 +67,38 @@ export interface FileComponent
   __permissions?: Record<string, any>;
 }
 export interface State {
+  __entity_type__?: "State";
+  __permissions?: Record<string, any>;
   readonly id: string;
   name?: string;
   short?: string;
-  __entity_type__?: "State";
-  __permissions?: Record<string, any>;
 }
 export interface AssetType {
+  __entity_type__?: "AssetType";
+  __permissions?: Record<string, any>;
   assets?: Asset[];
   component?: string;
   readonly id: string;
   name: string;
   short: string;
-  __entity_type__?: "AssetType";
-  __permissions?: Record<string, any>;
 }
 export interface Group
   extends Omit<Resource, "__entity_type__" | "__permissions"> {
+  __entity_type__?: "Group";
+  __permissions?: Record<string, any>;
   children?: Group[];
   custom_attribute_links?: CustomAttributeLink[];
   custom_attribute_links_from?: CustomAttributeLinkFrom[];
-  readonly link?: BasicLink[];
+  readonly link?: string;
   local: boolean;
   memberships?: Membership[];
   name: string;
   parent?: Group;
   parent_id?: string;
-  __entity_type__?: "Group";
-  __permissions?: Record<string, any>;
 }
 export interface TypedContextLink {
+  __entity_type__?: "TypedContextLink";
+  __permissions?: Record<string, any>;
   from?: TypedContext;
   from_id: string;
   readonly id: string;
@@ -101,11 +106,11 @@ export interface TypedContextLink {
   metadata?: Metadata[];
   to?: TypedContext;
   to_id: string;
-  type?: string;
-  __entity_type__?: "TypedContextLink";
-  __permissions?: Record<string, any>;
+  type?: TypeFor<"TypedContextLink">;
 }
 export interface CalendarEvent {
+  __entity_type__?: "CalendarEvent";
+  __permissions?: Record<string, any>;
   calendar_event_resources?: CalendarEventResource[];
   created_at?: string;
   created_by?: User;
@@ -122,12 +127,12 @@ export interface CalendarEvent {
   project?: Project;
   project_id?: string;
   start: string;
-  type?: Type<"CalendarEvent">;
+  type?: TypeFor<"CalendarEvent">;
   type_id?: string;
-  __entity_type__?: "CalendarEvent";
-  __permissions?: Record<string, any>;
 }
 export interface CustomAttributeLink {
+  __entity_type__?: "CustomAttributeLink";
+  __permissions?: Record<string, any>;
   configuration?: CustomAttributeLinkConfiguration;
   readonly configuration_id: string;
   from_entity_type?: string;
@@ -135,27 +140,25 @@ export interface CustomAttributeLink {
   readonly id: string;
   to_entity_type?: string;
   to_id: string;
-  __entity_type__?: "CustomAttributeLink";
-  __permissions?: Record<string, any>;
 }
 export interface Membership {
+  __entity_type__?: "Membership";
+  __permissions?: Record<string, any>;
   group?: Group;
   group_id: string;
   readonly id: string;
   user?: User;
   user_id: string;
-  __entity_type__?: "Membership";
-  __permissions?: Record<string, any>;
 }
 export interface DashboardWidget {
+  __entity_type__?: "DashboardWidget";
+  __permissions?: Record<string, any>;
   config?: string;
   dashboard?: Dashboard;
   dashboard_id?: string;
   readonly id: string;
   sort?: number;
-  type?: string;
-  __entity_type__?: "DashboardWidget";
-  __permissions?: Record<string, any>;
+  type?: TypeFor<"DashboardWidget">;
 }
 export interface AssetVersionStatusRuleGroup
   extends Omit<StatusRuleGroup, "__entity_type__" | "__permissions"> {
@@ -163,6 +166,8 @@ export interface AssetVersionStatusRuleGroup
   __permissions?: Record<string, any>;
 }
 export interface ReviewSessionObject {
+  __entity_type__?: "ReviewSessionObject";
+  __permissions?: Record<string, any>;
   annotations?: ReviewSessionObjectAnnotation[];
   asset_version?: AssetVersion;
   created_at: string;
@@ -176,10 +181,10 @@ export interface ReviewSessionObject {
   statuses?: ReviewSessionObjectStatus[];
   version: string;
   version_id: string;
-  __entity_type__?: "ReviewSessionObject";
-  __permissions?: Record<string, any>;
 }
 export interface ProjectSchema {
+  __entity_type__?: "ProjectSchema";
+  __permissions?: Record<string, any>;
   asset_version_workflow_schema?: WorkflowSchema;
   asset_version_workflow_schema_id?: string;
   readonly id: string;
@@ -192,36 +197,36 @@ export interface ProjectSchema {
   task_workflow_schema?: WorkflowSchema;
   task_workflow_schema_id?: string;
   task_workflow_schema_overrides?: ProjectSchemaOverride[];
-  __entity_type__?: "ProjectSchema";
-  __permissions?: Record<string, any>;
 }
 export interface Appointment {
+  __entity_type__?: "Appointment";
+  __permissions?: Record<string, any>;
   context?: Context;
   context_id: string;
   readonly id: string;
   resource?: Resource;
   resource_id: string;
-  type: string;
-  __entity_type__?: "Appointment";
-  __permissions?: Record<string, any>;
+  type: TypeFor<"Appointment">;
 }
 export interface TaskTypeSchema {
+  __entity_type__?: "TaskTypeSchema";
+  __permissions?: Record<string, any>;
   readonly id: string;
   name?: string;
   types?: Type[];
-  __entity_type__?: "TaskTypeSchema";
-  __permissions?: Record<string, any>;
 }
 export interface ReviewSessionFolder {
+  __entity_type__?: "ReviewSessionFolder";
+  __permissions?: Record<string, any>;
   readonly id: string;
   name: string;
   project?: Project;
   project_id?: string;
   review_sessions?: ReviewSession[];
-  __entity_type__?: "ReviewSessionFolder";
-  __permissions?: Record<string, any>;
 }
 export interface CustomAttributeLinkFrom {
+  __entity_type__?: "CustomAttributeLinkFrom";
+  __permissions?: Record<string, any>;
   configuration?: CustomAttributeLinkConfiguration;
   readonly configuration_id: string;
   from_entity_type?: string;
@@ -229,34 +234,34 @@ export interface CustomAttributeLinkFrom {
   readonly id: string;
   to_entity_type?: string;
   to_id: string;
-  __entity_type__?: "CustomAttributeLinkFrom";
-  __permissions?: Record<string, any>;
 }
 export interface Location {
+  __entity_type__?: "Location";
+  __permissions?: Record<string, any>;
   description?: string;
   readonly id: string;
   label?: string;
   location_components?: ComponentLocation[];
   name: string;
-  __entity_type__?: "Location";
-  __permissions?: Record<string, any>;
 }
 export interface CustomAttributeGroup {
+  __entity_type__?: "CustomAttributeGroup";
+  __permissions?: Record<string, any>;
   custom_attribute_configurations?: CustomAttributeConfiguration[];
   readonly id: string;
   name?: string;
-  __entity_type__?: "CustomAttributeGroup";
-  __permissions?: Record<string, any>;
 }
 export interface CustomAttributeValue {
+  __entity_type__?: "CustomAttributeValue";
+  __permissions?: Record<string, any>;
   configuration?: CustomAttributeConfiguration;
   readonly configuration_id: string;
   readonly entity_id: string;
   value?: string | number | boolean | string[];
-  __entity_type__?: "CustomAttributeValue";
-  __permissions?: Record<string, any>;
 }
 export interface UserSecurityRole {
+  __entity_type__?: "UserSecurityRole";
+  __permissions?: Record<string, any>;
   readonly id: string;
   is_all_open_projects?: boolean;
   is_all_projects?: boolean;
@@ -265,18 +270,18 @@ export interface UserSecurityRole {
   user?: User;
   user_id?: string;
   user_security_role_projects?: UserSecurityRoleProject[];
-  __entity_type__?: "UserSecurityRole";
-  __permissions?: Record<string, any>;
 }
 export interface DashboardResource {
+  __entity_type__?: "DashboardResource";
+  __permissions?: Record<string, any>;
   dashboard?: Dashboard;
   readonly dashboard_id: string;
   resource?: Resource;
   readonly resource_id: string;
-  __entity_type__?: "DashboardResource";
-  __permissions?: Record<string, any>;
 }
 export interface Component {
+  __entity_type__?: "Component";
+  __permissions?: Record<string, any>;
   component_locations?: ComponentLocation[];
   container?: ContainerComponent;
   container_id?: string;
@@ -290,38 +295,41 @@ export interface Component {
   system_type: string;
   version?: AssetVersion;
   version_id?: string;
-  __entity_type__?: "Component";
-  __permissions?: Record<string, any>;
 }
 export interface NoteAnnotationComponent
   extends Omit<NoteComponent, "__entity_type__" | "__permissions"> {
-  data?: object;
   __entity_type__?: "NoteAnnotationComponent";
   __permissions?: Record<string, any>;
+  data?: object;
 }
 export interface SequenceComponent
   extends Omit<ContainerComponent, "__entity_type__" | "__permissions"> {
-  padding: number;
   __entity_type__?: "SequenceComponent";
   __permissions?: Record<string, any>;
+  padding: number;
 }
 export interface Collaborator
   extends Omit<BaseUser, "__entity_type__" | "__permissions"> {
-  created_from_shared_url?: string;
   __entity_type__?: "Collaborator";
   __permissions?: Record<string, any>;
+  created_from_shared_url?: string;
 }
 export interface CustomAttributeConfiguration
-  extends Omit<CustomConfigurationBase, "__entity_type__" | "__permissions"> {
-  default?: string | number | boolean | string[];
-  is_hierarchical?: boolean;
-  type?: CustomAttributeType;
-  type_id?: string;
-  values?: CustomAttributeValue[];
+  extends Omit<
+    CustomConfigurationBase,
+    "__entity_type__" | "__permissions" | "type" | "object_type"
+  > {
   __entity_type__?: "CustomAttributeConfiguration";
   __permissions?: Record<string, any>;
+  default?: string | number | boolean | string[];
+  is_hierarchical?: boolean;
+  type?: TypeFor<"CustomAttributeConfiguration">;
+  type_id?: string;
+  values?: CustomAttributeValue[];
 }
 export interface Status {
+  __entity_type__?: "Status";
+  __permissions?: Record<string, any>;
   color?: string;
   readonly id: string;
   is_active: boolean;
@@ -329,16 +337,16 @@ export interface Status {
   sort?: number;
   state?: State;
   tasks?: Task[];
-  __entity_type__?: "Status";
-  __permissions?: Record<string, any>;
 }
 export interface Scope {
-  readonly id: string;
-  name: string;
   __entity_type__?: "Scope";
   __permissions?: Record<string, any>;
+  readonly id: string;
+  name: string;
 }
 export interface StatusRuleGroup {
+  __entity_type__?: "StatusRuleGroup";
+  __permissions?: Record<string, any>;
   entity_type: string;
   readonly id: string;
   role?: SecurityRole;
@@ -348,14 +356,18 @@ export interface StatusRuleGroup {
   status?: Status;
   status_id: string;
   status_rules?: StatusRule[];
-  __entity_type__?: "StatusRuleGroup";
-  __permissions?: Record<string, any>;
 }
 export interface TypedContextForSubtype<K extends TypedContextSubtype>
   extends Omit<
     Context,
-    "__entity_type__" | "__permissions" | "custom_attributes"
+    | "__entity_type__"
+    | "__permissions"
+    | "custom_attributes"
+    | "type"
+    | "object_type"
   > {
+  __entity_type__?: K;
+  __permissions?: Record<string, any>;
   ancestors?: TypedContext[];
   bid: number;
   readonly bid_time_logged_difference?: number;
@@ -365,7 +377,7 @@ export interface TypedContextForSubtype<K extends TypedContextSubtype>
   incoming_links?: TypedContextLink[];
   lists?: TypedContextList[];
   metadata?: Metadata[];
-  object_type?: ObjectType<K>;
+  object_type?: ObjectTypeFor<K>;
   object_type_id: string;
   outgoing_links?: TypedContextLink[];
   priority?: Priority;
@@ -379,23 +391,23 @@ export interface TypedContextForSubtype<K extends TypedContextSubtype>
   status_id: string;
   readonly thumbnail_source_id?: string;
   readonly time_logged?: number;
-  type?: Type<K>;
+  type?: TypeFor<K>;
   type_id: string;
-  __entity_type__?: K;
-  __permissions?: Record<string, any>;
 }
 export interface Manager {
+  __entity_type__?: "Manager";
+  __permissions?: Record<string, any>;
   context?: Context;
   context_id?: string;
   readonly id: string;
-  type?: ManagerType;
+  type?: TypeFor<"Manager">;
   type_id?: string;
   user?: User;
   user_id?: string;
-  __entity_type__?: "Manager";
-  __permissions?: Record<string, any>;
 }
 export interface CustomConfigurationBase {
+  __entity_type__?: "CustomConfigurationBase";
+  __permissions?: Record<string, any>;
   config: string;
   core: boolean;
   entity_type?: string;
@@ -404,26 +416,26 @@ export interface CustomConfigurationBase {
   readonly id: string;
   key?: string;
   label?: string;
-  object_type?: ObjectType<"CustomConfigurationBase">;
+  object_type?: ObjectTypeFor<"CustomConfigurationBase">;
   object_type_id?: string;
   project_id?: string;
   read_security_roles?: SecurityRole[];
   sort?: number;
   write_security_roles?: SecurityRole[];
-  __entity_type__?: "CustomConfigurationBase";
-  __permissions?: Record<string, any>;
 }
 export interface AssetVersionLink {
+  __entity_type__?: "AssetVersionLink";
+  __permissions?: Record<string, any>;
   from?: AssetVersion;
   from_id: string;
   readonly id: string;
   metadata?: Metadata[];
   to?: AssetVersion;
   to_id: string;
-  __entity_type__?: "AssetVersionLink";
-  __permissions?: Record<string, any>;
 }
 export interface ReviewSessionObjectAnnotation {
+  __entity_type__?: "ReviewSessionObjectAnnotation";
+  __permissions?: Record<string, any>;
   created_at: string;
   data?: string;
   frame_number: number;
@@ -431,48 +443,51 @@ export interface ReviewSessionObjectAnnotation {
   review_session_object?: ReviewSessionObject;
   review_session_object_id?: string;
   updated_at?: string;
-  __entity_type__?: "ReviewSessionObjectAnnotation";
-  __permissions?: Record<string, any>;
 }
 export interface TypedContextList
   extends Omit<
     List,
     "__entity_type__" | "__permissions" | "custom_attributes"
   > {
-  items?: Task[];
   __entity_type__?: "TypedContextList";
   __permissions?: Record<string, any>;
+  items?: Task[];
 }
 export interface NoteLabelLink {
+  __entity_type__?: "NoteLabelLink";
+  __permissions?: Record<string, any>;
   label?: NoteLabel;
   readonly label_id: string;
   note?: Note;
   readonly note_id: string;
-  __entity_type__?: "NoteLabelLink";
-  __permissions?: Record<string, any>;
 }
 export interface TypedContextStatusChange
   extends Omit<StatusChange, "__entity_type__" | "__permissions"> {
-  parent?: TypedContext;
   __entity_type__?: "TypedContextStatusChange";
   __permissions?: Record<string, any>;
+  parent?: TypedContext;
 }
 export interface CustomAttributeLinkConfiguration
-  extends Omit<CustomConfigurationBase, "__entity_type__" | "__permissions"> {
+  extends Omit<
+    CustomConfigurationBase,
+    "__entity_type__" | "__permissions" | "object_type"
+  > {
+  __entity_type__?: "CustomAttributeLinkConfiguration";
+  __permissions?: Record<string, any>;
   readonly entity_type_to: string;
   readonly object_type_id_to?: string;
   object_type_to?: ObjectType;
   one_to_one?: boolean;
-  __entity_type__?: "CustomAttributeLinkConfiguration";
-  __permissions?: Record<string, any>;
 }
 export interface ContainerComponent
   extends Omit<Component, "__entity_type__" | "__permissions"> {
-  members?: Component[];
   __entity_type__?: "ContainerComponent";
   __permissions?: Record<string, any>;
+  members?: Component[];
 }
 export interface AssetVersion {
+  __entity_type__?: "AssetVersion";
+  __permissions?: Record<string, any>;
   asset?: Asset;
   asset_id?: string;
   comment?: string;
@@ -485,7 +500,7 @@ export interface AssetVersion {
   incoming_links?: AssetVersionLink[];
   readonly is_latest_version?: boolean;
   is_published: boolean;
-  readonly link?: BasicLink[];
+  readonly link?: string;
   lists?: AssetVersionList[];
   metadata?: Metadata[];
   notes?: Note[];
@@ -505,25 +520,25 @@ export interface AssetVersion {
   user_id?: string;
   uses_versions?: AssetVersion[];
   version?: number;
-  __entity_type__?: "AssetVersion";
-  __permissions?: Record<string, any>;
 }
 export interface SecurityRole {
-  readonly id: string;
-  name?: string;
-  type?: string;
-  user_security_roles?: UserSecurityRole[];
   __entity_type__?: "SecurityRole";
   __permissions?: Record<string, any>;
+  readonly id: string;
+  name?: string;
+  type?: TypeFor<"SecurityRole">;
+  user_security_roles?: UserSecurityRole[];
 }
 export interface UserApplicationState {
+  __entity_type__?: "UserApplicationState";
+  __permissions?: Record<string, any>;
   readonly key: string;
   readonly user_id: string;
   value: string;
-  __entity_type__?: "UserApplicationState";
-  __permissions?: Record<string, any>;
 }
 export interface ReviewSessionInvitee {
+  __entity_type__?: "ReviewSessionInvitee";
+  __permissions?: Record<string, any>;
   created_at: string;
   created_by?: User;
   created_by_id: string;
@@ -537,10 +552,10 @@ export interface ReviewSessionInvitee {
   review_session?: ReviewSession;
   review_session_id: string;
   statuses?: ReviewSessionObjectStatus[];
-  __entity_type__?: "ReviewSessionInvitee";
-  __permissions?: Record<string, any>;
 }
 export interface Note {
+  __entity_type__?: "Note";
+  __permissions?: Record<string, any>;
   author?: BaseUser;
   category?: NoteCategory;
   category_id?: string;
@@ -565,10 +580,10 @@ export interface Note {
   replies?: Note[];
   thread_activity?: string;
   user_id: string;
-  __entity_type__?: "Note";
-  __permissions?: Record<string, any>;
 }
 export interface Event {
+  __entity_type__?: "Event";
+  __permissions?: Record<string, any>;
   action?: string;
   created_at?: string;
   data?: string;
@@ -581,87 +596,90 @@ export interface Event {
   project_id?: string;
   user?: User;
   user_id?: string;
-  __entity_type__?: "Event";
-  __permissions?: Record<string, any>;
 }
 export interface ListObject {
+  __entity_type__?: "ListObject";
+  __permissions?: Record<string, any>;
   custom_attributes?: Array<TypedContextCustomAttributesMap["ListObject"]>;
   entity_id: string;
   readonly id: string;
   list?: List;
   list_id: string;
-  __entity_type__?: "ListObject";
-  __permissions?: Record<string, any>;
 }
 export interface AssetVersionList
   extends Omit<
     List,
     "__entity_type__" | "__permissions" | "custom_attributes"
   > {
-  items?: AssetVersion[];
   __entity_type__?: "AssetVersionList";
   __permissions?: Record<string, any>;
+  items?: AssetVersion[];
 }
 export interface UserSession {
+  __entity_type__?: "UserSession";
+  __permissions?: Record<string, any>;
   accessed_time?: string;
   creation_time?: string;
   readonly id: string;
   user?: User;
   user_id?: string;
-  __entity_type__?: "UserSession";
-  __permissions?: Record<string, any>;
 }
 export interface EntitySetting {
+  __entity_type__?: "EntitySetting";
+  __permissions?: Record<string, any>;
   readonly group: string;
   readonly name: string;
   readonly parent_id: string;
   parent_type: string;
   value: string;
-  __entity_type__?: "EntitySetting";
-  __permissions?: Record<string, any>;
 }
 export interface Disk {
+  __entity_type__?: "Disk";
+  __permissions?: Record<string, any>;
   readonly id: string;
   name: string;
   projects?: Project[];
   unix?: string;
   windows?: string;
-  __entity_type__?: "Disk";
-  __permissions?: Record<string, any>;
 }
 export interface Job {
+  __entity_type__?: "Job";
+  __permissions?: Record<string, any>;
   created_at?: string;
   data?: string;
   finished_at?: string;
   readonly id: string;
   job_components?: JobComponent[];
   status: string;
-  readonly type: string;
+  readonly type: TypeFor<"Job">;
   user?: User;
   user_id?: string;
-  __entity_type__?: "Job";
-  __permissions?: Record<string, any>;
 }
 export interface TaskTemplateItem {
+  __entity_type__?: "TaskTemplateItem";
+  __permissions?: Record<string, any>;
   readonly id: string;
   task_type?: Type;
   task_type_id: string;
   template?: TaskTemplate;
   template_id: string;
-  __entity_type__?: "TaskTemplateItem";
-  __permissions?: Record<string, any>;
 }
 export interface ProjectSchemaOverride {
+  __entity_type__?: "ProjectSchemaOverride";
+  __permissions?: Record<string, any>;
   readonly id: string;
   project_schema_id?: string;
   type_id?: string;
   workflow_schema?: WorkflowSchema;
   workflow_schema_id?: string;
-  __entity_type__?: "ProjectSchemaOverride";
-  __permissions?: Record<string, any>;
 }
 export interface User
-  extends Omit<BaseUser, "__entity_type__" | "__permissions"> {
+  extends Omit<
+    BaseUser,
+    "__entity_type__" | "__permissions" | "custom_attributes"
+  > {
+  __entity_type__?: "User";
+  __permissions?: Record<string, any>;
   custom_attribute_links?: CustomAttributeLink[];
   custom_attribute_links_from?: CustomAttributeLinkFrom[];
   custom_attributes?: Array<TypedContextCustomAttributesMap["User"]>;
@@ -676,10 +694,10 @@ export interface User
   user_type?: UserType;
   user_type_id?: string;
   username: string;
-  __entity_type__?: "User";
-  __permissions?: Record<string, any>;
 }
 export interface Feed {
+  __entity_type__?: "Feed";
+  __permissions?: Record<string, any>;
   cluster_id?: string;
   created_at?: string;
   distance?: number;
@@ -688,21 +706,21 @@ export interface Feed {
   owner_id?: string;
   relation?: string;
   social_id?: number;
-  __entity_type__?: "Feed";
-  __permissions?: Record<string, any>;
 }
 export interface BaseUser
   extends Omit<Resource, "__entity_type__" | "__permissions"> {
+  __entity_type__?: "BaseUser";
+  __permissions?: Record<string, any>;
   email?: string;
   first_name?: string;
   last_name?: string;
   thumbnail?: Component;
   thumbnail_id?: string;
   readonly thumbnail_url?: object;
-  __entity_type__?: "BaseUser";
-  __permissions?: Record<string, any>;
 }
 export interface ReviewSession {
+  __entity_type__?: "ReviewSession";
+  __permissions?: Record<string, any>;
   availability?: string;
   created_at: string;
   created_by?: User;
@@ -727,74 +745,74 @@ export interface ReviewSession {
   readonly thumbnail_id?: string;
   thumbnail_source_id?: string;
   readonly thumbnail_url?: object;
-  __entity_type__?: "ReviewSession";
-  __permissions?: Record<string, any>;
 }
 export interface UserView {
+  __entity_type__?: "UserView";
+  __permissions?: Record<string, any>;
   global?: boolean;
   readonly id: string;
   name?: string;
   shared_with?: Resource[];
   user?: User;
   user_id?: string;
-  __entity_type__?: "UserView";
-  __permissions?: Record<string, any>;
 }
 export interface Metadata {
+  __entity_type__?: "Metadata";
+  __permissions?: Record<string, any>;
   readonly key: string;
   readonly parent_id: string;
   parent_type: string;
   value: string;
-  __entity_type__?: "Metadata";
-  __permissions?: Record<string, any>;
 }
 export interface NoteCategory
   extends Omit<NoteLabel, "__entity_type__" | "__permissions"> {
   __entity_type__?: "NoteCategory";
   __permissions?: Record<string, any>;
 }
-export interface Type {
+export interface Type<K = string> {
+  __entity_type__?: "Type";
+  __permissions?: Record<string, any>;
   color: string;
   readonly id: string;
   is_billable: boolean;
-  name?: string;
+  name?: K;
   sort: number;
   task_type_schemas?: TaskTypeSchema[];
   tasks?: Task[];
-  __entity_type__?: "Type";
-  __permissions?: Record<string, any>;
 }
 export interface UserType {
-  readonly id: string;
-  readonly name?: string;
   __entity_type__?: "UserType";
   __permissions?: Record<string, any>;
+  readonly id: string;
+  readonly name?: string;
 }
 export interface JobComponent {
+  __entity_type__?: "JobComponent";
+  __permissions?: Record<string, any>;
   component?: Component;
   readonly component_id: string;
   job?: Job;
   readonly job_id: string;
   readonly url?: object;
-  __entity_type__?: "JobComponent";
-  __permissions?: Record<string, any>;
 }
 export interface ListCategory {
+  __entity_type__?: "ListCategory";
+  __permissions?: Record<string, any>;
   readonly id: string;
   lists?: List[];
   name?: string;
-  __entity_type__?: "ListCategory";
-  __permissions?: Record<string, any>;
 }
 export interface WorkflowSchema {
+  __entity_type__?: "WorkflowSchema";
+  __permissions?: Record<string, any>;
   readonly id: string;
   name?: string;
   overrides?: ProjectSchemaOverride[];
   statuses?: Status[];
-  __entity_type__?: "WorkflowSchema";
-  __permissions?: Record<string, any>;
 }
 export interface ReviewSessionObjectStatus {
+  __entity_type__?: "ReviewSessionObjectStatus";
+  __permissions?: Record<string, any>;
   created_at: string;
   readonly id: string;
   invitee?: ReviewSessionInvitee;
@@ -804,10 +822,10 @@ export interface ReviewSessionObjectStatus {
   review_session_object?: ReviewSessionObject;
   review_session_object_id?: string;
   status?: string;
-  __entity_type__?: "ReviewSessionObjectStatus";
-  __permissions?: Record<string, any>;
 }
 export interface Context {
+  __entity_type__?: "Context";
+  __permissions?: Record<string, any>;
   allocations?: Appointment[];
   appointments?: Appointment[];
   assets?: Asset[];
@@ -821,7 +839,7 @@ export interface Context {
   custom_attribute_links_from?: CustomAttributeLinkFrom[];
   custom_attributes?: Array<TypedContextCustomAttributesMap["Context"]>;
   readonly id: string;
-  readonly link?: BasicLink[];
+  readonly link?: string;
   managers?: Manager[];
   name: string;
   notes?: Note[];
@@ -833,34 +851,34 @@ export interface Context {
   thumbnail_id?: string;
   readonly thumbnail_url?: object;
   timelogs?: Timelog[];
-  __entity_type__?: "Context";
-  __permissions?: Record<string, any>;
 }
 export interface Schema {
+  __entity_type__?: "Schema";
+  __permissions?: Record<string, any>;
   readonly id: string;
   object_type_id?: string;
   project_schema_id: string;
   statuses?: SchemaStatus[];
   type_id: string;
   types?: SchemaType[];
-  __entity_type__?: "Schema";
-  __permissions?: Record<string, any>;
 }
 export interface WorkflowSchemaStatus {
-  readonly status_id: string;
-  readonly workflow_schema_id: string;
   __entity_type__?: "WorkflowSchemaStatus";
   __permissions?: Record<string, any>;
+  readonly status_id: string;
+  readonly workflow_schema_id: string;
 }
 export interface SchemaType {
+  __entity_type__?: "SchemaType";
+  __permissions?: Record<string, any>;
   readonly schema_id: string;
   sort?: number;
   task_type?: Type;
   readonly type_id: string;
-  __entity_type__?: "SchemaType";
-  __permissions?: Record<string, any>;
 }
 export interface Asset {
+  __entity_type__?: "Asset";
+  __permissions?: Record<string, any>;
   ancestors?: TypedContext[];
   context_id?: string;
   custom_attribute_links?: CustomAttributeLink[];
@@ -872,13 +890,13 @@ export interface Asset {
   name?: string;
   parent?: Context;
   project_id?: string;
-  type?: AssetType;
+  type?: TypeFor<"Asset">;
   type_id?: string;
   versions?: AssetVersion[];
-  __entity_type__?: "Asset";
-  __permissions?: Record<string, any>;
 }
 export interface SettingComponent {
+  __entity_type__?: "SettingComponent";
+  __permissions?: Record<string, any>;
   component?: Component;
   readonly component_id: string;
   readonly group: string;
@@ -886,19 +904,19 @@ export interface SettingComponent {
   setting?: Setting;
   readonly thumbnail_url?: object;
   readonly url?: object;
-  __entity_type__?: "SettingComponent";
-  __permissions?: Record<string, any>;
 }
 export interface StatusRule {
+  __entity_type__?: "StatusRule";
+  __permissions?: Record<string, any>;
   readonly id: string;
   status?: Status;
   status_id: string;
   status_rule_group?: StatusRuleGroup;
   status_rule_group_id: string;
-  __entity_type__?: "StatusRule";
-  __permissions?: Record<string, any>;
 }
 export interface ComponentLocation {
+  __entity_type__?: "ComponentLocation";
+  __permissions?: Record<string, any>;
   component?: Component;
   component_id?: string;
   readonly id: string;
@@ -906,10 +924,10 @@ export interface ComponentLocation {
   location_id?: string;
   resource_identifier?: string;
   readonly url?: object;
-  __entity_type__?: "ComponentLocation";
-  __permissions?: Record<string, any>;
 }
 export interface ReviewSessionObjectAnnotationComponent {
+  __entity_type__?: "ReviewSessionObjectAnnotationComponent";
+  __permissions?: Record<string, any>;
   component?: Component;
   readonly component_id: string;
   readonly frame_number: string;
@@ -917,19 +935,19 @@ export interface ReviewSessionObjectAnnotationComponent {
   readonly review_session_object_id: string;
   readonly thumbnail_url?: object;
   readonly url?: object;
-  __entity_type__?: "ReviewSessionObjectAnnotationComponent";
-  __permissions?: Record<string, any>;
 }
 export interface CustomAttributeType {
+  __entity_type__?: "CustomAttributeType";
+  __permissions?: Record<string, any>;
   core: boolean;
   custom_attribute_configurations?: CustomAttributeConfiguration[];
   form_config?: string;
   readonly id: string;
   name?: string;
-  __entity_type__?: "CustomAttributeType";
-  __permissions?: Record<string, any>;
 }
 export interface Timelog {
+  __entity_type__?: "Timelog";
+  __permissions?: Record<string, any>;
   comment: string;
   context?: Context;
   context_id?: string;
@@ -940,27 +958,27 @@ export interface Timelog {
   time_zone_offset?: number;
   user?: User;
   user_id?: string;
-  __entity_type__?: "Timelog";
-  __permissions?: Record<string, any>;
 }
 export interface SchemaStatus {
+  __entity_type__?: "SchemaStatus";
+  __permissions?: Record<string, any>;
   readonly schema_id: string;
   sort?: number;
   readonly status_id: string;
   task_status?: Status;
-  __entity_type__?: "SchemaStatus";
-  __permissions?: Record<string, any>;
 }
 export interface UserSecurityRoleProject {
+  __entity_type__?: "UserSecurityRoleProject";
+  __permissions?: Record<string, any>;
   readonly id: string;
   project?: Project;
   project_id?: string;
   user_security_role?: UserSecurityRole;
   user_security_role_id?: string;
-  __entity_type__?: "UserSecurityRoleProject";
-  __permissions?: Record<string, any>;
 }
-export interface ObjectType {
+export interface ObjectType<K = string> {
+  __entity_type__?: "ObjectType";
+  __permissions?: Record<string, any>;
   icon: string;
   readonly id: string;
   is_leaf?: boolean;
@@ -970,18 +988,18 @@ export interface ObjectType {
   is_taskable: boolean;
   is_time_reportable: boolean;
   is_typeable: boolean;
-  name: string;
+  name: K;
   project_schemas?: ProjectSchema[];
   sort: number;
   tasks?: Task[];
-  __entity_type__?: "ObjectType";
-  __permissions?: Record<string, any>;
 }
 export interface Project
   extends Omit<
     Context,
     "__entity_type__" | "__permissions" | "custom_attributes"
   > {
+  __entity_type__?: "Project";
+  __permissions?: Record<string, any>;
   calendar_events?: CalendarEvent[];
   color?: string;
   descendants?: TypedContext[];
@@ -1000,82 +1018,82 @@ export interface Project
   start_date?: string;
   status: string;
   user_security_role_projects?: UserSecurityRoleProject[];
-  __entity_type__?: "Project";
-  __permissions?: Record<string, any>;
 }
 export interface TaskTemplate {
+  __entity_type__?: "TaskTemplate";
+  __permissions?: Record<string, any>;
   readonly id: string;
   items?: TaskTemplateItem[];
   name: string;
   project_schema?: ProjectSchema;
   project_schema_id: string;
-  __entity_type__?: "TaskTemplate";
-  __permissions?: Record<string, any>;
 }
 export interface AssetVersionStatusChange
   extends Omit<StatusChange, "__entity_type__" | "__permissions"> {
-  parent?: AssetVersion;
   __entity_type__?: "AssetVersionStatusChange";
   __permissions?: Record<string, any>;
+  parent?: AssetVersion;
 }
 export interface Setting {
+  __entity_type__?: "Setting";
+  __permissions?: Record<string, any>;
   readonly group: string;
   readonly name: string;
   value?: string;
-  __entity_type__?: "Setting";
-  __permissions?: Record<string, any>;
 }
 export interface ApiKey {
+  __entity_type__?: "ApiKey";
+  __permissions?: Record<string, any>;
   readonly id: string;
   identifier?: string;
   prefix?: string;
   resource_id?: string;
-  __entity_type__?: "ApiKey";
-  __permissions?: Record<string, any>;
 }
 export interface NoteLabel {
+  __entity_type__?: "NoteLabel";
+  __permissions?: Record<string, any>;
   color?: string;
   readonly id: string;
   name?: string;
   sort?: number;
-  __entity_type__?: "NoteLabel";
-  __permissions?: Record<string, any>;
 }
 export interface ManagerType {
-  readonly id: string;
-  name?: string;
   __entity_type__?: "ManagerType";
   __permissions?: Record<string, any>;
+  readonly id: string;
+  name?: string;
 }
 export interface Recipient {
+  __entity_type__?: "Recipient";
+  __permissions?: Record<string, any>;
   note?: Note;
   readonly note_id: string;
   recipient?: Resource;
   readonly resource_id: string;
   text_mentioned?: string;
   user?: User;
-  __entity_type__?: "Recipient";
-  __permissions?: Record<string, any>;
 }
 export interface NoteComponent {
+  __entity_type__?: "NoteComponent";
+  __permissions?: Record<string, any>;
   component?: Component;
   readonly component_id: string;
   note?: Note;
   readonly note_id: string;
   readonly thumbnail_url?: object;
   readonly url?: object;
-  __entity_type__?: "NoteComponent";
-  __permissions?: Record<string, any>;
 }
 export interface ProjectSchemaObjectType {
-  object_type?: ObjectType<"ProjectSchemaObjectType">;
+  __entity_type__?: "ProjectSchemaObjectType";
+  __permissions?: Record<string, any>;
+  object_type?: ObjectTypeFor<"ProjectSchemaObjectType">;
   readonly object_type_id: string;
   project_schema?: ProjectSchema;
   readonly project_schema_id: string;
-  __entity_type__?: "ProjectSchemaObjectType";
-  __permissions?: Record<string, any>;
 }
 export interface List {
+  __entity_type__?: "List";
+  __permissions?: Record<string, any>;
   category?: ListCategory;
   category_id: string;
   custom_attribute_links?: CustomAttributeLink[];
@@ -1090,44 +1108,42 @@ export interface List {
   project_id: string;
   system_type?: string;
   user_id?: string;
-  __entity_type__?: "List";
-  __permissions?: Record<string, any>;
 }
 export interface SplitTaskPart {
+  __entity_type__?: "SplitTaskPart";
+  __permissions?: Record<string, any>;
   end_date: string;
   readonly id: string;
   label?: string;
   start_date: string;
   task?: Task;
   task_id: string;
-  __entity_type__?: "SplitTaskPart";
-  __permissions?: Record<string, any>;
 }
 export interface Resource {
+  __entity_type__?: "Resource";
+  __permissions?: Record<string, any>;
   allocations?: Appointment[];
   appointments?: Appointment[];
   assignments?: Appointment[];
   dashboard_resources?: DashboardResource[];
   readonly id: string;
   resource_type: string;
-  __entity_type__?: "Resource";
-  __permissions?: Record<string, any>;
 }
 export interface TaskTypeSchemaType {
-  readonly task_type_schema_id: string;
-  readonly type_id: string;
   __entity_type__?: "TaskTypeSchemaType";
   __permissions?: Record<string, any>;
+  readonly task_type_schema_id: string;
+  readonly type_id: string;
 }
 export interface Priority {
+  __entity_type__?: "Priority";
+  __permissions?: Record<string, any>;
   color?: string;
   readonly id: string;
   name?: string;
   sort?: number;
   tasks?: Task[];
   value?: number;
-  __entity_type__?: "Priority";
-  __permissions?: Record<string, any>;
 }
 export type Milestone = TypedContextForSubtype<"Milestone">;
 
@@ -1149,142 +1165,142 @@ export type Sequence = TypedContextForSubtype<"Sequence">;
 
 export type Information = TypedContextForSubtype<"Information">;
 export interface ContextCustomAttributeValue {
-  configuration?: CustomAttributeConfiguration;
-  readonly configuration_id: string;
-  readonly entity_id: string;
-  key?: string;
-  value?: string | number | boolean | string[];
   __entity_type__?: "ContextCustomAttributeValue";
   __permissions?: Record<string, any>;
+  configuration?: CustomAttributeConfiguration;
+  readonly configuration_id: string;
+  readonly entity_id: string;
+  key?: string;
+  value?: string | number | boolean | string[];
 }
 export interface AssetVersionCustomAttributeValue {
-  configuration?: CustomAttributeConfiguration;
-  readonly configuration_id: string;
-  readonly entity_id: string;
-  key?: string;
-  value?: string | number | boolean | string[];
   __entity_type__?: "AssetVersionCustomAttributeValue";
   __permissions?: Record<string, any>;
+  configuration?: CustomAttributeConfiguration;
+  readonly configuration_id: string;
+  readonly entity_id: string;
+  key?: string;
+  value?: string | number | boolean | string[];
 }
 export interface ListCustomAttributeValue {
-  configuration?: CustomAttributeConfiguration;
-  readonly configuration_id: string;
-  readonly entity_id: string;
-  key?: string;
-  value?: string | number | boolean | string[];
   __entity_type__?: "ListCustomAttributeValue";
   __permissions?: Record<string, any>;
+  configuration?: CustomAttributeConfiguration;
+  readonly configuration_id: string;
+  readonly entity_id: string;
+  key?: string;
+  value?: string | number | boolean | string[];
 }
 export interface ListObjectCustomAttributeValue {
-  configuration?: CustomAttributeConfiguration;
-  readonly configuration_id: string;
-  readonly entity_id: string;
-  key?: string;
-  value?: string | number | boolean | string[];
   __entity_type__?: "ListObjectCustomAttributeValue";
   __permissions?: Record<string, any>;
+  configuration?: CustomAttributeConfiguration;
+  readonly configuration_id: string;
+  readonly entity_id: string;
+  key?: string;
+  value?: string | number | boolean | string[];
 }
 export interface UserCustomAttributeValue {
-  configuration?: CustomAttributeConfiguration;
-  readonly configuration_id: string;
-  readonly entity_id: string;
-  key?: string;
-  value?: string | number | boolean | string[];
   __entity_type__?: "UserCustomAttributeValue";
   __permissions?: Record<string, any>;
-}
-export interface AssetCustomAttributeValue {
   configuration?: CustomAttributeConfiguration;
   readonly configuration_id: string;
   readonly entity_id: string;
   key?: string;
   value?: string | number | boolean | string[];
+}
+export interface AssetCustomAttributeValue {
   __entity_type__?: "AssetCustomAttributeValue";
   __permissions?: Record<string, any>;
+  configuration?: CustomAttributeConfiguration;
+  readonly configuration_id: string;
+  readonly entity_id: string;
+  key?: string;
+  value?: string | number | boolean | string[];
 }
 export interface ContextCustomAttributeLink
   extends Omit<CustomAttributeLink, "__entity_type__" | "__permissions"> {
-  context?: Context;
   __entity_type__?: "ContextCustomAttributeLink";
   __permissions?: Record<string, any>;
+  context?: Context;
 }
 export interface ContextCustomAttributeLinkFrom
   extends Omit<CustomAttributeLinkFrom, "__entity_type__" | "__permissions"> {
-  context?: Context;
   __entity_type__?: "ContextCustomAttributeLinkFrom";
   __permissions?: Record<string, any>;
+  context?: Context;
 }
 export interface AssetVersionCustomAttributeLink
   extends Omit<CustomAttributeLink, "__entity_type__" | "__permissions"> {
-  asset_version?: AssetVersion;
   __entity_type__?: "AssetVersionCustomAttributeLink";
   __permissions?: Record<string, any>;
+  asset_version?: AssetVersion;
 }
 export interface AssetVersionCustomAttributeLinkFrom
   extends Omit<CustomAttributeLinkFrom, "__entity_type__" | "__permissions"> {
-  asset_version?: AssetVersion;
   __entity_type__?: "AssetVersionCustomAttributeLinkFrom";
   __permissions?: Record<string, any>;
+  asset_version?: AssetVersion;
 }
 export interface ListCustomAttributeLink
   extends Omit<CustomAttributeLink, "__entity_type__" | "__permissions"> {
-  list?: List;
   __entity_type__?: "ListCustomAttributeLink";
   __permissions?: Record<string, any>;
+  list?: List;
 }
 export interface ListCustomAttributeLinkFrom
   extends Omit<CustomAttributeLinkFrom, "__entity_type__" | "__permissions"> {
-  list?: List;
   __entity_type__?: "ListCustomAttributeLinkFrom";
   __permissions?: Record<string, any>;
+  list?: List;
 }
 export interface UserCustomAttributeLink
   extends Omit<CustomAttributeLink, "__entity_type__" | "__permissions"> {
-  user?: User;
   __entity_type__?: "UserCustomAttributeLink";
   __permissions?: Record<string, any>;
+  user?: User;
 }
 export interface UserCustomAttributeLinkFrom
   extends Omit<CustomAttributeLinkFrom, "__entity_type__" | "__permissions"> {
-  user?: User;
   __entity_type__?: "UserCustomAttributeLinkFrom";
   __permissions?: Record<string, any>;
+  user?: User;
 }
 export interface GroupCustomAttributeLink
   extends Omit<CustomAttributeLink, "__entity_type__" | "__permissions"> {
-  group?: Group;
   __entity_type__?: "GroupCustomAttributeLink";
   __permissions?: Record<string, any>;
+  group?: Group;
 }
 export interface GroupCustomAttributeLinkFrom
   extends Omit<CustomAttributeLinkFrom, "__entity_type__" | "__permissions"> {
-  group?: Group;
   __entity_type__?: "GroupCustomAttributeLinkFrom";
   __permissions?: Record<string, any>;
+  group?: Group;
 }
 export interface AssetCustomAttributeLink
   extends Omit<CustomAttributeLink, "__entity_type__" | "__permissions"> {
-  asset?: Asset;
   __entity_type__?: "AssetCustomAttributeLink";
   __permissions?: Record<string, any>;
+  asset?: Asset;
 }
 export interface AssetCustomAttributeLinkFrom
   extends Omit<CustomAttributeLinkFrom, "__entity_type__" | "__permissions"> {
-  asset?: Asset;
   __entity_type__?: "AssetCustomAttributeLinkFrom";
   __permissions?: Record<string, any>;
+  asset?: Asset;
 }
 export interface ComponentCustomAttributeLink
   extends Omit<CustomAttributeLink, "__entity_type__" | "__permissions"> {
-  component?: Component;
   __entity_type__?: "ComponentCustomAttributeLink";
   __permissions?: Record<string, any>;
+  component?: Component;
 }
 export interface ComponentCustomAttributeLinkFrom
   extends Omit<CustomAttributeLinkFrom, "__entity_type__" | "__permissions"> {
-  component?: Component;
   __entity_type__?: "ComponentCustomAttributeLinkFrom";
   __permissions?: Record<string, any>;
+  component?: Component;
 }
 export interface BasicLink {
   id: string;
@@ -2494,6 +2510,10 @@ export function getTypes() {
 export type RuntimeType = ReturnType<typeof getTypes>[number];
 export type RuntimeTypeName = RuntimeType["name"];
 
+interface TypeFor<T extends TypedContextSubtype> extends Omit<Type, "name"> {
+  name: T;
+}
+
 export function getObjectTypes() {
   return [
     {
@@ -2601,6 +2621,11 @@ export function getObjectTypes() {
 
 export type RuntimeObjectType = ReturnType<typeof getObjectTypes>[number];
 export type RuntimeObjectTypeName = RuntimeObjectType["name"];
+
+interface ObjectTypeFor<T extends TypedContextSubtype>
+  extends Omit<Type, "name"> {
+  name: T;
+}
 
 export function getProjectSchemas() {
   return [

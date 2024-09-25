@@ -188,6 +188,10 @@ export async function emitToString(
 
     export type RuntimeType = ReturnType<typeof getTypes>[number];
     export type RuntimeTypeName = RuntimeType["name"];
+
+    interface TypeFor<T extends TypedContextSubtype> extends Omit<Type, "name"> {
+      name: T;
+    };
   `);
 
   emitter.appendBlock(`
@@ -210,6 +214,10 @@ export async function emitToString(
 
     export type RuntimeObjectType = ReturnType<typeof getObjectTypes>[number];
     export type RuntimeObjectTypeName = RuntimeObjectType["name"];
+
+    interface ObjectTypeFor<T extends TypedContextSubtype> extends Omit<Type, "name"> {
+      name: T;
+    };
 `);
 
   emitter.appendBlock(`
