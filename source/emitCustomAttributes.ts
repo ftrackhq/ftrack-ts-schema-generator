@@ -56,12 +56,23 @@ export function emitCustomAttributes(
         .map(
           (schema) => `
               ${schema.id}: ${
-            customAttributes
-              .filter(
-                (x) => x.is_hierarchical || x.object_type?.name === schema.id
-              )
+            chain(customAttributes)
+              .filter((x) => {
+                const alias =
+                  typeof schema.alias_for === "string"
+                    ? schema.alias_for
+                    : schema.alias_for?.id;
+                return (
+                  x.is_hierarchical ||
+                  x.object_type?.name === schema.id ||
+                  (x.entity_type === "show" &&
+                    alias?.toLowerCase() === x.entity_type)
+                );
+              })
               .map((x) => `TypedCustomAttributeValue<"${x.key}">`)
-              .join("|") || "never"
+              .uniq()
+              .join("|")
+              .value() || "never"
           }
             `
         )
