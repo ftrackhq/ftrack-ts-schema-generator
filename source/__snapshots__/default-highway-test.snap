@@ -103,7 +103,7 @@ export interface TypedContextLink {
   metadata?: Metadata[];
   to?: TypedContext;
   to_id: string;
-  type?: TypeFor<"TypedContextLink">;
+  type?: string;
 }
 export interface CalendarEvent {
   __entity_type__?: "CalendarEvent";
@@ -124,7 +124,7 @@ export interface CalendarEvent {
   project?: Project;
   project_id?: string;
   start: string;
-  type?: TypeFor<"CalendarEvent">;
+  type?: Type;
   type_id?: string;
 }
 export interface CustomAttributeLink {
@@ -155,7 +155,7 @@ export interface DashboardWidget {
   dashboard_id?: string;
   readonly id: string;
   sort?: number;
-  type?: TypeFor<"DashboardWidget">;
+  type?: string;
 }
 export interface AssetVersionStatusRuleGroup
   extends Omit<StatusRuleGroup, "__entity_type__" | "__permissions"> {
@@ -203,7 +203,7 @@ export interface Appointment {
   readonly id: string;
   resource?: Resource;
   resource_id: string;
-  type: TypeFor<"Appointment">;
+  type: string;
 }
 export interface TaskTypeSchema {
   __entity_type__?: "TaskTypeSchema";
@@ -312,15 +312,12 @@ export interface Collaborator
   created_from_shared_url?: string;
 }
 export interface CustomAttributeConfiguration
-  extends Omit<
-    CustomConfigurationBase,
-    "__entity_type__" | "__permissions" | "type"
-  > {
+  extends Omit<CustomConfigurationBase, "__entity_type__" | "__permissions"> {
   __entity_type__?: "CustomAttributeConfiguration";
   __permissions?: Record<string, any>;
   default?: string | number | boolean | string[];
   is_hierarchical?: boolean;
-  type?: TypeFor<"CustomAttributeConfiguration">;
+  type?: CustomAttributeType;
   type_id?: string;
   values?: CustomAttributeValue[];
 }
@@ -357,7 +354,7 @@ export interface StatusRuleGroup {
 export interface TypedContextForSubtype<K extends TypedContextSubtype>
   extends Omit<
     Context,
-    "__entity_type__" | "__permissions" | "custom_attributes" | "type"
+    "__entity_type__" | "__permissions" | "custom_attributes"
   > {
   __entity_type__?: K;
   __permissions?: Record<string, any>;
@@ -393,7 +390,7 @@ export interface Manager {
   context?: Context;
   context_id?: string;
   readonly id: string;
-  type?: TypeFor<"Manager">;
+  type?: ManagerType;
   type_id?: string;
   user?: User;
   user_id?: string;
@@ -516,7 +513,7 @@ export interface SecurityRole {
   __permissions?: Record<string, any>;
   readonly id: string;
   name?: string;
-  type?: TypeFor<"SecurityRole">;
+  type?: string;
   user_security_roles?: UserSecurityRole[];
 }
 export interface UserApplicationState {
@@ -641,7 +638,7 @@ export interface Job {
   readonly id: string;
   job_components?: JobComponent[];
   status: string;
-  readonly type: TypeFor<"Job">;
+  readonly type: string;
   user?: User;
   user_id?: string;
 }
@@ -880,7 +877,7 @@ export interface Asset {
   name?: string;
   parent?: Context;
   project_id?: string;
-  type?: TypeFor<"Asset">;
+  type?: AssetType;
   type_id?: string;
   versions?: AssetVersion[];
 }

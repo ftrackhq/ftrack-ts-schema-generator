@@ -139,7 +139,6 @@ function getOverriddenSchemaType(schema?: Schema, baseSchema?: Schema|undefined)
       undefined,
     properties: [
       { name: "custom_attributes", typescriptType: `Array<TypedContextCustomAttributesMap[${entityTypeMapKeyName}]>` },
-      { name: "type", typescriptType: `TypeFor<${entityTypeMapKeyName}>` },
     ]
   };
 }
