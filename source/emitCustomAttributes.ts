@@ -1,5 +1,6 @@
 import type { QuerySchemasResponse } from "@ftrack/api";
-import { TypeScriptEmitter } from "./typescriptEmitter";
+import { TypeScriptEmitter } from "./typescriptEmitter.ts";
+import type { Schema } from "./session.ts";
 
 const uniq = <T>(array: T[]): T[] => {
   return Array.from(new Set(array));
@@ -21,7 +22,7 @@ const groupBy = <T, K extends string>(list: T[], getKey: (item: T) => K) => {
 
 export function emitCustomAttributes(
   typescriptEmitter: TypeScriptEmitter,
-  schemas: QuerySchemasResponse,
+  schemas: QuerySchemasResponse<Schema>,
   customAttributes: CustomAttributeConfiguration[],
 ) {
   typescriptEmitter.appendCode(`
