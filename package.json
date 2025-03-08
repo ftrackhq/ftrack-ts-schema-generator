@@ -30,7 +30,7 @@
   "bin": {
     "ftrack-ts-schema-generator": "./dist/ftrack-ts-schema-generator.js"
   },
-  "homepage": "http://ftrack.com",
+  "homepage": "https://ftrack.com",
   "devDependencies": {
     "@types/lodash-es": "^4",
     "@types/node": "^22.13.10",
