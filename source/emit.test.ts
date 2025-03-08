@@ -1,16 +1,16 @@
 import { beforeEach, expect, test, vi } from "vitest";
 import {
-  ObjectType,
-  Priority,
-  ProjectSchema,
-  Status,
-  Type,
+  type ObjectType,
+  type Priority,
+  type ProjectSchema,
+  type Status,
+  type Type,
   emitToString,
 } from "./emit";
-import { QuerySchemasResponse, Schema } from "@ftrack/api";
+import type { QuerySchemasResponse, Schema } from "@ftrack/api";
 import { readFile } from "fs/promises";
 import { join } from "path";
-import { CustomAttributeConfiguration } from "./emitCustomAttributes";
+import type { CustomAttributeConfiguration } from "./emitCustomAttributes";
 
 beforeEach(() => {
   vi.setSystemTime(new Date(2023, 1, 1, 0, 0, 0));
@@ -61,7 +61,7 @@ test("schema subtype of TypedContext", async () => {
 
   //assert
   expect(emitResult.errors).toEqual([]);
-  expect(emitResult.prettifiedContent).toMatchFileSnapshot(
+  await expect(emitResult.prettifiedContent).toMatchFileSnapshot(
     join(".", "__snapshots__", "schema-subtype-of-TypedContext.snap"),
   );
 });
@@ -95,7 +95,7 @@ test("schema has base schema", async () => {
 
   //assert
   expect(emitResult.errors).toEqual([]);
-  expect(emitResult.prettifiedContent).toMatchFileSnapshot(
+  await expect(emitResult.prettifiedContent).toMatchFileSnapshot(
     join(".", "__snapshots__", "schema-has-base-schema.snap"),
   );
 });
@@ -130,7 +130,7 @@ test("schema has immutable property", async () => {
 
   //assert
   expect(emitResult.errors).toEqual([]);
-  expect(emitResult.prettifiedContent).toMatchFileSnapshot(
+  await expect(emitResult.prettifiedContent).toMatchFileSnapshot(
     join(".", "__snapshots__", "schema-has-immutable-property.snap"),
   );
 });
@@ -164,7 +164,7 @@ test("schema has integer type", async () => {
 
   //assert
   expect(emitResult.errors).toEqual([]);
-  expect(emitResult.prettifiedContent).toMatchFileSnapshot(
+  await expect(emitResult.prettifiedContent).toMatchFileSnapshot(
     join(".", "__snapshots__", "schema-has-integer-type.snap"),
   );
 });
@@ -198,7 +198,7 @@ test("schema has variable type", async () => {
 
   //assert
   expect(emitResult.errors).toEqual([]);
-  expect(emitResult.prettifiedContent).toMatchFileSnapshot(
+  await expect(emitResult.prettifiedContent).toMatchFileSnapshot(
     join(".", "__snapshots__", "schema-has-variable-type.snap"),
   );
 });
@@ -245,7 +245,7 @@ test("schema has array type", async () => {
 
   //assert
   expect(emitResult.errors).toEqual([]);
-  expect(emitResult.prettifiedContent).toMatchFileSnapshot(
+  await expect(emitResult.prettifiedContent).toMatchFileSnapshot(
     join(".", "__snapshots__", "schema-has-array-type.snap"),
   );
 });
@@ -315,7 +315,7 @@ test("default highway test (all values specified)", async () => {
 
   //assert
   expect(emitResult.errors).toEqual([]);
-  expect(emitResult.prettifiedContent).toMatchFileSnapshot(
+  await expect(emitResult.prettifiedContent).toMatchFileSnapshot(
     join(".", "__snapshots__", "default-highway-test.snap"),
   );
 });

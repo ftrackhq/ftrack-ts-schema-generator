@@ -2,7 +2,7 @@ import type { QuerySchemasResponse, Session } from "@ftrack/api";
 import * as fs from "fs";
 import * as path from "path";
 import {
-  CustomAttributeConfiguration,
+  type CustomAttributeConfiguration,
   emitCustomAttributes,
 } from "./emitCustomAttributes.js";
 import { emitSchemaInterface } from "./emitSchema.js";

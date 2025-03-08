@@ -36,10 +36,10 @@
     "@typescript-eslint/parser": "^5.57.0",
     "esbuild": "^0.17.14",
     "eslint": "^8.37.0",
-    "husky": "^8.0.3",
-    "lint-staged": "^13.2.0",
-    "typescript": "^5.0.3",
-    "vitest": "^0.34.6"
+    "husky": "^9.1.7",
+    "lint-staged": "^13.3.0",
+    "typescript": "^5.8.2",
+    "vitest": "^3.0.8"
   },
   "packageManager": "yarn@4.7.0",
   "lint-staged": {

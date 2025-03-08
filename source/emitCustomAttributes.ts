@@ -1,4 +1,4 @@
-import { QuerySchemasResponse } from "@ftrack/api";
+import type { QuerySchemasResponse } from "@ftrack/api";
 import { TypeScriptEmitter } from "./typescriptEmitter";
 
 const uniq = <T>(array: T[]): T[] => {
