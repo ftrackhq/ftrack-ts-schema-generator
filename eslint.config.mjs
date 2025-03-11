@@ -14,9 +14,7 @@ export default tseslint.config(
     ...vitest.configs.recommended,
     languageOptions: {
       globals: {
-        ...globals.browser,
         ...globals.node,
-        ...globals.es2025,
         ...vitest.environments.env.globals,
       },
     },
