@@ -5,7 +5,7 @@ import type {
   TypedSchemaProperty,
   Schema,
 } from "@ftrack/api";
-import { type TypeScriptEmitter } from "./typescriptEmitter.ts";
+import type { TypeScriptEmitter } from "./typescriptEmitter.ts";
 import { isSchemaTypedContext } from "./utils.ts";
 import type { Schema as ApiSchema } from "./session.ts";
 

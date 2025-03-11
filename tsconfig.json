@@ -7,7 +7,6 @@
     "isolatedModules": true,
     "module": "NodeNext",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "noEmit": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
@@ -15,7 +14,9 @@
     "useDefineForClassFields": true,
     "verbatimModuleSyntax": true,
     "erasableSyntaxOnly": true,
-    "allowImportingTsExtensions": true
+    "allowImportingTsExtensions": true,
+    "rewriteRelativeImportExtensions": true,
+    "outDir": "dist"
   },
   "include": ["source/**/*.ts"]
 }

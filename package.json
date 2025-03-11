@@ -8,11 +8,10 @@
     "url": "https://github.com/ftrackhq/ftrack-ts-schema-generator.git"
   },
   "scripts": {
-    "generate": "node dist/ftrack-ts-schema-generator.js",
-    "build": "esbuild source/index.ts --target=esnext --outfile=dist/ftrack-ts-schema-generator.js --platform=node --format=esm --bundle --packages=external",
-    "watch": "esbuild source/index.ts --target=esnext --outfile=dist/ftrack-ts-schema-generator.js --platform=node --format=esm --bundle --packages=external --watch",
+    "generate": "node --experimental-strip-types source/index.ts",
     "prepack": "yarn build",
-    "test": "tsc && eslint --cache --fix --max-warnings=0 ./source && prettier -c ./source && vitest --run",
+    "build": "tsc",
+    "test": "tsc --noEmit && eslint --cache --fix --max-warnings=0 ./source && prettier -c ./source && vitest --run",
     "prepublish": "yarn test"
   },
   "dependencies": {
@@ -27,7 +26,7 @@
     "url": "https://github.com/ftrackhq/ftrack-ts-schema-generator/issues"
   },
   "bin": {
-    "ftrack-ts-schema-generator": "./dist/ftrack-ts-schema-generator.js"
+    "ftrack-ts-schema-generator": "./dist/index.js"
   },
   "homepage": "https://ftrack.com",
   "devDependencies": {
@@ -35,7 +34,6 @@
     "@types/node": "^22.13.10",
     "@typescript-eslint/utils": "^8.26.1",
     "@vitest/eslint-plugin": "^1.1.37",
-    "esbuild": "^0.25.1",
     "eslint": "^9.22.0",
     "globals": "^16.0.0",
     "husky": "^9.1.7",

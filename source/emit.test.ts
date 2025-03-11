@@ -8,7 +8,7 @@ import {
   emitToString,
 } from "./emit.ts";
 import type { Schema as ApiSchema } from "./session.ts";
-import { type QuerySchemasResponse, type Schema } from "@ftrack/api";
+import type { QuerySchemasResponse, Schema } from "@ftrack/api";
 import { readFile } from "fs/promises";
 import { join } from "path";
 import type { CustomAttributeConfiguration } from "./emitCustomAttributes.ts";
