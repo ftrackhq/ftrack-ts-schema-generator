@@ -13,7 +13,7 @@ const legacySchemas = ["Conversation", "Message", "Participant"];
 export async function emitToFile(
   session: Session,
   outputPath = "__generated__",
-  outputFilename = "schema.ts"
+  outputFilename = "schema.ts",
 ) {
   // Get the schemas from the server and sort by id in alphabetical order
   const schemas = await getSchemas(session);
@@ -33,7 +33,7 @@ export async function emitToFile(
     objectTypes,
     projectSchemas,
     statuses,
-    priorities
+    priorities,
   );
   fs.mkdirSync(path.resolve(outputPath), { recursive: true });
   fs.writeFileSync(path.join(outputPath, outputFilename), prettifiedContent);
@@ -115,7 +115,7 @@ export async function emitToString(
   objectTypes: ObjectType[],
   projectSchemas: ProjectSchema[],
   statuses: Status[],
-  priorities: Priority[]
+  priorities: Priority[],
 ) {
   const errors: unknown[] = [];
 
@@ -181,7 +181,7 @@ export async function emitToString(
           (x) => `{
           name: "${x.name}",
           isBillable: ${x.is_billable}
-        }`
+        }`,
         )}
       ] as const;
     }
@@ -203,7 +203,7 @@ export async function emitToString(
           isSchedulable: ${x.is_schedulable},
           isPrioritizable: ${x.is_prioritizable},
           isLeaf: ${x.is_leaf},
-        }`
+        }`,
         )}
       ] as const;
     }
@@ -224,7 +224,7 @@ export async function emitToString(
                 .map((t) => `"${t?.name}"`)
                 .join(", ")}
             ]
-          }`
+          }`,
         )}
       ] as const;
     }
@@ -242,7 +242,7 @@ export async function emitToString(
           color: "${x.color}",
           value: ${x.value},
           sort: ${x.sort}
-        }`
+        }`,
         )}
       ] as const;
     }
@@ -260,7 +260,7 @@ export async function emitToString(
           color: "${x.color}",
           isActive: ${x.is_active},
           sort: ${x.sort}
-        }`
+        }`,
         )}
       ] as const;
     }
@@ -277,7 +277,7 @@ export async function emitToString(
 
 async function getCustomAttributes(session: Session) {
   const customAttributes = await session.query<CustomAttributeConfiguration>(
-    "select default, label, key, project_id, entity_type, is_hierarchical, object_type.name, type.name from CustomAttributeConfiguration order by sort"
+    "select default, label, key, project_id, entity_type, is_hierarchical, object_type.name, type.name from CustomAttributeConfiguration order by sort",
   );
   return customAttributes.data;
 }
@@ -294,42 +294,42 @@ async function getSchemas(session: Session) {
 
 async function getTypes(session: Session) {
   const types = await session.query<Type>(
-    "select is_billable, name, task_type_schemas from Type order by sort"
+    "select is_billable, name, task_type_schemas from Type order by sort",
   );
   return types.data;
 }
 
 async function getPriorities(session: Session) {
   const priorities = await session.query<Priority>(
-    "select id, color, name, sort, value from Priority order by sort"
+    "select id, color, name, sort, value from Priority order by sort",
   );
   return priorities.data;
 }
 
 async function getStatuses(session: Session) {
   const priorities = await session.query<Status>(
-    "select id, color, is_active, name, sort, state from Status order by sort"
+    "select id, color, is_active, name, sort, state from Status order by sort",
   );
   return priorities.data;
 }
 
 async function getObjectTypes(session: Session) {
   const objectTypes = await session.query<ObjectType>(
-    "select id, is_leaf, is_prioritizable, is_schedulable, is_statusable, is_taskable, is_time_reportable, is_typeable, name, project_schemas from ObjectType order by sort"
+    "select id, is_leaf, is_prioritizable, is_schedulable, is_statusable, is_taskable, is_time_reportable, is_typeable, name, project_schemas from ObjectType order by sort",
   );
   return objectTypes.data;
 }
 
 async function getProjectSchemas(session: Session) {
   const projectSchemas = await session.query<ProjectSchema>(
-    "select name, asset_version_workflow_schema, name, object_type_schemas, object_types, task_templates, task_type_schema, task_workflow_schema, task_workflow_schema_overrides from ProjectSchema"
+    "select name, asset_version_workflow_schema, name, object_type_schemas, object_types, task_templates, task_type_schema, task_workflow_schema, task_workflow_schema_overrides from ProjectSchema",
   );
   return projectSchemas.data;
 }
 
 function emitTypedContextTypes(
   builder: TypeScriptEmitter,
-  schemas: QuerySchemasResponse
+  schemas: QuerySchemasResponse,
 ) {
   builder.appendCode(`
     export interface TypedContextSubtypeMap {
@@ -338,7 +338,7 @@ function emitTypedContextTypes(
           (schema) =>
             (typeof schema?.alias_for === "object" &&
               schema.alias_for.id === "Task") ||
-            isSchemaTypedContext(schema)
+            isSchemaTypedContext(schema),
         )
         .filter((x) => !isSchemaTypedContext(x))
         .map((s) => s.id)

@@ -12,7 +12,7 @@ import { isSchemaTypedContext } from "./utils";
 export async function emitSchemaInterface(
   typescriptEmitter: TypeScriptEmitter,
   schema: Schema,
-  allSchemas: QuerySchemasResponse
+  allSchemas: QuerySchemasResponse,
 ) {
   const interfaceName = getTypeScriptInterfaceNameForInterface(schema);
 
@@ -32,9 +32,9 @@ export async function emitSchemaInterface(
 
   typescriptEmitter.appendCode(`
     export interface ${interfaceName}${getTypeExtensionSuffix(
-    baseSchema,
-    schema
-  )} {
+      baseSchema,
+      schema,
+    )} {
   `);
 
   // For each property, add a type to the interface
@@ -42,7 +42,7 @@ export async function emitSchemaInterface(
     typescriptEmitter,
     schema,
     baseSchema?.properties,
-    typedContextSchema?.properties
+    typedContextSchema?.properties,
   );
 
   // Entity type and permissions are missing from the source schema, so add them to the interface
@@ -62,7 +62,7 @@ function getTypeScriptInterfaceNameForInterface(schema: Schema) {
 
 function emitSpecialProperties(
   typescriptEmitter: TypeScriptEmitter,
-  schema: Schema
+  schema: Schema,
 ) {
   if (isSchemaTypedContext(schema)) {
     typescriptEmitter.appendCode(`__entity_type__?: K;`);
@@ -74,11 +74,11 @@ function emitSpecialProperties(
   if (schema.properties && "custom_attributes" in schema.properties) {
     if (isSchemaTypedContext(schema)) {
       typescriptEmitter.appendCode(
-        `custom_attributes?: Array<TypedContextCustomAttributesMap[K]>;`
+        `custom_attributes?: Array<TypedContextCustomAttributesMap[K]>;`,
       );
     } else {
       typescriptEmitter.appendCode(
-        `custom_attributes?: Array<TypedContextCustomAttributesMap["${schema.id}"]>;`
+        `custom_attributes?: Array<TypedContextCustomAttributesMap["${schema.id}"]>;`,
       );
     }
   }
@@ -86,7 +86,7 @@ function emitSpecialProperties(
 
 function getTypeExtensionSuffix(
   baseSchema: Schema | undefined,
-  schema: Schema
+  schema: Schema,
 ) {
   const omitList = ["__entity_type__", "__permissions"];
   if (baseSchema?.properties && "custom_attributes" in baseSchema.properties) {
@@ -123,21 +123,21 @@ function emitTypeProperties(
   typescriptEmitter: TypeScriptEmitter,
   schema: Schema,
   baseSchemaProperties?: SchemaProperties,
-  typedContextProperties?: SchemaProperties
+  typedContextProperties?: SchemaProperties,
 ) {
   // Filter out deprecated properties, that start with _
   const deprecationFilteredProperties = Object.entries(
-    schema.properties || []
+    schema.properties || [],
   ).filter(([key]) => !key.startsWith("_"));
   // Filter out all properties that are defined in the base schema
   const baseSchemaFilteredProperties = deprecationFilteredProperties.filter(
-    ([key]) => !baseSchemaProperties?.[key]
+    ([key]) => !baseSchemaProperties?.[key],
   );
 
   let filteredProperties = baseSchemaFilteredProperties;
   if (typeof schema?.alias_for === "object" && schema.alias_for.id === "Task") {
     filteredProperties = deprecationFilteredProperties.filter(
-      ([key]) => !typedContextProperties?.[key]
+      ([key]) => !typedContextProperties?.[key],
     );
   }
   // Sort the object by key
@@ -146,14 +146,14 @@ function emitTypeProperties(
   filteredProperties.forEach(([key, value]) => {
     if (typeof value !== "object" || value === null) {
       throw new Error(
-        `Property ${key} in schema ${schema.id} is not an object`
+        `Property ${key} in schema ${schema.id} is not an object`,
       );
     }
 
     // If neither type or $ref is defined, we can't generate a type. Log an error
     if (!("type" in value) && !("$ref" in value)) {
       typescriptEmitter.appendError(
-        `No type or $ref defined for property ${key} in schema ${schema.id}`
+        `No type or $ref defined for property ${key} in schema ${schema.id}`,
       );
     }
 
@@ -188,7 +188,7 @@ function emitTypeProperties(
 
     // All properties are optional, adds a question mark
     typescriptEmitter.appendCode(
-      `${prefix}${key}${!isRequired ? "?" : ""}: ${type};`
+      `${prefix}${key}${!isRequired ? "?" : ""}: ${type};`,
     );
   });
 }
