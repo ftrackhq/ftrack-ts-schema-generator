@@ -8,7 +8,7 @@ import { emitToFile } from "./emit";
 const session = new Session(
   process.env.FTRACK_SERVER ?? "",
   process.env.FTRACK_API_USER ?? "",
-  process.env.FTRACK_API_KEY ?? ""
+  process.env.FTRACK_API_KEY ?? "",
 );
 
 const outputPath = process.argv[2] || "__generated__";
@@ -16,7 +16,7 @@ const outputFilename = process.argv[3] || "schema.ts";
 const { errors, schemas } = await emitToFile(
   session,
   outputPath,
-  outputFilename
+  outputFilename,
 );
 
 console.info(`${schemas.length} schema(s) found`);

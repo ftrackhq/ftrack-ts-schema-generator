@@ -27,7 +27,7 @@ test("emitting with no schemas returns error", async () => {
     [],
     [],
     [],
-    []
+    [],
   );
 
   //assert
@@ -56,13 +56,13 @@ test("schema subtype of TypedContext", async () => {
     [],
     [],
     [],
-    []
+    [],
   );
 
   //assert
   expect(emitResult.errors).toEqual([]);
   expect(emitResult.prettifiedContent).toMatchFileSnapshot(
-    join(".", "__snapshots__", "schema-subtype-of-TypedContext.snap")
+    join(".", "__snapshots__", "schema-subtype-of-TypedContext.snap"),
   );
 });
 
@@ -90,13 +90,13 @@ test("schema has base schema", async () => {
     [],
     [],
     [],
-    []
+    [],
   );
 
   //assert
   expect(emitResult.errors).toEqual([]);
   expect(emitResult.prettifiedContent).toMatchFileSnapshot(
-    join(".", "__snapshots__", "schema-has-base-schema.snap")
+    join(".", "__snapshots__", "schema-has-base-schema.snap"),
   );
 });
 
@@ -125,13 +125,13 @@ test("schema has immutable property", async () => {
     [],
     [],
     [],
-    []
+    [],
   );
 
   //assert
   expect(emitResult.errors).toEqual([]);
   expect(emitResult.prettifiedContent).toMatchFileSnapshot(
-    join(".", "__snapshots__", "schema-has-immutable-property.snap")
+    join(".", "__snapshots__", "schema-has-immutable-property.snap"),
   );
 });
 
@@ -159,13 +159,13 @@ test("schema has integer type", async () => {
     [],
     [],
     [],
-    []
+    [],
   );
 
   //assert
   expect(emitResult.errors).toEqual([]);
   expect(emitResult.prettifiedContent).toMatchFileSnapshot(
-    join(".", "__snapshots__", "schema-has-integer-type.snap")
+    join(".", "__snapshots__", "schema-has-integer-type.snap"),
   );
 });
 
@@ -193,13 +193,13 @@ test("schema has variable type", async () => {
     [],
     [],
     [],
-    []
+    [],
   );
 
   //assert
   expect(emitResult.errors).toEqual([]);
   expect(emitResult.prettifiedContent).toMatchFileSnapshot(
-    join(".", "__snapshots__", "schema-has-variable-type.snap")
+    join(".", "__snapshots__", "schema-has-variable-type.snap"),
   );
 });
 
@@ -240,13 +240,13 @@ test("schema has array type", async () => {
     [],
     [],
     [],
-    []
+    [],
   );
 
   //assert
   expect(emitResult.errors).toEqual([]);
   expect(emitResult.prettifiedContent).toMatchFileSnapshot(
-    join(".", "__snapshots__", "schema-has-array-type.snap")
+    join(".", "__snapshots__", "schema-has-array-type.snap"),
   );
 });
 
@@ -258,12 +258,12 @@ test("default highway test (all values specified)", async () => {
       "source",
       "__snapshots__",
       "responses",
-      "query_project_schema.json"
-    )
+      "query_project_schema.json",
+    ),
   );
 
   const schemas = await parseJsonFromFile<Schema[]>(
-    join(".", "source", "__snapshots__", "responses", "query_schemas.json")
+    join(".", "source", "__snapshots__", "responses", "query_schemas.json"),
   );
 
   const customAttributes = await parseJsonFromFile<
@@ -274,24 +274,30 @@ test("default highway test (all values specified)", async () => {
       "source",
       "__snapshots__",
       "responses",
-      "query_custom_attribute_configurations.json"
-    )
+      "query_custom_attribute_configurations.json",
+    ),
   );
 
   const types = await parseJsonFromFile<Type[]>(
-    join(".", "source", "__snapshots__", "responses", "query_types.json")
+    join(".", "source", "__snapshots__", "responses", "query_types.json"),
   );
 
   const objectTypes = await parseJsonFromFile<ObjectType[]>(
-    join(".", "source", "__snapshots__", "responses", "query_object_types.json")
+    join(
+      ".",
+      "source",
+      "__snapshots__",
+      "responses",
+      "query_object_types.json",
+    ),
   );
 
   const statuses = await parseJsonFromFile<Status[]>(
-    join(".", "source", "__snapshots__", "responses", "query_statuses.json")
+    join(".", "source", "__snapshots__", "responses", "query_statuses.json"),
   );
 
   const priorities = await parseJsonFromFile<Priority[]>(
-    join(".", "source", "__snapshots__", "responses", "query_priorities.json")
+    join(".", "source", "__snapshots__", "responses", "query_priorities.json"),
   );
 
   //act
@@ -304,13 +310,13 @@ test("default highway test (all values specified)", async () => {
     objectTypes,
     projectSchemas,
     statuses,
-    priorities
+    priorities,
   );
 
   //assert
   expect(emitResult.errors).toEqual([]);
   expect(emitResult.prettifiedContent).toMatchFileSnapshot(
-    join(".", "__snapshots__", "default-highway-test.snap")
+    join(".", "__snapshots__", "default-highway-test.snap"),
   );
 });
 

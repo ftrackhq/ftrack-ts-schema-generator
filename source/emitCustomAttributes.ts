@@ -5,7 +5,7 @@ import { TypeScriptEmitter } from "./typescriptEmitter";
 export function emitCustomAttributes(
   typescriptEmitter: TypeScriptEmitter,
   schemas: QuerySchemasResponse,
-  customAttributes: CustomAttributeConfiguration[]
+  customAttributes: CustomAttributeConfiguration[],
 ) {
   typescriptEmitter.appendCode(`
     export function getAttributeConfigurations() {
@@ -19,7 +19,7 @@ export function emitCustomAttributes(
                 default: ${JSON.stringify(x.default)},
                 objectType: ${JSON.stringify(x.object_type?.name)},
                 isHierarchical: ${x.is_hierarchical}
-            }`
+            }`,
             )}
         ] as const;
     }
@@ -37,10 +37,10 @@ export function emitCustomAttributes(
             (x) =>
               `${x[0].key}: ${chain(x)
                 .map((y) =>
-                  getTypeScriptTypeFromCustomAttributeType(y.type.name)
+                  getTypeScriptTypeFromCustomAttributeType(y.type.name),
                 )
                 .uniq()
-                .join("|")}`
+                .join("|")}`,
           )
           .join("\n")
           .value()}
@@ -56,25 +56,25 @@ export function emitCustomAttributes(
         .map(
           (schema) => `
               ${schema.id}: ${
-            chain(customAttributes)
-              .filter((x) => {
-                const alias =
-                  typeof schema.alias_for === "string"
-                    ? schema.alias_for
-                    : schema.alias_for?.id;
-                return (
-                  x.is_hierarchical ||
-                  x.object_type?.name === schema.id ||
-                  (x.entity_type === "show" &&
-                    alias?.toLowerCase() === x.entity_type)
-                );
-              })
-              .map((x) => `TypedCustomAttributeValue<"${x.key}">`)
-              .uniq()
-              .join("|")
-              .value() || "never"
-          }
-            `
+                chain(customAttributes)
+                  .filter((x) => {
+                    const alias =
+                      typeof schema.alias_for === "string"
+                        ? schema.alias_for
+                        : schema.alias_for?.id;
+                    return (
+                      x.is_hierarchical ||
+                      x.object_type?.name === schema.id ||
+                      (x.entity_type === "show" &&
+                        alias?.toLowerCase() === x.entity_type)
+                    );
+                  })
+                  .map((x) => `TypedCustomAttributeValue<"${x.key}">`)
+                  .uniq()
+                  .join("|")
+                  .value() || "never"
+              }
+            `,
         )
         .join(";")}
       };
@@ -82,7 +82,7 @@ export function emitCustomAttributes(
 }
 
 export function getTypeScriptTypeFromCustomAttributeType(
-  customAttributeType: string
+  customAttributeType: string,
 ) {
   switch (customAttributeType) {
     case "dynamic enumerator":
