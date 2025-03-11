@@ -12,12 +12,11 @@
     "build": "esbuild source/index.ts --target=esnext --outfile=dist/ftrack-ts-schema-generator.js --platform=node --format=esm --bundle --packages=external",
     "watch": "esbuild source/index.ts --target=esnext --outfile=dist/ftrack-ts-schema-generator.js --platform=node --format=esm --bundle --packages=external --watch",
     "prepack": "yarn build",
-    "test": "tsc && eslint --cache --fix --max-warnings=0 ./source && prettier -c ./source && vitest",
+    "test": "tsc && eslint --cache --fix --max-warnings=0 ./source && prettier -c ./source && vitest --run",
     "prepublish": "yarn test"
   },
   "dependencies": {
     "@ftrack/api": "^1.4.5",
-    "lodash-es": "^4.17.21",
     "prettier": "^3.5.3"
   },
   "files": [
@@ -30,23 +29,23 @@
   "bin": {
     "ftrack-ts-schema-generator": "./dist/ftrack-ts-schema-generator.js"
   },
-  "homepage": "http://ftrack.com",
+  "homepage": "https://ftrack.com",
   "devDependencies": {
-    "@types/lodash-es": "^4",
-    "@types/node": "^18.15.11",
-    "@types/prettier": "^2.7.2",
-    "@typescript-eslint/eslint-plugin": "^5.57.0",
-    "@typescript-eslint/parser": "^5.57.0",
-    "@yarnpkg/sdks": "^3.0.0-rc.42",
-    "esbuild": "^0.17.14",
-    "eslint": "^8.37.0",
-    "husky": "^8.0.3",
-    "lint-staged": "^13.2.0",
-    "ts-node": "^10.9.1",
-    "typescript": "^5.0.3",
-    "vitest": "^0.34.6"
+    "@eslint/js": "^9.22.0",
+    "@types/node": "^22.13.10",
+    "@types/ws": "^8.18.0",
+    "@typescript-eslint/utils": "^8.26.1",
+    "@vitest/eslint-plugin": "^1.1.37",
+    "esbuild": "^0.25.1",
+    "eslint": "^9.22.0",
+    "globals": "^16.0.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.4.3",
+    "typescript": "^5.8.2",
+    "typescript-eslint": "^8.26.1",
+    "vitest": "^3.0.8"
   },
-  "packageManager": "yarn@3.5.0",
+  "packageManager": "yarn@4.7.0",
   "lint-staged": {
     "*.{js,ts}": [
       "eslint --cache --fix --max-warnings=0",

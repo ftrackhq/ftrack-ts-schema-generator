@@ -1,6 +1,23 @@
-import { QuerySchemasResponse } from "@ftrack/api";
-import { chain } from "lodash-es";
+import type { QuerySchemasResponse } from "@ftrack/api";
 import { TypeScriptEmitter } from "./typescriptEmitter";
+
+const uniq = <T>(array: T[]): T[] => {
+  return Array.from(new Set(array));
+};
+
+const groupBy = <T, K extends string>(list: T[], getKey: (item: T) => K) => {
+  return list.reduce(
+    (acc, obj) => {
+      const key = getKey(obj);
+      if (!acc[key]) {
+        acc[key] = [];
+      }
+      acc[key].push(obj);
+      return acc;
+    },
+    {} as Record<K, T[]>,
+  );
+};
 
 export function emitCustomAttributes(
   typescriptEmitter: TypeScriptEmitter,
@@ -31,19 +48,16 @@ export function emitCustomAttributes(
     type BaseCustomAttributeValue = Omit<ContextCustomAttributeValue, 'key' | 'value'>;
 
     export interface TypedCustomAttributeValueMap {
-        ${chain(customAttributes)
-          .groupBy((x) => x.key)
+        ${Object.values(groupBy(customAttributes, (x) => x.key))
           .map(
             (x) =>
-              `${x[0].key}: ${chain(x)
-                .map((y) =>
+              `${x[0].key}: ${uniq(
+                x.map((y) =>
                   getTypeScriptTypeFromCustomAttributeType(y.type.name),
-                )
-                .uniq()
-                .join("|")}`,
+                ),
+              ).join("|")}`,
           )
-          .join("\n")
-          .value()}
+          .join("\n")}
     }
 
     export type TypedCustomAttributeValue<K extends keyof TypedCustomAttributeValueMap> = BaseCustomAttributeValue & {
@@ -56,23 +70,22 @@ export function emitCustomAttributes(
         .map(
           (schema) => `
               ${schema.id}: ${
-                chain(customAttributes)
-                  .filter((x) => {
-                    const alias =
-                      typeof schema.alias_for === "string"
-                        ? schema.alias_for
-                        : schema.alias_for?.id;
-                    return (
-                      x.is_hierarchical ||
-                      x.object_type?.name === schema.id ||
-                      (x.entity_type === "show" &&
-                        alias?.toLowerCase() === x.entity_type)
-                    );
-                  })
-                  .map((x) => `TypedCustomAttributeValue<"${x.key}">`)
-                  .uniq()
-                  .join("|")
-                  .value() || "never"
+                uniq(
+                  customAttributes
+                    .filter((x) => {
+                      const alias =
+                        typeof schema.alias_for === "string"
+                          ? schema.alias_for
+                          : schema.alias_for?.id;
+                      return (
+                        x.is_hierarchical ||
+                        x.object_type?.name === schema.id ||
+                        (x.entity_type === "show" &&
+                          alias?.toLowerCase() === x.entity_type)
+                      );
+                    })
+                    .map((x) => `TypedCustomAttributeValue<"${x.key}">`),
+                ).join("|") || "never"
               }
             `,
         )
