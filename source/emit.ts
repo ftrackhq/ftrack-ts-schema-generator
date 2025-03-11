@@ -1,28 +1,28 @@
-import type { QuerySchemasResponse, Session } from "@ftrack/api";
+import type { QuerySchemasResponse } from "@ftrack/api";
 import * as fs from "fs";
 import * as path from "path";
 import {
   type CustomAttributeConfiguration,
   emitCustomAttributes,
-} from "./emitCustomAttributes.js";
-import { emitSchemaInterface } from "./emitSchema.js";
-import { TypeScriptEmitter } from "./typescriptEmitter.js";
-import { isSchemaTypedContext } from "./utils.js";
+} from "./emitCustomAttributes.ts";
+import { emitSchemaInterface } from "./emitSchema.ts";
+import { TypeScriptEmitter } from "./typescriptEmitter.ts";
+import { isSchemaTypedContext } from "./utils.ts";
+import { session, type Schema } from "./session.ts";
 
 const legacySchemas = ["Conversation", "Message", "Participant"];
 export async function emitToFile(
-  session: Session,
   outputPath = "__generated__",
   outputFilename = "schema.ts",
 ) {
   // Get the schemas from the server and sort by id in alphabetical order
-  const schemas = await getSchemas(session);
-  const customAttributes = await getCustomAttributes(session);
-  const types = await getTypes(session);
-  const objectTypes = await getObjectTypes(session);
-  const projectSchemas = await getProjectSchemas(session);
-  const statuses = await getStatuses(session);
-  const priorities = await getPriorities(session);
+  const schemas = await getSchemas();
+  const customAttributes = await getCustomAttributes();
+  const types = await getTypes();
+  const objectTypes = await getObjectTypes();
+  const projectSchemas = await getProjectSchemas();
+  const statuses = await getStatuses();
+  const priorities = await getPriorities();
 
   const { prettifiedContent, errors } = await emitToString(
     session.serverVersion,
@@ -109,7 +109,7 @@ export type Status = {
 export async function emitToString(
   serverVersion: string | undefined,
   serverUrl: string | undefined,
-  schemas: QuerySchemasResponse,
+  schemas: QuerySchemasResponse<Schema>,
   customAttributes: CustomAttributeConfiguration[],
   types: Type[],
   objectTypes: ObjectType[],
@@ -275,15 +275,15 @@ export async function emitToString(
   };
 }
 
-async function getCustomAttributes(session: Session) {
-  const customAttributes = await session.query<CustomAttributeConfiguration>(
+async function getCustomAttributes() {
+  const customAttributes = await session.query<"CustomAttributeConfiguration">(
     "select default, label, key, project_id, entity_type, is_hierarchical, object_type.name, type.name from CustomAttributeConfiguration order by sort",
   );
   return customAttributes.data;
 }
 
-async function getSchemas(session: Session) {
-  const schemas = await session.call<QuerySchemasResponse>([
+async function getSchemas() {
+  const schemas = await session.call<QuerySchemasResponse<Schema>>([
     {
       action: "query_schemas",
     },
@@ -292,36 +292,36 @@ async function getSchemas(session: Session) {
   return schemas[0];
 }
 
-async function getTypes(session: Session) {
-  const types = await session.query<Type>(
+async function getTypes() {
+  const types = await session.query<"Type">(
     "select is_billable, name, task_type_schemas from Type order by sort",
   );
   return types.data;
 }
 
-async function getPriorities(session: Session) {
-  const priorities = await session.query<Priority>(
+async function getPriorities() {
+  const priorities = await session.query<"Priority">(
     "select id, color, name, sort, value from Priority order by sort",
   );
   return priorities.data;
 }
 
-async function getStatuses(session: Session) {
-  const priorities = await session.query<Status>(
+async function getStatuses() {
+  const priorities = await session.query<"Status">(
     "select id, color, is_active, name, sort, state from Status order by sort",
   );
   return priorities.data;
 }
 
-async function getObjectTypes(session: Session) {
-  const objectTypes = await session.query<ObjectType>(
+async function getObjectTypes() {
+  const objectTypes = await session.query<"ObjectType">(
     "select id, is_leaf, is_prioritizable, is_schedulable, is_statusable, is_taskable, is_time_reportable, is_typeable, name, project_schemas from ObjectType order by sort",
   );
   return objectTypes.data;
 }
 
-async function getProjectSchemas(session: Session) {
-  const projectSchemas = await session.query<ProjectSchema>(
+async function getProjectSchemas() {
+  const projectSchemas = await session.query<"ProjectSchema">(
     "select name, asset_version_workflow_schema, name, object_type_schemas, object_types, task_templates, task_type_schema, task_workflow_schema, task_workflow_schema_overrides from ProjectSchema",
   );
   return projectSchemas.data;
@@ -329,7 +329,7 @@ async function getProjectSchemas(session: Session) {
 
 function emitTypedContextTypes(
   builder: TypeScriptEmitter,
-  schemas: QuerySchemasResponse,
+  schemas: QuerySchemasResponse<Schema>,
 ) {
   builder.appendCode(`
     export interface TypedContextSubtypeMap {

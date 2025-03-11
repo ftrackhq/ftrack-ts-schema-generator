@@ -1,18 +1,19 @@
 // :copyright: Copyright (c) 2023 ftrack
 import type {
   QuerySchemasResponse,
-  Schema,
   SchemaProperties,
   TypedSchemaProperty,
+  Schema,
 } from "@ftrack/api";
-import { type TypeScriptEmitter } from "./typescriptEmitter";
-import { isSchemaTypedContext } from "./utils";
+import { type TypeScriptEmitter } from "./typescriptEmitter.ts";
+import { isSchemaTypedContext } from "./utils.ts";
+import type { Schema as ApiSchema } from "./session.ts";
 
 // Add schemas from the schemas folder, to be used for finding extended schemas
 export async function emitSchemaInterface(
   typescriptEmitter: TypeScriptEmitter,
   schema: Schema,
-  allSchemas: QuerySchemasResponse,
+  allSchemas: QuerySchemasResponse<ApiSchema>,
 ) {
   const interfaceName = getTypeScriptInterfaceNameForInterface(schema);
 

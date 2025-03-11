@@ -1,23 +1,10 @@
 #!/usr/bin/env node
 // :copyright: Copyright (c) 2023 ftrack
-// A node.js script to convert our query_schema to TypeScript types
-// TODO: Change type to module in API
-import { Session } from "@ftrack/api";
-import { emitToFile } from "./emit";
-
-const session = new Session(
-  process.env.FTRACK_SERVER ?? "",
-  process.env.FTRACK_API_USER ?? "",
-  process.env.FTRACK_API_KEY ?? "",
-);
+import { emitToFile } from "./emit.ts";
 
 const outputPath = process.argv[2] || "__generated__";
 const outputFilename = process.argv[3] || "schema.ts";
-const { errors, schemas } = await emitToFile(
-  session,
-  outputPath,
-  outputFilename,
-);
+const { errors, schemas } = await emitToFile(outputPath, outputFilename);
 
 console.info(`${schemas.length} schema(s) found`);
 

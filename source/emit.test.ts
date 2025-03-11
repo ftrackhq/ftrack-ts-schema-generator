@@ -6,11 +6,19 @@ import {
   type Status,
   type Type,
   emitToString,
-} from "./emit";
-import type { QuerySchemasResponse, Schema } from "@ftrack/api";
+} from "./emit.ts";
+import type { Schema as ApiSchema } from "./session.ts";
+import { type QuerySchemasResponse, type Schema } from "@ftrack/api";
 import { readFile } from "fs/promises";
 import { join } from "path";
-import type { CustomAttributeConfiguration } from "./emitCustomAttributes";
+import type { CustomAttributeConfiguration } from "./emitCustomAttributes.ts";
+
+vi.mock("@ftrack/api", (importOriginal) => {
+  return {
+    ...importOriginal,
+    Session: class Session {},
+  };
+});
 
 beforeEach(() => {
   vi.setSystemTime(new Date(2023, 1, 1, 0, 0, 0));
@@ -50,7 +58,7 @@ test("schema subtype of TypedContext", async () => {
   const emitResult = await emitToString(
     "4.13.8",
     "https://ftrack.example.com",
-    schemas as QuerySchemasResponse,
+    schemas as QuerySchemasResponse<ApiSchema>,
     [],
     [],
     [],
@@ -84,7 +92,7 @@ test("schema has base schema", async () => {
   const emitResult = await emitToString(
     "4.13.8",
     "https://ftrack.example.com",
-    schemas as QuerySchemasResponse,
+    schemas as QuerySchemasResponse<ApiSchema>,
     [],
     [],
     [],
@@ -119,7 +127,7 @@ test("schema has immutable property", async () => {
   const emitResult = await emitToString(
     "4.13.8",
     "https://ftrack.example.com",
-    schemas as QuerySchemasResponse,
+    schemas as QuerySchemasResponse<ApiSchema>,
     [],
     [],
     [],
@@ -153,7 +161,7 @@ test("schema has integer type", async () => {
   const emitResult = await emitToString(
     "4.13.8",
     "https://ftrack.example.com",
-    schemas as QuerySchemasResponse,
+    schemas as QuerySchemasResponse<ApiSchema>,
     [],
     [],
     [],
@@ -187,7 +195,7 @@ test("schema has variable type", async () => {
   const emitResult = await emitToString(
     "4.13.8",
     "https://ftrack.example.com",
-    schemas as QuerySchemasResponse,
+    schemas as QuerySchemasResponse<ApiSchema>,
     [],
     [],
     [],
@@ -234,7 +242,7 @@ test("schema has array type", async () => {
   const emitResult = await emitToString(
     "4.13.8",
     "https://ftrack.example.com",
-    schemas as QuerySchemasResponse,
+    schemas as QuerySchemasResponse<ApiSchema>,
     [],
     [],
     [],
@@ -262,7 +270,7 @@ test("default highway test (all values specified)", async () => {
     ),
   );
 
-  const schemas = await parseJsonFromFile<Schema[]>(
+  const schemas = await parseJsonFromFile<QuerySchemasResponse<ApiSchema>>(
     join(".", "source", "__snapshots__", "responses", "query_schemas.json"),
   );
 
