@@ -270,7 +270,7 @@ export async function emitToString(
   `);
 
   return {
-    prettifiedContent: emitter.toString(),
+    prettifiedContent: await emitter.toString(),
     errors: emitter.errors,
   };
 }
