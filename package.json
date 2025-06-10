@@ -16,7 +16,7 @@
     "prepublish": "yarn test"
   },
   "dependencies": {
-    "@ftrack/api": "^1.11.3-rc.1",
+    "@ftrack/api": "2.0.0-beta.1",
     "prettier": "^3.5.3"
   },
   "files": [

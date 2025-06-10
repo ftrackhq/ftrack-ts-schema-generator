@@ -266,19 +266,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ftrack/api@npm:^1.11.3-rc.1":
-  version: 1.11.3-rc.1
-  resolution: "@ftrack/api@npm:1.11.3-rc.1"
+"@ftrack/api@npm:2.0.0-beta.1":
+  version: 2.0.0-beta.1
+  resolution: "@ftrack/api@npm:2.0.0-beta.1"
   dependencies:
     loglevel: "npm:^1.9.2"
-    moment: "npm:^2.30.1"
     uuid: "npm:^11.1.0"
   peerDependencies:
     ws: ^8.13.0
   peerDependenciesMeta:
     ws:
       optional: true
-  checksum: 10/090c079cd2177a4dbd857211069ac038adb2b346e7584658de7a069f803fde93ee516aa1123e12f57db6ca1c3a2db09339e1298e4b5996a6543770bdf1513f48
+  checksum: 10/2144ea8442573923cfd8d159d5bd3741114e200bd939a4aee59441255dbbdbac2ee092185f7aac5aea0983ef9cde6a5784f899fa84048ec284fe88c8db687627
   languageName: node
   linkType: hard
 
@@ -287,7 +286,7 @@ __metadata:
   resolution: "@ftrack/ts-schema-generator@workspace:."
   dependencies:
     "@eslint/js": "npm:^9.22.0"
-    "@ftrack/api": "npm:^1.11.3-rc.1"
+    "@ftrack/api": "npm:2.0.0-beta.1"
     "@types/node": "npm:^22.13.10"
     "@typescript-eslint/utils": "npm:^8.26.1"
     "@vitest/eslint-plugin": "npm:^1.1.37"
@@ -2142,13 +2141,6 @@ __metadata:
   bin:
     mkdirp: bin/cmd.js
   checksum: 10/d71b8dcd4b5af2fe13ecf3bd24070263489404fe216488c5ba7e38ece1f54daf219e72a833a3a2dc404331e870e9f44963a33399589490956bff003a3404d3b2
-  languageName: node
-  linkType: hard
-
-"moment@npm:^2.30.1":
-  version: 2.30.1
-  resolution: "moment@npm:2.30.1"
-  checksum: 10/ae42d876d4ec831ef66110bdc302c0657c664991e45cf2afffc4b0f6cd6d251dde11375c982a5c0564ccc0fa593fc564576ddceb8c8845e87c15f58aa6baca69
   languageName: node
   linkType: hard
 
