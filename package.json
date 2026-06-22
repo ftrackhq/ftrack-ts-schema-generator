@@ -1,55 +1,51 @@
 {
   "name": "@ftrack/ts-schema-generator",
   "description": "Gets the schema from a ftrack instance and generates typescript interfaces for all the entity types in the instance.",
-  "module": "dist/ftrack-ts-schema-generator.js",
-  "type": "module",
+  "homepage": "https://ftrack.com",
+  "bugs": {
+    "url": "https://github.com/ftrackhq/ftrack-ts-schema-generator/issues"
+  },
+  "license": "Apache-2.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/ftrackhq/ftrack-ts-schema-generator"
   },
+  "bin": {
+    "ftrack-ts-schema-generator": "./dist/ftrack-ts-schema-generator.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "module": "dist/ftrack-ts-schema-generator.js",
   "scripts": {
     "generate": "node dist/ftrack-ts-schema-generator.js",
     "build": "esbuild source/index.ts --target=esnext --outfile=dist/ftrack-ts-schema-generator.js --platform=node --format=esm --bundle --packages=external",
     "watch": "esbuild source/index.ts --target=esnext --outfile=dist/ftrack-ts-schema-generator.js --platform=node --format=esm --bundle --packages=external --watch",
     "prepack": "yarn build",
-    "test": "tsc && eslint --cache --fix --max-warnings=0 ./source && prettier -c ./source && vitest --run",
+    "test": "tsc && oxlint && oxfmt --check && vitest --run",
     "prepublish": "yarn test"
   },
   "dependencies": {
     "@ftrack/api": "2.0.0-beta.6",
     "prettier": "^3.7.4"
   },
-  "files": [
-    "dist"
-  ],
-  "license": "Apache-2.0",
-  "bugs": {
-    "url": "https://github.com/ftrackhq/ftrack-ts-schema-generator/issues"
-  },
-  "bin": {
-    "ftrack-ts-schema-generator": "./dist/ftrack-ts-schema-generator.js"
-  },
-  "homepage": "https://ftrack.com",
   "devDependencies": {
-    "@eslint/js": "^9.22.0",
     "@types/node": "^24.10.8",
-    "@typescript-eslint/utils": "^8.53.0",
-    "@vitest/eslint-plugin": "^1.6.6",
     "esbuild": "^0.27.2",
-    "eslint": "^9.39.2",
-    "globals": "^17.0.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7",
+    "oxfmt": "^0.56.0",
+    "oxlint": "^1.71.0",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.53.0",
     "vitest": "^4.0.17"
   },
-  "packageManager": "yarn@4.12.0",
   "lint-staged": {
     "*.{js,ts}": [
-      "eslint --cache --fix --max-warnings=0",
-      "prettier --write",
+      "oxlint --fix",
+      "oxfmt",
       "bash -c 'yarn tsc'"
     ]
-  }
+  },
+  "packageManager": "yarn@4.12.0"
 }
