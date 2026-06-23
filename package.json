@@ -11,9 +11,9 @@
     "generate": "node dist/ftrack-ts-schema-generator.js",
     "build": "esbuild source/index.ts --target=esnext --outfile=dist/ftrack-ts-schema-generator.js --platform=node --format=esm --bundle --packages=external",
     "watch": "esbuild source/index.ts --target=esnext --outfile=dist/ftrack-ts-schema-generator.js --platform=node --format=esm --bundle --packages=external --watch",
-    "prepack": "yarn build",
+    "prepack": "pnpm build",
     "test": "tsc && eslint --cache --fix --max-warnings=0 ./source && prettier -c ./source && vitest --run",
-    "prepublish": "yarn test"
+    "prepublish": "pnpm test"
   },
   "dependencies": {
     "@ftrack/api": "2.0.0-beta.6",
@@ -44,12 +44,12 @@
     "typescript-eslint": "^8.53.0",
     "vitest": "^4.0.17"
   },
-  "packageManager": "yarn@4.12.0",
+  "packageManager": "pnpm@11.8.0",
   "lint-staged": {
     "*.{js,ts}": [
       "eslint --cache --fix --max-warnings=0",
       "prettier --write",
-      "bash -c 'yarn tsc'"
+      "bash -c 'pnpm exec tsc'"
     ]
   }
 }

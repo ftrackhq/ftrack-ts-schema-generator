@@ -19,17 +19,17 @@ Please ensure these environment variables are set before running the script.
 After cloning or downloading the package, navigate to the package directory and run the following command:
 
 ```
-yarn install
+pnpm install
 ```
 
-Then, to run the script using Yarn, use the `yarn generate` command.
+Then, to run the script using pnpm, use the `pnpm generate` command.
 
 ### As a dependency in another project
 
 Install the package as a dependency in your project:
 
 ```
-yarn add --dev @ftrack/ts-schema-generator
+pnpm add -D @ftrack/ts-schema-generator
 ```
 
 Add the following script to your project's `package.json` file:
@@ -43,7 +43,7 @@ Add the following script to your project's `package.json` file:
 Then, run the script using the following command:
 
 ```
-yarn generate-ts-schema
+pnpm generate-ts-schema
 ```
 
 ### Customizing the output path and filename
@@ -51,7 +51,7 @@ yarn generate-ts-schema
 To customize the output path and filename, pass them as arguments:
 
 ```
-yarn generate ./path/to/output/directory customSchemaFilename.ts
+pnpm generate ./path/to/output/directory customSchemaFilename.ts
 ```
 
 or if using the script as a dependency in another project:
