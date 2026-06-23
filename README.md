@@ -18,7 +18,7 @@ Please ensure these environment variables are set before running the script.
 
 After cloning or downloading the package, navigate to the package directory and run the following command:
 
-```
+```bash
 pnpm install
 ```
 
@@ -28,7 +28,7 @@ Then, to run the script using pnpm, use the `pnpm generate` command.
 
 Install the package as a dependency in your project:
 
-```
+```bash
 pnpm add -D @ftrack/ts-schema-generator
 ```
 
@@ -42,7 +42,7 @@ Add the following script to your project's `package.json` file:
 
 Then, run the script using the following command:
 
-```
+```bash
 pnpm generate-ts-schema
 ```
 
@@ -50,13 +50,13 @@ pnpm generate-ts-schema
 
 To customize the output path and filename, pass them as arguments:
 
-```
+```bash
 pnpm generate ./path/to/output/directory customSchemaFilename.ts
 ```
 
 or if using the script as a dependency in another project:
 
-```
+```json
 "scripts": {
   "generate-ts-schema": "ftrack-ts-schema-generator ./path/to/output/directory customSchemaFilename.ts"
 }
