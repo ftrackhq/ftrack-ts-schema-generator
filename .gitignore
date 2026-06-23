@@ -51,14 +51,6 @@ dist/
 package.tgz
 .eggs/
 
-# Yarn
-.pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/sdks
-!.yarn/versions
 __generated__/
 
 tsconfig.tsbuildinfo
